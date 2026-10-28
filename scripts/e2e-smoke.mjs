@@ -19,7 +19,7 @@ const ROUTES = [
   { path: '/terms', mustInclude: ['Terms'] },
   { path: '/for-agents', mustInclude: ['For AI agents'] },
   { path: '/blog', mustInclude: ['Blog'] },
-  { path: '/404', mustInclude: ['404'], status: 404 },
+  { path: '/definitely-not-a-real-marketing-route-xyz', mustInclude: ['404', 'could not find'], status: 404 },
 ];
 
 const PRODUCT_LINKS = [

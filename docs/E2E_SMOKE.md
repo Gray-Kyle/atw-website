@@ -29,7 +29,7 @@ For each base URL (`https://atw.net` and `https://www.atw.net` by default):
 | `/solutions` | Solutions index |
 | `/services`, `/why-us`, `/partners`, `/book`, `/one` | Key headings |
 | `/terms`, `/for-agents`, `/blog` | Legal / agent / blog shells |
-| `/404` | HTTP 404 and error copy |
+| `/definitely-not-a-real-marketing-route-xyz` | HTTP 404 and error copy |
 | `/` (links) | `one.atw.net` and `auth.atw.net/auth/signin` in HTML |
 
 Exit code `0` = pass, `1` = at least one failure.
