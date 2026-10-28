@@ -1,16 +1,35 @@
 ---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import SystemMarketingPage from '../../components/marketing/SystemMarketingPage.astro';
 import { PRODUCT } from '../../lib/site';
 
-const target = PRODUCT.directory;
+const faqs = [
+  {
+    q: 'What is ATW Directory?',
+    a: 'Directory is the organization roster and access layer: who can sign in, and which systems and applications they may use.',
+  },
+  {
+    q: 'Why does Directory matter for ERP?',
+    a: 'Custom ERP and ATW One both rely on clear identity. Directory keeps people and permissions consistent across systems.',
+  },
+  {
+    q: 'How do I manage access?',
+    a: 'Admins invite people and assign system access. Contact us if you need help designing roles for a rollout.',
+  },
+] as const;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <title>Redirecting to Directory…</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href={target}>ATW Directory</a>…</p>
-  </body>
-</html>
+<MarketingLayout
+  title="ATW Directory — people and access"
+  description="Who can sign in and which systems they can open across One, Hub, Mail, Agents, and more."
+  canonical="https://atw.net/systems/directory"
+>
+  <SystemMarketingPage
+    systemId="directory"
+    headline="People and access across ATW"
+    lead="Know who can sign in, and which systems they can open. Directory is the shared identity layer for One, Hub, Mail, Agents, and more."
+    primaryCta={{ label: 'Talk to us', href: '/contact' }}
+    secondaryCta={{ label: 'Open Directory app', href: PRODUCT.directory }}
+    faqs={faqs}
+  />
+</MarketingLayout>

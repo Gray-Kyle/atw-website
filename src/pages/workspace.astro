@@ -1,0 +1,34 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
+
+const faqs = [
+  {
+    q: 'What is ATW WorkSuite?',
+    a: 'WorkSuite covers calendar, documents, meetings, and business text/voice messaging alongside One and Mail.',
+  },
+  {
+    q: 'Do I need Mail?',
+    a: 'Mail and calendar often travel together. You can start with Mail and grow into WorkSuite tools as you need them.',
+  },
+  {
+    q: 'How do I learn more?',
+    a: 'Contact us for WorkSuite enablement, or see Mail pricing if you need domain email first.',
+  },
+] as const;
+---
+
+<MarketingLayout
+  title="ATW WorkSuite — calendar, docs, meetings, messaging"
+  description="Calendar, documents, meetings, and messaging next to ATW One and Mail."
+  canonical="https://atw.net/workspace"
+>
+  <SystemMarketingPage
+    systemId="workspace"
+    headline="Calendar, documents, meetings, and messaging"
+    lead="WorkSuite sits next to ATW One so your team can schedule, collaborate, meet, and message without another disconnected suite."
+    primaryCta={{ label: 'Talk to us', href: '/contact' }}
+    secondaryCta={{ label: 'Explore Mail', href: '/mail' }}
+    faqs={faqs}
+  />
+</MarketingLayout>

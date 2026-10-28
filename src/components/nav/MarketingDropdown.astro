@@ -1,0 +1,49 @@
+---
+import type { MarketingLink } from '../../lib/marketingNav';
+
+type Props = {
+  label: string;
+  links: MarketingLink[];
+};
+
+const { label, links } = Astro.props;
+const menuId = `nav-${label.toLowerCase()}`;
+---
+
+<div class="nav-dropdown group relative" data-nav-dropdown>
+  <button
+    type="button"
+    class="flex items-center gap-1 text-sm font-medium text-brand-ink transition-colors hover:text-primary"
+    aria-expanded="false"
+    aria-haspopup="true"
+    id={`${menuId}-trigger`}
+    data-nav-trigger
+  >
+    {label}
+    <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  <div
+    class="pointer-events-none invisible absolute left-0 top-full z-50 w-[min(100vw-2rem,520px)] pt-2 opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100"
+    role="menu"
+    aria-labelledby={`${menuId}-trigger`}
+    data-nav-panel
+  >
+    <ul class="grid gap-2 rounded-lg border border-border bg-white p-4 shadow-lg sm:grid-cols-2">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block select-none space-y-1 rounded-md p-3 no-underline outline-none transition-colors hover:bg-accent"
+            >
+              <div class="text-sm font-medium leading-none text-brand-ink">{link.title}</div>
+              <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">{link.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

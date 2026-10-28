@@ -7,7 +7,8 @@
 const DEFAULT_BASES = ['https://atw.net', 'https://www.atw.net'];
 
 const ROUTES = [
-  { path: '/', mustInclude: ['ATW One', 'Unified Experience'] },
+  { path: '/', mustInclude: ['ATW One', 'Unified Experience', 'systems-mega-systems', 'Applications', 'Modules'] },
+  { path: '/', mustInclude: ['Custom ERP on One', 'All partners', 'WorkSuite', 'ATW AI'] },
   { path: '/pricing', mustInclude: ['Pricing', 'Credits'] },
   { path: '/contact', mustInclude: ['Get in touch'] },
   { path: '/solutions', mustInclude: ['Solutions'] },

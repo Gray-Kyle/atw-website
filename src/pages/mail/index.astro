@@ -1,0 +1,34 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import SystemMarketingPage from '../../components/marketing/SystemMarketingPage.astro';
+
+const faqs = [
+  {
+    q: 'What is ATW Mail?',
+    a: 'Hosted business email on your domain with webmail, admin controls, and IMAP/SMTP for any mail client.',
+  },
+  {
+    q: 'Can I use ATW Mail without ATW One?',
+    a: 'Yes. Mail can run standalone or as part of WorkSuite inside One.',
+  },
+  {
+    q: 'How do I get started?',
+    a: 'Start a trial from auth signup or talk to us about migration from Gmail or Microsoft 365.',
+  },
+] as const;
+---
+
+<MarketingLayout
+  title="ATW Mail — secure business email"
+  description="Professional mailboxes on your domain with webmail and admin controls."
+  canonical="https://atw.net/mail"
+>
+  <SystemMarketingPage
+    systemId="mail"
+    headline="Secure business email for your organization"
+    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP."
+    primaryCta={{ label: 'Talk to us', href: '/contact' }}
+    secondaryCta={{ label: 'WorkSuite', href: '/workspace' }}
+    faqs={faqs}
+  />
+</MarketingLayout>

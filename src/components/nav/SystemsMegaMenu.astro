@@ -1,0 +1,231 @@
+---
+import { marketingSystems } from '../../lib/marketingNav';
+
+const first = marketingSystems[0];
+const firstApp = first.apps[0];
+---
+
+<div class="nav-mega group relative" id="nav-systems-mega" data-nav-dropdown>
+  <button
+    type="button"
+    class="flex items-center gap-1 text-sm font-medium text-brand-ink transition-colors hover:text-primary"
+    aria-expanded="false"
+    aria-haspopup="true"
+    id="nav-systems-trigger"
+    data-nav-trigger
+  >
+    Systems
+    <svg class="h-4 w-4 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  <div
+    class="pointer-events-none invisible absolute left-0 top-full z-50 w-[min(100vw-2rem,860px)] pt-2 opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100"
+    id="nav-systems-panel"
+    role="menu"
+    aria-labelledby="nav-systems-trigger"
+    data-nav-panel
+  >
+    <div
+      class="grid grid-cols-1 overflow-hidden rounded-lg border border-border bg-white shadow-lg sm:grid-cols-[180px_220px_1fr]"
+      id="systems-mega-grid"
+    >
+      <ul class="border-b border-border p-2 sm:border-b-0 sm:border-r" id="systems-mega-systems">
+        <li class="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+          Systems
+        </li>
+        {
+          marketingSystems.map((item, index) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'flex w-full rounded-md px-3 py-2 text-left text-sm',
+                  index === 0
+                    ? 'bg-accent font-medium text-brand-ink'
+                    : 'text-foreground hover:bg-accent/60',
+                ]}
+                data-system-id={item.id}
+                data-system-nav
+              >
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="border-b border-border p-2 sm:border-b-0 sm:border-r" id="systems-mega-apps">
+        <li class="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+          Applications
+        </li>
+        {
+          first.apps.map((item, index) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'flex w-full rounded-md px-3 py-2 text-left text-sm',
+                  index === 0
+                    ? 'bg-accent font-medium text-brand-ink'
+                    : 'text-foreground hover:bg-accent/60',
+                ]}
+                data-app-id={item.id}
+                data-app-nav
+              >
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="p-4" id="systems-mega-detail">
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{first.title}</p>
+        <a href={first.href} class="mt-1 block text-base font-semibold text-foreground hover:text-primary">
+          {first.title}
+        </a>
+        <p class="mt-1 text-sm text-muted-foreground">{first.summary}</p>
+        {
+          firstApp ? (
+            <>
+              <a
+                href={firstApp.href}
+                class="mt-4 block text-sm font-semibold text-foreground hover:text-primary"
+              >
+                {firstApp.title}
+              </a>
+              <p class="mt-1 text-sm text-muted-foreground">{firstApp.summary}</p>
+              <p class="mb-2 mt-4 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                Modules
+              </p>
+              <ul class="space-y-1">
+                {firstApp.modules.map((mod) => (
+                  <li>
+                    <a
+                      href={mod.href}
+                      class="block rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-accent"
+                    >
+                      {mod.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null
+        }
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="marketing-systems-json" set:html={JSON.stringify(marketingSystems)} />
+</div>
+
+<script>
+  import type { MarketingSystem } from '../../lib/marketingNav';
+
+  function parseSystems(): MarketingSystem[] {
+    const el = document.getElementById('marketing-systems-json');
+    if (!el?.textContent) return [];
+    try {
+      return JSON.parse(el.textContent) as MarketingSystem[];
+    } catch {
+      return [];
+    }
+  }
+
+  function bindSystemsMegaMenu() {
+    const systems = parseSystems();
+    if (!systems.length) return;
+
+    const systemsCol = document.getElementById('systems-mega-systems');
+    const appsCol = document.getElementById('systems-mega-apps');
+    const detailCol = document.getElementById('systems-mega-detail');
+    if (!systemsCol || !appsCol || !detailCol) return;
+
+    let activeSystemId = systems[0].id;
+    let activeAppId = systems[0].apps[0]?.id ?? '';
+
+    const highlight = (container: HTMLElement, selector: string, activeId: string, attr: string) => {
+      container.querySelectorAll<HTMLElement>(selector).forEach((node) => {
+        const id = node.getAttribute(attr);
+        const on = id === activeId;
+        node.classList.toggle('bg-accent', on);
+        node.classList.toggle('font-medium', on);
+        node.classList.toggle('text-brand-ink', on);
+        node.classList.toggle('hover:bg-accent/60', !on);
+      });
+    };
+
+    const renderApps = (system: MarketingSystem) => {
+      appsCol.innerHTML = `
+        <li class="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Applications</li>
+        ${system.apps
+          .map(
+            (app) => `
+          <li>
+            <a href="${app.href}" class="flex w-full rounded-md px-3 py-2 text-left text-sm text-foreground hover:bg-accent/60" data-app-id="${app.id}" data-app-nav>${app.title}</a>
+          </li>`,
+          )
+          .join('')}
+      `;
+      activeAppId = system.apps[0]?.id ?? '';
+      highlight(appsCol, '[data-app-nav]', activeAppId, 'data-app-id');
+      bindAppLinks(system);
+      renderDetail(system, system.apps[0]);
+    };
+
+    const renderDetail = (system: MarketingSystem, app: MarketingSystem['apps'][0] | undefined) => {
+      if (!app) {
+        detailCol.innerHTML = '';
+        return;
+      }
+      detailCol.innerHTML = `
+        <p class="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">${system.title}</p>
+        <a href="${system.href}" class="mt-1 block text-base font-semibold text-foreground hover:text-primary">${system.title}</a>
+        <p class="mt-1 text-sm text-muted-foreground">${system.summary}</p>
+        <a href="${app.href}" class="mt-4 block text-sm font-semibold text-foreground hover:text-primary">${app.title}</a>
+        <p class="mt-1 text-sm text-muted-foreground">${app.summary}</p>
+        <p class="mb-2 mt-4 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Modules</p>
+        <ul class="space-y-1">
+          ${app.modules
+            .map(
+              (mod) =>
+                `<li><a href="${mod.href}" class="block rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-accent">${mod.title}</a></li>`,
+            )
+            .join('')}
+        </ul>
+      `;
+    };
+
+    const bindAppLinks = (system: MarketingSystem) => {
+      appsCol.querySelectorAll<HTMLElement>('[data-app-nav]').forEach((node) => {
+        const appId = node.getAttribute('data-app-id');
+        const app = system.apps.find((item) => item.id === appId);
+        const activate = () => {
+          if (!appId || !app) return;
+          activeAppId = appId;
+          highlight(appsCol, '[data-app-nav]', activeAppId, 'data-app-id');
+          renderDetail(system, app);
+        };
+        node.addEventListener('mouseenter', activate);
+        node.addEventListener('focus', activate);
+      });
+    };
+
+    systemsCol.querySelectorAll<HTMLElement>('[data-system-nav]').forEach((node) => {
+      const systemId = node.getAttribute('data-system-id');
+      const system = systems.find((item) => item.id === systemId);
+      if (!system) return;
+      const activate = () => {
+        activeSystemId = system.id;
+        highlight(systemsCol, '[data-system-nav]', activeSystemId, 'data-system-id');
+        renderApps(system);
+      };
+      node.addEventListener('mouseenter', activate);
+      node.addEventListener('focus', activate);
+    });
+
+    bindAppLinks(systems[0]);
+  }
+
+  bindSystemsMegaMenu();
+  document.addEventListener('astro:page-load', bindSystemsMegaMenu);
+</script>

@@ -1,0 +1,99 @@
+---
+import type { MarketingSystem } from '../../lib/marketingNav';
+import { findMarketingSystem } from '../../lib/marketingNav';
+
+type Faq = { q: string; a: string };
+
+type Props = {
+  systemId: string;
+  headline: string;
+  lead: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  faqs: readonly Faq[];
+};
+
+const { systemId, headline, lead, primaryCta, secondaryCta, faqs } = Astro.props;
+const system = findMarketingSystem(systemId);
+if (!system) {
+  throw new Error(`Unknown marketing system: ${systemId}`);
+}
+---
+
+<main class="min-h-screen">
+  <section class="border-b border-border bg-gradient-to-b from-slate-50 to-white pt-16">
+    <div class="container px-4 pb-16 pt-8">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">ATW {system.title}</p>
+      <h1 class="mt-3 max-w-3xl font-heading text-4xl font-bold text-foreground sm:text-5xl">{headline}</h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">{lead}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={primaryCta.href}
+          class="inline-flex items-center rounded bg-brand-navy px-6 py-3 font-heading text-sm text-white hover:bg-brand-navy/90"
+        >
+          {primaryCta.label}
+        </a>
+        {
+          secondaryCta ? (
+            <a
+              href={secondaryCta.href}
+              class="inline-flex items-center rounded border-2 border-brand-navy px-6 py-3 font-heading text-sm text-foreground hover:bg-brand-navy/10"
+            >
+              {secondaryCta.label}
+            </a>
+          ) : null
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="container px-4 py-16">
+    <h2 class="text-2xl font-semibold">What's inside</h2>
+    <p class="mt-2 max-w-2xl text-muted-foreground">{system.summary}</p>
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {
+        system.apps.map((app) => (
+          <article class="rounded-xl border border-border bg-card p-5">
+            <h3 class="text-lg font-semibold">
+              <a href={app.href} class="hover:text-primary">
+                {app.title}
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-muted-foreground">{app.summary}</p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {app.modules.map((mod) => (
+                <li>
+                  <a
+                    href={mod.href}
+                    class="inline-flex rounded-full border border-border px-3 py-1 text-sm hover:bg-accent"
+                  >
+                    {mod.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+    <p class="mt-8 text-sm text-muted-foreground">
+      See the full catalog on <a href="/systems" class="text-primary underline">Systems</a>.
+    </p>
+  </section>
+
+  <section class="border-t border-border bg-muted/30 py-16">
+    <div class="container max-w-3xl px-4">
+      <h2 class="text-2xl font-semibold">FAQ</h2>
+      <dl class="mt-6 space-y-6">
+        {
+          faqs.map((faq) => (
+            <div>
+              <dt class="font-medium text-foreground">{faq.q}</dt>
+              <dd class="mt-1 text-muted-foreground">{faq.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+</main>

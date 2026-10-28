@@ -1,0 +1,58 @@
+---
+import { marketingSystems } from '../../lib/marketingNav';
+---
+
+<div class="systems-mobile space-y-1" data-systems-mobile>
+  {
+    marketingSystems.map((item) => (
+      <details class="group/system border-b border-border/60 pb-2">
+        <summary class="flex cursor-pointer list-none items-center justify-between py-2 text-sm font-medium marker:content-none [&::-webkit-details-marker]:hidden">
+          <a href={item.href} class="flex-1 text-brand-ink" onclick="event.stopPropagation()">
+            {item.title}
+          </a>
+          <svg
+            class="h-4 w-4 shrink-0 text-muted-foreground transition group-open/system:rotate-180"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <div class="space-y-1 pl-3 pt-1">
+          <a href={item.href} class="block py-1 text-sm font-medium text-brand-ink">
+            Open {item.title}
+          </a>
+          {item.apps.map((app) => (
+            <details class="group/app">
+              <summary class="flex cursor-pointer list-none items-center justify-between py-1.5 text-sm marker:content-none [&::-webkit-details-marker]:hidden">
+                <a href={app.href} class="flex-1" onclick="event.stopPropagation()">
+                  {app.title}
+                </a>
+                <svg
+                  class="h-3.5 w-3.5 text-muted-foreground transition group-open/app:rotate-180"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <ul class="pb-1 pl-3">
+                {app.modules.map((mod) => (
+                  <li>
+                    <a href={mod.href} class="block py-1 text-sm text-muted-foreground">
+                      {mod.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </details>
+    ))
+  }
+</div>

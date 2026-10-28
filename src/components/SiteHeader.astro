@@ -1,21 +1,24 @@
 ---
-import { AUTH_SIGNIN, livePath, PRODUCT } from '../lib/site';
-
-const navSystems = [
-  { title: 'ATW One', href: PRODUCT.one, summary: 'ERP/CRM workspace' },
-  { title: 'WorkSuite', href: PRODUCT.worksuite, summary: 'Mail, calendar, office, meetings' },
-  { title: 'Hub', href: PRODUCT.hub, summary: 'Team chat' },
-  { title: 'Directory', href: PRODUCT.directory, summary: 'People and access' },
-];
+import { AUTH_SIGNIN, livePath } from '../lib/site';
+import { marketingPartnerLinks, marketingServiceLinks } from '../lib/marketingNav';
+import SystemsMegaMenu from './nav/SystemsMegaMenu.astro';
+import MarketingDropdown from './nav/MarketingDropdown.astro';
+import SystemsMobileSection from './nav/SystemsMobileSection.astro';
 
 const currentPath = Astro.url.pathname;
+
+const navLinkClass = (active: boolean) =>
+  [
+    'text-sm font-medium transition-colors hover:text-primary',
+    active ? 'text-brand-ink' : 'text-muted-foreground',
+  ].join(' ');
 ---
 
 <header
   id="site-header"
   class="fixed top-0 z-50 w-full bg-white/95 py-4 shadow-sm backdrop-blur-sm transition-all"
 >
-  <div class="xl-container flex items-center justify-between">
+  <div class="xl-container flex items-center justify-between gap-4">
     <a href="/" class="flex shrink-0 items-center" aria-label="ATW Network home">
       <img
         src="/images/logo/logo.png"
@@ -28,63 +31,12 @@ const currentPath = Astro.url.pathname;
       />
     </a>
 
-    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
-      <details class="group relative">
-        <summary
-          class="cursor-pointer list-none text-sm font-medium text-brand-ink marker:content-none [&::-webkit-details-marker]:hidden"
-        >
-          Systems
-        </summary>
-        <div
-          class="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-border bg-white p-3 shadow-lg"
-        >
-          <ul class="space-y-1">
-            {
-              navSystems.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    class="block rounded-md px-3 py-2 text-sm hover:bg-accent"
-                  >
-                    <span class="font-medium text-brand-ink">{item.title}</span>
-                    <span class="mt-0.5 block text-xs text-muted-foreground">{item.summary}</span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </details>
-      <a href={livePath('/services')} class="text-sm font-medium text-brand-ink hover:text-primary">
-        Services
-      </a>
-      <a href={livePath('/partners')} class="text-sm font-medium text-brand-ink hover:text-primary">
-        Partners
-      </a>
-      <a
-        href="/pricing"
-        class:list={[
-          'text-sm font-medium hover:text-primary',
-          currentPath === '/pricing' ? 'text-brand-ink' : 'text-muted-foreground',
-        ]}
-      >
-        Pricing
-      </a>
-      <a
-        href={livePath('/why-us')}
-        class="text-sm font-medium text-muted-foreground hover:text-primary"
-      >
-        Why Us
-      </a>
-      <a
-        href="/solutions"
-        class:list={[
-          'text-sm font-medium hover:text-primary',
-          currentPath.startsWith('/solutions') ? 'text-brand-ink' : 'text-muted-foreground',
-        ]}
-      >
-        Solutions
-      </a>
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+      <SystemsMegaMenu />
+      <MarketingDropdown label="Services" links={marketingServiceLinks} />
+      <MarketingDropdown label="Partners" links={marketingPartnerLinks} />
+      <a href="/pricing" class={navLinkClass(currentPath === '/pricing')}>Pricing</a>
+      <a href={livePath('/why-us')} class={navLinkClass(currentPath === '/why-us')}>Why Us</a>
       <a
         href={livePath('/book')}
         class="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-md hover:brightness-110"
@@ -99,42 +51,107 @@ const currentPath = Astro.url.pathname;
       </a>
     </nav>
 
-    <details class="md:hidden">
-      <summary class="cursor-pointer list-none rounded border border-border px-3 py-2 text-sm font-medium marker:content-none [&::-webkit-details-marker]:hidden">
-        Menu
-      </summary>
-      <div class="absolute inset-x-0 top-full border-b border-border bg-white px-4 py-4 shadow-md">
-        <ul class="flex flex-col gap-3 text-sm">
-          {
-            navSystems.map((item) => (
-              <li>
-                <a href={item.href} class="font-medium text-brand-ink">{item.title}</a>
-              </li>
-            ))
-          }
-          <li><a href={livePath('/services')}>Services</a></li>
-          <li><a href={livePath('/partners')}>Partners</a></li>
-          <li><a href="/pricing">Pricing</a></li>
-          <li><a href="/solutions">Solutions</a></li>
-          <li><a href="/contact">Contact</a></li>
-          <li><a href={livePath('/book')} class="font-semibold text-primary">Book a Call</a></li>
-          <li><a href={AUTH_SIGNIN}>Sign In</a></li>
-        </ul>
-      </div>
-    </details>
+    <button
+      type="button"
+      id="mobile-nav-toggle"
+      class="inline-flex items-center rounded border border-border px-3 py-2 text-sm font-medium lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav-panel"
+    >
+      Menu
+    </button>
+  </div>
+
+  <div
+    id="mobile-nav-panel"
+    class="invisible max-h-0 overflow-hidden border-b border-border bg-white/95 opacity-0 backdrop-blur-sm transition-all duration-300 lg:hidden"
+    aria-hidden="true"
+  >
+    <div class="xl-container flex flex-col gap-4 py-4">
+      <details class="group/mobile-systems">
+        <summary class="flex cursor-pointer list-none items-center justify-between py-2 text-sm font-medium marker:content-none [&::-webkit-details-marker]:hidden">
+          Systems
+          <svg
+            class="h-4 w-4 transition group-open/mobile-systems:rotate-180"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </summary>
+        <SystemsMobileSection />
+      </details>
+
+      {
+        [
+          { title: 'Services', href: '/services', links: marketingServiceLinks },
+          { title: 'Partners', href: '/partners', links: marketingPartnerLinks },
+        ].map((section) => (
+          <details class="group/mobile-section">
+            <summary class="flex cursor-pointer list-none items-center justify-between py-2 text-sm font-medium marker:content-none [&::-webkit-details-marker]:hidden">
+              {section.title}
+              <svg
+                class="h-4 w-4 transition group-open/mobile-section:rotate-180"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="space-y-1 pl-3">
+              {section.links.map((link) => (
+                <a href={link.href} class="block py-1.5 text-sm text-muted-foreground hover:text-brand-ink">
+                  {link.title}
+                </a>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+
+      <a href="/pricing" class="py-2 text-sm font-medium text-brand-ink">Pricing</a>
+      <a href={livePath('/why-us')} class="py-2 text-sm font-medium text-brand-ink">Why Us</a>
+      <a href={livePath('/book')} class="py-2 text-sm font-semibold text-primary">Book a Call</a>
+      <a href={AUTH_SIGNIN} class="py-2 text-sm font-medium text-brand-ink">Sign In</a>
+    </div>
   </div>
 </header>
 
 <script>
   const header = document.getElementById('site-header');
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const panel = document.getElementById('mobile-nav-panel');
+
+  function setMobileOpen(open: boolean) {
+    if (!toggle || !panel) return;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (open) {
+      panel.classList.remove('invisible', 'max-h-0', 'opacity-0');
+      panel.classList.add('visible', 'max-h-[calc(100vh-5rem)]', 'opacity-100', 'overflow-y-auto');
+      document.body.style.overflow = 'hidden';
+    } else {
+      panel.classList.add('invisible', 'max-h-0', 'opacity-0');
+      panel.classList.remove('visible', 'max-h-[calc(100vh-5rem)]', 'opacity-100', 'overflow-y-auto');
+      document.body.style.overflow = '';
+    }
+  }
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    setMobileOpen(open);
+  });
+
   if (header) {
     const onScroll = () => {
-      if (window.scrollY > 10) {
-        header.classList.add('shadow-md');
-      } else {
-        header.classList.remove('shadow-md');
-      }
+      header.classList.toggle('shadow-md', window.scrollY > 10);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
   }
+
+  document.addEventListener('astro:page-load', () => setMobileOpen(false));
 </script>

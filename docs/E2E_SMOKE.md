@@ -40,7 +40,7 @@ Copy this block for an automated browser or HTTP pass:
 
 1. Confirm `https://atw.net` and `https://www.atw.net` both return **200** for `/` (follow redirects).
 2. Run `node scripts/e2e-smoke.mjs` from repo root; fix any FAIL lines before sign-off.
-3. Spot-check nav: **Services**, **Partners**, **Pricing**, **Solutions**, **Book a Call**, **Sign In** (auth subdomain).
+3. Spot-check nav: hover **Systems** for three-column mega-menu (Systems / Applications / Modules); **Services** and **Partners** dropdown grids; **Pricing**, **Why Us**, **Book a Call**, **Sign In** (auth subdomain). Systems links should use marketing paths (`/one`, `/hub`, `/mail`, `/workspace`, `/systems/directory`, `/agents`, `/solutions/ai-use-cases`), not only product subdomains.
 4. Open `/solutions/crm` and `/partners/zoho`; confirm Astro chrome (logo header, footer legal links).
 5. Open `/trial`; confirm redirect to `auth.atw.net/signup` with `product=one`.
 6. Confirm `/services` is **not** serving the home page (title/body must mention ATW Services).
