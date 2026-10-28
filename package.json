@@ -1,0 +1,21 @@
+{
+  "name": "atw-website",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
+  },
+  "dependencies": {
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "wrangler": "^4.154.0"
+  }
+}
