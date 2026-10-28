@@ -1,0 +1,140 @@
+---
+import { AUTH_SIGNIN, livePath, PRODUCT } from '../lib/site';
+
+const navSystems = [
+  { title: 'ATW One', href: PRODUCT.one, summary: 'ERP/CRM workspace' },
+  { title: 'WorkSuite', href: PRODUCT.worksuite, summary: 'Mail, calendar, office, meetings' },
+  { title: 'Hub', href: PRODUCT.hub, summary: 'Team chat' },
+  { title: 'Directory', href: PRODUCT.directory, summary: 'People and access' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 z-50 w-full bg-white/95 py-4 shadow-sm backdrop-blur-sm transition-all"
+>
+  <div class="xl-container flex items-center justify-between">
+    <a href="/" class="flex shrink-0 items-center" aria-label="ATW Network home">
+      <img
+        src="/images/logo/logo.png"
+        alt="ATW Network"
+        width="140"
+        height="60"
+        class="h-[52px] w-auto max-w-[140px] object-contain object-left sm:h-[60px]"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      <details class="group relative">
+        <summary
+          class="cursor-pointer list-none text-sm font-medium text-brand-ink marker:content-none [&::-webkit-details-marker]:hidden"
+        >
+          Systems
+        </summary>
+        <div
+          class="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-border bg-white p-3 shadow-lg"
+        >
+          <ul class="space-y-1">
+            {
+              navSystems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="block rounded-md px-3 py-2 text-sm hover:bg-accent"
+                  >
+                    <span class="font-medium text-brand-ink">{item.title}</span>
+                    <span class="mt-0.5 block text-xs text-muted-foreground">{item.summary}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </details>
+      <a href={livePath('/services')} class="text-sm font-medium text-brand-ink hover:text-primary">
+        Services
+      </a>
+      <a href={livePath('/partners')} class="text-sm font-medium text-brand-ink hover:text-primary">
+        Partners
+      </a>
+      <a
+        href="/pricing"
+        class:list={[
+          'text-sm font-medium hover:text-primary',
+          currentPath === '/pricing' ? 'text-brand-ink' : 'text-muted-foreground',
+        ]}
+      >
+        Pricing
+      </a>
+      <a
+        href={livePath('/why-us')}
+        class="text-sm font-medium text-muted-foreground hover:text-primary"
+      >
+        Why Us
+      </a>
+      <a
+        href="/solutions"
+        class:list={[
+          'text-sm font-medium hover:text-primary',
+          currentPath.startsWith('/solutions') ? 'text-brand-ink' : 'text-muted-foreground',
+        ]}
+      >
+        Solutions
+      </a>
+      <a
+        href={livePath('/book')}
+        class="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-md hover:brightness-110"
+      >
+        Book a Call
+      </a>
+      <a
+        href={AUTH_SIGNIN}
+        class="rounded-full border border-brand-navy/30 px-4 py-2 text-sm font-medium text-brand-ink hover:bg-brand-navy/5"
+      >
+        Sign In
+      </a>
+    </nav>
+
+    <details class="md:hidden">
+      <summary class="cursor-pointer list-none rounded border border-border px-3 py-2 text-sm font-medium marker:content-none [&::-webkit-details-marker]:hidden">
+        Menu
+      </summary>
+      <div class="absolute inset-x-0 top-full border-b border-border bg-white px-4 py-4 shadow-md">
+        <ul class="flex flex-col gap-3 text-sm">
+          {
+            navSystems.map((item) => (
+              <li>
+                <a href={item.href} class="font-medium text-brand-ink">{item.title}</a>
+              </li>
+            ))
+          }
+          <li><a href={livePath('/services')}>Services</a></li>
+          <li><a href={livePath('/partners')}>Partners</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/solutions">Solutions</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href={livePath('/book')} class="font-semibold text-primary">Book a Call</a></li>
+          <li><a href={AUTH_SIGNIN}>Sign In</a></li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  if (header) {
+    const onScroll = () => {
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>

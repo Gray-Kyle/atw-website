@@ -1,0 +1,120 @@
+---
+import {
+  ERP_CREDITS_OVERAGE_NOTE,
+  ERP_HOSTING_PLANS,
+  ERP_IMPLEMENTATION,
+  ERP_OPTIONAL_ADDONS,
+  ERP_PRICING_FOOTNOTE,
+  ERP_PRICING_SECTION_PARAGRAPH,
+  ERP_PRICING_TRIAL_SUBTEXT,
+  ERP_TRIAL_DAYS,
+  ERP_TRIAL_LABEL,
+  ERP_TRIAL_PROMO_LABEL,
+} from '../../data/erpOfferHome';
+import { livePath } from '../../lib/site';
+
+interface Props {
+  showTrialBanner?: boolean;
+}
+
+const { showTrialBanner = true } = Astro.props;
+
+function formatMoney(n: number) {
+  return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+}
+---
+
+<section id="one" class="scroll-mt-24 pt-10 sm:pt-14 lg:pt-16">
+  <div class="xl-container px-4">
+    {
+      showTrialBanner ? (
+        <div
+          class="mx-auto mb-10 max-w-4xl rounded-2xl border-2 border-brand-blue/40 bg-gradient-to-br from-brand-blue/10 via-white to-brand-navy/5 p-6 text-center shadow-sm sm:p-10"
+        >
+          <p class="text-xs font-bold uppercase tracking-widest text-brand-blue">{ERP_TRIAL_PROMO_LABEL}</p>
+          <h3 class="mt-3 font-heading text-2xl font-semibold text-brand-ink sm:text-3xl md:text-[34px] md:leading-tight">
+            Try Every Plan Feature For {ERP_TRIAL_DAYS} Days, No Charge
+          </h3>
+          <p class="mx-auto mt-3 max-w-2xl text-sm text-dark-text sm:text-base">{ERP_PRICING_TRIAL_SUBTEXT}</p>
+          <a
+            href={livePath('/trial')}
+            class="mt-6 inline-flex items-center justify-center rounded bg-brand-navy px-8 py-3 font-heading text-sm font-semibold text-white hover:bg-brand-navy/90"
+          >
+            Start {ERP_TRIAL_LABEL}
+          </a>
+        </div>
+      ) : null
+    }
+
+    <div class="mb-10 text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Product</p>
+      <h2 class="mt-2 font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">ATW One</h2>
+      <p class="mx-auto mt-3 max-w-3xl text-dark-text">{ERP_PRICING_SECTION_PARAGRAPH}</p>
+    </div>
+
+    <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
+      {
+        ERP_HOSTING_PLANS.map((plan) => (
+          <div class="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <p class="mb-2 inline-flex w-fit rounded-full bg-brand-blue/15 px-2.5 py-0.5 text-xs font-semibold text-brand-blue">
+              {ERP_TRIAL_PROMO_LABEL}
+            </p>
+            <h3 class="mb-2 font-heading text-xl font-semibold text-brand-ink">{plan.name}</h3>
+            <p class="mb-4 text-sm text-dark-text">{plan.blurb}</p>
+            <div class="mb-4">
+              <p class="font-heading text-3xl font-semibold text-brand-navy">
+                {formatMoney(plan.monthly)}
+                <span class="text-base font-normal text-dark-text">/mo</span>
+              </p>
+              <p class="text-sm text-dark-text">
+                or {formatMoney(plan.annual)}/year (2 months free)
+              </p>
+            </div>
+            <ul class="mb-2 flex-1 list-inside list-disc space-y-2 text-sm text-dark-text">
+              {plan.includes.map((line) => <li>{line}</li>)}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mx-auto mt-6 max-w-3xl text-center text-sm text-dark-text">{ERP_CREDITS_OVERAGE_NOTE}</p>
+
+    <div class="mx-auto mt-10 max-w-7xl">
+      <h3 class="mb-4 text-center font-heading text-2xl font-semibold text-brand-ink">Optional Add-Ons</h3>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          ERP_OPTIONAL_ADDONS.map((addon) => (
+            <div class="rounded-2xl border border-gray-200 bg-gray-50/80 p-5">
+              <p class="font-heading text-lg font-semibold text-brand-navy">{addon.name}</p>
+              <p class="mt-1 text-sm font-medium text-primary">{addon.priceNote}</p>
+              <p class="mt-2 text-sm text-dark-text">{addon.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-7xl">
+      <h3 class="mb-2 text-center font-heading text-2xl font-semibold text-brand-ink">
+        {ERP_IMPLEMENTATION.title}
+      </h3>
+      <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-dark-text">{ERP_IMPLEMENTATION.intro}</p>
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          ERP_IMPLEMENTATION.tiers.map((tier) => (
+            <div class="rounded-2xl border border-gray-200 p-6">
+              <h4 class="font-heading text-lg font-semibold text-brand-ink">{tier.name}</h4>
+              <p class="mt-1 text-sm font-medium text-primary">{tier.price}</p>
+              <ul class="mt-4 list-inside list-disc space-y-2 text-sm text-dark-text">
+                {tier.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <p class="mx-auto mt-10 max-w-3xl text-center text-xs text-dark-text">{ERP_PRICING_FOOTNOTE}</p>
+  </div>
+</section>

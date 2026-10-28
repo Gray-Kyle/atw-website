@@ -1,0 +1,50 @@
+---
+import { livePath, PRODUCT } from '../../lib/site';
+
+const lanes = [
+  {
+    title: 'Use ATW One',
+    body: 'Subscribe to our ERP/CRM platform: one workspace, Credits-based billing, unlimited named users.',
+    href: PRODUCT.one,
+    cta: 'Explore ATW One',
+  },
+  {
+    title: 'Build custom ERP with us',
+    body: 'We design and build around ATW One: modules, apps, and workflows that match how you operate.',
+    href: livePath('/solutions/custom-erp-software-development'),
+    cta: 'Custom ERP on One',
+  },
+  {
+    title: 'We implement your stack',
+    body: 'Already on Zoho, Salesforce, Odoo, or AWS? ATW Services implements and supports the platforms you choose.',
+    href: livePath('/partners'),
+    cta: 'See partners',
+  },
+];
+---
+
+<section class="border-b border-border bg-white py-14">
+  <div class="container px-4">
+    <p class="text-center text-sm font-semibold uppercase tracking-wide text-muted-foreground">What we offer</p>
+    <h2 class="mx-auto mt-2 max-w-2xl text-center font-heading text-3xl font-semibold text-foreground">
+      One platform. Custom when you need it. Partners when you stay.
+    </h2>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        lanes.map((lane) => (
+          <article class="flex flex-col rounded-xl border border-border bg-card p-6">
+            <h3 class="text-xl font-semibold text-foreground">{lane.title}</h3>
+            <p class="mt-2 flex-1 text-sm text-muted-foreground">{lane.body}</p>
+            <a href={lane.href} class="mt-5 text-sm font-medium text-primary hover:underline">
+              {lane.cta} →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+    <p class="mt-8 text-center text-sm text-muted-foreground">
+      Not looking for software?
+      <a href={livePath('/services')} class="text-primary underline">Explore ATW Services</a>.
+    </p>
+  </div>
+</section>

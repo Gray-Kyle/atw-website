@@ -1,0 +1,72 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import ErpPricing from '../components/marketing/ErpPricing.astro';
+import WorkSuitePricing from '../components/marketing/WorkSuitePricing.astro';
+import PricingFaq from '../components/marketing/PricingFaq.astro';
+import {
+  ERP_PRIMARY_CTA_LABEL,
+  ERP_TRIAL_LABEL,
+  ERP_TRIAL_PROMO_LABEL,
+} from '../data/erpOfferHome';
+import { livePath } from '../lib/site';
+---
+
+<MarketingLayout
+  title="ATW pricing: One & WorkSuite | ATW Network"
+  description="ATW pricing for ATW One (org subscription, Credits, unlimited named users) and WorkSuite (per-user mail, calendar, office, meetings). 14-day trial, no card."
+  canonical="https://atw.net/pricing"
+>
+  <section class="border-b border-gray-200 bg-slate-50/90 pt-10">
+    <div class="px-4 pb-8 text-center xl-container">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Commercial hub</p>
+      <h1 class="mt-2 font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">ATW pricing</h1>
+      <p class="mx-auto mt-3 max-w-2xl text-dark-text">
+        Org plans for ATW One and per-user seats for WorkSuite. {ERP_TRIAL_PROMO_LABEL}. Jump to a product
+        below.
+      </p>
+      <nav aria-label="Pricing sections" class="mx-auto mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="#one"
+          class="inline-flex items-center rounded border-2 border-brand-navy px-5 py-2.5 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+        >
+          ATW One
+        </a>
+        <a
+          href="#worksuite"
+          class="inline-flex items-center rounded border-2 border-brand-navy px-5 py-2.5 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+        >
+          WorkSuite
+        </a>
+        <a
+          href="#faq"
+          class="inline-flex items-center rounded border border-gray-300 px-5 py-2.5 font-heading text-sm text-brand-ink hover:bg-gray-100"
+        >
+          FAQ
+        </a>
+      </nav>
+      <p class="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground">
+        Need implementation help?
+        <a href={livePath('/services')} class="text-primary underline">ATW Services</a>
+        scopes separately from these plans.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href={livePath('/trial')}
+          class="inline-flex items-center rounded bg-brand-navy px-6 py-3 font-heading text-sm text-white hover:bg-brand-navy/90"
+        >
+          Start {ERP_TRIAL_LABEL}
+        </a>
+        <a
+          href={livePath('/book')}
+          class="inline-flex items-center rounded border-2 border-brand-navy px-6 py-3 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+        >
+          {ERP_PRIMARY_CTA_LABEL}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ErpPricing showTrialBanner={false} />
+  <WorkSuitePricing />
+  <PricingFaq />
+</MarketingLayout>

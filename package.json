@@ -13,7 +13,9 @@
     "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
   },
   "dependencies": {
-    "astro": "^5.18.2"
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "wrangler": "^4.154.0"

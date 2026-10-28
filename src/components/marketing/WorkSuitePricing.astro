@@ -1,0 +1,78 @@
+---
+import {
+  WORKSUITE_ANNUAL_MONTHS_BILLED,
+  WORKSUITE_PLANS,
+} from '../../data/worksuiteConfig';
+import { livePath, PRODUCT } from '../../lib/site';
+
+function formatMoney(n: number) {
+  return n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+}
+
+const annualNote =
+  WORKSUITE_ANNUAL_MONTHS_BILLED === 10
+    ? 'Annual billing is 10× monthly (2 months free).'
+    : `Annual billing is ${WORKSUITE_ANNUAL_MONTHS_BILLED}× monthly.`;
+---
+
+<section
+  id="worksuite"
+  class="scroll-mt-24 border-t border-gray-200 bg-slate-50/60 py-10 sm:py-14 lg:py-16"
+>
+  <div class="xl-container px-4">
+    <div class="mb-10 text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Add-on</p>
+      <h2 class="mt-2 font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">WorkSuite</h2>
+      <p class="mx-auto mt-3 max-w-3xl text-dark-text">
+        WorkSuite is priced per user per month. The "no per-seat fee" line on this page applies to
+        <strong class="font-semibold text-brand-ink">ATW One core only</strong>. Mail, calendar, office docs,
+        meetings, and messaging ship under WorkSuite seats.
+      </p>
+      <p class="mx-auto mt-2 max-w-2xl text-sm text-muted-foreground">{annualNote}</p>
+    </div>
+
+    <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-3">
+      {
+        WORKSUITE_PLANS.map((plan) => {
+          const annual = plan.priceUsdPerUserMonth * WORKSUITE_ANNUAL_MONTHS_BILLED;
+          return (
+            <div class="flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 class="mb-2 font-heading text-xl font-semibold text-brand-ink">{plan.name}</h3>
+              <div class="mb-4">
+                <p class="font-heading text-3xl font-semibold text-brand-navy">
+                  {formatMoney(plan.priceUsdPerUserMonth)}
+                  <span class="text-base font-normal text-dark-text">/user/mo</span>
+                </p>
+                <p class="text-sm text-dark-text">or {formatMoney(annual)}/user/year</p>
+              </div>
+              <ul class="mb-6 flex-1 list-inside list-disc space-y-2 text-sm text-dark-text">
+                {plan.includes.map((line) => <li>{line}</li>)}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href={livePath('/trial')}
+        class="inline-flex items-center rounded bg-brand-navy px-6 py-3 font-heading text-sm text-white hover:bg-brand-navy/90"
+      >
+        Start ATW One trial
+      </a>
+      <a
+        href={PRODUCT.worksuite}
+        class="inline-flex items-center rounded border-2 border-brand-navy px-6 py-3 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+      >
+        Explore WorkSuite
+      </a>
+      <a
+        href="/contact"
+        class="inline-flex items-center rounded border border-gray-300 px-6 py-3 font-heading text-sm text-brand-ink hover:bg-gray-100"
+      >
+        Contact sales
+      </a>
+    </div>
+  </div>
+</section>

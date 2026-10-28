@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = 'ATW One is our ERP/CRM platform. ATW Services builds custom ERP around One, or implements Zoho, Salesforce, Odoo, and AWS when you stay on your stack.',
+  canonical,
+} = Astro.props;
+
+const fullTitle = title.includes('ATW') ? title : `${title} | ATW`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    {canonical ? <link rel="canonical" href={canonical} /> : null}
+    <title>{fullTitle}</title>
+  </head>
+  <body class="min-h-screen antialiased">
+    <slot name="header" />
+    <main class="pt-24 pb-16 md:pt-28">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

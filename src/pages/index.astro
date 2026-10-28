@@ -1,16 +1,18 @@
 ---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import HomeHero from '../components/marketing/HomeHero.astro';
+import OfferLanes from '../components/marketing/OfferLanes.astro';
+import HomeSections from '../components/marketing/HomeSections.astro';
+import ErpPricing from '../components/marketing/ErpPricing.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MarketingLayout
+  title="ATW One — one workspace with Credits-based billing | ATW Network"
+  description="ATW One runs customers, sales, finance, and operations in one workspace with a single monthly Credits pool. 14-day free trial, unlimited named users, and plans starting at $99/month."
+  canonical="https://atw.net/"
+>
+  <HomeHero />
+  <OfferLanes />
+  <HomeSections />
+  <ErpPricing />
+</MarketingLayout>

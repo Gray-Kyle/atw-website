@@ -1,0 +1,25 @@
+---
+import { PRICING_FAQS } from '../../data/pricingFaqs';
+---
+
+<section id="faq" class="scroll-mt-24 border-t border-gray-200 py-10 sm:py-14 lg:py-16">
+  <div class="xl-container px-4">
+    <div class="mb-8 text-center">
+      <h2 class="font-heading text-3xl font-semibold text-brand-ink">Pricing FAQ</h2>
+      <p class="mx-auto mt-2 max-w-2xl text-sm text-dark-text">
+        Plain answers for ATW One and WorkSuite. Need a scoped quote?
+        <a href="/contact" class="text-primary underline">Contact us</a>.
+      </p>
+    </div>
+    <div class="mx-auto max-w-3xl space-y-6">
+      {
+        PRICING_FAQS.map((item) => (
+          <div class="border-b border-gray-200 pb-6">
+            <h3 class="font-heading text-lg font-semibold text-brand-ink">{item.q}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-dark-text">{item.a}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

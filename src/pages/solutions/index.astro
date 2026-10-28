@@ -1,0 +1,179 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { SOLUTIONS } from '../../data/solutions';
+import { livePath } from '../../lib/site';
+
+const featured = SOLUTIONS.filter((s) => s.featured);
+const additional = SOLUTIONS.filter((s) => !s.featured);
+
+function solutionHref(href: string) {
+  if (href.startsWith('http')) return href;
+  return livePath(href);
+}
+---
+
+<MarketingLayout
+  title="ERP, CRM & AI Business Solutions | ATW Network"
+  description="Discover ERP, CRM, and AI-focused business solutions, including prebuilt integration accelerators and custom development paths for complex operations."
+  canonical="https://atw.net/solutions"
+>
+  <section class="bg-gradient-to-br from-brand-logo via-brand-blue to-indigo-800 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="mb-6 text-4xl font-bold md:text-5xl">ERP, CRM, and AI Solutions That Drive Growth</h1>
+        <p class="mx-auto mb-8 max-w-3xl text-xl text-blue-100 md:text-2xl">
+          Choose the right path for your team: prebuilt integration accelerators for faster deployments or
+          custom-built systems for complex workflows, advanced automation, and AI-ready operations.
+        </p>
+        <div class="flex flex-col justify-center gap-4 sm:flex-row">
+          <a href="#solutions" class="rounded-lg bg-white px-8 py-3 font-semibold text-brand-blue hover:bg-blue-50">
+            Explore Solutions
+          </a>
+          <a
+            href="/contact"
+            class="rounded-lg border-2 border-white px-8 py-3 font-semibold text-white hover:bg-white hover:text-brand-blue"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-14">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center">
+        <h2 class="text-3xl font-bold text-gray-900">ATW One + AI decision guides</h2>
+        <p class="mx-auto mt-3 max-w-3xl text-lg text-gray-600">
+          Explore authority content hubs built for shortlist-stage buyers evaluating implementation strategy and
+          business impact.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <a href={livePath('/solutions/ai-use-cases')} class="rounded-xl border border-gray-200 p-6 shadow-sm transition hover:shadow-md">
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Industry Cluster</p>
+          <h3 class="mt-2 text-2xl font-semibold text-gray-900">AI Use Cases by Industry</h3>
+          <p class="mt-2 text-gray-600">
+            Proof-oriented implementation patterns for manufacturing, construction, retail, transportation, and
+            service organizations.
+          </p>
+        </a>
+        <a href={livePath('/solutions/custom-vs-prebuilt')} class="rounded-xl border border-gray-200 p-6 shadow-sm transition hover:shadow-md">
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Strategy Cluster</p>
+          <h3 class="mt-2 text-2xl font-semibold text-gray-900">Custom vs Prebuilt Comparison</h3>
+          <p class="mt-2 text-gray-600">
+            A practical decision framework for choosing custom engineering, prebuilt accelerators, or a hybrid
+            rollout.
+          </p>
+        </a>
+        <a href={livePath('/docs/ai-funnel-optimization')} class="rounded-xl border border-gray-200 p-6 shadow-sm transition hover:shadow-md">
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Optimization Cluster</p>
+          <h3 class="mt-2 text-2xl font-semibold text-gray-900">AI Funnel Optimization Playbook</h3>
+          <p class="mt-2 text-gray-600">
+            A monthly test-and-learn framework for improving AI tool engagement, lead quality, and meeting
+            conversion.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold text-gray-900">Featured Solutions</h2>
+        <p class="mx-auto max-w-2xl text-lg text-gray-600">
+          Our most popular solutions that have transformed businesses across industries
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          featured.map((solution) => (
+            <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg">
+              <div class="p-6">
+                <span class="inline-flex rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
+                  Featured
+                </span>
+                <h3 class="mt-3 text-xl font-semibold text-gray-900">{solution.title}</h3>
+                <p class="mt-2 text-gray-600">{solution.description}</p>
+                <p class="mt-4 text-sm text-gray-500">
+                  {solution.complexity} · {solution.estimatedTime}
+                </p>
+                <a href={solutionHref(solution.href)} class="mt-4 inline-block font-medium text-brand-blue hover:underline">
+                  Learn more →
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="solutions" class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold text-gray-900">Additional Solutions</h2>
+        <p class="mx-auto max-w-2xl text-lg text-gray-600">
+          Explore our complete portfolio of business solutions to find the right fit for your needs
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          additional.map((solution) => (
+            <div class="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md">
+              <div class="p-6">
+                <span class="inline-flex rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                  {solution.category}
+                </span>
+                <h3 class="mt-3 text-lg font-semibold text-gray-900">{solution.title}</h3>
+                <p class="mt-2 text-sm text-gray-600">{solution.description}</p>
+                <div class="mb-4 mt-4 space-y-1 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-gray-500">Complexity</span>
+                    <span class="font-medium text-gray-700">{solution.complexity}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-gray-500">Timeline</span>
+                    <span class="font-medium text-gray-700">{solution.estimatedTime}</span>
+                  </div>
+                </div>
+                <ul class="mb-4 flex flex-wrap gap-1">
+                  {solution.features.slice(0, 3).map((feature) => (
+                    <li class="rounded bg-blue-50 px-2 py-1 text-xs text-blue-700">{feature}</li>
+                  ))}
+                </ul>
+                <a
+                  href={solutionHref(solution.href)}
+                  class="flex w-full items-center justify-center rounded-md bg-brand-blue px-4 py-2 text-sm font-medium text-white hover:bg-brand-logo"
+                >
+                  View details
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gradient-to-r from-brand-logo to-indigo-700 py-16">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6">
+      <h2 class="mb-4 text-3xl font-bold text-white">Ready to Transform Your Business?</h2>
+      <p class="mb-8 text-xl text-blue-100">
+        Let's discuss how our solutions can help you achieve your business goals
+      </p>
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="/contact" class="rounded-lg bg-white px-8 py-3 font-semibold text-brand-blue hover:bg-blue-50">
+          Get free consultation
+        </a>
+        <a
+          href={livePath('/portfolio')}
+          class="rounded-lg border-2 border-white px-8 py-3 font-semibold text-white hover:bg-white hover:text-brand-blue"
+        >
+          View our work
+        </a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

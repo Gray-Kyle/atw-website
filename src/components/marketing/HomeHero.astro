@@ -1,0 +1,98 @@
+---
+import { ERP_TRIAL_LABEL } from '../../data/erpOfferHome';
+import { livePath } from '../../lib/site';
+
+const heroBenefits = [
+  'Reduce Cost. Unify CRM, finance, and operations.',
+  'Accelerate Workflows. Keep Teams Aligned with Shared Records.',
+  'Scale Productivity. AI Automation Increases Throughput.',
+];
+---
+
+<section id="home" class="relative overflow-x-hidden pt-4 pb-14 md:pb-20 lg:pb-24">
+  <div
+    class="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(30,75,150,0.2),transparent_55%),radial-gradient(ellipse_80%_50%_at_100%_0%,rgba(74,108,247,0.14),transparent_50%)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white/90 via-slate-50/80 to-white"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative px-4 xl-container">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="mx-auto max-w-[540px] text-center lg:mx-0 lg:max-w-none lg:text-left">
+        <span class="mb-5 inline-flex items-center">
+          <img
+            src="/images/branding/atw-one-logo-no-erp.jpg"
+            alt="ATW One ERP"
+            width="128"
+            height="48"
+            class="h-auto w-[102px] sm:w-[128px]"
+            loading="eager"
+          />
+        </span>
+
+        <h1
+          class="mb-6 max-w-none font-heading text-[2.25rem] font-semibold tracking-tight text-brand-ink sm:text-5xl md:text-[3.25rem] md:leading-[1.06]"
+        >
+          <span
+            class="bg-clip-text text-transparent"
+            style="background-image: linear-gradient(90deg, #33cfff 0%, #1496e3 45%, #0b7bbd 100%)"
+          >
+            One
+          </span>
+          Unified Experience for Every Business Need.
+        </h1>
+
+        <ul class="mb-9 space-y-2.5 text-left">
+          {
+            heroBenefits.map((benefit) => (
+              <li class="flex items-start gap-2.5 text-[1.02rem] leading-relaxed text-dark-text">
+                <span class="mt-[0.38rem] inline-flex h-4 w-4 items-center justify-center text-brand-blue" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0Z"
+                      fill="currentColor"></path>
+                  </svg>
+                </span>
+                <span>{benefit}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:justify-start">
+          <a
+            href={livePath('/trial')}
+            class="inline-flex items-center justify-center rounded-2xl bg-brand-ink px-7 py-3.5 font-heading text-base font-semibold text-white shadow-lg shadow-black/15 transition hover:brightness-110"
+          >
+            Get started. It's free!
+          </a>
+          <p class="text-sm leading-snug text-dark-text/80">
+            Start {ERP_TRIAL_LABEL}.
+            <br />
+            No Credit Card.
+          </p>
+        </div>
+
+        <p class="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em] text-dark-text/65">
+          Get More Done · Customize Your Organization
+        </p>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-xl lg:max-w-none">
+        <img
+          src="/images/marketing/atw-one-dashboard-clean.png"
+          alt="ATW One dashboard preview"
+          width="1050"
+          height="782"
+          class="w-full rounded-xl border border-gray-200/80 shadow-2xl shadow-brand-blue/10"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</section>

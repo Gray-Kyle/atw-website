@@ -1,0 +1,147 @@
+---
+import {
+  ERP_APP_SHOWCASE_ENTRIES,
+  ERP_CAPABILITIES,
+  ERP_CREDITS_SYSTEM_UPDATE,
+  ERP_CTA_BAND,
+  ERP_POSITIONING,
+  ERP_PRIMARY_CTA_LABEL,
+  ERP_PRODUCT_WELCOME,
+} from '../../data/erpOfferHome';
+import { WHY_US } from '../../data/whyUs';
+import { livePath } from '../../lib/site';
+---
+
+<section class="border-b border-gray-200 bg-white py-14">
+  <div class="xl-container px-4 text-center">
+    <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">{ERP_PRODUCT_WELCOME.mainTitle}</p>
+    <h2 class="mx-auto mt-2 max-w-3xl font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">
+      {ERP_PRODUCT_WELCOME.title}
+    </h2>
+    <p class="mx-auto mt-4 max-w-3xl text-dark-text">{ERP_PRODUCT_WELCOME.paragraph}</p>
+  </div>
+  <div class="xl-container mt-10 grid gap-8 px-4 md:grid-cols-3">
+    {
+      ERP_APP_SHOWCASE_ENTRIES.map((entry) => (
+        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <img src={entry.imageSrc} alt={entry.cardTitle} class="h-48 w-full object-cover object-top" loading="lazy" />
+          <div class="p-6">
+            <h3 class="font-heading text-xl font-semibold text-brand-ink">{entry.cardTitle}</h3>
+            <p class="mt-2 text-sm text-dark-text">{entry.cardCaption}</p>
+            <a href={livePath(`/erp/apps/${entry.slug}`)} class="mt-4 inline-block text-sm font-medium text-primary hover:underline">
+              Tour {entry.cardTitle} →
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<section class="bg-slate-50/80 py-14">
+  <div class="xl-container px-4 text-center">
+    <h2 class="font-heading text-3xl font-semibold text-brand-ink">{ERP_POSITIONING.title}</h2>
+    <p class="mx-auto mt-4 max-w-3xl text-dark-text">{ERP_POSITIONING.paragraph}</p>
+  </div>
+</section>
+
+<section class="border-y border-gray-200 py-14">
+  <div class="xl-container px-4">
+    <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">{ERP_CREDITS_SYSTEM_UPDATE.eyebrow}</p>
+    <h2 class="mt-2 font-heading text-3xl font-semibold text-brand-ink">{ERP_CREDITS_SYSTEM_UPDATE.title}</h2>
+    <p class="mt-4 max-w-3xl text-dark-text">{ERP_CREDITS_SYSTEM_UPDATE.paragraph}</p>
+    <ul class="mt-6 max-w-3xl list-inside list-disc space-y-2 text-sm text-dark-text">
+      {ERP_CREDITS_SYSTEM_UPDATE.bullets.map((b) => <li>{b}</li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="py-14">
+  <div class="xl-container px-4">
+    <h2 class="text-center font-heading text-3xl font-semibold text-brand-ink">Capabilities</h2>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        ERP_CAPABILITIES.map((block) => (
+          <div class="rounded-2xl border border-gray-200 p-6">
+            <h3 class="font-heading text-lg font-semibold text-brand-ink">{block.title}</h3>
+            <ul class="mt-3 list-inside list-disc space-y-1 text-sm text-dark-text">
+              {block.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  id="why-us"
+  class="border-y border-gray-200/80 bg-gradient-to-b from-slate-50/90 to-white py-14"
+>
+  <div class="xl-container px-4">
+    <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">{WHY_US.eyebrow}</p>
+    <h2 class="mt-2 max-w-4xl font-heading text-3xl font-semibold text-brand-ink">{WHY_US.title}</h2>
+    <p class="mt-4 max-w-4xl text-dark-text">{WHY_US.paragraph}</p>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        WHY_US.pillars.map((pillar) => (
+          <div class="rounded-2xl border border-gray-200/90 bg-white p-6 shadow-sm">
+            <h3 class="font-heading text-lg font-semibold text-brand-ink">{pillar.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-dark-text">{pillar.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-8 text-center">
+      <a href={livePath('/why-us')} class="text-sm font-medium text-primary hover:underline">
+        {WHY_US.learnMoreLabel} →
+      </a>
+    </p>
+  </div>
+</section>
+
+<section id="ContactUs" class="scroll-mt-24 py-14">
+  <div class="container px-4">
+    <div class="mb-6 text-center lg:text-left">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">Contact Us</h2>
+      <p class="mt-2 text-muted-foreground">
+        Have a project in mind? Reach out and we will get back to you shortly.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <a
+        href="/contact"
+        class="inline-flex rounded bg-brand-navy px-6 py-3 font-heading text-sm text-white hover:bg-brand-navy/90"
+      >
+        Open contact page
+      </a>
+      <a
+        href={livePath('/book')}
+        class="inline-flex rounded border-2 border-brand-navy px-6 py-3 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+      >
+        {ERP_PRIMARY_CTA_LABEL}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="erp-cta" class="pb-14 pt-4">
+  <div class="xl-container px-4">
+    <div class="relative overflow-hidden rounded-[1.75rem] bg-gradient-to-r from-brand-logo via-brand-blue to-sky-400 p-[1px] shadow-xl shadow-brand-blue/20">
+      <div class="relative overflow-hidden rounded-[1.7rem] bg-[#0a1628] px-8 py-12 text-white sm:px-12 sm:py-14">
+        <div class="relative z-10 mx-auto max-w-3xl text-center">
+          <h2 class="mb-4 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+            See How ATW One Could Run Your Business
+          </h2>
+          <p class="mb-8 text-base text-white/88">{ERP_CTA_BAND.supporting}</p>
+          <a
+            href={livePath('/book')}
+            class="inline-flex items-center rounded-full bg-white px-9 py-3.5 font-heading text-base font-semibold text-[#0a1628] shadow-lg transition hover:bg-white/95"
+          >
+            {ERP_PRIMARY_CTA_LABEL} →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

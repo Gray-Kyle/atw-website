@@ -12,6 +12,10 @@ Product apps (One, WorkSuite, Auth, …) stay on Amplify until their own peels. 
 **Pages project:** `atw-website`  
 **Preview URL (after first deploy):** https://atw-website.pages.dev — _not live until Cloudflare deploy completes; see [docs/CLOUDFLARE_PAGES.md](./docs/CLOUDFLARE_PAGES.md)._
 
+## Content (migration)
+
+Ported from Amplify `(site)` (see charter): home, pricing, contact, solutions index. Unmigrated routes link to `https://atw.net/...` until Phase 1d.
+
 ## Develop
 
 ```bash
