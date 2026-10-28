@@ -14,9 +14,9 @@ Project exists and is connected to **`Gray-Kyle/atw-website`** (`main`).
 - Build output directory: `dist`
 - Preview URL: https://atw-website-9br.pages.dev
 
-(Optional) Add custom domains `www.atw.net` and `atw.net` only after content parity and Kyle sign-off (see `../../ATW/docs/STEP1_WEBSITE_PEEL.md`).
+**Live custom domain:** `https://www.atw.net` → Pages production (added 2026-10-28). Apex `atw.net` stays on Amplify until Phase 1e apex cutover (see `../../ATW/docs/STEP1_WEBSITE_PEEL.md`).
 
-Do not point apex/`www` at Pages until Phase 1e. Product subdomains stay on Amplify.
+Product subdomains stay on Amplify.
 
 ## Option B — wrangler (machine with Cloudflare login)
 
@@ -63,16 +63,27 @@ Workflow: `.github/workflows/pages-deploy.yml`. Add repository secrets:
 
 Push to `main` runs build + `wrangler pages deploy`.
 
-## DNS cutover (document only; do not run early)
+## DNS cutover
+
+### Done: `www.atw.net` (2026-10-28)
+
+1. Added Pages custom domain `www.atw.net` on project `atw-website`.
+2. Cloudflare DNS: `www` CNAME → `atw-website-9br.pages.dev`, **proxied**.
+3. Detached Worker `atw` custom domain for `www.atw.net` only (Worker blocked Pages on that host; apex `atw.net` remains on Worker `atw`).
+
+Verification (2026-10-28): `https://www.atw.net/` and `/pricing` return Astro (HTTP 200, TLS OK). `one`, `auth`, `worksuite`, and apex unchanged.
+
+Pages dashboard may show SSL `pending` briefly after cutover; edge TLS still works via Cloudflare.
+
+### Pending: apex and product hosts
 
 **Stay on Amplify (DNS-only CNAME to Amplify app `d35uouyq924see`):**  
-`one`, `auth`, `worksuite`, `workspaces`, `mail`, `meet`, `ai`, `directory`, `platform`, `admin.mail`, and other product hosts tied to the monolith.
+`atw.net` (apex), `one`, `auth`, `worksuite`, `workspaces`, `mail`, `meet`, `ai`, `directory`, `platform`, `admin.mail`, and other product hosts.
 
-**Move when ready (Phase 1e):**
+**Apex (Phase 1e, not started):**
 
 | Host | Target | Notes |
 |------|--------|--------|
-| `www.atw.net` | `atw-website-9br.pages.dev` | CNAME, proxied through Cloudflare |
-| `atw.net` (apex) | Pages custom domain | Use Cloudflare apex setup on the Pages project (CNAME flattening / recommended apex pattern) |
+| `atw.net` (apex) | Pages custom domain | Add on `atw-website`, repoint apex DNS, detach Worker `atw` apex domain |
 
-After cutover: remove apex and `www` from the Amplify domain association; leave product subdomain associations unchanged.
+After apex cutover: remove apex from Amplify domain association; optional remove stale `www` from Amplify. Leave product subdomain associations unchanged.
