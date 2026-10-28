@@ -9,12 +9,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "e2e:smoke": "node scripts/e2e-smoke.mjs",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.1.2",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {

@@ -1,0 +1,58 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import { portfolios } from '../../data/portfolios';
+
+export function getStaticPaths() {
+  return portfolios.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+---
+
+<MarketingLayout
+  title={item.title}
+  description={item.shortDescription ?? item.description ?? item.title}
+  canonical={`https://atw.net/portfolio/${item.slug}`}
+>
+  <PageHero title={item.title} description={item.shortDescription ?? item.description} align="left">
+    {
+      item.liveUrl ? (
+        <a href={item.liveUrl} class="mt-6 inline-flex rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white" target="_blank" rel="noopener noreferrer">
+          Visit live site
+        </a>
+      ) : null
+    }
+  </PageHero>
+  <section class="container space-y-8 py-16">
+    {item.challenge ? (
+      <div>
+        <h2 class="text-xl font-semibold">Challenge</h2>
+        <p class="mt-2 text-muted-foreground">{item.challenge}</p>
+      </div>
+    ) : null}
+    {item.solutions?.length ? (
+      <div>
+        <h2 class="text-xl font-semibold">Approach</h2>
+        <ul class="mt-2 list-disc space-y-2 pl-5 text-muted-foreground">
+          {item.solutions.map((s) => (
+            <li>{s}</li>
+          ))}
+        </ul>
+      </div>
+    ) : null}
+    {item.results?.length ? (
+      <div>
+        <h2 class="text-xl font-semibold">Results</h2>
+        <ul class="mt-2 list-disc space-y-2 pl-5 text-muted-foreground">
+          {item.results.map((r) => (
+            <li>{r}</li>
+          ))}
+        </ul>
+      </div>
+    ) : null}
+    {item.technologies?.length ? (
+      <p class="text-sm text-muted-foreground">Technologies: {item.technologies.join(', ')}</p>
+    ) : null}
+  </section>
+</MarketingLayout>

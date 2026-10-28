@@ -1,0 +1,26 @@
+---
+import { marked } from 'marked';
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { getAllDocs, getDocBySlug } from '../../lib/docs';
+
+const docs = getAllDocs();
+---
+
+<MarketingLayout title="Documentation" description="ATW product documentation" canonical="https://atw.net/docs">
+  <section class="container py-16">
+    <h1 class="text-3xl font-bold">Documentation</h1>
+    <p class="mt-2 text-muted-foreground">Guides for ATW products and integrations.</p>
+    <ul class="mt-8 space-y-3">
+      {
+        docs.map((doc) => (
+          <li>
+            <a href={`/docs/${doc.slug}`} class="text-primary underline">
+              {doc.title}
+            </a>
+            {doc.excerpt ? <span class="text-sm text-muted-foreground"> — {doc.excerpt}</span> : null}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</MarketingLayout>

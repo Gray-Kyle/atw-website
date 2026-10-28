@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  effective?: string;
+}
+
+const { title, effective = 'October 27, 2026' } = Astro.props;
+---
+
+<section class="container py-16">
+  <h1 class="mb-4 text-4xl font-bold tracking-tight">{title}</h1>
+  <p class="mb-8 text-sm text-muted-foreground">Effective: {effective}. Last updated: {effective}.</p>
+  <div class="prose prose-slate max-w-none space-y-8">
+    <slot />
+  </div>
+</section>

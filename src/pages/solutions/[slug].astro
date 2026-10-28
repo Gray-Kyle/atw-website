@@ -1,0 +1,45 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import CtaBand from '../../components/marketing/CtaBand.astro';
+import { SOLUTION_PAGES } from '../../data/solutionPages';
+
+export function getStaticPaths() {
+  return SOLUTION_PAGES.map((solution) => ({ params: { slug: solution.slug }, props: { solution } }));
+}
+
+const { solution } = Astro.props;
+const canonical = `https://atw.net/solutions/${solution.slug}`;
+---
+
+<MarketingLayout title={solution.title} description={solution.description} canonical={canonical}>
+  <PageHero eyebrow={solution.eyebrow} title={solution.title} description={solution.description} align="left">
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/contact" class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white hover:bg-brand-navy/90">
+        {solution.ctaLabel ?? 'Talk to us'}
+      </a>
+      <a href="/solutions" class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink hover:bg-brand-navy/10">
+        All solutions
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="container py-16">
+    <h2 class="text-2xl font-semibold">What you get</h2>
+    <ul class="mt-6 space-y-3">
+      {
+        solution.bullets.map((bullet) => (
+          <li class="flex gap-2 text-muted-foreground">
+            <span class="mt-1 text-primary" aria-hidden="true">✓</span>
+            <span>{bullet}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <CtaBand title="Ready to explore this solution?" description="Book a call or start a trial on ATW One.">
+    <a href="/book" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy hover:bg-blue-50">Book a call</a>
+    <a href="/trial" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Start free trial</a>
+  </CtaBand>
+</MarketingLayout>

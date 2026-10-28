@@ -1,0 +1,16 @@
+---
+import { PRODUCT } from '../../lib/site';
+
+const target = PRODUCT.directory;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <title>Redirecting to Directory…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>ATW Directory</a>…</p>
+  </body>
+</html>

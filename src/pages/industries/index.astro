@@ -1,0 +1,19 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import { INDUSTRIES } from '../../data/industries';
+---
+
+<MarketingLayout title="Industries" description="ERP and CRM solutions by industry." canonical="https://atw.net/industries">
+  <PageHero title="Industries we serve" description="Manufacturing, retail, construction, logistics, and service businesses." />
+  <section class="container grid gap-6 py-16 md:grid-cols-2">
+    {
+      INDUSTRIES.map((industry) => (
+        <a href={`/industries/${industry.slug}`} class="rounded-xl border border-border p-6 hover:shadow-md">
+          <h2 class="text-xl font-semibold">{industry.name}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{industry.description}</p>
+        </a>
+      ))
+    }
+  </section>
+</MarketingLayout>

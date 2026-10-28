@@ -1,0 +1,33 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import LegalShell from '../components/marketing/LegalShell.astro';
+---
+
+<MarketingLayout title="Privacy Policy" description="ATW Network privacy policy" canonical="https://atw.net/privacy-policy">
+  <LegalShell title="Privacy Policy">
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Introduction</h2>
+      <p class="mt-4 text-muted-foreground">
+        At ATW, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services, including communications delivered via email, phone, and SMS/MMS messaging.
+      </p>
+    </section>
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Information we collect</h2>
+      <p class="mt-4 text-muted-foreground">
+        We may collect personal information you provide when you register, contact us, book a meeting, or use our products. We also collect usage and device data needed to operate and secure the platform.
+      </p>
+    </section>
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">How we use information</h2>
+      <p class="mt-4 text-muted-foreground">
+        We use information to provide services, respond to requests, improve products, send service messages, and comply with law. Marketing SMS requires explicit opt-in.
+      </p>
+    </section>
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Your choices</h2>
+      <p class="mt-4 text-muted-foreground">
+        See <a href="/privacy-choices" class="text-primary underline">Privacy choices</a> and <a href="/cookies" class="text-primary underline">Cookies</a> for additional controls.
+      </p>
+    </section>
+  </LegalShell>
+</MarketingLayout>

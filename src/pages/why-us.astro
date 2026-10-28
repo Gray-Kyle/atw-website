@@ -1,0 +1,28 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import WhyUsSection from '../components/marketing/WhyUsSection.astro';
+import CtaBand from '../components/marketing/CtaBand.astro';
+import { WHY_US } from '../data/whyUs';
+import { ERP_PRIMARY_CTA_LABEL, ERP_TRIAL_LABEL } from '../data/erpOfferHome';
+---
+
+<MarketingLayout title={WHY_US.title} description={WHY_US.paragraph} canonical="https://atw.net/why-us">
+  <section class="border-b border-gray-200 bg-slate-50/90 px-4 pb-10 pt-6">
+    <div class="container text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">{WHY_US.eyebrow}</p>
+      <h1 class="mx-auto mt-2 max-w-4xl text-3xl font-semibold sm:text-4xl">{WHY_US.title}</h1>
+      <p class="mx-auto mt-4 max-w-3xl text-base text-dark-text sm:text-lg">{WHY_US.paragraph}</p>
+      <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <a href="/book" class="rounded bg-brand-navy px-6 py-3 text-sm text-white hover:bg-brand-navy/90">{ERP_PRIMARY_CTA_LABEL}</a>
+        <a href="/trial" class="rounded border-2 border-brand-navy px-6 py-3 text-sm text-brand-ink hover:bg-brand-navy/10">
+          Start {ERP_TRIAL_LABEL}
+        </a>
+      </div>
+    </div>
+  </section>
+  <WhyUsSection />
+  <CtaBand title="Work directly with ATW" description="Book a review or start a trial on ATW One.">
+    <a href="/book" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy">Book a call</a>
+    <a href="/contact" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white">Contact</a>
+  </CtaBand>
+</MarketingLayout>

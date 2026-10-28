@@ -1,0 +1,20 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import { portfolios } from '../../data/portfolios';
+---
+
+<MarketingLayout title="Portfolio" description="Selected ATW client work." canonical="https://atw.net/portfolio">
+  <PageHero title="Portfolio" description="Examples of platforms and implementations delivered by ATW Services." />
+  <section class="container grid gap-6 py-16 md:grid-cols-2">
+    {
+      portfolios.map((item) => (
+        <a href={`/portfolio/${item.slug}`} class="rounded-xl border border-border p-6 hover:shadow-md">
+          <h2 class="text-xl font-semibold">{item.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{item.shortDescription ?? item.description}</p>
+          {item.client ? <p class="mt-2 text-xs text-muted-foreground">Client: {item.client}</p> : null}
+        </a>
+      ))
+    }
+  </section>
+</MarketingLayout>

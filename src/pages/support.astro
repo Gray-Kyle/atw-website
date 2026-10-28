@@ -1,0 +1,18 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import PageHero from '../components/marketing/PageHero.astro';
+---
+
+<MarketingLayout title="Support" description="ATW Network support" canonical="https://atw.net/support">
+  <PageHero title="Support" description="We are here for ATW One, WorkSuite, and Services customers." />
+  <section class="container max-w-2xl space-y-6 py-16">
+    <p class="text-muted-foreground">
+      Email <a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a> or call{' '}
+      <a href="tel:+13303332256" class="text-primary underline">+1 (330) 333-2256</a> (Mon–Fri, 8am–5pm ET).
+    </p>
+    <p class="text-muted-foreground">
+      Signed-in product help: use <a href="https://auth.atw.net/auth/signin" class="text-primary underline">Sign in</a> and open the app you use (One, WorkSuite, Hub).
+    </p>
+    <a href="/contact" class="inline-flex rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Contact form</a>
+  </section>
+</MarketingLayout>

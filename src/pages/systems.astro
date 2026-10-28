@@ -1,0 +1,33 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { AEO_SYSTEMS } from '../data/aeoOffers';
+import { PRODUCT } from '../lib/site';
+
+const systems = [
+  { title: 'ATW One', href: PRODUCT.one, summary: 'ERP/CRM workspace' },
+  { title: 'WorkSuite', href: PRODUCT.worksuite, summary: 'Mail, calendar, office' },
+  { title: 'Hub', href: '/hub', summary: 'Team chat' },
+  { title: 'Directory', href: PRODUCT.directory, summary: 'People and access' },
+  { title: 'Agents', href: '/agents', summary: 'AI seats and Overseer' },
+  ...AEO_SYSTEMS.filter((s) => !['one', 'hub', 'directory', 'agents'].includes(s.id)),
+];
+---
+
+<MarketingLayout title="ATW systems" description="Catalog of ATW Network systems" canonical="https://atw.net/systems">
+  <section class="container py-16">
+    <h1 class="text-3xl font-bold">Systems</h1>
+    <p class="mt-2 text-muted-foreground">Product and marketing entry points across the ATW network.</p>
+    <ul class="mt-10 space-y-4">
+      {
+        systems.map((s) => (
+          <li class="rounded-xl border border-border p-5">
+            <a href={s.href} class="text-lg font-semibold text-primary underline">
+              {s.title}
+            </a>
+            <p class="mt-1 text-sm text-muted-foreground">{s.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</MarketingLayout>

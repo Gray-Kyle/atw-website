@@ -1,0 +1,45 @@
+---
+import { WHY_US } from '../../data/whyUs';
+---
+
+<section class="px-4 py-16">
+  <div class="container mx-auto max-w-5xl">
+    <div class="grid gap-8 md:grid-cols-2">
+      {
+        WHY_US.pillars.map((pillar) => (
+          <div class="rounded-xl border border-border p-6">
+            <h3 class="text-lg font-semibold">{pillar.title}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{pillar.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-16">
+      <h2 class="text-center text-2xl font-semibold">{WHY_US.comparisonTitle}</h2>
+      <div class="mt-8 overflow-x-auto">
+        <table class="w-full min-w-[640px] border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-border text-left">
+              <th class="p-3 font-semibold">Factor</th>
+              <th class="p-3 font-semibold">Typical vendors</th>
+              <th class="p-3 font-semibold">ATW</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              WHY_US.comparisonRows.map((row) => (
+                <tr class="border-b border-border align-top">
+                  <td class="p-3 font-medium">{row.factor}</td>
+                  <td class="p-3 text-muted-foreground">{row.typical}</td>
+                  <td class="p-3">{row.atw}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-8 text-center text-muted-foreground">{WHY_US.closing}</p>
+    </div>
+  </div>
+</section>

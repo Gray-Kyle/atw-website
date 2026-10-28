@@ -1,0 +1,28 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import { PARTNERS } from '../../data/partners';
+---
+
+<MarketingLayout
+  title="Technology partners"
+  description="Expert implementation for Zoho, Salesforce, Odoo, AWS, Shopify, and more."
+  canonical="https://atw.net/partners"
+>
+  <PageHero
+    title="Technology partners"
+    description="We implement and support the platforms you already use, or help you migrate to ATW One when that is the better fit."
+  />
+  <section class="container grid gap-6 py-16 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      PARTNERS.map((partner) => (
+        <a href={`/partners/${partner.slug}`} class="rounded-xl border border-border p-6 transition hover:shadow-md">
+          <p class="text-xs font-semibold uppercase text-primary">{partner.category}</p>
+          <h2 class="mt-2 text-xl font-semibold">{partner.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{partner.description}</p>
+          <span class="mt-4 inline-block text-sm font-medium text-primary">View partner →</span>
+        </a>
+      ))
+    }
+  </section>
+</MarketingLayout>

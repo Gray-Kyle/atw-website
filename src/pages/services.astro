@@ -1,0 +1,81 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import PageHero from '../components/marketing/PageHero.astro';
+import { AEO_SERVICES } from '../data/aeoOffers';
+
+const FAQS = [
+  {
+    q: 'Is ATW Services the same as subscribing to ATW One?',
+    a: 'No. ATW One is self-serve SaaS with published plans. ATW Services is quote-based delivery: implementation, custom ERP on One, migrations, and partner stack work.',
+  },
+  {
+    q: 'When should we choose custom ERP vs ATW One out of the box?',
+    a: 'Start with ATW One when standard modules fit. Choose custom ERP on One when workflows, data model, or integrations need a build. See the compare page for a decision table.',
+  },
+  {
+    q: 'Do you only build on ATW One?',
+    a: 'Custom ERP defaults to ATW One. If you already run Zoho, Salesforce, Odoo, or AWS, we implement and support those stacks too.',
+  },
+];
+---
+
+<MarketingLayout
+  title="ATW Services — implementation, migration & custom delivery"
+  description={AEO_SERVICES.what}
+  canonical="https://atw.net/services"
+>
+  <PageHero
+    eyebrow="ATW Services"
+    title="Implementation, migration, and custom delivery"
+    description="When success takes more than turning on software, we scope the work, assemble the team, and deliver outcomes on ATW One or on the partner platforms you already use."
+  >
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/contact" class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Talk to us about a project</a>
+      <a href="/book" class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink">Book a discovery call</a>
+    </div>
+  </PageHero>
+
+  <section class="container py-16">
+    <h2 class="text-center text-2xl font-semibold">Three delivery tracks</h2>
+    <p class="mx-auto mt-2 max-w-2xl text-center text-muted-foreground">{AEO_SERVICES.what}</p>
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        AEO_SERVICES.tracks.map((track) => (
+          <article class="flex flex-col rounded-xl border border-border p-6">
+            <h3 class="text-xl font-semibold">{track.title}</h3>
+            <p class="mt-2 flex-1 text-sm text-muted-foreground">{track.body}</p>
+            <a href={track.href} class="mt-5 text-sm font-medium text-primary hover:underline">
+              Learn more →
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted/30 py-16">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl font-semibold">How we work</h2>
+      <ol class="mt-6 list-decimal space-y-3 pl-5 text-muted-foreground">
+        <li>Discover: processes, systems, and constraints</li>
+        <li>Design: architecture on ATW One or your named stack</li>
+        <li>Build: modules, integrations, and data migration</li>
+        <li>Run: handoff, training, and optional ongoing support</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="container max-w-3xl py-16">
+    <h2 class="text-2xl font-semibold">FAQ</h2>
+    <dl class="mt-6 space-y-6">
+      {
+        FAQS.map((faq) => (
+          <div>
+            <dt class="font-medium">{faq.q}</dt>
+            <dd class="mt-1 text-muted-foreground">{faq.a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</MarketingLayout>

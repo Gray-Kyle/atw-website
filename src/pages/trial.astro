@@ -1,0 +1,17 @@
+---
+import { AUTH_SIGNUP } from '../lib/site';
+
+const target = `${AUTH_SIGNUP}?product=one`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href="https://atw.net/trial" />
+    <title>Redirecting to ATW signup…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>ATW signup</a>…</p>
+  </body>
+</html>

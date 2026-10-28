@@ -1,0 +1,18 @@
+---
+import { AUTH_SIGNUP } from '../lib/site';
+
+const product = Astro.url.searchParams.get('product') ?? 'one';
+const target = `${AUTH_SIGNUP}?${Astro.url.searchParams.toString() || `product=${product}`}`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href="https://atw.net/signup" />
+    <title>Redirecting to ATW signup…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>create your ATW account</a>…</p>
+  </body>
+</html>

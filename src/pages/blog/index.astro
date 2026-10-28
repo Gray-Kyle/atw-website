@@ -1,0 +1,32 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { fetchPublicPosts } from '../../lib/blog';
+
+const posts = await fetchPublicPosts(50);
+---
+
+<MarketingLayout title="Blog" description="ATW Network blog" canonical="https://atw.net/blog">
+  <section class="container py-16">
+    <h1 class="text-3xl font-bold">Blog</h1>
+    <p class="mt-2 text-muted-foreground">Updates on ERP, CRM, and implementation work.</p>
+    {
+      posts.length === 0 ? (
+        <p class="mt-8 text-muted-foreground">No posts loaded at build time. Check auth API connectivity during CI builds.</p>
+      ) : (
+        <ul class="mt-10 space-y-6">
+          {posts.map((post) => (
+            <li class="rounded-xl border border-border p-6">
+              <a href={`/blog/${post.slug}`} class="text-xl font-semibold text-brand-ink hover:text-primary">
+                {post.title}
+              </a>
+              {post.excerpt ? <p class="mt-2 text-sm text-muted-foreground">{post.excerpt}</p> : null}
+              {post.publishedAt ? (
+                <p class="mt-2 text-xs text-muted-foreground">{new Date(post.publishedAt).toLocaleDateString('en-US')}</p>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</MarketingLayout>

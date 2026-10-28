@@ -1,0 +1,17 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import PageHero from '../components/marketing/PageHero.astro';
+import { PRODUCT } from '../lib/site';
+---
+
+<MarketingLayout title="ATW Agents" description="Named AI seats, configuration, and Overseer." canonical="https://atw.net/agents">
+  <PageHero
+    title="Hire your AI team"
+    description="Named AI seats, Agent Configuration, Overseer, and shared Credits for your organization."
+  >
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href={PRODUCT.agents} class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Open Agents console</a>
+      <a href="/contact" class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink">Contact sales</a>
+    </div>
+  </PageHero>
+</MarketingLayout>

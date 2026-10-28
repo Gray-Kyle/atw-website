@@ -1,0 +1,54 @@
+---
+title: Integrate Sign in with ATW
+description: Use ATW as an OpenID Connect identity provider for your application
+date: 2026-7-20
+---
+
+## Sign in with ATW
+
+ATW can act as an **OpenID Connect** identity provider so your users sign in with their ATW account (the same Cognito-backed identity used for ATW One).
+
+### Discovery
+
+Fetch OpenID Provider metadata from:
+
+```
+https://sso.atw.net/.well-known/openid-configuration
+```
+
+Local development:
+
+```
+http://sso.localhost:3007/.well-known/openid-configuration
+```
+
+### Authorization code + PKCE
+
+1. Register an OAuth application in the ATW dashboard (**ATW SSO** → create app) and copy `client_id` (and `client_secret` for confidential clients).
+2. Redirect the user to the `authorization_endpoint` with:
+   - `response_type=code`
+   - `client_id`
+   - `redirect_uri` (must match a registered URI)
+   - `scope=openid profile email`
+   - `state` (CSRF)
+   - `code_challenge` / `code_challenge_method=S256`
+3. Exchange the `code` at the `token_endpoint` with `grant_type=authorization_code`, `code_verifier`, and client credentials as required.
+4. Call `userinfo_endpoint` with `Authorization: Bearer {access_token}`.
+
+### Claims
+
+| Claim | Meaning |
+|-------|---------|
+| `sub` | Stable ATW principal id |
+| `email` | Verified email |
+| `name` | Display name |
+
+### Scopes
+
+`openid`, `profile`, and `email` are supported in the MVP.
+
+### Notes
+
+- Users must already have an ATW session (or will be prompted to sign in).
+- Your organization must have **ATW SSO** enabled in product settings.
+- See engineer notes in `docs/ATW_SSO_IDP.md` for issuer hosts, JWKS, and admin APIs.

@@ -1,0 +1,32 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import { PARTNERS } from '../../data/partners';
+
+export function getStaticPaths() {
+  return PARTNERS.map((partner) => ({ params: { slug: partner.slug }, props: { partner } }));
+}
+
+const { partner } = Astro.props;
+---
+
+<MarketingLayout
+  title={`${partner.title} partner services`}
+  description={partner.description}
+  canonical={`https://atw.net/partners/${partner.slug}`}
+>
+  <PageHero eyebrow={partner.category} title={partner.title} description={partner.description} align="left">
+    <a href="/contact" class="mt-6 inline-flex rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Discuss a project</a>
+  </PageHero>
+  <section class="container py-16">
+    <h2 class="text-xl font-semibold">How we help</h2>
+    <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+      {partner.services.map((s) => (
+        <li class="rounded-lg border border-border px-4 py-3 text-sm">{s}</li>
+      ))}
+    </ul>
+    <p class="mt-8 text-sm text-muted-foreground">
+      Prefer ATW One instead? <a href="/one" class="text-primary underline">Explore the product</a>.
+    </p>
+  </section>
+</MarketingLayout>

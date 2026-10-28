@@ -1,0 +1,31 @@
+---
+import { marked } from 'marked';
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { fetchPublicPosts } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await fetchPublicPosts(100);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const html = post.content ? marked.parse(post.content) : '';
+---
+
+<MarketingLayout title={post.title} description={post.excerpt ?? post.title} canonical={`https://atw.net/blog/${post.slug}`}>
+  <article class="container max-w-3xl py-16">
+    <h1 class="text-3xl font-bold">{post.title}</h1>
+    {
+      post.publishedAt ? (
+        <p class="mt-2 text-sm text-muted-foreground">
+          {new Date(post.publishedAt).toLocaleDateString('en-US')}
+          {post.author?.name ? ` · ${post.author.name}` : ''}
+        </p>
+      ) : null
+    }
+    <div class="prose prose-slate mt-8 max-w-none" set:html={html} />
+    <p class="mt-10">
+      <a href="/blog" class="text-primary underline">← All posts</a>
+    </p>
+  </article>
+</MarketingLayout>

@@ -1,6 +1,3 @@
-/** Live apex marketing site (Amplify until cutover). */
-export const LIVE_SITE = 'https://atw.net';
-
 /** Product hosts (stay on Amplify / dedicated subs during peel). */
 export const PRODUCT = {
   auth: 'https://auth.atw.net',
@@ -11,10 +8,14 @@ export const PRODUCT = {
   agents: 'https://agents.atw.net',
 } as const;
 
-/** Paths not yet on the Astro site: keep linking to live apex. */
+/** Monolith API routes still served from auth until Workers proxy apex /api. */
+export const API_ORIGIN = PRODUCT.auth;
+
+/** Same-site marketing paths (apex is Cloudflare Pages). */
 export function livePath(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
-  return `${LIVE_SITE}${normalized}`;
+  return normalized;
 }
 
 export const AUTH_SIGNIN = `${PRODUCT.auth}/auth/signin`;
+export const AUTH_SIGNUP = `${PRODUCT.auth}/signup`;

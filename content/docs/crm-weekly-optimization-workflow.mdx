@@ -1,0 +1,40 @@
+# CRM Weekly Optimization Workflow
+
+Use this weekly loop to improve lead conversion while keeping outreach automation safe and cost-controlled.
+
+## 1) Measure
+
+- Pull `GET /api/crm/kpi` and capture:
+  - stage counts
+  - unassigned account count
+  - outbound volume
+  - reply rate
+  - monthly AI spend
+- Record the numbers in a weekly snapshot.
+
+## 2) Diagnose
+
+- Review `queueByStatus` to identify why tasks were skipped or failed.
+- Investigate unassigned owners before enabling additional outreach.
+- Check whether low-reply segments share common traits (source, industry, or role).
+
+## 3) Experiment
+
+- Change only one variable each week:
+  - scoring threshold
+  - outreach channel priority
+  - first-touch message structure
+- Limit tests to one segment for cleaner comparisons.
+
+## 4) Scale
+
+- Promote the highest-performing variant.
+- Update scoring defaults and templates in CRM automation.
+- Archive previous baseline and define next week’s target.
+
+## Guardrails
+
+- Respect monthly budget cap (`CRM_MONTHLY_AI_BUDGET_USD`).
+- Respect per-run and per-contact limits.
+- Stop automation immediately on opt-out, unsubscribe, or reply outcomes.
+

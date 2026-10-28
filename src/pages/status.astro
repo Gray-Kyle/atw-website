@@ -1,0 +1,27 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+---
+
+<MarketingLayout title="Status" description="ATW service status" canonical="https://atw.net/status">
+  <section class="container max-w-2xl py-16">
+    <h1 class="text-3xl font-bold">Service status</h1>
+    <p class="mt-4 text-muted-foreground">
+      Public marketing hosts run on Cloudflare Pages. Product apps (One, Auth, WorkSuite) run on dedicated subdomains.
+    </p>
+    <ul class="mt-8 space-y-4">
+      <li class="rounded-lg border border-border p-4">
+        <span class="font-medium">Website (atw.net)</span>
+        <span class="ml-2 text-sm text-green-700">Operational</span>
+      </li>
+      <li class="rounded-lg border border-border p-4">
+        <span class="font-medium">Auth (auth.atw.net)</span>
+        <span class="ml-2 text-sm text-muted-foreground">Check sign-in for live status</span>
+      </li>
+      <li class="rounded-lg border border-border p-4">
+        <span class="font-medium">One (one.atw.net)</span>
+        <span class="ml-2 text-sm text-muted-foreground">Check product login</span>
+      </li>
+    </ul>
+    <p class="mt-8 text-sm text-muted-foreground">For incidents, email <a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a>.</p>
+  </section>
+</MarketingLayout>

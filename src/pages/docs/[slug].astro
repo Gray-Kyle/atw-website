@@ -1,0 +1,26 @@
+---
+import { marked } from 'marked';
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { getDocBySlug, getDocSlugs } from '../../lib/docs';
+
+export function getStaticPaths() {
+  return getDocSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const slug = Astro.params.slug!;
+const doc = getDocBySlug(slug);
+if (!doc) {
+  throw new Error(`Missing doc: ${slug}`);
+}
+const html = marked.parse(doc.content);
+---
+
+<MarketingLayout title={doc.meta.title} description={doc.meta.excerpt} canonical={`https://atw.net/docs/${slug}`}>
+  <article class="container max-w-3xl py-16 prose prose-slate">
+    <h1>{doc.meta.title}</h1>
+    <div set:html={html} />
+    <p class="not-prose mt-10">
+      <a href="/docs" class="text-primary underline">← All docs</a>
+    </p>
+  </article>
+</MarketingLayout>

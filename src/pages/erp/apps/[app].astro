@@ -1,0 +1,27 @@
+---
+import MarketingLayout from '../../../layouts/MarketingLayout.astro';
+import { ERP_APP_SHOWCASE_ENTRIES } from '../../../data/erpOfferHome';
+
+export function getStaticPaths() {
+  return ERP_APP_SHOWCASE_ENTRIES.map((app) => ({ params: { app: app.slug }, props: { app } }));
+}
+
+const { app } = Astro.props;
+---
+
+<MarketingLayout title={`ATW One ${app.cardTitle}`} description={app.metaDescription} canonical={`https://atw.net/erp/apps/${app.slug}`}>
+  <section class="container py-16">
+    <h1 class="text-3xl font-bold">{app.cardTitle}</h1>
+    <p class="mt-4 max-w-2xl text-muted-foreground">{app.pageLead}</p>
+    <img src={app.imageSrc} alt="" class="mt-8 max-w-3xl rounded-xl border border-border" loading="lazy" />
+    <ul class="mt-8 list-disc space-y-2 pl-5 text-muted-foreground">
+      {app.bullets.map((b) => (
+        <li>{b}</li>
+      ))}
+    </ul>
+    <div class="mt-10 flex gap-3">
+      <a href="/one" class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">ATW One overview</a>
+      <a href="/trial" class="rounded-lg border border-border px-6 py-3 text-sm font-semibold">Start trial</a>
+    </div>
+  </section>
+</MarketingLayout>

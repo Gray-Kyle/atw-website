@@ -1,0 +1,29 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import PageHero from '../../components/marketing/PageHero.astro';
+import { INDUSTRIES } from '../../data/industries';
+
+export function getStaticPaths() {
+  return INDUSTRIES.map((industry) => ({ params: { slug: industry.slug }, props: { industry } }));
+}
+
+const { industry } = Astro.props;
+---
+
+<MarketingLayout
+  title={`${industry.name} solutions`}
+  description={industry.description}
+  canonical={`https://atw.net/industries/${industry.slug}`}
+>
+  <PageHero title={industry.name} description={industry.description} align="left">
+    <a href="/contact" class="mt-6 inline-flex rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Contact us</a>
+  </PageHero>
+  <section class="container py-16">
+    <h2 class="text-xl font-semibold">Common outcomes</h2>
+    <ul class="mt-4 space-y-2">
+      {industry.benefits.map((b) => (
+        <li class="text-muted-foreground">• {b}</li>
+      ))}
+    </ul>
+  </section>
+</MarketingLayout>

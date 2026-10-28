@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<section class="bg-brand-navy px-4 py-14 text-white">
+  <div class="container mx-auto max-w-3xl text-center">
+    <h2 class="text-2xl font-semibold sm:text-3xl">{title}</h2>
+    {description ? <p class="mt-3 text-zinc-200">{description}</p> : null}
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <slot />
+    </div>
+  </div>
+</section>
