@@ -14,7 +14,7 @@ Project exists and is connected to **`Gray-Kyle/atw-website`** (`main`).
 - Build output directory: `dist`
 - Preview URL: https://atw-website-9br.pages.dev
 
-**Live custom domain:** `https://www.atw.net` → Pages production (added 2026-10-28). Apex `atw.net` stays on Amplify until Phase 1e apex cutover (see `../../ATW/docs/STEP1_WEBSITE_PEEL.md`).
+**Live custom domains:** `https://www.atw.net` and `https://atw.net` → Pages production (added 2026-10-28). Product subdomains stay on Amplify (see `../../ATW/docs/STEP1_WEBSITE_PEEL.md`).
 
 Product subdomains stay on Amplify.
 
@@ -69,21 +69,25 @@ Push to `main` runs build + `wrangler pages deploy`.
 
 1. Added Pages custom domain `www.atw.net` on project `atw-website`.
 2. Cloudflare DNS: `www` CNAME → `atw-website-9br.pages.dev`, **proxied**.
-3. Detached Worker `atw` custom domain for `www.atw.net` only (Worker blocked Pages on that host; apex `atw.net` remains on Worker `atw`).
+3. Detached Worker `atw` custom domain for `www.atw.net` only (Worker blocked Pages on that host).
 
-Verification (2026-10-28): `https://www.atw.net/` and `/pricing` return Astro (HTTP 200, TLS OK). `one`, `auth`, `worksuite`, and apex unchanged.
+Verification (2026-10-28): `https://www.atw.net/` and `/pricing` return Astro (HTTP 200, TLS OK). Product hosts unchanged.
 
 Pages dashboard may show SSL `pending` briefly after cutover; edge TLS still works via Cloudflare.
 
-### Pending: apex and product hosts
+### Done: apex `atw.net` (2026-10-28, Kyle approved Phase 1e)
+
+1. Added Pages custom domain `atw.net` on project `atw-website`.
+2. Detached Worker `atw` custom domain for `atw.net` only (same blocker as `www`; no Worker custom domains remain on `atw.net`).
+3. Cloudflare DNS: apex CNAME → `atw-website-9br.pages.dev`, **proxied** (CNAME flattening at zone apex).
+
+Verification (2026-10-28): `https://atw.net/` and `/pricing` return Astro (HTTP 200, TLS OK). `one`, `auth`, and `worksuite` still serve Next/Amplify via CloudFront CNAMEs (DNS-only).
+
+Pages dashboard may show apex domain status `pending` for a few minutes while certificate validation completes; edge serving worked immediately after DNS repoint.
+
+### Product hosts (unchanged)
 
 **Stay on Amplify (DNS-only CNAME to Amplify app `d35uouyq924see`):**  
-`atw.net` (apex), `one`, `auth`, `worksuite`, `workspaces`, `mail`, `meet`, `ai`, `directory`, `platform`, `admin.mail`, and other product hosts.
+`one`, `auth`, `worksuite`, `workspaces`, `mail`, `meet`, `ai`, `directory`, `platform`, `admin.mail`, and other product hosts.
 
-**Apex (Phase 1e, not started):**
-
-| Host | Target | Notes |
-|------|--------|--------|
-| `atw.net` (apex) | Pages custom domain | Add on `atw-website`, repoint apex DNS, detach Worker `atw` apex domain |
-
-After apex cutover: remove apex from Amplify domain association; optional remove stale `www` from Amplify. Leave product subdomain associations unchanged.
+**Optional Amplify cleanup:** App `d35uouyq924see` may still list apex/`www` in domain association. Remove apex and stale `www` in the Amplify console when convenient (not required for routing). Leave product subdomain associations unchanged.
