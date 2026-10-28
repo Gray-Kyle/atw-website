@@ -1,16 +1,20 @@
 # Deploy ATW Website to Cloudflare Pages
 
-Project name: **`atw-website`**. Production preview hostname (after first deploy): **`https://atw-website.pages.dev`**.
+Project name: **`atw-website`**. Pages hostname: **`https://atw-website-9br.pages.dev`** (Cloudflare-assigned project subdomain; production deployment from Git on `main`).
+
+First successful production deploy: **2026-10-28** (commit `6a86e3f`, deployment id `0720ee8a`).
 
 GitHub: [Gray-Kyle/atw-website](https://github.com/Gray-Kyle/atw-website).
 
-## Option A — Cloudflare dashboard (Git-connected)
+## Option A — Cloudflare dashboard (Git-connected) — **active**
 
-1. Cloudflare → Workers & Pages → Create → Connect to Git → `Gray-Kyle/atw-website`
-2. Production branch: `main`
-3. Build command: `npm ci && npm run build`
-4. Build output directory: `dist`
-5. (Optional) Add custom domains `www.atw.net` and `atw.net` only after content parity and Kyle sign-off (see `../ATW/docs/STEP1_WEBSITE_PEEL.md`).
+Project exists and is connected to **`Gray-Kyle/atw-website`** (`main`).
+
+- Build command: `npm ci && npm run build`
+- Build output directory: `dist`
+- Preview URL: https://atw-website-9br.pages.dev
+
+(Optional) Add custom domains `www.atw.net` and `atw.net` only after content parity and Kyle sign-off (see `../../ATW/docs/STEP1_WEBSITE_PEEL.md`).
 
 Do not point apex/`www` at Pages until Phase 1e. Product subdomains stay on Amplify.
 
@@ -68,7 +72,7 @@ Push to `main` runs build + `wrangler pages deploy`.
 
 | Host | Target | Notes |
 |------|--------|--------|
-| `www.atw.net` | `atw-website.pages.dev` | CNAME, proxied through Cloudflare |
+| `www.atw.net` | `atw-website-9br.pages.dev` | CNAME, proxied through Cloudflare |
 | `atw.net` (apex) | Pages custom domain | Use Cloudflare apex setup on the Pages project (CNAME flattening / recommended apex pattern) |
 
 After cutover: remove apex and `www` from the Amplify domain association; leave product subdomain associations unchanged.
