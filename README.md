@@ -8,6 +8,10 @@ Marketing site for Animal Transportation Worldwide / ATW One.
 
 Product apps (One, WorkSuite, Auth, …) stay on Amplify until their own peels. This repo is **not** a monorepo child of `ATWNetworkWebpage`; it is its own GitHub unit (same pattern as `atw-hub`).
 
+**GitHub:** https://github.com/Gray-Kyle/atw-website  
+**Pages project:** `atw-website`  
+**Preview URL (after first deploy):** https://atw-website.pages.dev — _not live until Cloudflare deploy completes; see [docs/CLOUDFLARE_PAGES.md](./docs/CLOUDFLARE_PAGES.md)._
+
 ## Develop
 
 ```bash
@@ -23,4 +27,4 @@ npx wrangler pages deploy dist --project-name=atw-website
 # or: npm run deploy
 ```
 
-Create the Cloudflare Pages project `atw-website` once (dashboard or first `wrangler pages deploy`). Preview on `*.pages.dev` before moving `atw.net` / `www` DNS.
+Deploy options (dashboard Git connect, wrangler, or GitHub Actions): [docs/CLOUDFLARE_PAGES.md](./docs/CLOUDFLARE_PAGES.md). Preview on `*.pages.dev` before moving `atw.net` / `www` DNS.
