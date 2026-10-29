@@ -19,4 +19,6 @@ The Astro header now mirrors the Next `(site)` marketing nav: **Systems** three-
 
 ## Product hosts (unchanged DNS)
 
-`one.atw.net`, `worksuite.atw.net`, `hub.atw.net`, `directory.atw.net`, `agents.atw.net`, `mail.atw.net`, `auth.atw.net` remain product entry points; marketing nav links to on-site tours first where Next did.
+`one.atw.net`, `worksuite.atw.net`, `hub.atw.net`, `directory.atw.net`, `ai.atw.net`, `agents.atw.net`, `mail.atw.net`, `auth.atw.net` remain product entry points; marketing nav links to on-site tours first where Next did.
+
+**Peels on Cloudflare Pages (2026-10-29):** `directory.atw.net`, `ai.atw.net`. Their `/api/*` (except `/api/auth/*`) still proxies to Amplify monolith `main.d35uouyq924see.amplifyapp.com` until those APIs move off the monolith.

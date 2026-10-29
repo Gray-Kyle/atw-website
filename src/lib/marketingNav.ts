@@ -3,6 +3,8 @@
  * System → Application → Module.
  */
 
+import { AUTH_SIGNIN, PRODUCT } from './site';
+
 export type MarketingModule = {
   title: string;
   href: string;
@@ -269,6 +271,12 @@ export const marketingSystems: MarketingSystem[] = [
         summary: 'Ask questions about your work.',
         modules: [
           { title: 'Chat', href: '/solutions/ai-use-cases' },
+          {
+            title: 'Sign in',
+            href:
+              `${AUTH_SIGNIN}?callbackUrl=` +
+              encodeURIComponent(`${PRODUCT.ai}/`),
+          },
           { title: 'Search', href: '/solutions/ai-use-cases' },
         ],
       },

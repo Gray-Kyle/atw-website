@@ -6,6 +6,7 @@ export const PRODUCT = {
   hub: 'https://hub.atw.net',
   directory: 'https://directory.atw.net',
   agents: 'https://agents.atw.net',
+  ai: 'https://ai.atw.net',
 } as const;
 
 /** Monolith API routes still served from auth until Workers proxy apex /api. */
@@ -19,6 +20,7 @@ export function livePath(path: string): string {
 
 export const AUTH_SIGNIN = `${PRODUCT.auth}/auth/signin`;
 export const AUTH_SIGNUP = `${PRODUCT.auth}/signup`;
+export const AUTH_SIGNOUT = `${PRODUCT.auth}/api/auth/signout`;
 
 /** Mail product CTAs until apex hosts mail signup API. */
 export const MAIL_WEBMAIL_INBOX = 'https://mail.atw.net/inbox';
