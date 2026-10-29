@@ -32,9 +32,9 @@ First deploy creates the Pages project if it does not exist. List projects:
 npx wrangler pages project list
 ```
 
-### Kyle: one-time auth on this machine
+### Kyle: one-time auth on this machine (optional)
 
-Wrangler is not logged in on the ATW dev host yet. From an interactive shell:
+GitHub Actions deploys with repo secrets (set 2026-10-29). For manual `npm run deploy` from this host, wrangler may still need login or token env. From an interactive shell:
 
 ```bash
 cd ~/Projects/atw-website
@@ -61,7 +61,7 @@ Workflow: `.github/workflows/pages-deploy.yml`. Add repository secrets:
 | `CLOUDFLARE_API_TOKEN` | Pages deploy (same permissions as Option B) |
 | `CLOUDFLARE_ACCOUNT_ID` | Account id from Cloudflare dashboard URL or `wrangler whoami` |
 
-Push to `main` runs build + `wrangler pages deploy`.
+Push to `main` runs build + `wrangler pages deploy`. Secrets present on `Gray-Kyle/atw-website` as of 2026-10-29; latest successful run deploys commit on `main` (includes `pages-worker/_worker.js` copied in `npm run build`).
 
 ## DNS cutover
 
