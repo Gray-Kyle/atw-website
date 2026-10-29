@@ -1,33 +1,59 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-import { AEO_SYSTEMS } from '../data/aeoOffers';
+import { marketingSystems } from '../lib/marketingNav';
 import { PRODUCT } from '../lib/site';
 
-const systems = [
-  { title: 'ATW One', href: PRODUCT.one, summary: 'ERP/CRM workspace' },
-  { title: 'WorkSuite', href: PRODUCT.worksuite, summary: 'Mail, calendar, office' },
-  { title: 'Hub', href: '/hub', summary: 'Team chat' },
-  { title: 'Directory', href: PRODUCT.directory, summary: 'People and access' },
-  { title: 'ATW AI', href: PRODUCT.ai, summary: 'Desktop assistant and chat' },
-  { title: 'Agents', href: '/agents', summary: 'AI seats and Overseer' },
-  ...AEO_SYSTEMS.filter((s) => !['one', 'hub', 'directory', 'agents'].includes(s.id)),
-];
+/** Map marketing system ids to live product hosts for the systems catalog. */
+const productHostBySystemId: Record<string, string> = {
+  one: PRODUCT.one,
+  hub: PRODUCT.hub,
+  mail: 'https://mail.atw.net',
+  workspace: PRODUCT.worksuite,
+  directory: PRODUCT.directory,
+  agents: PRODUCT.agents,
+  ai: PRODUCT.ai,
+};
+
+function openAppHref(systemId: string): string | null {
+  return productHostBySystemId[systemId] ?? null;
+}
 ---
 
 <MarketingLayout title="ATW systems" description="Catalog of ATW Network systems" canonical="https://atw.net/systems">
   <section class="container py-16">
     <h1 class="text-3xl font-bold">Systems</h1>
-    <p class="mt-2 text-muted-foreground">Product and marketing entry points across the ATW network.</p>
-    <ul class="mt-10 space-y-4">
+    <p class="mt-2 text-muted-foreground">
+      Product and marketing entry points across the ATW network. Each system links to its marketing
+      page; peeled products also expose a direct app URL.
+    </p>
+    <ul class="mt-10 space-y-6">
       {
-        systems.map((s) => (
-          <li class="rounded-xl border border-border p-5">
-            <a href={s.href} class="text-lg font-semibold text-primary underline">
-              {s.title}
-            </a>
-            <p class="mt-1 text-sm text-muted-foreground">{s.summary}</p>
-          </li>
-        ))
+        marketingSystems.map((system) => {
+          const appHref = openAppHref(system.id);
+          return (
+            <li class="rounded-xl border border-border p-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <a href={system.href} class="text-lg font-semibold text-primary underline">
+                  {system.title}
+                </a>
+                {appHref ? (
+                  <a
+                    href={appHref}
+                    class="text-sm font-medium text-brand-ink underline decoration-brand-navy/30"
+                  >
+                    Open app →
+                  </a>
+                ) : null}
+              </div>
+              <p class="mt-1 text-sm text-muted-foreground">{system.summary}</p>
+              <ul class="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                {system.apps.map((app) => (
+                  <li class="rounded-full border border-border px-3 py-1">{app.title}</li>
+                ))}
+              </ul>
+            </li>
+          );
+        })
       }
     </ul>
   </section>

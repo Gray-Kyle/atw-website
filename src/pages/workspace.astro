@@ -1,6 +1,7 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
+import { PRODUCT } from '../lib/site';
 
 const faqs = [
   {
@@ -28,7 +29,7 @@ const faqs = [
     headline="Calendar, documents, meetings, and messaging"
     lead="WorkSuite sits next to ATW One so your team can schedule, collaborate, meet, and message without another disconnected suite."
     primaryCta={{ label: 'Talk to us', href: '/contact' }}
-    secondaryCta={{ label: 'Explore Mail', href: '/mail' }}
+    secondaryCta={{ label: 'Open WorkSuite', href: PRODUCT.worksuite }}
     faqs={faqs}
   />
 </MarketingLayout>
