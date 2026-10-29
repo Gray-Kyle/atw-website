@@ -20,7 +20,7 @@ export function livePath(path: string): string {
 
 export const AUTH_SIGNIN = `${PRODUCT.auth}/auth/signin`;
 export const AUTH_SIGNUP = `${PRODUCT.auth}/signup`;
-export const AUTH_SIGNOUT = `${PRODUCT.auth}/api/auth/signout`;
+export const AUTH_SIGNOUT = `${PRODUCT.auth}/auth/signout`;
 
 /** Mail product CTAs until apex hosts mail signup API. */
 export const MAIL_WEBMAIL_INBOX = 'https://mail.atw.net/inbox';
