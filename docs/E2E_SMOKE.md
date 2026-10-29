@@ -45,7 +45,7 @@ Copy this block for an automated browser or HTTP pass:
 5. Open `/trial`; confirm redirect to `auth.atw.net/signup` with `product=one`.
 6. Confirm `/services` is **not** serving the home page (title/body must mention ATW Services).
 7. Product CTAs: **ATW One** menu item → `https://one.atw.net`; **Sign In** → `https://auth.atw.net/auth/signin`.
-8. Known gaps (do not fail migration on these alone): contact CRM form and Zoho Bookings widget need apex → auth API proxy; `/book` lists phone/email fallback.
+8. Known gaps (do not fail migration on these alone): connected/webhook lead forms; mail signup API on apex.
 
 ## Manual curl spot checks
 

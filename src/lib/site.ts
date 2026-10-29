@@ -9,7 +9,7 @@ export const PRODUCT = {
   ai: 'https://ai.atw.net',
 } as const;
 
-/** Monolith API routes still served from auth until Workers proxy apex /api. */
+/** Monolith API routes proxied on apex via Pages worker (see pages-worker/_worker.js). */
 export const API_ORIGIN = PRODUCT.auth;
 
 /** Same-site marketing paths (apex is Cloudflare Pages). */

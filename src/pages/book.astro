@@ -1,6 +1,5 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-import { API_ORIGIN } from '../lib/site';
 ---
 
 <MarketingLayout title="Book a call" description="Schedule time with ATW" canonical="https://atw.net/book">
@@ -10,16 +9,7 @@ import { API_ORIGIN } from '../lib/site';
     <p class="mt-2 text-muted-foreground">
       Schedule a 30-minute conversation about ATW One, implementation, or partner solutions.
     </p>
-    <div class="mt-8 rounded-xl border border-border bg-muted/30 p-6">
-      <p class="text-sm text-muted-foreground">
-        Live scheduling uses Zoho Bookings APIs on <code class="text-xs">{API_ORIGIN}</code> until an apex API proxy ships.
-        Use one of these options today:
-      </p>
-      <ul class="mt-4 space-y-2 text-sm">
-        <li><a href="tel:+13303332256" class="text-primary underline">Call +1 (330) 333-2256</a></li>
-        <li><a href="mailto:support@atw.net?subject=Book%20a%20call" class="text-primary underline">Email support@atw.net</a></li>
-        <li><a href="/contact" class="text-primary underline">Contact form (phone and email)</a></li>
-      </ul>
-    </div>
+    <div id="atw-booking-root" class="mt-8"></div>
   </section>
+  <script src="/js/booking-flow.js" defer></script>
 </MarketingLayout>

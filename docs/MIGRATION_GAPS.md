@@ -6,6 +6,20 @@ Cloudflare Pages (`atw-website`) hosts public marketing at `atw.net`. Product ap
 
 The Astro header now mirrors the Next `(site)` marketing nav: **Systems** three-column mega-menu (system → application → module), **Services** and **Partners** link grids, **Pricing**, **Why Us**, **Book a Call**, and **Sign In**.
 
+## Shipped on Pages (2026-10-29)
+
+| Area | Notes |
+|------|--------|
+| Contact CRM form | `/contact` + `POST /api/contact` (same-origin worker → `auth.atw.net`) |
+| Zoho Bookings | `/book` + `/api/zoho-bookings/*` proxy |
+| Hosted lead forms | `/forms/{orgId}/{slug}` Astro shell + `GET/POST /api/public/lead-forms/...` proxy |
+
+Pages Advanced Mode worker: `pages-worker/_worker.js` (copied to `dist/_worker.js` on build). Only whitelisted marketing APIs are forwarded; other `/api/*` returns 404.
+
+Set `PUBLIC_TURNSTILE_SITE_KEY` on the Pages project (same value as Amplify `NEXT_PUBLIC_TURNSTILE_SITE_KEY`) for Turnstile on `/contact`.
+
+**Monolith follow-up:** deploy `Gray-Kyle/ATW` with `GET /api/public/lead-forms/[orgId]/hosted/[slug]` so hosted forms can load field definitions (submit already existed).
+
 ## Still on Amplify / auth (not apex HTML)
 
 | Area | Notes |
@@ -13,9 +27,10 @@ The Astro header now mirrors the Next `(site)` marketing nav: **Systems** three-
 | Auth flows | `/auth/*`, session, dashboard |
 | Mail signup API | `/mail/signup` form + `/api/mail/signup` (CTAs redirect to `auth.atw.net` with `product=mail`) |
 | Pay / invoice | `/pay/invoice/[token]` |
-| Dynamic forms | `/forms/[orgId]/[slug]` |
-| Contact CRM + Bookings | Needs apex → auth API proxy for live widget |
+| Connected / webhook lead forms | Non-hosted form types and CRM admin UI |
 | Expo, status-bot, subscriptions | Lower-traffic or app-specific routes |
+
+Backend for contact, bookings, and hosted form submit still runs on the **auth/monolith** stack (`auth.atw.net`); Pages removes the need for apex HTML on Amplify, not the API implementation yet.
 
 ## Product hosts (unchanged DNS)
 

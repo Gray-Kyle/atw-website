@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && cp pages-worker/_worker.js dist/_worker.js",
     "preview": "astro preview",
     "e2e:smoke": "node scripts/e2e-smoke.mjs",
     "astro": "astro",

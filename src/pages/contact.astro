@@ -67,23 +67,13 @@ const faqs = [
         <div class="rounded-xl border border-border bg-card p-6 shadow-sm">
           <h2 class="text-xl font-semibold sm:text-2xl">Contact form</h2>
           <p class="mt-2 text-sm text-muted-foreground">
-            Full CRM form with Turnstile and SMS consent requires an apex API proxy (planned). Reach us by phone,
-            email, SMS, or book a call while we wire the form to auth APIs.
+            Submit inquiries with Turnstile protection. Leads go to ATW CRM via same-origin API on atw.net.
           </p>
-          <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="mailto:support@atw.net?subject=Website%20inquiry"
-              class="inline-flex justify-center rounded bg-brand-navy px-6 py-3 text-sm font-semibold text-white hover:bg-brand-navy/90"
-            >
-              Email support@atw.net
-            </a>
-            <a
-              href="/book"
-              class="inline-flex justify-center rounded border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink hover:bg-brand-navy/10"
-            >
-              Book a call
-            </a>
-          </div>
+          <div
+            id="atw-contact-form-root"
+            class="mt-6"
+            data-turnstile-site-key={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? ''}
+          ></div>
         </div>
 
         <div class="grid grid-cols-2 gap-3 lg:grid-cols-1">
@@ -130,4 +120,5 @@ const faqs = [
       </div>
     </div>
   </section>
+  <script src="/js/contact-form.js" defer></script>
 </MarketingLayout>

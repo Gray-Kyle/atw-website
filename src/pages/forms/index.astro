@@ -1,0 +1,27 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+---
+
+<MarketingLayout
+  title="Contact form"
+  description="Submit a form to ATW"
+  canonical="https://atw.net/forms"
+>
+  <main class="min-h-[60vh] bg-gradient-to-b from-muted/40 to-white px-4 py-12">
+    <div class="mx-auto max-w-lg">
+      <div id="atw-hosted-form-root" class="rounded-xl border border-border bg-card p-6 shadow-sm"></div>
+    </div>
+  </main>
+  <script is:inline>
+    (function () {
+      const root = document.getElementById('atw-hosted-form-root');
+      if (!root) return;
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      if (parts[0] === 'forms' && parts.length >= 3 && /^\d{7}$/.test(parts[1])) {
+        root.dataset.orgId = parts[1];
+        root.dataset.slug = parts[2];
+      }
+    })();
+  </script>
+  <script src="/js/hosted-lead-form.js" defer></script>
+</MarketingLayout>
