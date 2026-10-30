@@ -91,9 +91,36 @@ async function proxyToAuthApi(request) {
   });
 }
 
+const ATW_PLATFORM_ORG_ID = "4133643";
+const ONE_ORIGIN = "https://one.atw.net";
+
+/** Legacy Amplify tenant/platform paths → One Pages. */
+function legacyAppOrgRedirect(url) {
+  const match = url.pathname.match(/^\/app\/org\/(\d{7})(\/.*)?$/);
+  if (!match) return null;
+  const orgId = match[1];
+  const rest = match[2] || "/";
+  if (orgId === ATW_PLATFORM_ORG_ID) {
+    const target = new URL(rest === "/" ? "/" : rest, ONE_ORIGIN);
+    target.search = url.search;
+    return Response.redirect(target.toString(), 301);
+  }
+  // Multi-tenant One URLs: land on One with org query until tenant host strategy ships.
+  const target = new URL("/", ONE_ORIGIN);
+  target.searchParams.set("org", orgId);
+  if (rest && rest !== "/") target.searchParams.set("path", rest);
+  for (const [key, value] of url.searchParams.entries()) {
+    if (!target.searchParams.has(key)) target.searchParams.set(key, value);
+  }
+  return Response.redirect(target.toString(), 302);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    const orgRedirect = legacyAppOrgRedirect(url);
+    if (orgRedirect) return orgRedirect;
 
     if (request.method === "OPTIONS" && url.pathname.startsWith("/api/")) {
       if (!shouldProxyApi(url.pathname)) {
