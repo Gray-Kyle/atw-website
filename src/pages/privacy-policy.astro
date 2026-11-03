@@ -4,7 +4,7 @@ import LegalShell from '../components/marketing/LegalShell.astro';
 ---
 
 <MarketingLayout title="Privacy Policy" description="ATW Network privacy policy" canonical="https://atw.net/privacy-policy">
-  <LegalShell title="Privacy Policy">
+  <LegalShell title="Privacy Policy" effective="November 3, 2026">
     <section class="rounded-xl border border-border p-6">
       <h2 class="text-2xl font-semibold">Introduction</h2>
       <p class="mt-4 text-muted-foreground">
@@ -21,6 +21,24 @@ import LegalShell from '../components/marketing/LegalShell.astro';
       <h2 class="text-2xl font-semibold">How we use information</h2>
       <p class="mt-4 text-muted-foreground">
         We use information to provide services, respond to requests, improve products, send service messages, and comply with law. Marketing SMS requires explicit opt-in.
+      </p>
+    </section>
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">ATW Workforce and connected mailboxes</h2>
+      <p class="mt-4 text-muted-foreground">
+        <a href="https://workforce.atw.net/" class="text-primary underline">ATW Workforce</a> lets you connect a personal mailbox to a Workforce agent so the agent can send and manage email on your behalf when you allow those actions.
+      </p>
+      <p class="mt-4 text-muted-foreground">
+        You may connect personal Gmail (and other providers when we offer them) with OAuth. For a Gmail connection, we request send, compose, and modify access for that user's mailbox only. We use the connection only to perform the agent email actions you allow in Workforce.
+      </p>
+      <p class="mt-4 text-muted-foreground">
+        OAuth tokens for a connected mailbox are stored on ATW servers for that agent connection. We do not sell this data, and we do not use it for advertising.
+      </p>
+      <p class="mt-4 text-muted-foreground">
+        You can disconnect a mailbox in Workforce. You can also revoke ATW's access in your Google Account connections (or the equivalent settings for other providers).
+      </p>
+      <p class="mt-4 text-muted-foreground">
+        Questions about Workforce mailbox connections: <a href="mailto:admin@atw.net" class="text-primary underline">admin@atw.net</a>.
       </p>
     </section>
     <section class="rounded-xl border border-border p-6">
