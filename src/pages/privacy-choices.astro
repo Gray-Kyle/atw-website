@@ -3,10 +3,171 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import LegalShell from '../components/marketing/LegalShell.astro';
 ---
 
-<MarketingLayout title="Privacy choices" description="Your privacy choices at ATW" canonical="https://atw.net/privacy-choices">
-  <LegalShell title="Privacy choices">
+<MarketingLayout
+  title="Your Privacy Choices"
+  description="Control analytics and marketing tags on atw.net"
+  canonical="https://atw.net/privacy-choices"
+>
+  <LegalShell title="Your Privacy Choices">
     <p class="text-muted-foreground">
-      You may request access, correction, or deletion of personal data we hold about you by emailing <a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a>. Marketing email and SMS opt-outs are honored per message instructions and account settings where available.
+      This page controls analytics and marketing tags on atw.net. Essential cookies stay on so the site can run securely.
+      See
+      <a href="/cookies" class="text-primary underline">Cookie settings</a>
+      and the
+      <a href="/privacy-policy" class="text-primary underline">Privacy Policy</a>
+      for more detail.
     </p>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">California and U.S. state privacy rights</h2>
+      <p class="mt-4 text-muted-foreground">
+        ATW does not sell personal information, and we do not share personal information for cross-context behavioral
+        advertising as those terms are commonly defined under the CCPA/CPRA. If you are a California resident (or a
+        resident of another U.S. state with similar rights), you may request access, correction, deletion, or an opt-out
+        of sale or sharing by emailing
+        <a href="mailto:privacy@atw.net" class="text-primary underline">privacy@atw.net</a>.
+        We will verify your request as required by law. More detail is in our
+        <a href="/privacy-policy" class="text-primary underline">Privacy Policy</a>.
+      </p>
+      <p class="mt-4 text-muted-foreground">
+        If your browser sends a Global Privacy Control (GPC) signal, we treat that as an opt-out of analytics and marketing
+        tags on this site. Our GPC statement is at
+        <a href="/.well-known/gpc.json" class="text-primary underline">/.well-known/gpc.json</a>.
+      </p>
+    </section>
+
+    <div id="privacy-choices" class="not-prose max-w-xl space-y-6" data-privacy-choices>
+      <p
+        id="gpc-notice"
+        class="hidden rounded border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"
+        role="status"
+      >
+        Your browser sent Global Privacy Control. Marketing and analytics tags stay off.
+      </p>
+
+      <div class="space-y-3 text-sm text-foreground">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" checked disabled class="h-4 w-4" />
+          Essential (always on)
+        </label>
+        <label class="flex items-center gap-2">
+          <input
+            id="consent-analytics"
+            type="checkbox"
+            class="h-4 w-4 accent-brand-navy"
+          />
+          Analytics
+        </label>
+        <label class="flex items-center gap-2">
+          <input
+            id="consent-marketing"
+            type="checkbox"
+            class="h-4 w-4 accent-brand-navy"
+          />
+          Marketing
+        </label>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <button
+          type="button"
+          id="consent-save"
+          class="rounded bg-brand-navy px-5 py-2 text-sm font-semibold text-white disabled:opacity-50"
+        >
+          Save choices
+        </button>
+        <button
+          type="button"
+          id="consent-accept-all"
+          class="rounded border-2 border-brand-navy px-5 py-2 text-sm font-semibold text-brand-ink disabled:opacity-50"
+        >
+          Accept all
+        </button>
+        <button
+          type="button"
+          id="consent-reject-all"
+          class="rounded border-2 border-brand-navy px-5 py-2 text-sm font-semibold text-brand-ink"
+        >
+          Reject all
+        </button>
+      </div>
+
+      <p id="consent-saved" class="hidden text-sm text-green-700" role="status"></p>
+
+      <p class="text-sm text-muted-foreground">
+        Privacy requests:
+        <a href="mailto:privacy@atw.net" class="text-primary underline">privacy@atw.net</a>
+      </p>
+    </div>
   </LegalShell>
 </MarketingLayout>
+
+<script>
+  import {
+    buildConsentState,
+    detectGpcOptOut,
+    readConsentFromDocument,
+    writeConsentCookie,
+    type AtwConsentState,
+  } from '../lib/consent';
+
+  const analyticsEl = document.getElementById('consent-analytics') as HTMLInputElement | null;
+  const marketingEl = document.getElementById('consent-marketing') as HTMLInputElement | null;
+  const saveBtn = document.getElementById('consent-save') as HTMLButtonElement | null;
+  const acceptBtn = document.getElementById('consent-accept-all') as HTMLButtonElement | null;
+  const rejectBtn = document.getElementById('consent-reject-all') as HTMLButtonElement | null;
+  const gpcNotice = document.getElementById('gpc-notice');
+  const savedEl = document.getElementById('consent-saved');
+
+  let gpc = false;
+  let lastConsent: AtwConsentState | null = null;
+
+  function refresh() {
+    gpc = detectGpcOptOut();
+    lastConsent = readConsentFromDocument();
+
+    if (gpcNotice) {
+      gpcNotice.classList.toggle('hidden', !gpc);
+    }
+
+    if (analyticsEl) {
+      analyticsEl.checked = Boolean(lastConsent?.analytics) && !gpc;
+      analyticsEl.disabled = gpc;
+    }
+    if (marketingEl) {
+      marketingEl.checked = Boolean(lastConsent?.marketing) && !gpc;
+      marketingEl.disabled = gpc;
+    }
+    if (saveBtn) saveBtn.disabled = gpc;
+    if (acceptBtn) acceptBtn.disabled = gpc;
+  }
+
+  function save(state: AtwConsentState) {
+    writeConsentCookie(state);
+    window.dispatchEvent(new Event('atw-consent-changed'));
+    refresh();
+    if (savedEl) {
+      savedEl.textContent = `Preferences saved${lastConsent ? ` (${lastConsent.choice})` : ''}.`;
+      savedEl.classList.remove('hidden');
+    }
+  }
+
+  saveBtn?.addEventListener('click', () => {
+    save(
+      buildConsentState('custom', {
+        analytics: Boolean(analyticsEl?.checked),
+        marketing: Boolean(marketingEl?.checked),
+      }),
+    );
+  });
+
+  acceptBtn?.addEventListener('click', () => {
+    save(buildConsentState('all'));
+  });
+
+  rejectBtn?.addEventListener('click', () => {
+    save(buildConsentState('essential'));
+  });
+
+  refresh();
+</script>

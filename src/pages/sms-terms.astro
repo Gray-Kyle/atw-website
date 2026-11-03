@@ -3,10 +3,59 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import LegalShell from '../components/marketing/LegalShell.astro';
 ---
 
-<MarketingLayout title="SMS Terms" description="SMS terms for ATW" canonical="https://atw.net/sms-terms">
-  <LegalShell title="SMS Terms">
-    <p class="text-muted-foreground">
-      When you opt in to SMS from ATW, you agree to receive messages related to your request, account, or marketing (if you checked the marketing consent box). Message frequency varies. Reply STOP to opt out. Message and data rates may apply. Carriers are not liable for delayed or undelivered messages.
+<MarketingLayout title="SMS Terms" description="Terms for ATW SMS messages (marketing and customer care)." canonical="https://atw.net/sms-terms">
+  <LegalShell title="SMS Terms" effective="November 3, 2026">
+    <p class="text-sm text-muted-foreground">
+      Consent version: sms-2026-11-01. These SMS Terms supplement our <a href="/terms" class="text-primary underline">Terms and Conditions</a> and <a href="/privacy-policy" class="text-primary underline">Privacy Policy</a>.
     </p>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Who sends these messages</h2>
+      <p class="mt-4 text-muted-foreground">
+        No Name Marketing, LLC, doing business as ATW.Net ("ATW"), may send text messages to a mobile number you provide when you expressly opt in via the SMS consent checkbox on our forms. Messages are delivered using Twilio. ATW has not yet completed carrier / 10DLC registration for a dedicated brand campaign; until that is finished, message delivery may be limited or unavailable.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">What you may receive</h2>
+      <p class="mt-4 text-muted-foreground">
+        If you opt in, you agree to a mixed campaign that can include marketing (product updates, offers, and related promotions) and customer care (account, onboarding, support, and service notices). You may receive up to four (4) messages per week. Message frequency may vary.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Consent</h2>
+      <p class="mt-4 text-muted-foreground">
+        Consent is optional and separate from providing a mobile number. Entering a phone number alone does not enroll you in SMS. You must check the SMS consent box. You can complete signup or contact forms without SMS consent.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Fees</h2>
+      <p class="mt-4 text-muted-foreground">
+        Message and data rates may apply from your mobile carrier. ATW does not charge a separate fee for these SMS messages.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">How to opt out</h2>
+      <p class="mt-4 text-muted-foreground">
+        Reply STOP to any ATW SMS to unsubscribe. For help, reply HELP or email <a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a>. Opting out of SMS does not cancel your ATW account or other product access.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Privacy</h2>
+      <p class="mt-4 text-muted-foreground">
+        How we handle personal data is described in our <a href="/privacy-policy" class="text-primary underline">Privacy Policy</a>. We do not sell your mobile number as a condition of SMS enrollment.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Changes</h2>
+      <p class="mt-4 text-muted-foreground">
+        We may update these SMS Terms. The consent version id on the checkbox (currently sms-2026-11-01) identifies the copy you agreed to. Questions: <a href="/contact" class="text-primary underline">contact us</a>.
+      </p>
+    </section>
   </LegalShell>
 </MarketingLayout>

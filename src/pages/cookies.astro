@@ -3,10 +3,68 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import LegalShell from '../components/marketing/LegalShell.astro';
 ---
 
-<MarketingLayout title="Cookie Policy" description="How ATW uses cookies" canonical="https://atw.net/cookies">
-  <LegalShell title="Cookie Policy">
-    <p class="text-muted-foreground">
-      We use cookies and similar technologies to operate the site, remember preferences, and understand aggregate traffic. You can control cookies through your browser settings. Essential cookies are required for sign-in and security features on product subdomains.
-    </p>
+<MarketingLayout
+  title="Cookie settings"
+  description="How ATW uses cookies and similar technologies, and how you can manage your choices."
+  canonical="https://atw.net/cookies"
+>
+  <LegalShell title="Cookie settings" effective="November 3, 2026">
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">What this notice covers</h2>
+      <p class="mt-4 text-muted-foreground">
+        This cookie notice explains how No Name Marketing, LLC, doing business as ATW.Net ("ATW"), uses cookies and similar technologies on atw.net and related product subdomains. Similar technologies include local storage, pixels, and scripts that store or read identifiers in your browser. For how we handle personal information more broadly, see our
+        <a href="/privacy-policy" class="text-primary underline">Privacy Policy</a>.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Essential</h2>
+      <p class="mt-4 text-muted-foreground">
+        Essential cookies keep the site and products working. They support sign-in and session continuity on auth.atw.net and product subdomains, security checks, load balancing, and remembering preferences that are required for the service to function. These cookies do not require opt-in. Our consent preference is stored in a first-party cookie named <code class="text-sm">atw_consent</code>.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Analytics</h2>
+      <p class="mt-4 text-muted-foreground">
+        Analytics helps us understand how visitors use the site so we can improve performance and content. We use ATW Analytics, our first-party analytics service. Optional third-party analytics tags load only after you opt in.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Marketing</h2>
+      <p class="mt-4 text-muted-foreground">
+        Marketing tags (for example advertising or retargeting pixels) load only after you opt in. We do not treat a visit alone as consent for marketing cookies.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">How to manage your choices</h2>
+      <p class="mt-4 text-muted-foreground">
+        You can review and change analytics and marketing preferences on
+        <a href="/privacy-choices" class="text-primary underline">Your Privacy Choices</a>.
+        You can also control cookies through your browser settings (block, delete, or limit cookies). Blocking essential cookies may affect sign-in and other core features.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Global Privacy Control (GPC)</h2>
+      <p class="mt-4 text-muted-foreground">
+        If your browser sends a Global Privacy Control (GPC) signal, we treat that as an opt-out of analytics and marketing tags. Our GPC support statement is published at
+        <a href="/.well-known/gpc.json" class="text-primary underline">/.well-known/gpc.json</a>.
+      </p>
+    </section>
+
+    <section class="rounded-xl border border-border p-6">
+      <h2 class="text-2xl font-semibold">Contact</h2>
+      <p class="mt-4 text-muted-foreground">
+        Privacy requests:
+        <a href="mailto:privacy@atw.net" class="text-primary underline">privacy@atw.net</a>.
+        Related pages:
+        <a href="/privacy-choices" class="text-primary underline">Your Privacy Choices</a>
+        and
+        <a href="/privacy-policy" class="text-primary underline">Privacy Policy</a>.
+      </p>
+    </section>
   </LegalShell>
 </MarketingLayout>
