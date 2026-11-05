@@ -1,7 +1,7 @@
-# ATW Network - full agent facts
+# ATW.Net - full agent facts
 
 ## Company
-- Name: ATW Network
+- Name: ATW.Net
 - URL: https://atw.net
 - Positioning: ATW One is our own ERP/CRM platform. Custom ERP for clients is built around ATW One by default. Partner stacks (Zoho, Salesforce, Odoo, Shopify, AWS) when the client already lives there or chooses them.
 

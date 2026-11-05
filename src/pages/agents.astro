@@ -1,21 +1,42 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import PageHero from '../components/marketing/PageHero.astro';
+import { WORKFORCE } from '../data/workforce';
 import { PRODUCT } from '../lib/site';
 ---
 
 <MarketingLayout
-  title="ATW Agents"
-  description="ATW Agents run AI work from your organization Credits pool, with configuration and Overseer controls, without buying named AI seats as a separate SKU."
+  title="ATW Workforce"
+  description={WORKFORCE.oneLiner}
   canonical="https://atw.net/agents/"
 >
-  <PageHero
-    title="AI work that draws Credits"
-    description="Agents do work against your shared Credits pool. Configure agents and Overseer for your organization without buying named AI seats as a separate SKU."
-  >
+  <PageHero title="ATW Workforce" description={WORKFORCE.oneLiner}>
+    <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-muted-foreground">
+      {WORKFORCE.siblingNote}
+    </p>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-sm text-muted-foreground">
+      {WORKFORCE.autopilotHonest}
+      <span class="ml-2 inline-flex rounded border border-border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
+        {WORKFORCE.comingOnlineLabel}
+      </span>
+    </p>
+    <p class="mx-auto mt-3 max-w-2xl text-center text-xs text-muted-foreground">
+      {WORKFORCE.comingOnlineNote}
+    </p>
+    <ul class="mx-auto mt-8 max-w-xl space-y-2 text-left text-sm text-muted-foreground">
+      {WORKFORCE.safeBullets.map((item) => <li class="border-t border-border pt-2">{item}</li>)}
+    </ul>
+    <p class="mx-auto mt-6 max-w-xl text-center text-sm text-muted-foreground">{WORKFORCE.trialNote}</p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href={PRODUCT.agents} class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Open Agents console</a>
-      <a href="/contact" class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink">Contact sales</a>
+      <a href={PRODUCT.workforce} class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">
+        {WORKFORCE.consoleLabel}
+      </a>
+      <a href="/one/" class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink">
+        Explore ATW One
+      </a>
+      <a href="/contact" class="rounded-lg border border-border px-6 py-3 text-sm font-semibold text-brand-ink">
+        Contact sales
+      </a>
     </div>
   </PageHero>
 </MarketingLayout>

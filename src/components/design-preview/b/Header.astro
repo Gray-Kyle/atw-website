@@ -6,6 +6,7 @@ import siteLogoLight from '../../../assets/images/logo/logo_light.png';
 const path = Astro.url.pathname;
 const links = [
   { href: '/one/', label: 'One' },
+  { href: '/#workforce', label: 'Workforce' },
   { href: '/why-us/', label: 'Why Us' },
   { href: '/pricing/', label: 'Pricing' },
   { href: '/compare/', label: 'Compare' },
@@ -14,10 +15,10 @@ const links = [
 
 <header class="relative z-50 w-full border-b border-white/10 bg-[#07111f]/95 backdrop-blur-xl">
   <div class="xl-container flex items-center justify-between gap-4 py-3.5">
-    <a href="/" class="flex items-center" aria-label="ATW Network home">
+    <a href="/" class="flex items-center" aria-label="ATW.Net home">
       <Picture
         src={siteLogoLight}
-        alt="ATW Network"
+        alt="ATW.Net"
         formats={['avif', 'webp']}
         widths={[140, 280]}
         sizes="140px"

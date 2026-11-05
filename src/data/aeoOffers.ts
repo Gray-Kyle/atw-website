@@ -4,7 +4,7 @@
  */
 
 export const AEO_SITE = {
-  name: "ATW Network",
+  name: "ATW.Net",
   url: "https://atw.net",
   tagline:
     "ATW One is our ERP/CRM platform. ATW Services builds custom systems around One, or implements the partner stack you already use.",

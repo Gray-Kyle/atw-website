@@ -1,7 +1,7 @@
 /** Shared SEO / AEO helpers for the marketing site. */
 
 export const SITE_ORIGIN = 'https://atw.net';
-export const SITE_NAME = 'ATW Network';
+export const SITE_NAME = 'ATW.Net';
 /** Organization JSON-LD logo (keep as the brand mark, not the social share art). */
 export const ORGANIZATION_LOGO = `${SITE_ORIGIN}/images/logo/logo.png`;
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og/atw-default.png`;
@@ -73,8 +73,8 @@ export function organizationJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${SITE_ORIGIN}/#organization`,
-    name: 'ATW Network',
-    alternateName: ['ATW.Net', 'ATW'],
+    name: 'ATW.Net',
+    alternateName: ['ATW', 'ATW.Net'],
     url: `${SITE_ORIGIN}/`,
     logo: ORGANIZATION_LOGO,
     email: 'support@atw.net',

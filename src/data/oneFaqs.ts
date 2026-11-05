@@ -25,7 +25,11 @@ export const ONE_FAQS = [
     a: `Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
   },
   {
+    q: 'How does ATW Workforce relate to One?',
+    a: "ATW Workforce is a first-class ATW system beside One, Directory, and ATW AI—not a CRM or Finance submodule inside One. Named AI agent seats share the same organization Credits and base-tier model. Seats and approval modes are in build; live agent runtime is not claimed yet.",
+  },
+  {
     q: 'Who builds and supports ATW One?',
-    a: 'ATW Network staff build and operate ATW One. Implementation and support stay with the same team instead of third-party resellers.',
+    a: 'ATW.Net staff build and operate ATW One. Implementation and support stay with the same team instead of third-party resellers.',
   },
 ] as const;

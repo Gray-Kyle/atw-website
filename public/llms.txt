@@ -1,4 +1,4 @@
-# ATW Network
+# ATW.Net
 > ATW One is our ERP/CRM platform. ATW Services builds custom systems around One, or implements the partner stack you already use.
 
 Site: https://atw.net
