@@ -6,7 +6,11 @@ import { getAllDocs, getDocBySlug } from '../../lib/docs';
 const docs = getAllDocs();
 ---
 
-<MarketingLayout title="Documentation" description="ATW product documentation" canonical="https://atw.net/docs">
+<MarketingLayout
+  title="Documentation"
+  description="Guides for ATW One, Mail, Hub, Credits billing, and related products from ATW Network. Browse product docs and integration notes in one place."
+  canonical="https://atw.net/docs/"
+>
   <section class="container py-16">
     <h1 class="text-3xl font-bold">Documentation</h1>
     <p class="mt-2 text-muted-foreground">Guides for ATW products and integrations.</p>
@@ -17,7 +21,7 @@ const docs = getAllDocs();
             <a href={`/docs/${doc.slug}`} class="text-primary underline">
               {doc.title}
             </a>
-            {doc.excerpt ? <span class="text-sm text-muted-foreground"> — {doc.excerpt}</span> : null}
+            {doc.excerpt ? <span class="text-sm text-muted-foreground"> - {doc.excerpt}</span> : null}
           </li>
         ))
       }

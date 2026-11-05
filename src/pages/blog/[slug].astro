@@ -1,7 +1,8 @@
 ---
 import { marked } from 'marked';
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
-import { fetchPublicPosts } from '../../lib/blog';
+import { fetchPublicPosts, isLikelyTestBlogPost } from '../../lib/blog';
+import { breadcrumbListJsonLd } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const posts = await fetchPublicPosts(100);
@@ -15,13 +16,21 @@ const html = raw
     ? raw
     : String(marked.parse(raw))
   : '';
+const noindex = isLikelyTestBlogPost(post);
+const crumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Blog', path: '/blog/' },
+  { name: post.title, path: `/blog/${post.slug}/` },
+]);
 ---
 
 <MarketingLayout
   title={post.title}
   description={post.excerpt || post.title}
-  canonical={`https://atw.net/blog/${post.slug}`}
+  canonical={`https://atw.net/blog/${post.slug}/`}
   ogType="article"
+  noindex={noindex}
+  jsonLd={noindex ? null : crumbs}
 >
   <article class="container max-w-3xl py-16">
     <h1 class="text-3xl font-bold">{post.title}</h1>
@@ -35,7 +44,7 @@ const html = raw
     }
     <div class="prose prose-slate mt-8 max-w-none" set:html={html} />
     <p class="mt-10">
-      <a href="/blog" class="text-primary underline">← All posts</a>
+      <a href="/blog/" class="text-primary underline">← All posts</a>
     </p>
   </article>
 </MarketingLayout>

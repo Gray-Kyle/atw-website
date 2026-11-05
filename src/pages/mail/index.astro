@@ -10,11 +10,11 @@ const faqs = [
   },
   {
     q: 'Is Mail a separate plan?',
-    a: 'No. On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the trial.',
+    a: 'No. On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
   },
   {
     q: 'How do I get started?',
-    a: 'Choose a paid hosting plan on /pricing, or talk to us about migration from Gmail or Microsoft 365. The ATW trial does not include hosted mail inboxes.',
+    a: 'Choose a paid hosting plan on /pricing, or talk to us about migration from Gmail or Microsoft 365. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
   },
 ] as const;
 ---
@@ -28,7 +28,7 @@ const faqs = [
   <SystemMarketingPage
     systemId="mail"
     headline="Secure business email for your organization"
-    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits (not available during the trial)."
+    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits. Hosted mail inboxes are not available during the trial."
     primaryCta={{ label: 'See pricing', href: '/pricing' }}
     secondaryCta={{ label: 'WorkSuite', href: '/workspace' }}
     faqs={faqs}

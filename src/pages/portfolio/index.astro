@@ -4,7 +4,11 @@ import PageHero from '../../components/marketing/PageHero.astro';
 import { portfolios } from '../../data/portfolios';
 ---
 
-<MarketingLayout title="Portfolio" description="Selected ATW client work." canonical="https://atw.net/portfolio">
+<MarketingLayout
+  title="Portfolio"
+  description="Selected ATW client work across ERP, CRM, and custom systems built on ATW One or implemented on Zoho, Salesforce, Odoo, AWS, and related platforms."
+  canonical="https://atw.net/portfolio/"
+>
   <PageHero title="Portfolio" description="Examples of platforms and implementations delivered by ATW Services." />
   <section class="container grid gap-6 py-16 md:grid-cols-2">
     {

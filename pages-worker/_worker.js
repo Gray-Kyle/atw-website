@@ -125,9 +125,24 @@ function legacyAppOrgRedirect(url) {
   return Response.redirect(target.toString(), 302);
 }
 
+/** Guessable short paths → canonical marketing URLs (trailing slash). */
+const PATH_REDIRECTS = new Map([
+  ["/privacy", "/privacy-policy/"],
+  ["/privacy/", "/privacy-policy/"],
+  ["/directory", "/systems/directory/"],
+  ["/directory/", "/systems/directory/"],
+]);
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    const pathRedirect = PATH_REDIRECTS.get(url.pathname);
+    if (pathRedirect) {
+      const target = new URL(pathRedirect, url.origin);
+      target.search = url.search;
+      return Response.redirect(target.toString(), 301);
+    }
 
     const orgRedirect = legacyAppOrgRedirect(url);
     if (orgRedirect) return orgRedirect;

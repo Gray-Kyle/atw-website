@@ -2,22 +2,25 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { shouldIncludeInSitemap } from './src/lib/sitemap.ts';
 
 const SITE = 'https://atw.net';
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE,
+  trailingSlash: 'always',
+  build: {
+    format: 'directory',
+  },
+  // Worker also handles both slash forms at the edge; keep one Astro entry each.
+  redirects: {
+    '/privacy': '/privacy-policy/',
+    '/directory': '/systems/directory/',
+  },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
-      customPages: [
-        `${SITE}/for-agents/erp.md`,
-        `${SITE}/for-agents/custom-erp.md`,
-        `${SITE}/llms.txt`,
-        `${SITE}/llms-full.txt`,
-        `${SITE}/.well-known/gpc.json`,
-      ],
+      filter: (page) => shouldIncludeInSitemap(page),
     }),
   ],
   vite: {

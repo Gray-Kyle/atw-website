@@ -25,7 +25,7 @@ export const ATW_MAIL_FEATURE_PILLARS = [
   },
   {
     title: 'Included in ATW',
-    body: 'On paid hosting tiers, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the trial.',
+    body: 'On paid hosting tiers, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
   },
   {
     title: 'Works with your favorite email app',

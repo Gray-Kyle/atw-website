@@ -4,6 +4,9 @@ export const SITE_ORIGIN = 'https://atw.net';
 export const SITE_NAME = 'ATW Network';
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/images/logo/logo.png`;
 export const DEFAULT_OG_IMAGE_ALT = 'ATW Network';
+/** Current default share image dimensions (square logo). Replace when 1200×630 art ships. */
+export const DEFAULT_OG_IMAGE_WIDTH = 1050;
+export const DEFAULT_OG_IMAGE_HEIGHT = 1050;
 export const TWITTER_HANDLE = '@atwnet';
 
 export const SOCIAL_PROFILES = [
@@ -34,12 +37,32 @@ export function faqsWithoutPricing(faqs: readonly FaqItem[]): FaqItem[] {
   return faqs.filter((faq) => !PRICING_SIGNAL.test(`${faq.q} ${faq.a}`));
 }
 
+/**
+ * Normalize to an absolute apex URL.
+ * HTML paths use a trailing slash to match live Cloudflare 308 behavior and sitemap locs.
+ * File-like paths (robots.txt, llms.txt, images) keep their extension form.
+ */
 export function absoluteUrl(pathOrUrl: string): string {
-  if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
-    return pathOrUrl;
+  let href = pathOrUrl;
+  if (!href.startsWith('http://') && !href.startsWith('https://')) {
+    const path = href.startsWith('/') ? href : `/${href}`;
+    href = `${SITE_ORIGIN}${path}`;
   }
-  const path = pathOrUrl.startsWith('/') ? pathOrUrl : `/${pathOrUrl}`;
-  return `${SITE_ORIGIN}${path}`;
+
+  try {
+    const url = new URL(href);
+    if (url.origin !== SITE_ORIGIN && !href.startsWith(SITE_ORIGIN)) {
+      return href;
+    }
+    const lastSeg = url.pathname.split('/').pop() ?? '';
+    const looksLikeFile = /\.[a-z0-9]{2,8}$/i.test(lastSeg);
+    if (!looksLikeFile && !url.pathname.endsWith('/')) {
+      url.pathname = `${url.pathname}/`;
+    }
+    return url.href;
+  } catch {
+    return href;
+  }
 }
 
 export function organizationJsonLd() {
@@ -93,7 +116,7 @@ const ATW_ONE_OFFERS = [
     priceCurrency: 'USD',
     description:
       '14-day trial with 150,000 Credits. Includes ATW One, Workforce, Directory, and ATW AI. Unlimited named seats.',
-    url: `${SITE_ORIGIN}/pricing`,
+    url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
   },
   {
@@ -102,7 +125,7 @@ const ATW_ONE_OFFERS = [
     price: '299',
     priceCurrency: 'USD',
     description: 'Starter hosting with 1,200,000 Credits per month. Includes Mail, Hub, and sandbox.',
-    url: `${SITE_ORIGIN}/pricing`,
+    url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
@@ -117,7 +140,7 @@ const ATW_ONE_OFFERS = [
     price: '1999',
     priceCurrency: 'USD',
     description: 'Growth hosting with 12,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
-    url: `${SITE_ORIGIN}/pricing`,
+    url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
@@ -132,7 +155,7 @@ const ATW_ONE_OFFERS = [
     price: '9999',
     priceCurrency: 'USD',
     description: 'Business hosting with 120,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
-    url: `${SITE_ORIGIN}/pricing`,
+    url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
       '@type': 'UnitPriceSpecification',
@@ -145,7 +168,7 @@ const ATW_ONE_OFFERS = [
     '@type': 'Offer',
     name: 'Enterprise',
     description: 'Custom hosting and Credits. Contact us.',
-    url: `${SITE_ORIGIN}/contact`,
+    url: `${SITE_ORIGIN}/contact/`,
     availability: 'https://schema.org/InStock',
   },
 ] as const;
@@ -155,12 +178,12 @@ export function softwareApplicationJsonLd(options: SoftwareApplicationJsonLdOpti
   const base: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    '@id': `${SITE_ORIGIN}/one#software`,
+    '@id': `${SITE_ORIGIN}/one/#software`,
     name: 'ATW One',
     applicationCategory: 'BusinessApplication',
     applicationSubCategory: 'ERP/CRM',
     operatingSystem: 'Web',
-    url: `${SITE_ORIGIN}/one`,
+    url: `${SITE_ORIGIN}/one/`,
     description:
       'ATW One is an ERP/CRM workspace that connects customers, sales, finance, and operations in one system with hosting plus Credits billing and unlimited named seats.',
     provider: {
@@ -172,7 +195,7 @@ export function softwareApplicationJsonLd(options: SoftwareApplicationJsonLdOpti
   if (includeOffers) {
     base.offers = {
       '@type': 'AggregateOffer',
-      url: `${SITE_ORIGIN}/pricing`,
+      url: `${SITE_ORIGIN}/pricing/`,
       priceCurrency: 'USD',
       lowPrice: '0',
       highPrice: '9999',
@@ -209,6 +232,25 @@ export function faqPageJsonLd(
         '@type': 'Answer',
         text: faq.a,
       },
+    })),
+  };
+}
+
+export type BreadcrumbItem = {
+  name: string;
+  path: string;
+};
+
+export function breadcrumbListJsonLd(items: readonly BreadcrumbItem[]) {
+  if (items.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
     })),
   };
 }
