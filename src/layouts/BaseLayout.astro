@@ -29,6 +29,11 @@ interface Props {
   ogImageHeight?: number;
   ogImageType?: string;
   noindex?: boolean;
+  /** Optional LCP image URL to preload (AVIF/WebP/PNG from astro:assets). */
+  lcpImageHref?: string;
+  lcpImageType?: string;
+  /** Optional media query so below-fold mobile heroes are not preloaded. */
+  lcpImageMedia?: string;
 }
 
 const {
@@ -44,6 +49,9 @@ const {
   ogImageHeight = DEFAULT_OG_IMAGE_HEIGHT,
   ogImageType = DEFAULT_OG_IMAGE_TYPE,
   noindex = false,
+  lcpImageHref,
+  lcpImageType,
+  lcpImageMedia,
 } = Astro.props;
 
 const fullTitle = title.includes('ATW') ? title : `${title} | ATW`;
@@ -78,14 +86,36 @@ if (jsonLd) {
     <link rel="icon" type="image/png" href="/favicon-16.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload only the fonts needed for first paint (body + heading). -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/inter-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <link
+      rel="preload"
+      href="/fonts/lexend-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    {
+      lcpImageHref ? (
+        <link
+          rel="preload"
+          as="image"
+          href={lcpImageHref}
+          type={lcpImageType}
+          media={lcpImageMedia}
+          fetchpriority="high"
+        />
+      ) : null
+    }
     <link rel="canonical" href={canonicalUrl} />
     <title>{fullTitle}</title>
+    <slot name="head" />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_NAME} />

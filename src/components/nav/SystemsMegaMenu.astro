@@ -226,6 +226,15 @@ const firstApp = first.apps[0];
     bindAppLinks(systems[0]);
   }
 
-  bindSystemsMegaMenu();
-  document.addEventListener('astro:page-load', bindSystemsMegaMenu);
+  const start = () => {
+    bindSystemsMegaMenu();
+    document.addEventListener('astro:page-load', bindSystemsMegaMenu);
+  };
+
+  // Desktop-only mega menu; defer until idle so mobile first paint stays clear.
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(start, { timeout: 2500 });
+  } else {
+    setTimeout(start, 50);
+  }
 </script>

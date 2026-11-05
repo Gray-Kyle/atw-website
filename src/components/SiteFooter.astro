@@ -1,6 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
 import { AUTH_SIGNIN, livePath } from '../lib/site';
 import { SOCIAL_PROFILES } from '../lib/seo';
+import siteLogoLight from '../assets/images/logo/logo_light.png';
 
 const companyLinks = [
   { title: 'Home', href: '/' },
@@ -29,13 +31,17 @@ const year = new Date().getFullYear();
       <div class="w-full px-4 sm:w-1/2 md:w-5/12 lg:w-3/12">
         <div class="mb-20 max-w-[330px]">
           <a href="/" class="mb-6 inline-block">
-            <img
-              src="/images/logo/logo_light.png"
+            <Picture
+              src={siteLogoLight}
               alt="ATW Network"
-              width="215"
-              height="50"
+              formats={['avif', 'webp']}
+              widths={[160, 320]}
+              sizes="160px"
+              width={160}
+              height={160}
               class="h-auto w-36 object-contain object-left sm:w-40"
               loading="lazy"
+              decoding="async"
             />
           </a>
           <p class="mb-6 text-base text-zinc-500">

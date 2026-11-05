@@ -131,6 +131,10 @@ const PATH_REDIRECTS = new Map([
   ["/privacy/", "/privacy-policy/"],
   ["/directory", "/systems/directory/"],
   ["/directory/", "/systems/directory/"],
+  ["/hosting", "/pricing/"],
+  ["/hosting/", "/pricing/"],
+  ["/credits", "/pricing/"],
+  ["/credits/", "/pricing/"],
 ]);
 
 export default {

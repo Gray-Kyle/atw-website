@@ -17,6 +17,11 @@ export function shouldIncludeInSitemap(pageUrl: string): boolean {
   if (pathname.endsWith('/gpc.json') || pathname.endsWith('gpc.json')) return false;
   if (pathname === '/signup' || pathname === '/signup/') return false;
   if (pathname === '/trial' || pathname === '/trial/') return false;
+  // Redirect shells (see public/_redirects); never list as canonical URLs.
+  if (pathname === '/hosting' || pathname === '/hosting/') return false;
+  if (pathname === '/credits' || pathname === '/credits/') return false;
+  if (pathname === '/privacy' || pathname === '/privacy/') return false;
+  if (pathname === '/directory' || pathname === '/directory/') return false;
   if (pathname.endsWith('.txt') || pathname.endsWith('.md') || pathname.endsWith('.json')) {
     return false;
   }
