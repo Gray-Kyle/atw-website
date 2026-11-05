@@ -1,41 +1,39 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import ErpPricing from '../components/marketing/ErpPricing.astro';
-import WorkSuitePricing from '../components/marketing/WorkSuitePricing.astro';
 import PricingFaq from '../components/marketing/PricingFaq.astro';
 import {
   ERP_PRIMARY_CTA_LABEL,
   ERP_TRIAL_LABEL,
   ERP_TRIAL_PROMO_LABEL,
 } from '../data/erpOfferHome';
+import { PRICING_FAQS } from '../data/pricingFaqs';
+import { faqPageJsonLd, softwareApplicationJsonLd } from '../lib/seo';
 import { livePath } from '../lib/site';
+
+const pricingFaqLd = faqPageJsonLd('/pricing', PRICING_FAQS, { includePricing: true });
+const softwareWithOffers = softwareApplicationJsonLd({ includeOffers: true });
 ---
 
 <MarketingLayout
-  title="ATW pricing | One and WorkSuite | ATW Network"
-  description="See how ATW One org plans and Credits work, plus WorkSuite options. Start a free trial with no credit card required."
+  title="ATW pricing | hosting and Credits | ATW Network"
+  description="ATW hosting plus Credits: Trial $0 with 150,000 Credits for 14 days; Starter $299; Growth $1,999; Business $9,999; Enterprise contact us."
   canonical="https://atw.net/pricing"
+  jsonLd={[softwareWithOffers, pricingFaqLd].filter(Boolean)}
 >
   <section class="border-b border-gray-200 bg-slate-50/90 pt-10">
     <div class="px-4 pb-8 text-center xl-container">
       <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Commercial hub</p>
       <h1 class="mt-2 font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">ATW pricing</h1>
       <p class="mx-auto mt-3 max-w-2xl text-dark-text">
-        Org plans for ATW One and per-user seats for WorkSuite. {ERP_TRIAL_PROMO_LABEL}. Jump to a product
-        below.
+        Hosting plans with a unified Credits pool and unlimited named seats. {ERP_TRIAL_PROMO_LABEL}.
       </p>
       <nav aria-label="Pricing sections" class="mx-auto mt-6 flex flex-wrap items-center justify-center gap-3">
         <a
           href="#one"
           class="inline-flex items-center rounded border-2 border-brand-navy px-5 py-2.5 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
         >
-          ATW One
-        </a>
-        <a
-          href="#worksuite"
-          class="inline-flex items-center rounded border-2 border-brand-navy px-5 py-2.5 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
-        >
-          WorkSuite
+          Plans
         </a>
         <a
           href="#faq"
@@ -67,6 +65,5 @@ import { livePath } from '../lib/site';
   </section>
 
   <ErpPricing showTrialBanner={false} />
-  <WorkSuitePricing />
   <PricingFaq />
 </MarketingLayout>

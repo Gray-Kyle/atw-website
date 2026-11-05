@@ -10,26 +10,26 @@ const faqs = [
   },
   {
     q: 'Is Mail a separate plan?',
-    a: 'No. Mail is included in ATW; hosted inboxes use Credits. Users without a hosted inbox are free named seats.',
+    a: 'No. On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the trial.',
   },
   {
     q: 'How do I get started?',
-    a: 'Start a trial from auth signup or talk to us about migration from Gmail or Microsoft 365.',
+    a: 'Choose a paid hosting plan on /pricing, or talk to us about migration from Gmail or Microsoft 365. The ATW trial does not include hosted mail inboxes.',
   },
 ] as const;
 ---
 
 <MarketingLayout
   title="ATW Mail | secure business email"
-  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. Mail is included in ATW; hosted inboxes use Credits."
+  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits."
   canonical="https://atw.net/mail"
   jsonLd={faqPageJsonLd('/mail', faqs)}
 >
   <SystemMarketingPage
     systemId="mail"
     headline="Secure business email for your organization"
-    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. Mail is included in ATW; hosted inboxes use Credits."
-    primaryCta={{ label: 'Talk to us', href: '/contact' }}
+    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits (not available during the trial)."
+    primaryCta={{ label: 'See pricing', href: '/pricing' }}
     secondaryCta={{ label: 'WorkSuite', href: '/workspace' }}
     faqs={faqs}
   />

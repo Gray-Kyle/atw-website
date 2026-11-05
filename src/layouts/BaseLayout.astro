@@ -17,7 +17,7 @@ interface Props {
   canonical?: string;
   /** Extra JSON-LD graphs (FAQPage, etc.). Organization is always included. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[] | null;
-  /** Include SoftwareApplication for ATW One (no Offer / no prices). */
+  /** Include SoftwareApplication for ATW One (Offers are added on /pricing via jsonLd). */
   includeSoftwareApplication?: boolean;
   ogType?: string;
   ogImage?: string;

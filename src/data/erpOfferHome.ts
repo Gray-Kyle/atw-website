@@ -2,6 +2,9 @@
  * Public marketing copy for **ATW One** (subscription product).
  * Positioning: one system for the business; custom apps when you need more.
  * Site map / IA: docs/ATW_ONE_AND_ATW_SERVICES_SITE_MAP.md
+ *
+ * Pricing model (Nov 5, 2026): hosting + unified Credits. Not per-seat.
+ * Do not invent prices or per-Credit rates beyond the published plan table.
  */
 
 export const ERP_PRIMARY_CTA_LABEL = "Book a free business process review";
@@ -12,29 +15,39 @@ export const ERP_TRIAL_NO_CREDIT_CARD = "No credit card required";
 export const ERP_TRIAL_LABEL = `${ERP_TRIAL_DAYS}-Day Free Trial`;
 export const ERP_TRIAL_PROMO_LABEL = `${ERP_TRIAL_LABEL}, No Credit Card Required`;
 
-/** Shown on every ATW One tier: no per-seat software charge for named users (WorkSuite is separate). */
+/** Shown on every ATW tier: unlimited named seats (pricing is hosting + Credits, not per seat). */
 export const ERP_UNLIMITED_USERS_BULLET =
-  "Unlimited named users (no per-seat fee for ATW One core)";
+  "Unlimited named seats (invite as many teammates as you want)";
 
-/** Shared Credits / overage line for plan cards and FAQ. */
-export const ERP_CREDITS_OVERAGE_NOTE =
-  "Usage stops at included Credits by default. You can opt in to overage billing (rate varies by plan) or purchase a $25 opt-in top-up.";
+/**
+ * Credits model note for plan cards and FAQ.
+ * Do not publish per-meter Credit rates or overage block prices (rate card not final).
+ */
+export const ERP_CREDITS_MODEL_NOTE =
+  "One unified Credits pool is shared across apps, mail inboxes, storage, automations, AI, and Workforce. A detailed Credit rate sheet is coming.";
 
-/** Included monthly Credits by hosted tier (customer-facing unit). */
+/** Included Credits by hosted tier (customer-facing unit). Trial is a one-time pool for the trial window. */
 export const ERP_INCLUDED_CREDITS_BY_PLAN = {
   trial: 150_000,
   starter: 1_200_000,
-  growth: 5_000_000,
-  business: 20_000_000,
+  growth: 12_000_000,
+  business: 120_000_000,
 } as const;
 
-/** Overage rates when usage beyond included Credits is enabled. */
-export const ERP_OVERAGE_PER_1K_CREDITS_USD = {
-  trial: 3.0,
-  starter: 2.5,
-  growth: 2.0,
-  business: 1.5,
-} as const;
+/** Apps and systems included in the free trial package. */
+export const ERP_TRIAL_INCLUDED = [
+  "ATW One",
+  "Workforce",
+  "Directory",
+  "ATW AI",
+] as const;
+
+/** Explicitly not available during the trial. */
+export const ERP_TRIAL_NOT_INCLUDED = [
+  "Hosted mail inboxes",
+  "Sandbox",
+  "All other systems (Hub, WorkSuite productivity stack, and remaining apps outside the trial package)",
+] as const;
 
 /**
  * Hero copy: what ATW One is and how it improves the business (clarity, speed, one truth).
@@ -44,7 +57,7 @@ export const ERP_HERO = {
   headlineLead: "The AI-powered ERP/CRM that keeps your Business",
   headlineAccent: "in ONE Place.",
   subhead:
-    "CRM, Finance, Marketing, HR, and Custom Apps work together under ATW One — so your team is not chasing updates across disconnected tools. Need more than the standard apps? We build on ATW One — not beside it.",
+    "CRM, Finance, Marketing, HR, and Custom Apps work together under ATW One, so your team is not chasing updates across disconnected tools. Need more than the standard apps? We build on ATW One, not beside it.",
 };
 
 /**
@@ -70,7 +83,7 @@ export const ERP_HERO_PREVIEW_APPS: readonly ErpHeroPreviewApp[] = [
     id: "dashboard",
     label: "Dashboard",
     imageSrc: "/images/marketing/atw-one-dashboard-clean.png",
-    imageAlt: "ATW One — Home dashboard overview",
+    imageAlt: "ATW One Home dashboard overview",
     tourHref: "/erp/apps/dashboard",
     previewImageAlign: "left",
   },
@@ -78,35 +91,35 @@ export const ERP_HERO_PREVIEW_APPS: readonly ErpHeroPreviewApp[] = [
     id: "crm",
     label: "CRM",
     imageSrc: "/images/marketing/one-hero-crm.jpg",
-    imageAlt: "ATW One — CRM dashboard",
+    imageAlt: "ATW One CRM dashboard",
     tourHref: "/erp/apps/crm",
   },
   {
     id: "finance",
     label: "Finance",
     imageSrc: "/images/marketing/one-hero-finance.jpg",
-    imageAlt: "ATW One — Finance books workspace",
+    imageAlt: "ATW One Finance books workspace",
     tourHref: "/erp/apps/finance",
   },
   {
     id: "marketing",
     label: "Marketing",
     imageSrc: "/images/marketing/one-hero-marketing.jpg",
-    imageAlt: "ATW One — Marketing blog analytics",
+    imageAlt: "ATW One Marketing blog analytics",
     tourHref: "/one",
   },
   {
     id: "hr",
     label: "HR",
     imageSrc: "/images/marketing/one-hero-hr.jpg",
-    imageAlt: "ATW One — Human resources people directory",
+    imageAlt: "ATW One Human resources people directory",
     tourHref: "/one",
   },
   {
     id: "custom-apps",
     label: "Custom Apps",
     imageSrc: "/images/marketing/one-hero-custom-apps.jpg",
-    imageAlt: "ATW One — Custom apps",
+    imageAlt: "ATW One Custom apps",
     tourHref: "/one",
   },
 ];
@@ -114,7 +127,7 @@ export const ERP_HERO_PREVIEW_APPS: readonly ErpHeroPreviewApp[] = [
 export const ERP_POSITIONING = {
   title: "Why teams move to one workspace",
   paragraph:
-    "Too many tools means duplicate customers, slow closes, and surprises at month-end. ATW One replaces that sprawl with one place for pipeline, cash, and operations—simple plans (Starter, Growth, Business), no per-user license for the core suite, and room to grow. Add Premium Support or implementation when you want more help.",
+    "Too many tools means duplicate customers, slow closes, and surprises at month-end. ATW One replaces that sprawl with one place for pipeline, cash, and operations: simple hosting plans (Starter, Growth, Business, Enterprise), unlimited named seats, and a shared Credits pool. Add Premium Support or implementation when you want more help.",
 };
 
 /** Product screenshots + detail pages under `/erp/apps/{slug}` (PNG in `/public/images/marketing`). */
@@ -123,10 +136,10 @@ export const ERP_APP_SHOWCASE_ENTRIES = [
     slug: "dashboard",
     cardTitle: "Dashboard",
     cardCaption:
-      "Your home base—apps, shortcuts, and one consistent launch point for every role.",
+      "Your home base: apps, shortcuts, and one consistent launch point for every role.",
     imageSrc: "/images/marketing/atw-one-dashboard-clean.png",
     metaDescription:
-      "Tour the ATW One dashboard: one home screen for CRM, finance, HR, marketing, custom apps, and support—with role-aware navigation.",
+      "Tour the ATW One dashboard: one home screen for CRM, finance, HR, marketing, custom apps, and support with role-aware navigation.",
     pageLead:
       "The dashboard anchors the suite. People land on their apps, open only what their profile allows, and move into deep work without juggling separate products.",
     bullets: [
@@ -140,17 +153,17 @@ export const ERP_APP_SHOWCASE_ENTRIES = [
     slug: "crm",
     cardTitle: "CRM",
     cardCaption:
-      "Leads, accounts, contacts, deals, and the AI Lead Agent—pipeline work connected to the rest of the suite.",
+      "Leads, accounts, contacts, deals, and the AI Lead Agent: pipeline work connected to the rest of the suite.",
     imageSrc: "/images/marketing/erp-product-crm.png",
     metaDescription:
       "See ATW One CRM: lead lists with company and contact views, stages, owners, conversion, and sales modules in one workspace.",
     pageLead:
-      "Sales teams run inbound and outbound pipeline in one CRM app. Records stay tied to accounts and deals as opportunities mature—so finance and delivery see the same customer story.",
+      "Sales teams run inbound and outbound pipeline in one CRM app. Records stay tied to accounts and deals as opportunities mature, so finance and delivery see the same customer story.",
     bullets: [
       "Leads with search, filters, CRM history, converted leads, and one-click conversion",
       "Sales sidebar: AI Lead Agent, leads, contacts, accounts, and deals",
       "Touchpoints and KPI views to keep follow-ups visible",
-      "Same org and permissions as finance—no duplicate customer directories",
+      "Same org and permissions as finance: no duplicate customer directories",
     ],
   },
   {
@@ -162,7 +175,7 @@ export const ERP_APP_SHOWCASE_ENTRIES = [
     metaDescription:
       "Explore ATW One finance: workspace metrics, sales and purchases, invoices, and directory data living alongside CRM customers.",
     pageLead:
-      "Finance opens with a workspace dashboard—paid totals, open AR, overdue exposure, directory counts, and recent invoices—then expands into sales, purchases, items, banking, taxes, and reports as you grow.",
+      "Finance opens with a workspace dashboard: paid totals, open AR, overdue exposure, directory counts, and recent invoices, then expands into sales, purchases, items, banking, taxes, and reports as you grow.",
     bullets: [
       "Workspace overview: paid, open AR, overdue, and customer plus vendor counts",
       "Sales: customers, invoices, quotes, payments received, credit notes, retainers",
@@ -180,13 +193,13 @@ export function isErpAppShowcaseSlug(value: string): value is ErpAppShowcaseSlug
 
 export const ERP_PRODUCT_WELCOME = {
   mainTitle: "Inside ATW One",
-  title: "From First Contact To Cash—Without The Copy-Paste",
+  title: "From First Contact To Cash, Without The Copy-Paste",
   paragraph:
-    "When sales and finance live in different tools, revenue leaks and month-end hurts. ATW One connects leads and deals to invoices and cash flow in one workspace—the same org, users, and permissions—while departments stay separated by role, not by disconnected tools, so everyone improves speed and accuracy without maintaining parallel spreadsheets.",
+    "When sales and finance live in different tools, revenue leaks and month-end hurts. ATW One connects leads and deals to invoices and cash flow in one workspace: the same org, users, and permissions, while departments stay separated by role, not by disconnected tools, so everyone improves speed and accuracy without maintaining parallel spreadsheets.",
   aiBadge: "On The Roadmap",
   aiTitle: "Practical AI, Grounded In Your Data",
   aiParagraph:
-    "We are rolling out assistive AI inside the product: faster summaries of customer and deal activity, nudges for follow-ups, and help drafting routine messages—always tied to records in ATW One, not generic chat. Features ship in phases; early adopters help prioritize what we build first.",
+    "We are rolling out assistive AI inside the product: faster summaries of customer and deal activity, nudges for follow-ups, and help drafting routine messages, always tied to records in ATW One, not generic chat. Features ship in phases; early adopters help prioritize what we build first.",
   shots: ERP_APP_SHOWCASE_ENTRIES.map((e) => ({
     key: e.slug,
     title: e.cardTitle,
@@ -230,7 +243,7 @@ export const ERP_CAPABILITIES: ErpCapabilityBlock[] = [
   {
     title: "Administration",
     bullets: [
-      "Unlimited named user accounts—no per-seat software charge",
+      "Unlimited named seats (no per-seat software charge)",
       "Users, roles, and permissions",
       "Groups",
       "Audit history",
@@ -260,24 +273,26 @@ export const ERP_CAPABILITIES: ErpCapabilityBlock[] = [
 export type ErpHostingPlan = {
   id: string;
   name: string;
-  monthly: number;
-  annual: number;
+  /** Monthly USD list price, or null when quote/contact-only. */
+  monthly: number | null;
+  /** Short price label when monthly is null (e.g. Enterprise). */
+  priceLabel?: string;
   blurb: string;
   includes: string[];
 };
 
+/** Paid hosting tiers (Credits included monthly). Trial is rendered separately. */
 export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
   {
     id: "starter",
     name: "Starter",
-    monthly: 99,
-    annual: 990,
+    monthly: 299,
     blurb: "Best for small teams getting their business onto one platform.",
     includes: [
       ERP_UNLIMITED_USERS_BULLET,
+      `${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")} Credits per month`,
+      "Mail (hosted inboxes draw Credits), Hub, and sandbox",
       "Full ATW One core access",
-      `${ERP_TRIAL_LABEL} included`,
-      `${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")} included Credits per month`,
       "Secure cloud environment, backups, and standard updates",
       "Core CRM, finance, operations, and admin tools",
     ],
@@ -285,32 +300,59 @@ export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
   {
     id: "growth",
     name: "Growth",
-    monthly: 249,
-    annual: 2490,
+    monthly: 1999,
     blurb: "For teams running daily work in ATW One across sales, finance, and operations.",
     includes: [
       ERP_UNLIMITED_USERS_BULLET,
       "Everything in Starter",
-      `${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")} included Credits per month`,
+      `${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")} Credits per month`,
+      "Mail, Hub, and sandbox included",
       "More throughput, automation, and reporting capacity",
     ],
   },
   {
     id: "business",
     name: "Business",
-    monthly: 499,
-    annual: 4990,
+    monthly: 9999,
     blurb: "Heavier usage, more automation, and priority performance.",
     includes: [
       ERP_UNLIMITED_USERS_BULLET,
       "Everything in Growth",
-      `${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} included Credits per month`,
+      `${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} Credits per month`,
+      "Mail, Hub, and sandbox included",
       "Highest throughput and workflow volume",
       "Priority platform performance",
       "Strong fit for multi-department operations",
     ],
   },
+  {
+    id: "enterprise",
+    name: "Enterprise",
+    monthly: null,
+    priceLabel: "Contact us",
+    blurb: "Custom hosting, Credits, and commercial terms for large or complex organizations.",
+    includes: [
+      ERP_UNLIMITED_USERS_BULLET,
+      "Custom Credits pool",
+      "Mail, Hub, sandbox, and broader system access as scoped",
+      "Dedicated commercial and technical guidance",
+    ],
+  },
 ];
+
+/** Trial package shown on pricing (not a paid hosting tier). */
+export const ERP_TRIAL_PACKAGE = {
+  id: "trial",
+  name: "Trial",
+  priceLabel: "$0",
+  credits: ERP_INCLUDED_CREDITS_BY_PLAN.trial,
+  days: ERP_TRIAL_DAYS,
+  blurb: `${ERP_TRIAL_DAYS} days to try the core stack. Unlimited named seats. No credit card required.`,
+  included: ERP_TRIAL_INCLUDED,
+  notIncluded: ERP_TRIAL_NOT_INCLUDED,
+  afterTrial:
+    "After day 14 you keep access to the trial apps and can self-serve buy more Credits at a higher per-Credit price than Starter, with no sales call and no read-only lock.",
+} as const;
 
 export const ERP_OPTIONAL_ADDONS = [
   {
@@ -356,26 +398,26 @@ export const ERP_IMPLEMENTATION = {
 };
 
 export const ERP_PRICING_FOOTNOTE =
-  `Starter, Growth, and Business each include a monthly Credits pool for ATW One. Named users are not priced per seat for ATW One core (WorkSuite is priced per user). ${ERP_CREDITS_OVERAGE_NOTE} One free trial per organization domain. At day ${ERP_TRIAL_DAYS}, the trial pauses until you choose a paid plan. HIPAA support is on our roadmap. Contact us.`;
+  `Hosting plans include a monthly Credits pool shared across apps, mail inboxes, storage, automations, AI, and Workforce. Named seats are unlimited (not priced per user). Paid tiers include Mail, Hub, and sandbox. ${ERP_CREDITS_MODEL_NOTE} One free trial per organization domain. HIPAA support is on our roadmap. Contact us.`;
 
 /** Intro paragraph under plan pricing (see ErpPricing). Trial also highlighted in the pricing banner. */
 export const ERP_PRICING_SECTION_PARAGRAPH =
-  `Org subscription with a shared Credits pool and unlimited named users (no per-seat fee for ATW One core). Start on Starter and move to Growth or Business when usage grows. Premium support, custom applications, and implementation are optional.`;
+  `Org hosting with a shared Credits pool and unlimited named seats. Start on Trial or Starter and move to Growth, Business, or Enterprise when usage grows. Premium support, custom applications, and implementation are optional.`;
 
 /** Short line under the trial banner on the pricing page. */
 export const ERP_PRICING_TRIAL_SUBTEXT =
-  `Full access with ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} included trial Credits, no credit card required. One trial per domain. At day ${ERP_TRIAL_DAYS}, the trial pauses until you choose a paid plan (no second free trial).`;
+  `${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} trial Credits for ${ERP_TRIAL_DAYS} days. Includes ATW One, Workforce, Directory, and ATW AI only. Hosted mail, sandbox, and other systems are not available during the trial. ${ERP_TRIAL_PACKAGE.afterTrial}`;
 
 export const ERP_CREDITS_SYSTEM_UPDATE = {
-  eyebrow: "System Update",
-  title: "One Credits Pool Across ATW One",
+  eyebrow: "Credits",
+  title: "One Credits Pool Across ATW",
   paragraph:
-    "ATW One now uses a single monthly Credits pool per organization. Instead of tracking separate billing dimensions, your usage is summarized in one unit with optional category detail for storage, app activity, records, automation, AI assistance, and messaging.",
+    "ATW uses a single Credits pool per organization. Usage across apps, mail inboxes, storage, automations, AI, and Workforce draws from that pool, with optional category detail for operators.",
   bullets: [
-    "Starter includes 1,200,000 Credits/month; Growth includes 5,000,000; Business includes 20,000,000.",
+    `Trial includes ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits; Starter ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")}/mo; Growth ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")}/mo; Business ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")}/mo. Enterprise is custom.`,
+    "Paid tiers include Mail (hosted inboxes draw Credits), Hub, and sandbox.",
     "Credits make usage easier to explain while raw metrics remain available internally for operations and dispute resolution.",
-    "Storage reflects your current footprint and can carry forward; action-based categories reset monthly.",
-    "When enabled in org settings, additional Credits are billed in predictable segments instead of surprise line-item sprawl.",
+    "A detailed Credit rate sheet is coming; we are not publishing per-meter rates yet.",
   ],
 } as const;
 
@@ -389,30 +431,30 @@ export const ERP_CTA_BAND = {
 export const ERP_LONG_FORM = {
   pricingStrategyTitle: "How We Think About Pricing",
   pricingStrategy:
-    "The base ATW One software has no license fee from us, and we do not charge per named user for the product—you can add unlimited users without a seat tax. Every customer still creates real operating cost to run the platform. Your pricing reflects Starter, Growth, or Business capacity, implementation when needed, and optional premium services—so ATW can invest in reliability and support while you see straightforward plans instead of a stack of invoices.",
+    "ATW pricing is hosting plus Credits, not a per-seat tax. You can invite unlimited named teammates. Every customer still creates real operating cost to run the platform. Your plan reflects Starter, Growth, Business, or Enterprise capacity, implementation when needed, and optional premium services, so ATW can invest in reliability and support while you see straightforward plans instead of a stack of invoices.",
   startingOfferTitle: "Suggested Starting Package",
   startingOfferBullets: [
-    `${ERP_TRIAL_LABEL} on Starter, Growth, or Business`,
-    "Starter at $99/month or $990/year (2 months free). Upgrade when you need more",
-    "Unlimited named users (no per-seat software fees on ATW One core)",
+    `${ERP_TRIAL_LABEL} with ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits (ATW One, Workforce, Directory, ATW AI)`,
+    "Starter at $299/month with 1,200,000 Credits. Upgrade when you need more",
+    "Unlimited named seats (no per-seat software fees)",
     "Premium Support optional at $99.99/month",
     "Implementation starting at $1,500 one-time",
   ],
   guardrailsTitle: "What We Promise To Be Clear About",
   guardrails: [
-    "We do not market the product as completely free—plans, usage, setup, support, and advanced services are paid after any trial.",
-    "Public pricing stays simple; we track cost per customer internally and adjust before scaling if needed.",
+    "We do not market the product as completely free. Plans, Credits, setup, support, and advanced services are paid after any trial Credits you use.",
+    "Public pricing stays simple; a detailed Credit rate sheet is coming before we publish per-meter rates.",
   ],
   outreachTitle: "Who This Is For",
   outreach:
-    "Small and mid-sized businesses that need better systems—but not another massive license before value is proven. If that sounds like you, start with a free business process review and we will map sensible next steps.",
+    "Small and mid-sized businesses that need better systems, but not another massive license before value is proven. If that sounds like you, start with a free business process review and we will map sensible next steps.",
   usageAllowancesTitle: "What “Usage” Means On Each Plan",
   usageAllowancesIntro:
-    "Plans bundle everyday capacity into a monthly Credits pool. Instead of juggling separate billing dimensions, your usage is measured in one customer-facing unit with category transparency.",
+    "Plans bundle everyday capacity into a Credits pool. Instead of juggling separate billing dimensions, your usage is measured in one customer-facing unit with category transparency.",
   usageAllowancesBullets: [
-    `Trial includes ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits; Starter includes ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")}; Growth includes ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")}; Business includes ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} each month.`,
-    "Saving records, reading and writing app data, running automations, AI assistance, messaging, and storage consumption all draw from Credits.",
-    "Storage Credits reflect your net stored footprint and may carry until data is removed; action categories reset each UTC month.",
-    "If usage beyond included Credits is enabled, overage is billed in fixed segments using your plan's per-1,000 Credit rate.",
+    `Trial includes ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits; Starter includes ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")}; Growth includes ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")}; Business includes ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} each month. Enterprise is custom.`,
+    "Apps, mail inboxes, storage, automations, AI, and Workforce all draw from the same Credits pool.",
+    "Paid tiers include Mail, Hub, and sandbox; the trial does not include hosted mail or sandbox.",
+    "A detailed Credit rate sheet is coming; we do not publish per-meter or overage block prices yet.",
   ],
 };

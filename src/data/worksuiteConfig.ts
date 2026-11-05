@@ -1,6 +1,8 @@
 /**
- * WorkSuite — ATW One add-on: email, calendar, office, meetings, messaging.
- * Plans and module metadata drive dashboard UI; full build specs live under `docs/worksuite/`.
+ * WorkSuite: product label for calendar, documents, meetings, messaging.
+ * Pricing is no longer per-seat; WorkSuite capabilities ship with paid hosting
+ * where offered and draw from the org Credits pool. Plan tiers below are
+ * capability grouping for product docs only (not sold as seat SKUs).
  */
 
 export type WorkSuitePlanId = "starter" | "business" | "scale";
@@ -8,20 +10,14 @@ export type WorkSuitePlanId = "starter" | "business" | "scale";
 export type WorkSuitePlan = {
   id: WorkSuitePlanId;
   name: string;
-  /** USD per user per month (list). */
-  priceUsdPerUserMonth: number;
   /** Included capabilities (customer-facing wording; avoid vendor names in product copy). */
   includes: string[];
 };
-
-/** Annual prepay = 10× monthly (two months included). */
-export const WORKSUITE_ANNUAL_MONTHS_BILLED = 10;
 
 export const WORKSUITE_PLANS: WorkSuitePlan[] = [
   {
     id: "starter",
     name: "WorkSuite Starter",
-    priceUsdPerUserMonth: 12,
     includes: [
       "Business email & shared calendars (your UI + optional desktop clients)",
       "Docs, spreadsheets, presentations, and PDFs inside ATW One",
@@ -30,7 +26,6 @@ export const WORKSUITE_PLANS: WorkSuitePlan[] = [
   {
     id: "business",
     name: "WorkSuite Business",
-    priceUsdPerUserMonth: 28,
     includes: [
       "Everything in Starter",
       "HD video meetings (pooled minutes & fair-use caps)",
@@ -40,11 +35,10 @@ export const WORKSUITE_PLANS: WorkSuitePlan[] = [
   {
     id: "scale",
     name: "WorkSuite Scale",
-    priceUsdPerUserMonth: 55,
     includes: [
       "Everything in Business with higher included pools",
       "Larger meeting capacity and recording allowances",
-      "Higher messaging & voice pools with published overage paths",
+      "Higher messaging & voice pools",
     ],
   },
 ];
@@ -68,7 +62,7 @@ export type WorkSuiteModuleSpec = {
   docRelativePath: string;
   /** Primary upstream systems (internal engineering vocabulary). */
   upstreamNotes: string;
-  /** Which WorkSuite tier first ships this module (planning default). */
+  /** Which WorkSuite capability tier first ships this module (planning default). */
   minPlan: WorkSuitePlanId;
   implementationPhase: "discovery" | "mvp" | "beta" | "ga";
 };
@@ -98,7 +92,7 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
     id: "transactional-email",
     title: "Transactional email",
     summary:
-      "System-generated email from ATW One (password resets, billing notices, automation)—isolated from user mail reputation.",
+      "System-generated email from ATW One (password resets, billing notices, automation), isolated from user mail reputation.",
     docRelativePath: "docs/worksuite/MODULE_TRANSACTIONAL_EMAIL.md",
     upstreamNotes: "Zoho ZeptoMail (or SES); separate domains/agents from user mail.",
     minPlan: "starter",
@@ -118,7 +112,7 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
     id: "messaging-voice",
     title: "Messaging & voice",
     summary:
-      "SMS/MMS, programmable voice, optional WhatsApp Business—pooled usage, consent, and audit trails.",
+      "SMS/MMS, programmable voice, optional WhatsApp Business: pooled usage, consent, and audit trails.",
     docRelativePath: "docs/worksuite/MODULE_MESSAGING_VOICE.md",
     upstreamNotes: "Twilio (10DLC, Messaging Service, Voice, WhatsApp templates).",
     minPlan: "business",
@@ -138,7 +132,7 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
     id: "ai-voice",
     title: "AI-assisted calling",
     summary:
-      "Optional: conversational IVR, call summarization, or agent assist—tightly capped and billed as add-on usage.",
+      "Optional: conversational IVR, call summarization, or agent assist; tightly capped and billed as add-on usage.",
     docRelativePath: "docs/worksuite/MODULE_AI_VOICE.md",
     upstreamNotes: "Twilio conversational / speech products + your policy layer; HIPAA review if applicable.",
     minPlan: "scale",

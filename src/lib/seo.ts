@@ -79,8 +79,80 @@ export function organizationJsonLd() {
   };
 }
 
-export function softwareApplicationJsonLd() {
-  return {
+export type SoftwareApplicationJsonLdOptions = {
+  /** Include Offer / AggregateOffer for published hosting + Credits plans. */
+  includeOffers?: boolean;
+};
+
+/** Published ATW One hosting + Credits offers (Nov 5, 2026). Keep in sync with erpOfferHome. */
+const ATW_ONE_OFFERS = [
+  {
+    '@type': 'Offer',
+    name: 'Trial',
+    price: '0',
+    priceCurrency: 'USD',
+    description:
+      '14-day trial with 150,000 Credits. Includes ATW One, Workforce, Directory, and ATW AI. Unlimited named seats.',
+    url: `${SITE_ORIGIN}/pricing`,
+    availability: 'https://schema.org/InStock',
+  },
+  {
+    '@type': 'Offer',
+    name: 'Starter',
+    price: '299',
+    priceCurrency: 'USD',
+    description: 'Starter hosting with 1,200,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    url: `${SITE_ORIGIN}/pricing`,
+    availability: 'https://schema.org/InStock',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: '299',
+      priceCurrency: 'USD',
+      billingDuration: 'P1M',
+    },
+  },
+  {
+    '@type': 'Offer',
+    name: 'Growth',
+    price: '1999',
+    priceCurrency: 'USD',
+    description: 'Growth hosting with 12,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    url: `${SITE_ORIGIN}/pricing`,
+    availability: 'https://schema.org/InStock',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: '1999',
+      priceCurrency: 'USD',
+      billingDuration: 'P1M',
+    },
+  },
+  {
+    '@type': 'Offer',
+    name: 'Business',
+    price: '9999',
+    priceCurrency: 'USD',
+    description: 'Business hosting with 120,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    url: `${SITE_ORIGIN}/pricing`,
+    availability: 'https://schema.org/InStock',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: '9999',
+      priceCurrency: 'USD',
+      billingDuration: 'P1M',
+    },
+  },
+  {
+    '@type': 'Offer',
+    name: 'Enterprise',
+    description: 'Custom hosting and Credits. Contact us.',
+    url: `${SITE_ORIGIN}/contact`,
+    availability: 'https://schema.org/InStock',
+  },
+] as const;
+
+export function softwareApplicationJsonLd(options: SoftwareApplicationJsonLdOptions = {}) {
+  const { includeOffers = false } = options;
+  const base: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     '@id': `${SITE_ORIGIN}/one#software`,
@@ -90,16 +162,40 @@ export function softwareApplicationJsonLd() {
     operatingSystem: 'Web',
     url: `${SITE_ORIGIN}/one`,
     description:
-      'ATW One is an ERP/CRM workspace that connects customers, sales, finance, and operations in one system with Credits-based billing and unlimited named users.',
+      'ATW One is an ERP/CRM workspace that connects customers, sales, finance, and operations in one system with hosting plus Credits billing and unlimited named seats.',
     provider: {
       '@id': `${SITE_ORIGIN}/#organization`,
     },
     isAccessibleForFree: false,
   };
+
+  if (includeOffers) {
+    base.offers = {
+      '@type': 'AggregateOffer',
+      url: `${SITE_ORIGIN}/pricing`,
+      priceCurrency: 'USD',
+      lowPrice: '0',
+      highPrice: '9999',
+      offerCount: String(ATW_ONE_OFFERS.length),
+      offers: [...ATW_ONE_OFFERS],
+    };
+  }
+
+  return base;
 }
 
-export function faqPageJsonLd(pagePath: string, faqs: readonly FaqItem[]) {
-  const safeFaqs = faqsWithoutPricing(faqs);
+export type FaqPageJsonLdOptions = {
+  /** When true, keep FAQ rows that mention prices (for /pricing). */
+  includePricing?: boolean;
+};
+
+export function faqPageJsonLd(
+  pagePath: string,
+  faqs: readonly FaqItem[],
+  options: FaqPageJsonLdOptions = {},
+) {
+  const { includePricing = false } = options;
+  const safeFaqs = includePricing ? [...faqs] : faqsWithoutPricing(faqs);
   if (safeFaqs.length === 0) return null;
 
   return {
