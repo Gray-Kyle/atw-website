@@ -10,6 +10,7 @@
     "build": "astro build && cp pages-worker/_worker.js dist/_worker.js && node scripts/publish-sitemap.mjs",
     "preview": "astro preview",
     "e2e:smoke": "node scripts/e2e-smoke.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
   },
