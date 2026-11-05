@@ -1,0 +1,136 @@
+---
+import CtaBand from './CtaBand.astro';
+import type { ComparePage } from '../../data/comparePages';
+
+interface Props {
+  page: ComparePage;
+}
+
+const { page } = Astro.props;
+---
+
+<section class="border-b border-border bg-gradient-to-b from-slate-50 to-white px-4 py-14 sm:py-16">
+  <div class="container max-w-3xl">
+    <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Compare</p>
+    <h1 class="mt-2 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+      {page.h1}
+    </h1>
+    <p class="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{page.directAnswer}</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href="/contact"
+        class="inline-flex items-center rounded bg-brand-navy px-6 py-3 font-heading text-sm text-white hover:bg-brand-navy/90"
+      >
+        Contact ATW
+      </a>
+      <a
+        href="/compare"
+        class="inline-flex items-center rounded border-2 border-brand-navy px-6 py-3 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+      >
+        All comparisons
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="container px-4 py-14 sm:py-16">
+  <h2 class="font-heading text-2xl font-semibold text-foreground sm:text-3xl">Feature and approach</h2>
+  <p class="mt-2 max-w-2xl text-muted-foreground">{page.tableCaption}</p>
+  <div class="mt-8 overflow-x-auto rounded-xl border border-border">
+    <table class="min-w-full border-collapse text-left text-sm">
+      <thead class="bg-muted/60">
+        <tr>
+          <th scope="col" class="border-b border-border px-4 py-3 font-heading font-semibold text-foreground">
+            Dimension
+          </th>
+          <th scope="col" class="border-b border-border px-4 py-3 font-heading font-semibold text-foreground">
+            ATW
+          </th>
+          <th scope="col" class="border-b border-border px-4 py-3 font-heading font-semibold text-foreground">
+            {page.competitorName}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          page.rows.map((row) => (
+            <tr class="align-top odd:bg-white even:bg-slate-50/70">
+              <th scope="row" class="border-b border-border px-4 py-4 font-medium text-foreground">
+                {row.dimension}
+              </th>
+              <td class="border-b border-border px-4 py-4 text-muted-foreground">{row.atw}</td>
+              <td class="border-b border-border px-4 py-4 text-muted-foreground">{row.other}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="mt-4 text-xs text-muted-foreground">
+    Competitor details are summarized from that vendor's public product pages. Confirm current packaging on the
+    vendor site before you buy.
+  </p>
+</section>
+
+<section class="border-t border-border bg-muted/30 px-4 py-14 sm:py-16">
+  <div class="container grid gap-10 md:grid-cols-2">
+    <div>
+      <h2 class="font-heading text-2xl font-semibold text-foreground">When to choose ATW</h2>
+      <ul class="mt-5 space-y-3">
+        {
+          page.chooseAtw.map((item) => (
+            <li class="flex gap-2 text-sm text-muted-foreground">
+              <span class="mt-1 text-primary" aria-hidden="true">
+                ✓
+              </span>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-heading text-2xl font-semibold text-foreground">
+        When {page.competitorName} may fit better
+      </h2>
+      <ul class="mt-5 space-y-3">
+        {
+          page.chooseOther.map((item) => (
+            <li class="flex gap-2 text-sm text-muted-foreground">
+              <span class="mt-1 text-brand-navy" aria-hidden="true">
+                →
+              </span>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="container max-w-3xl px-4 py-14 sm:py-16">
+  <h2 class="font-heading text-2xl font-semibold text-foreground sm:text-3xl">FAQ</h2>
+  <dl class="mt-8 space-y-6">
+    {
+      page.faqs.map((faq) => (
+        <div class="border-b border-border pb-6">
+          <dt class="font-heading text-lg font-semibold text-foreground">{faq.q}</dt>
+          <dd class="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.a}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<CtaBand title={page.ctaTitle} description={page.ctaDescription}>
+  <a href="/contact" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy hover:bg-blue-50">
+    Contact us
+  </a>
+  <a
+    href="/book"
+    class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+  >
+    Book a call
+  </a>
+</CtaBand>

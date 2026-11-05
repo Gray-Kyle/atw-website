@@ -1,0 +1,26 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import ComparePageView from '../../components/marketing/ComparePageView.astro';
+import { COMPARE_PAGES } from '../../data/comparePages';
+import { faqPageJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return COMPARE_PAGES.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+const path = `/compare/${page.slug}`;
+---
+
+<MarketingLayout
+  title={page.title}
+  description={page.description}
+  canonical={`https://atw.net${path}`}
+  jsonLd={faqPageJsonLd(path, page.faqs)}
+  includeSoftwareApplication={page.slug !== 'google-workspace-email'}
+>
+  <ComparePageView page={page} />
+</MarketingLayout>
