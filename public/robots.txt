@@ -26,6 +26,8 @@
 User-agent: *
 Allow: /
 
+# IndexNow ownership key (public/<32-hex>.txt) must stay crawlable; do not Disallow it.
+
 # Optional: disallow noisy paths if the marketing site ever exposes them.
 # Disallow: /cdn-cgi/
 

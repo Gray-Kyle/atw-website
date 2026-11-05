@@ -63,6 +63,8 @@ Workflow: `.github/workflows/pages-deploy.yml`. Add repository secrets:
 
 Push to `main` runs build + `wrangler pages deploy`. Secrets present on `Gray-Kyle/atw-website` as of 2026-10-29; latest successful run deploys commit on `main` (includes `pages-worker/_worker.js` copied in `npm run build`).
 
+After a successful production publish, the workflow also runs IndexNow (best-effort, `continue-on-error`). See [INDEXNOW.md](./INDEXNOW.md).
+
 ## DNS cutover
 
 ### Done: `www.atw.net` (2026-10-28)

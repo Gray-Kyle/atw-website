@@ -17,6 +17,9 @@ jobs:
       deployments: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Need history so IndexNow can diff pushed commits for changed URLs.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -34,3 +37,13 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=atw-website
+
+      # Production only (this workflow already runs only on main / workflow_dispatch).
+      # Never fails the deploy: IndexNow is best-effort after a successful Pages publish.
+      - name: Notify IndexNow
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        env:
+          INDEXNOW_GIT_BEFORE: ${{ github.event.before }}
+          INDEXNOW_GIT_AFTER: ${{ github.sha }}
+        run: node scripts/indexnow.mjs

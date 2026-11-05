@@ -32,3 +32,7 @@ npx wrangler pages deploy dist --project-name=atw-website
 ```
 
 Deploy options (dashboard Git connect, wrangler, or GitHub Actions): [docs/CLOUDFLARE_PAGES.md](./docs/CLOUDFLARE_PAGES.md). Preview on `*.pages.dev` before moving `atw.net` / `www` DNS.
+
+## IndexNow
+
+Production deploys on `main` ping [IndexNow](https://www.indexnow.org/) so Bing and other engines learn about changed URLs. Key file: `https://atw.net/eb9dd8c140361eb5f99016f1dc5d3c4d.txt`. Details and manual trigger: [docs/INDEXNOW.md](./docs/INDEXNOW.md).
