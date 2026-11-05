@@ -28,7 +28,7 @@ Credits tend to fit teams that grow headcount faster than heavy platform usage, 
 
 ## When per-seat may still fit you elsewhere
 
-If your procurement standard is a fixed price per named user across a huge app catalog, or your team is standardized on a vendor that only sells that way, compare carefully. ATW publishes comparison pages for Zoho One, Odoo, and Google Workspace email so you can see both approaches side by side.
+If your procurement standard is a fixed price per named user across a huge app catalog, or your team is standardized on a vendor that only sells that way, compare carefully. ATW publishes comparison pages for Zoho One, Odoo, Google Workspace email, HubSpot, Salesforce, and QuickBooks so you can see both approaches side by side.
 
 ## FAQ
 

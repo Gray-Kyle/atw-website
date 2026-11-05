@@ -14,6 +14,9 @@ Agent hub: https://atw.net/for-agents
 - ATW vs Zoho One → https://atw.net/compare/zoho-one
 - ATW vs Odoo → https://atw.net/compare/odoo
 - ATW Mail vs Google Workspace email → https://atw.net/compare/google-workspace-email
+- ATW vs HubSpot → https://atw.net/compare/hubspot
+- ATW vs Salesforce → https://atw.net/compare/salesforce
+- ATW vs QuickBooks → https://atw.net/compare/quickbooks
 - Comparison index → https://atw.net/compare
 
 ## Systems (products)

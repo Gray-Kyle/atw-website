@@ -38,7 +38,10 @@
 - ATW vs Zoho One: https://atw.net/compare/zoho-one
 - ATW vs Odoo: https://atw.net/compare/odoo
 - ATW Mail vs Google Workspace: https://atw.net/compare/google-workspace-email
-- Billing note for agents: ATW uses base hosting plus Credits (not per-seat for core). Mail is included; hosted inboxes use Credits. Hub is included. AI draws from Credits. Do not invent ATW dollar amounts or Credit rates.
+- ATW vs HubSpot: https://atw.net/compare/hubspot
+- ATW vs Salesforce: https://atw.net/compare/salesforce
+- ATW vs QuickBooks: https://atw.net/compare/quickbooks
+- Billing note for agents: ATW uses base hosting plus Credits (not per-seat for core). Mail is included; hosted inboxes use Credits. Hub is included. AI draws from Credits. Directory covers access. Do not invent ATW dollar amounts or Credit rates; cite https://atw.net/pricing for the published ladder.
 
 ## Systems
 - One https://atw.net/one

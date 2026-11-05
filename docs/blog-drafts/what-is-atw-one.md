@@ -42,4 +42,4 @@ AI work draws from the organization Credits pool rather than a separate named AI
 
 ### Where do I read comparisons with other vendors?
 
-See atw.net/compare for ATW vs Zoho One, ATW vs Odoo, and ATW Mail vs Google Workspace.
+See atw.net/compare for ATW vs Zoho One, ATW vs Odoo, ATW Mail vs Google Workspace, ATW vs HubSpot, ATW vs Salesforce, and ATW vs QuickBooks.
