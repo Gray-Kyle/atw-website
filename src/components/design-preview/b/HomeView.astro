@@ -1,0 +1,193 @@
+---
+import { Picture } from 'astro:assets';
+import {
+  ERP_APP_SHOWCASE_ENTRIES,
+  ERP_CAPABILITIES,
+  ERP_CREDITS_SYSTEM_UPDATE,
+  ERP_PRIMARY_CTA_LABEL,
+  ERP_PRODUCT_WELCOME,
+  ERP_TRIAL_LABEL,
+} from '../../../data/erpOfferHome';
+import { WHY_US } from '../../../data/whyUs';
+import { livePath } from '../../../lib/site';
+import brandLogo from '../../../assets/images/branding/atw-one-logo-no-erp.jpg';
+import dashboardImg from '../../../assets/images/marketing/atw-one-dashboard-clean.png';
+import crmImg from '../../../assets/images/marketing/erp-product-crm.png';
+import financeImg from '../../../assets/images/marketing/erp-product-finance.png';
+import ErpPricing from '../../marketing/ErpPricing.astro';
+
+const showcaseImages = {
+  dashboard: { src: dashboardImg, alt: 'ATW One dashboard home screen with apps launcher and organization overview' },
+  crm: { src: crmImg, alt: 'ATW One CRM lead list with company, contact, and pipeline fields' },
+  finance: { src: financeImg, alt: 'ATW One finance workspace with invoices, AR metrics, and customer counts' },
+} as const;
+---
+
+<section class="relative overflow-hidden pb-16 pt-6">
+  <div class="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-[#4d8fff]/20 blur-3xl" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-[#6ee7ff]/10 blur-3xl" aria-hidden="true"></div>
+  <div class="xl-container relative px-4">
+    <div class="grid items-end gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div class="preview-reveal max-w-2xl">
+        <div class="mb-8 inline-flex rounded-md border border-white/10 bg-white/5 p-2">
+          <Picture
+            src={brandLogo}
+            alt="ATW One"
+            formats={['avif', 'webp']}
+            widths={[140, 280]}
+            sizes="140px"
+            width={140}
+            height={88}
+            class="h-auto w-[120px] sm:w-[140px] rounded"
+            loading="eager"
+          />
+        </div>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#6ee7ff]">ATW Network</p>
+        <h1 class="mt-5 font-heading text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]">
+          CRM. Finance. Operations. AI.
+          <span class="mt-2 block text-[#4d8fff]">One system.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+          ATW One keeps customers, sales, finance, and operations in one workspace with hosting plus Credits billing and unlimited named seats.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href={livePath('/trial')} class="rounded-md bg-[#4d8fff] px-6 py-3.5 text-sm font-semibold text-[#07111f] transition hover:brightness-110">
+            Start {ERP_TRIAL_LABEL}
+          </a>
+          <a href={livePath('/why-us')} class="rounded-md border border-white/20 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/5">
+            Why ATW
+          </a>
+        </div>
+      </div>
+      <div class="preview-reveal preview-reveal-delay relative">
+        <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#4d8fff]/30 via-transparent to-[#6ee7ff]/10 blur-2xl" aria-hidden="true"></div>
+        <Picture
+          src={dashboardImg}
+          alt="ATW One dashboard showing apps, shortcuts, and organization overview"
+          formats={['avif', 'webp']}
+          widths={[720, 1100]}
+          sizes="(max-width: 1024px) 92vw, 520px"
+          width={1100}
+          height={565}
+          class="relative w-full rounded-2xl border border-white/15 shadow-2xl shadow-black/50"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-y border-white/10 bg-[#0b1729]/70 py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#6ee7ff]">Consolidation</p>
+        <h2 class="mt-4 font-heading text-3xl font-semibold text-white sm:text-4xl">Stop chasing updates across disconnected tools.</h2>
+      </div>
+      <p class="self-end text-lg leading-relaxed text-white/70">{ERP_PRODUCT_WELCOME.paragraph}</p>
+    </div>
+    <div class="mt-14 grid gap-4 md:grid-cols-3">
+      {
+        ERP_APP_SHOWCASE_ENTRIES.map((entry) => {
+          const image = showcaseImages[entry.slug as keyof typeof showcaseImages];
+          return (
+            <a href={livePath(`/erp/apps/${entry.slug}`)} class="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#07111f]">
+              <Picture
+                src={image.src}
+                alt={image.alt}
+                formats={['avif', 'webp']}
+                widths={[480, 720]}
+                sizes="(max-width: 768px) 92vw, 30vw"
+                width={720}
+                height={368}
+                class="h-44 w-full object-cover object-top opacity-90 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-100"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="font-heading text-xl font-semibold text-white">{entry.cardTitle}</h3>
+                <p class="mt-2 text-sm text-white/65">{entry.cardCaption}</p>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<section class="py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#6ee7ff]">{WHY_US.eyebrow}</p>
+        <h2 class="mt-4 font-heading text-3xl font-semibold leading-tight text-white sm:text-5xl">{WHY_US.title}</h2>
+        <p class="mt-6 text-white/70">{WHY_US.paragraph}</p>
+        <a href={livePath('/why-us')} class="mt-8 inline-flex text-sm font-semibold text-[#6ee7ff] hover:underline">{WHY_US.learnMoreLabel}</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+        {
+          WHY_US.pillars.map((pillar) => (
+            <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-transparent p-6">
+              <h3 class="font-heading text-lg font-semibold text-white">{pillar.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-white/65">{pillar.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-y border-white/10 py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#6ee7ff]">{ERP_CREDITS_SYSTEM_UPDATE.eyebrow}</p>
+    <h2 class="mt-4 max-w-3xl font-heading text-3xl font-semibold text-white sm:text-4xl">{ERP_CREDITS_SYSTEM_UPDATE.title}</h2>
+    <p class="mt-5 max-w-3xl text-white/70">{ERP_CREDITS_SYSTEM_UPDATE.paragraph}</p>
+    <div class="mt-8 grid gap-3 md:grid-cols-2">
+      {
+        ERP_CREDITS_SYSTEM_UPDATE.bullets.map((b) => (
+          <div class="rounded-xl border border-[#4d8fff]/25 bg-[#4d8fff]/5 px-5 py-4 text-sm text-white/80">{b}</div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <h2 class="font-heading text-3xl font-semibold text-white">Capabilities</h2>
+    <div class="mt-10 columns-1 gap-8 sm:columns-2 lg:columns-3">
+      {
+        ERP_CAPABILITIES.map((block) => (
+          <div class="mb-8 break-inside-avoid border-t border-white/15 pt-4">
+            <h3 class="font-heading text-lg font-semibold text-[#6ee7ff]">{block.title}</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-white/65">
+              {block.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pb-6" data-preview-animate>
+  <div class="[&_.text-brand-ink]:text-white [&_.text-dark-text]:text-white/70 [&_.bg-white]:bg-[#0d1a2d] [&_.border-gray-200]:border-white/10">
+    <ErpPricing />
+  </div>
+</section>
+
+<section class="px-4 pb-20">
+  <div class="xl-container relative overflow-hidden rounded-3xl border border-[#4d8fff]/30 bg-gradient-to-r from-[#0b1729] via-[#10233f] to-[#0b1729] px-8 py-14 text-center">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(77,143,255,0.18),transparent_60%)]" aria-hidden="true"></div>
+    <div class="relative">
+      <h2 class="font-heading text-3xl font-semibold text-white sm:text-4xl">Build with the team behind the platform</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-white/70">{WHY_US.closing}</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={livePath('/book')} class="rounded-md bg-white px-7 py-3.5 text-sm font-semibold text-[#07111f]">{ERP_PRIMARY_CTA_LABEL}</a>
+        <a href={livePath('/trial')} class="rounded-md border border-white/25 px-7 py-3.5 text-sm font-semibold text-white">Start {ERP_TRIAL_LABEL}</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,101 @@
+---
+import { Picture } from 'astro:assets';
+import { ERP_HERO, ERP_TRIAL_LABEL, ERP_APP_SHOWCASE_ENTRIES } from '../../../data/erpOfferHome';
+import { ONE_FAQS } from '../../../data/oneFaqs';
+import { PRODUCT, livePath } from '../../../lib/site';
+import dashboardImg from '../../../assets/images/marketing/atw-one-dashboard-clean.png';
+import crmImg from '../../../assets/images/marketing/erp-product-crm.png';
+import financeImg from '../../../assets/images/marketing/erp-product-finance.png';
+
+const showcaseImages = {
+  dashboard: { src: dashboardImg, alt: 'ATW One dashboard home screen with apps launcher and organization overview' },
+  crm: { src: crmImg, alt: 'ATW One CRM lead list with company, contact, and pipeline fields' },
+  finance: { src: financeImg, alt: 'ATW One finance workspace with invoices, AR metrics, and customer counts' },
+} as const;
+---
+
+<section class="relative overflow-hidden px-4 pb-12 pt-8">
+  <div class="xl-container grid items-center gap-12 lg:grid-cols-2">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#6ee7ff]">{ERP_HERO.badge}</p>
+      <h1 class="mt-5 font-heading text-4xl font-semibold leading-[1.05] text-white sm:text-5xl md:text-6xl">
+        {ERP_HERO.headlineLead}
+        <span class="block text-[#4d8fff]">{ERP_HERO.headlineAccent}</span>
+      </h1>
+      <p class="mt-6 text-lg text-white/70">{ERP_HERO.subhead}</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href={livePath('/trial')} class="rounded-md bg-[#4d8fff] px-6 py-3.5 text-sm font-semibold text-[#07111f]">Start {ERP_TRIAL_LABEL}</a>
+        <a href={PRODUCT.one} class="rounded-md border border-white/20 px-6 py-3.5 text-sm font-semibold text-white">Open One app</a>
+        <a href={livePath('/pricing')} class="rounded-md border border-white/10 px-6 py-3.5 text-sm font-semibold text-white/80">Pricing</a>
+      </div>
+    </div>
+    <Picture
+      src={dashboardImg}
+      alt={showcaseImages.dashboard.alt}
+      formats={['avif', 'webp']}
+      widths={[720, 1100]}
+      sizes="(max-width: 1024px) 92vw, 520px"
+      width={1100}
+      height={565}
+      class="w-full rounded-2xl border border-white/15 shadow-2xl shadow-black/40"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+</section>
+
+<section class="border-y border-white/10 bg-[#0b1729]/70 px-4 py-20" data-preview-animate>
+  <div class="xl-container space-y-10">
+    {
+      ERP_APP_SHOWCASE_ENTRIES.map((app, i) => {
+        const image = showcaseImages[app.slug as keyof typeof showcaseImages];
+        return (
+          <a href={livePath(`/erp/apps/${app.slug}`)} class:list={['grid items-center gap-8 lg:grid-cols-2', i % 2 === 1 && 'lg:[&>*:first-child]:order-2']}>
+            <div>
+              <h2 class="font-heading text-3xl font-semibold text-white">{app.cardTitle}</h2>
+              <p class="mt-3 text-white/65">{app.cardCaption}</p>
+            </div>
+            <Picture
+              src={image.src}
+              alt={image.alt}
+              formats={['avif', 'webp']}
+              widths={[640, 960]}
+              sizes="(max-width: 1024px) 92vw, 45vw"
+              width={960}
+              height={490}
+              class="w-full rounded-xl border border-white/10"
+              loading="lazy"
+            />
+          </a>
+        );
+      })
+    }
+  </div>
+</section>
+
+<section id="faq" class="scroll-mt-28 px-4 py-20" data-preview-animate>
+  <div class="xl-container max-w-3xl">
+    <h2 class="font-heading text-3xl font-semibold text-white">ATW One FAQ</h2>
+    <div class="mt-10 space-y-6">
+      {
+        ONE_FAQS.map((item) => (
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+            <h3 class="font-heading text-lg font-semibold text-[#6ee7ff]">{item.q}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-white/65">{item.a}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="px-4 pb-20">
+  <div class="xl-container rounded-3xl border border-[#4d8fff]/30 px-8 py-12 text-center">
+    <h2 class="font-heading text-3xl font-semibold text-white">See ATW One in production</h2>
+    <p class="mx-auto mt-3 max-w-xl text-white/65">Start a trial or book a walkthrough with our team.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href={livePath('/trial')} class="rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#07111f]">Free trial</a>
+      <a href={livePath('/book')} class="rounded-md border border-white/25 px-6 py-3 text-sm font-semibold text-white">Book a call</a>
+    </div>
+  </div>
+</section>

@@ -31,7 +31,17 @@ npx wrangler pages deploy dist --project-name=atw-website
 # or: npm run deploy
 ```
 
-Deploy options (dashboard Git connect, wrangler, or GitHub Actions): [docs/CLOUDFLARE_PAGES.md](./docs/CLOUDFLARE_PAGES.md). Preview on `*.pages.dev` before moving `atw.net` / `www` DNS.
+Deploy options (dashboard Git connect, wrangler, or GitHub Actions): [docs/CLOUDFLARE_PAGES.md](./docs/CLOUDFLARE_PAGES.md). Production Pages alias: `https://atw-website-9br.pages.dev`.
+
+### Design preview sandboxes (review only)
+
+Two build-time art directions for comparison hosts (not production). See [docs/DESIGN_PREVIEWS.md](./docs/DESIGN_PREVIEWS.md).
+
+```bash
+npm run build:preview-a   # → dist-preview-a/
+npm run build:preview-b   # → dist-preview-b/
+npm run package:preview-zips
+```
 
 ## IndexNow
 

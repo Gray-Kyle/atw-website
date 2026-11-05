@@ -1,0 +1,85 @@
+---
+import { Picture } from 'astro:assets';
+import { AUTH_SIGNIN, livePath } from '../../../lib/site';
+import siteLogo from '../../../assets/images/logo/logo.png';
+
+const path = Astro.url.pathname;
+const links = [
+  { href: '/one/', label: 'ATW One' },
+  { href: '/why-us/', label: 'Why Us' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/compare/', label: 'Compare' },
+];
+---
+
+<header class="relative z-50 w-full border-b border-[var(--preview-a-line)] bg-white/95 backdrop-blur-md">
+  <div class="xl-container flex items-center justify-between gap-4 py-3.5">
+    <a href="/" class="flex items-center gap-3" aria-label="ATW Network home">
+      <Picture
+        src={siteLogo}
+        alt="ATW Network"
+        formats={['avif', 'webp']}
+        widths={[120, 240]}
+        sizes="120px"
+        width={120}
+        height={120}
+        class="h-10 w-auto max-w-[132px] object-contain object-left sm:h-11"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Primary">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium tracking-tight transition-colors',
+              path === link.href || path.startsWith(link.href.replace(/\/$/, ''))
+                ? 'text-brand-ink'
+                : 'text-muted-foreground hover:text-brand-ink',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={livePath('/book')}
+        class="rounded-xl bg-brand-ink px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
+      >
+        Book a Call
+      </a>
+      <a href={AUTH_SIGNIN} class="text-sm font-medium text-brand-ink/80 hover:text-brand-ink">Sign In</a>
+    </nav>
+    <button
+      type="button"
+      id="mobile-nav-toggle"
+      class="inline-flex items-center rounded-lg border border-border px-3 py-2 text-sm font-medium lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav-panel"
+    >
+      Menu
+    </button>
+  </div>
+  <div id="mobile-nav-panel" class="hidden border-t border-border bg-white lg:hidden" aria-hidden="true">
+    <div class="xl-container flex flex-col gap-1 py-3">
+      {links.map((link) => <a href={link.href} class="py-2.5 text-sm font-medium text-brand-ink">{link.label}</a>)}
+      <a href={livePath('/book')} class="py-2.5 text-sm font-semibold text-primary">Book a Call</a>
+      <a href={AUTH_SIGNIN} class="py-2.5 text-sm font-medium">Sign In</a>
+      <a href="/services/" class="py-2.5 text-sm text-muted-foreground">Services</a>
+      <a href="/partners/" class="py-2.5 text-sm text-muted-foreground">Partners</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const panel = document.getElementById('mobile-nav-panel');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel?.classList.toggle('hidden', !open);
+    panel?.setAttribute('aria-hidden', open ? 'false' : 'true');
+  });
+</script>

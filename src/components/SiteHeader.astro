@@ -6,6 +6,7 @@ import SystemsMegaMenu from './nav/SystemsMegaMenu.astro';
 import MarketingDropdown from './nav/MarketingDropdown.astro';
 import SystemsMobileSection from './nav/SystemsMobileSection.astro';
 import siteLogo from '../assets/images/logo/logo.png';
+import { isDesignPreview } from '../lib/designVariant';
 
 const currentPath = Astro.url.pathname;
 
@@ -14,11 +15,14 @@ const navLinkClass = (active: boolean) =>
     'text-sm font-medium transition-colors hover:text-primary',
     active ? 'text-brand-ink' : 'text-muted-foreground',
   ].join(' ');
+
+/** Preview builds wrap banner+header in a sticky stack; production keeps fixed header. */
+const headerPositionClass = isDesignPreview ? 'relative top-auto' : 'fixed top-0';
 ---
 
 <header
   id="site-header"
-  class="fixed top-0 z-50 w-full bg-white/95 py-4 shadow-sm backdrop-blur-sm transition-all"
+  class:list={['z-50 w-full bg-white/95 py-4 shadow-sm backdrop-blur-sm transition-all', headerPositionClass]}
 >
   <div class="xl-container flex items-center justify-between gap-4">
     <a href="/" class="flex shrink-0 items-center" aria-label="ATW Network home">

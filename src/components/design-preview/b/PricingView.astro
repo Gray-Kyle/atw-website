@@ -1,0 +1,41 @@
+---
+import ErpPricing from '../../marketing/ErpPricing.astro';
+import PricingFaq from '../../marketing/PricingFaq.astro';
+import {
+  ERP_PRIMARY_CTA_LABEL,
+  ERP_TRIAL_LABEL,
+  ERP_TRIAL_PROMO_LABEL,
+} from '../../../data/erpOfferHome';
+import { livePath } from '../../../lib/site';
+---
+
+<section class="relative overflow-hidden border-b border-white/10 px-4 pb-14 pt-10">
+  <div class="pointer-events-none absolute left-1/2 top-0 h-56 w-[36rem] -translate-x-1/2 rounded-full bg-[#4d8fff]/15 blur-3xl" aria-hidden="true"></div>
+  <div class="xl-container relative text-center">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#6ee7ff]">Commercial hub</p>
+    <h1 class="mt-4 font-heading text-4xl font-semibold text-white sm:text-5xl md:text-6xl">ATW pricing</h1>
+    <p class="mx-auto mt-5 max-w-2xl text-lg text-white/70">
+      Hosting plans with a unified Credits pool and unlimited named seats. {ERP_TRIAL_PROMO_LABEL}.
+    </p>
+    <nav aria-label="Pricing sections" class="mx-auto mt-8 flex flex-wrap justify-center gap-3">
+      <a href="#one" class="rounded-md border border-[#4d8fff]/40 bg-[#4d8fff]/10 px-5 py-2.5 text-sm font-semibold text-white">Plans</a>
+      <a href="#faq" class="rounded-md border border-white/15 px-5 py-2.5 text-sm font-semibold text-white/80">FAQ</a>
+    </nav>
+    <p class="mx-auto mt-5 max-w-2xl text-sm text-white/55">
+      Need implementation help?
+      <a href={livePath('/services')} class="text-[#6ee7ff] underline">ATW Services</a>
+      scopes separately from these plans.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href={livePath('/trial')} class="rounded-md bg-[#4d8fff] px-6 py-3 text-sm font-semibold text-[#07111f]">Start {ERP_TRIAL_LABEL}</a>
+      <a href={livePath('/book')} class="rounded-md border border-white/20 px-6 py-3 text-sm font-semibold text-white">{ERP_PRIMARY_CTA_LABEL}</a>
+    </div>
+  </div>
+</section>
+
+<div class="[&_.text-brand-ink]:text-white [&_.text-dark-text]:text-white/70 [&_.bg-white]:bg-[#0d1a2d] [&_.border-gray-200]:border-white/10 [&_.bg-slate-50\/80]:bg-[#0b1729] [&_.bg-amber-50\/70]:bg-[#2a2110] [&_.border-amber-200\/80]:border-amber-400/30" data-preview-animate>
+  <ErpPricing showTrialBanner={false} />
+</div>
+<div class="[&_.text-brand-ink]:text-white [&_.text-muted-foreground]:text-white/65 [&_.border-border]:border-white/10" data-preview-animate>
+  <PricingFaq />
+</div>

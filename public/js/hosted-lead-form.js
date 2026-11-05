@@ -4,6 +4,16 @@
 (function () {
   const root = document.getElementById("atw-hosted-form-root");
   if (!root) return;
+
+  if (document.documentElement.dataset.designPreview === "true" || document.body?.dataset?.designPreview === "true") {
+    root.innerHTML = `
+      <div class="rounded-xl border border-amber-200 bg-amber-50 p-6 text-sm text-amber-950" role="status">
+        <p class="font-semibold">Hosted lead form disabled on design preview</p>
+        <p class="mt-2">This sandbox does not load or submit CRM lead forms against production.</p>
+      </div>`;
+    return;
+  }
+
   const orgId = root.dataset.orgId;
   const slug = root.dataset.slug;
   if (!orgId || !slug) return;
