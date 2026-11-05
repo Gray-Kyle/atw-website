@@ -1,33 +1,39 @@
 import {
-  ERP_CREDITS_OVERAGE_NOTE,
+  ERP_CREDITS_MODEL_NOTE,
   ERP_INCLUDED_CREDITS_BY_PLAN,
-  ERP_TRIAL_DAYS,
+  ERP_TRIAL_INCLUDED,
   ERP_TRIAL_LABEL,
+  ERP_TRIAL_NOT_INCLUDED,
+  ERP_TRIAL_PACKAGE,
 } from './erpOfferHome';
 
 export const PRICING_FAQS = [
   {
-    q: 'What is included in the ATW One trial?',
-    a: `A ${ERP_TRIAL_LABEL} with full product access, ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString('en-US')} included trial Credits, and no credit card required. One trial per organization domain.`,
+    q: 'What is included in the ATW trial?',
+    a: `A ${ERP_TRIAL_LABEL} at $0 with ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString('en-US')} Credits and no credit card required. The trial includes only ${ERP_TRIAL_INCLUDED.join(', ')}. Unlimited named seats. One trial per organization domain.`,
+  },
+  {
+    q: 'What is not available during the trial?',
+    a: `Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
   },
   {
     q: 'What happens when the trial ends?',
-    a: `At day ${ERP_TRIAL_DAYS}, the trial pauses until you choose a paid plan. There is no second free trial on the same domain.`,
+    a: `${ERP_TRIAL_PACKAGE.afterTrial} There is no second free trial on the same domain.`,
   },
   {
-    q: 'Are named users charged on ATW One?',
-    a: 'No. ATW One core has unlimited named users with no per-seat software fee. WorkSuite (mail, calendar, office, meetings, messaging) is priced separately per user per month.',
+    q: 'Are named users charged per seat?',
+    a: 'No. Pricing is hosting plus Credits, not per seat. You can invite as many named teammates as you want on Trial and paid plans.',
   },
   {
-    q: 'How is WorkSuite priced?',
-    a: 'Per user per month: Starter $12, Business $28, Scale $55. Annual is 10× monthly (2 months free). See the WorkSuite section above.',
-  },
-  {
-    q: 'What are Credits and overage?',
-    a: `Credits are the shared monthly usage pool for ATW One (records, automation, AI assists, messaging draw, storage footprint, and related activity). ${ERP_CREDITS_OVERAGE_NOTE}`,
+    q: 'What are Credits?',
+    a: `Credits are the shared usage pool for your organization. ${ERP_CREDITS_MODEL_NOTE}`,
   },
   {
     q: 'Can I buy Mail without WorkSuite?',
-    a: 'Yes for mail-focused needs: start from the ATW Mail trial or mail pricing page, choose a mail-only plan, or contact us. WorkSuite bundles mail with calendar, office docs, and optional meetings/messaging when you want the full stack inside ATW One.',
+    a: 'Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Mail is not available during the trial. There is no separate WorkSuite per-seat SKU; WorkSuite remains a product label for calendar, documents, meetings, and messaging where offered on paid access.',
+  },
+  {
+    q: 'What do paid plans include beyond Credits?',
+    a: `Starter ($299/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString('en-US')} Credits), Growth ($1,999/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString('en-US')} Credits), and Business ($9,999/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString('en-US')} Credits) include Mail, Hub, and sandbox. Enterprise is custom; contact us.`,
   },
 ] as const;
