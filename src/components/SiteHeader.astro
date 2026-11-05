@@ -1,9 +1,11 @@
 ---
+import { Picture } from 'astro:assets';
 import { AUTH_SIGNIN, livePath } from '../lib/site';
 import { marketingPartnerLinks, marketingServiceLinks } from '../lib/marketingNav';
 import SystemsMegaMenu from './nav/SystemsMegaMenu.astro';
 import MarketingDropdown from './nav/MarketingDropdown.astro';
 import SystemsMobileSection from './nav/SystemsMobileSection.astro';
+import siteLogo from '../assets/images/logo/logo.png';
 
 const currentPath = Astro.url.pathname;
 
@@ -20,11 +22,14 @@ const navLinkClass = (active: boolean) =>
 >
   <div class="xl-container flex items-center justify-between gap-4">
     <a href="/" class="flex shrink-0 items-center" aria-label="ATW Network home">
-      <img
-        src="/images/logo/logo.png"
+      <Picture
+        src={siteLogo}
         alt="ATW Network"
-        width="140"
-        height="60"
+        formats={['avif', 'webp']}
+        widths={[120, 240]}
+        sizes="120px"
+        width={120}
+        height={120}
         class="h-[52px] w-auto max-w-[140px] object-contain object-left sm:h-[60px]"
         loading="eager"
         decoding="async"
@@ -146,12 +151,19 @@ const navLinkClass = (active: boolean) =>
     setMobileOpen(open);
   });
 
-  if (header) {
+  document.addEventListener('astro:page-load', () => setMobileOpen(false));
+
+  const bindScrollShadow = () => {
+    if (!header) return;
     const onScroll = () => {
       header.classList.toggle('shadow-md', window.scrollY > 10);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
-  }
+  };
 
-  document.addEventListener('astro:page-load', () => setMobileOpen(false));
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(bindScrollShadow, { timeout: 2000 });
+  } else {
+    setTimeout(bindScrollShadow, 1);
+  }
 </script>

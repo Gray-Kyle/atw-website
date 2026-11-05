@@ -16,12 +16,16 @@ interface Props {
   ogImageHeight?: number;
   ogImageType?: string;
   noindex?: boolean;
+  lcpImageHref?: string;
+  lcpImageType?: string;
+  lcpImageMedia?: string;
 }
 
 const props = Astro.props;
 ---
 
 <BaseLayout {...props}>
+  <slot name="head" slot="head" />
   <SiteHeader slot="header" />
   <slot />
   <SiteFooter slot="footer" />

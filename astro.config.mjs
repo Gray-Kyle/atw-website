@@ -17,6 +17,8 @@ export default defineConfig({
   redirects: {
     '/privacy': '/privacy-policy/',
     '/directory': '/systems/directory/',
+    '/hosting': '/pricing/',
+    '/credits': '/pricing/',
   },
   integrations: [
     sitemap({
