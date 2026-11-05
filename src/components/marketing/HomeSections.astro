@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import {
   ERP_APP_SHOWCASE_ENTRIES,
   ERP_CAPABILITIES,
@@ -10,6 +11,24 @@ import {
 } from '../../data/erpOfferHome';
 import { WHY_US } from '../../data/whyUs';
 import { livePath } from '../../lib/site';
+import dashboardImg from '../../assets/images/marketing/atw-one-dashboard-clean.png';
+import crmImg from '../../assets/images/marketing/erp-product-crm.png';
+import financeImg from '../../assets/images/marketing/erp-product-finance.png';
+
+const showcaseImages = {
+  dashboard: {
+    src: dashboardImg,
+    alt: 'ATW One dashboard home screen with apps launcher and organization overview',
+  },
+  crm: {
+    src: crmImg,
+    alt: 'ATW One CRM lead list with company, contact, and pipeline fields',
+  },
+  finance: {
+    src: financeImg,
+    alt: 'ATW One finance workspace with invoices, AR metrics, and customer counts',
+  },
+} as const;
 ---
 
 <section class="border-b border-gray-200 bg-white py-14">
@@ -22,18 +41,31 @@ import { livePath } from '../../lib/site';
   </div>
   <div class="xl-container mt-10 grid gap-8 px-4 md:grid-cols-3">
     {
-      ERP_APP_SHOWCASE_ENTRIES.map((entry) => (
-        <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
-          <img src={entry.imageSrc} alt={entry.cardTitle} class="h-48 w-full object-cover object-top" loading="lazy" />
-          <div class="p-6">
-            <h3 class="font-heading text-xl font-semibold text-brand-ink">{entry.cardTitle}</h3>
-            <p class="mt-2 text-sm text-dark-text">{entry.cardCaption}</p>
-            <a href={livePath(`/erp/apps/${entry.slug}`)} class="mt-4 inline-block text-sm font-medium text-primary hover:underline">
-              Tour {entry.cardTitle} →
-            </a>
-          </div>
-        </article>
-      ))
+      ERP_APP_SHOWCASE_ENTRIES.map((entry) => {
+        const image = showcaseImages[entry.slug as keyof typeof showcaseImages];
+        return (
+          <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <Picture
+              src={image.src}
+              alt={image.alt}
+              formats={['avif', 'webp']}
+              widths={[400, 640]}
+              sizes="(max-width: 768px) 90vw, 30vw"
+              width={640}
+              height={327}
+              class="h-48 w-full object-cover object-top"
+              loading="lazy"
+            />
+            <div class="p-6">
+              <h3 class="font-heading text-xl font-semibold text-brand-ink">{entry.cardTitle}</h3>
+              <p class="mt-2 text-sm text-dark-text">{entry.cardCaption}</p>
+              <a href={livePath(`/erp/apps/${entry.slug}`)} class="mt-4 inline-block text-sm font-medium text-primary hover:underline">
+                Tour {entry.cardTitle} →
+              </a>
+            </div>
+          </article>
+        );
+      })
     }
   </div>
 </section>

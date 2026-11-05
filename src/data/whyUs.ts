@@ -1,10 +1,13 @@
 /**
- * “Why ATW” marketing copy — direct delivery vs third-party implementers.
+ * "Why ATW" marketing copy: direct delivery vs third-party implementers.
  */
 
 export const WHY_US = {
   eyebrow: "Why ATW",
   title: "You Work With The Team That Builds The System",
+  /** Meta description (~140-160 chars). Keep body paragraph longer for the page. */
+  metaDescription:
+    "Work directly with ATW staff who build and operate ATW One. No third-party handoffs, Credits billing clarity, and one team from launch through scale.",
   paragraph:
     "We do not hand your implementation to third parties. Many software vendors rely on outside consultants who are not deeply expert in the product, so teams get bounced around while someone else learns on the clock. With ATW, you work directly with our staff: the same people who build ATW One, operate it daily, and now run the Credits billing model behind it.",
   pillars: [
@@ -16,7 +19,7 @@ export const WHY_US = {
     {
       title: "Built-by-us expertise",
       description:
-        "Our team ships the product and works in it daily. That means practical answers, faster setup, and guidance grounded in how the system actually behaves—not slide decks from a partner certification course.",
+        "Our team ships the product and works in it daily. That means practical answers, faster setup, and guidance grounded in how the system actually behaves, not slide decks from a partner certification course.",
     },
     {
       title: "One team, start to scale",
@@ -58,7 +61,7 @@ export const WHY_US = {
     },
   ],
   closing:
-    "When your business runs on one system, the team behind it should know that system inside out—not outsource that responsibility.",
+    "When your business runs on one system, the team behind it should know that system inside out, not outsource that responsibility.",
   ctaLabel: "Book a free business process review",
   learnMoreLabel: "Read the full story",
 } as const;

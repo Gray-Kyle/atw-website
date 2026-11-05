@@ -1,6 +1,12 @@
 ---
+import { Picture } from 'astro:assets';
 import { ERP_TRIAL_LABEL } from '../../data/erpOfferHome';
 import { livePath } from '../../lib/site';
+import brandLogo from '../../assets/images/branding/atw-one-logo-no-erp.jpg';
+import dashboardPreview from '../../assets/images/marketing/atw-one-dashboard-clean.png';
+
+const heroDefinition =
+  'ATW One is an ERP/CRM workspace that connects customers, sales, finance, and operations in one system with hosting plus Credits billing and unlimited named seats.';
 
 const heroBenefits = [
   'Reduce Cost. Unify CRM, finance, and operations.',
@@ -25,18 +31,22 @@ const heroBenefits = [
     <div class="grid items-center gap-12 lg:grid-cols-2">
       <div class="mx-auto max-w-[540px] text-center lg:mx-0 lg:max-w-none lg:text-left">
         <span class="mb-5 inline-flex items-center">
-          <img
-            src="/images/branding/atw-one-logo-no-erp.jpg"
-            alt="ATW One ERP"
-            width="128"
-            height="48"
+          <Picture
+            src={brandLogo}
+            alt="ATW One"
+            formats={['avif', 'webp']}
+            widths={[128, 256]}
+            sizes="128px"
+            width={128}
+            height={80}
             class="h-auto w-[102px] sm:w-[128px]"
             loading="eager"
+            fetchpriority="high"
           />
         </span>
 
         <h1
-          class="mb-6 max-w-none font-heading text-[2.25rem] font-semibold tracking-tight text-brand-ink sm:text-5xl md:text-[3.25rem] md:leading-[1.06]"
+          class="mb-4 max-w-none font-heading text-[2.25rem] font-semibold tracking-tight text-brand-ink sm:text-5xl md:text-[3.25rem] md:leading-[1.06]"
         >
           <span
             class="bg-clip-text text-transparent"
@@ -46,6 +56,10 @@ const heroBenefits = [
           </span>
           Unified Experience for Every Business Need.
         </h1>
+
+        <p class="mb-6 text-left text-[1.05rem] leading-relaxed text-dark-text lg:text-lg">
+          {heroDefinition}
+        </p>
 
         <ul class="mb-9 space-y-2.5 text-left">
           {
@@ -84,13 +98,17 @@ const heroBenefits = [
       </div>
 
       <div class="relative mx-auto w-full max-w-xl lg:max-w-none">
-        <img
-          src="/images/marketing/atw-one-dashboard-clean.png"
-          alt="ATW One dashboard preview"
-          width="1050"
-          height="782"
+        <Picture
+          src={dashboardPreview}
+          alt="ATW One dashboard showing apps, shortcuts, and organization overview"
+          formats={['avif', 'webp']}
+          widths={[640, 960, 1280]}
+          sizes="(max-width: 1024px) 90vw, 560px"
+          width={1050}
+          height={540}
           class="w-full rounded-xl border border-gray-200/80 shadow-2xl shadow-brand-blue/10"
           loading="eager"
+          fetchpriority="high"
         />
       </div>
     </div>

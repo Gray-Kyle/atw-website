@@ -46,7 +46,8 @@ export const ERP_TRIAL_INCLUDED = [
 export const ERP_TRIAL_NOT_INCLUDED = [
   "Hosted mail inboxes",
   "Sandbox",
-  "All other systems (Hub, WorkSuite productivity stack, and remaining apps outside the trial package)",
+  "Hub",
+  "WorkSuite",
 ] as const;
 
 /**
@@ -406,7 +407,7 @@ export const ERP_PRICING_SECTION_PARAGRAPH =
 
 /** Short line under the trial banner on the pricing page. */
 export const ERP_PRICING_TRIAL_SUBTEXT =
-  `${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} trial Credits for ${ERP_TRIAL_DAYS} days. Includes ATW One, Workforce, Directory, and ATW AI only. Hosted mail, sandbox, and other systems are not available during the trial. ${ERP_TRIAL_PACKAGE.afterTrial}`;
+  `${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} trial Credits for ${ERP_TRIAL_DAYS} days. Includes ATW One, Workforce, Directory, and ATW AI only. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join("; ")}. ${ERP_TRIAL_PACKAGE.afterTrial}`;
 
 export const ERP_CREDITS_SYSTEM_UPDATE = {
   eyebrow: "Credits",
@@ -454,7 +455,7 @@ export const ERP_LONG_FORM = {
   usageAllowancesBullets: [
     `Trial includes ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits; Starter includes ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")}; Growth includes ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")}; Business includes ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} each month. Enterprise is custom.`,
     "Apps, mail inboxes, storage, automations, AI, and Workforce all draw from the same Credits pool.",
-    "Paid tiers include Mail, Hub, and sandbox; the trial does not include hosted mail or sandbox.",
+    `Paid tiers include Mail, Hub, and sandbox. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join("; ")}.`,
     "A detailed Credit rate sheet is coming; we do not publish per-meter or overage block prices yet.",
   ],
 };

@@ -1,39 +1,99 @@
 ---
+import { Picture } from 'astro:assets';
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import PageHero from '../components/marketing/PageHero.astro';
 import CtaBand from '../components/marketing/CtaBand.astro';
 import { ERP_HERO, ERP_TRIAL_LABEL, ERP_APP_SHOWCASE_ENTRIES } from '../data/erpOfferHome';
+import { ONE_FAQS } from '../data/oneFaqs';
 import { PRODUCT } from '../lib/site';
+import { breadcrumbListJsonLd, faqPageJsonLd } from '../lib/seo';
+import dashboardImg from '../assets/images/marketing/atw-one-dashboard-clean.png';
+import crmImg from '../assets/images/marketing/erp-product-crm.png';
+import financeImg from '../assets/images/marketing/erp-product-finance.png';
+
+const showcaseImages = {
+  dashboard: {
+    src: dashboardImg,
+    alt: 'ATW One dashboard home screen with apps launcher and organization overview',
+  },
+  crm: {
+    src: crmImg,
+    alt: 'ATW One CRM lead list with company, contact, and pipeline fields',
+  },
+  finance: {
+    src: financeImg,
+    alt: 'ATW One finance workspace with invoices, AR metrics, and customer counts',
+  },
+} as const;
+
+const faqLd = faqPageJsonLd('/one/', ONE_FAQS);
+const crumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'ATW One', path: '/one/' },
+]);
 ---
 
 <MarketingLayout
   title="ATW One | product tour and Credits billing"
   description="Run sales, finance, and operations in one AI-powered ERP/CRM workspace. Credits-based usage, shared records, and ATW staff who build the product."
-  canonical="https://atw.net/one"
+  canonical="https://atw.net/one/"
   includeSoftwareApplication
+  jsonLd={[faqLd, crumbs].filter(Boolean)}
 >
   <PageHero eyebrow={ERP_HERO.badge} title={`${ERP_HERO.headlineLead} ${ERP_HERO.headlineAccent}`} description={ERP_HERO.subhead}>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="/trial" class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Start {ERP_TRIAL_LABEL}</a>
+      <a href="/trial/" class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Start {ERP_TRIAL_LABEL}</a>
       <a href={PRODUCT.one} class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink">Open One app</a>
-      <a href="/pricing" class="rounded-lg border border-border px-6 py-3 text-sm font-semibold">Pricing</a>
+      <a href="/pricing/" class="rounded-lg border border-border px-6 py-3 text-sm font-semibold">Pricing</a>
     </div>
   </PageHero>
 
   <section class="container grid gap-8 py-16 md:grid-cols-3">
     {
-      ERP_APP_SHOWCASE_ENTRIES.map((app) => (
-        <a href={`/erp/apps/${app.slug}`} class="rounded-xl border border-border p-6 hover:shadow-md">
-          <img src={app.imageSrc} alt="" class="mb-4 rounded-lg border border-border" loading="lazy" />
-          <h2 class="text-lg font-semibold">{app.cardTitle}</h2>
-          <p class="mt-2 text-sm text-muted-foreground">{app.cardCaption}</p>
-        </a>
-      ))
+      ERP_APP_SHOWCASE_ENTRIES.map((app) => {
+        const image = showcaseImages[app.slug as keyof typeof showcaseImages];
+        return (
+          <a href={`/erp/apps/${app.slug}/`} class="rounded-xl border border-border p-6 hover:shadow-md">
+            <Picture
+              src={image.src}
+              alt={image.alt}
+              formats={['avif', 'webp']}
+              widths={[400, 640, 800]}
+              sizes="(max-width: 768px) 90vw, 30vw"
+              width={640}
+              height={327}
+              class="mb-4 rounded-lg border border-border"
+              loading="lazy"
+            />
+            <h2 class="text-lg font-semibold">{app.cardTitle}</h2>
+            <p class="mt-2 text-sm text-muted-foreground">{app.cardCaption}</p>
+          </a>
+        );
+      })
     }
   </section>
 
+  <section id="faq" class="scroll-mt-24 border-t border-border bg-slate-50/80 py-16">
+    <div class="container max-w-3xl">
+      <h2 class="text-center font-heading text-3xl font-semibold text-brand-ink">ATW One FAQ</h2>
+      <p class="mx-auto mt-2 max-w-2xl text-center text-sm text-muted-foreground">
+        Direct answers about the product, Credits, the trial, and what is included.
+      </p>
+      <div class="mt-10 space-y-6">
+        {
+          ONE_FAQS.map((item) => (
+            <div class="border-b border-border pb-6">
+              <h3 class="font-heading text-lg font-semibold text-brand-ink">{item.q}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{item.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <CtaBand title="See ATW One in production" description="Start a trial or book a walkthrough with our team.">
-    <a href="/trial" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy">Free trial</a>
-    <a href="/book" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white">Book a call</a>
+    <a href="/trial/" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy">Free trial</a>
+    <a href="/book/" class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white">Book a call</a>
   </CtaBand>
 </MarketingLayout>

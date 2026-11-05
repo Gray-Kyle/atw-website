@@ -8,18 +8,22 @@ import {
   ERP_TRIAL_PROMO_LABEL,
 } from '../data/erpOfferHome';
 import { PRICING_FAQS } from '../data/pricingFaqs';
-import { faqPageJsonLd, softwareApplicationJsonLd } from '../lib/seo';
+import { breadcrumbListJsonLd, faqPageJsonLd, softwareApplicationJsonLd } from '../lib/seo';
 import { livePath } from '../lib/site';
 
-const pricingFaqLd = faqPageJsonLd('/pricing', PRICING_FAQS, { includePricing: true });
+const pricingFaqLd = faqPageJsonLd('/pricing/', PRICING_FAQS, { includePricing: true });
 const softwareWithOffers = softwareApplicationJsonLd({ includeOffers: true });
+const crumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Pricing', path: '/pricing/' },
+]);
 ---
 
 <MarketingLayout
   title="ATW pricing | hosting and Credits | ATW Network"
-  description="ATW hosting plus Credits: Trial $0 with 150,000 Credits for 14 days; Starter $299; Growth $1,999; Business $9,999; Enterprise contact us."
-  canonical="https://atw.net/pricing"
-  jsonLd={[softwareWithOffers, pricingFaqLd].filter(Boolean)}
+  description="ATW hosting plus Credits: Trial $0 with 150,000 Credits for 14 days; Starter $299/mo; Growth $1,999/mo; Business $9,999/mo; Enterprise contact us."
+  canonical="https://atw.net/pricing/"
+  jsonLd={[softwareWithOffers, pricingFaqLd, crumbs].filter(Boolean)}
 >
   <section class="border-b border-gray-200 bg-slate-50/90 pt-10">
     <div class="px-4 pb-8 text-center xl-container">
