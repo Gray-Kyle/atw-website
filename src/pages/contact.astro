@@ -1,5 +1,6 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { faqPageJsonLd } from '../lib/seo';
 
 const contactInfo = [
   {
@@ -51,6 +52,7 @@ const faqs = [
   title="Contact ATW Network"
   description="Get in touch with ATW Network. Phone, email, and office hours for sales and support."
   canonical="https://atw.net/contact"
+  jsonLd={faqPageJsonLd('/contact', faqs)}
 >
   <section class="relative overflow-hidden border-b bg-gradient-to-b from-muted/60 to-white px-4 py-16 sm:py-20">
     <div class="container relative mx-auto max-w-6xl text-center">

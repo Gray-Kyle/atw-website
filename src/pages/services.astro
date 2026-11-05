@@ -2,6 +2,7 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import PageHero from '../components/marketing/PageHero.astro';
 import { AEO_SERVICES } from '../data/aeoOffers';
+import { faqPageJsonLd } from '../lib/seo';
 
 const FAQS = [
   {
@@ -20,9 +21,10 @@ const FAQS = [
 ---
 
 <MarketingLayout
-  title="ATW Services — implementation, migration & custom delivery"
-  description={AEO_SERVICES.what}
+  title="ATW Services | implementation, migration, and custom delivery"
+  description="Professional delivery on ATW One or partner stacks: discovery, architecture, implementation, migration, and ongoing support."
   canonical="https://atw.net/services"
+  jsonLd={faqPageJsonLd('/services', FAQS)}
 >
   <PageHero
     eyebrow="ATW Services"

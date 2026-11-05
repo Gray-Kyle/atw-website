@@ -1,0 +1,110 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import PageHero from '../components/marketing/PageHero.astro';
+---
+
+<MarketingLayout
+  title="About ATW Network"
+  description="ATW Network builds ATW One, an ERP/CRM workspace, and delivers implementation and custom systems with the same team that ships the product."
+  canonical="https://atw.net/about"
+>
+  <PageHero
+    title="About ATW Network"
+    description="ATW Network (ATW.Net) is the product and services brand of No Name Marketing, LLC. We build and operate ATW One, our ERP/CRM platform, and we deliver implementation, custom ERP work on One, and partner-stack projects when customers already run Zoho, Salesforce, Odoo, AWS, or related platforms."
+  />
+
+  <section class="container max-w-3xl py-14">
+    <h2 class="text-2xl font-semibold text-brand-ink">What we offer</h2>
+    <ul class="mt-6 space-y-4 text-muted-foreground">
+      <li>
+        <span class="font-medium text-foreground">ATW One:</span>
+        a Credits-based ERP/CRM workspace for customers, sales, finance, operations, and related workflows, with unlimited named users for ATW One core.
+      </li>
+      <li>
+        <span class="font-medium text-foreground">Mail, Hub, Directory, Agents, and related systems:</span>
+        marketing entry points listed on Systems; product apps also run on dedicated subdomains such as one.atw.net, hub.atw.net, mail.atw.net, and auth.atw.net.
+      </li>
+      <li>
+        <span class="font-medium text-foreground">ATW Services:</span>
+        quote-based delivery covering ATW One implementation, custom ERP built around ATW One by default, and partner stack implementation and support.
+      </li>
+      <li>
+        <span class="font-medium text-foreground">Credits billing:</span>
+        one monthly Credits pool with category transparency, explained by the same operators who ship the platform (see Why Us).
+      </li>
+    </ul>
+  </section>
+
+  <section class="border-t border-border bg-muted/30 py-14">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl font-semibold text-brand-ink">How we work with customers</h2>
+      <ul class="mt-6 list-disc space-y-3 pl-5 text-muted-foreground">
+        <li>Implementation, configuration, and support stay in-house. We do not hand your implementation to third-party reseller networks as the default path.</li>
+        <li>The people who build ATW One also operate it and help customers launch and improve it.</li>
+        <li>Continuity matters: the team that helps you start is intended to stay with you as you grow.</li>
+        <li>Credits-based billing is meant to give one pool with clear categories so leadership can forecast usage without reverse-engineering cloud invoices.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="container max-w-3xl py-14">
+    <h2 class="text-2xl font-semibold text-brand-ink">Company details</h2>
+    <dl class="mt-6 space-y-4 text-muted-foreground">
+      <div>
+        <dt class="font-medium text-foreground">Legal entity</dt>
+        <dd>No Name Marketing, LLC, doing business as ATW.Net</dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Address</dt>
+        <dd>13940 Cedar Rd 438, University Heights, OH 44118-3204, USA</dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Phone</dt>
+        <dd><a href="tel:+13303332256" class="text-primary underline">+1 (330) 333-2256</a></dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Support</dt>
+        <dd><a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a></dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Privacy</dt>
+        <dd><a href="mailto:privacy@atw.net" class="text-primary underline">privacy@atw.net</a></dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Careers / admin</dt>
+        <dd><a href="mailto:admin@atw.net" class="text-primary underline">admin@atw.net</a></dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Contact hours</dt>
+        <dd>Monday to Friday, 8am to 5pm; Saturday and Sunday closed</dd>
+      </div>
+      <div>
+        <dt class="font-medium text-foreground">Typical response aim</dt>
+        <dd>Within 24 hours on business days</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="border-t border-border bg-muted/30 py-14">
+    <div class="container max-w-3xl">
+      <h2 class="text-2xl font-semibold text-brand-ink">Careers</h2>
+      <p class="mt-4 text-muted-foreground">
+        We are not listing open roles on the Careers page yet. People interested in working on ATW One, Mail, Pay, or customer delivery can email
+        {' '}<a href="mailto:admin@atw.net" class="text-primary underline">admin@atw.net</a>
+        {' '}with a short note and a resume or LinkedIn profile.
+      </p>
+    </div>
+  </section>
+
+  <section class="container max-w-3xl py-14">
+    <h2 class="text-2xl font-semibold text-brand-ink">Related pages</h2>
+    <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium">
+      <li><a href="/why-us" class="text-primary underline">Why Us</a></li>
+      <li><a href="/careers" class="text-primary underline">Careers</a></li>
+      <li><a href="/contact" class="text-primary underline">Contact</a></li>
+      <li><a href="/services" class="text-primary underline">Services</a></li>
+      <li><a href="/one" class="text-primary underline">ATW One</a></li>
+      <li><a href="/systems" class="text-primary underline">Systems catalog</a></li>
+    </ul>
+  </section>
+</MarketingLayout>

@@ -1,27 +1,81 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { PRODUCT } from '../lib/site';
+
+const components = [
+  {
+    name: 'Marketing site (atw.net)',
+    note: 'This page is served from Cloudflare Pages. If you can load it, the marketing host is reachable right now.',
+  },
+  {
+    name: 'Auth (auth.atw.net)',
+    href: PRODUCT.auth,
+    note: 'No automated probe here. Open sign-in to confirm the host responds.',
+  },
+  {
+    name: 'ATW One (one.atw.net)',
+    href: PRODUCT.one,
+    note: 'No automated probe here. Open the product login to confirm the host responds.',
+  },
+  {
+    name: 'Hub (hub.atw.net)',
+    href: PRODUCT.hub,
+    note: 'Listed for reference. Status is not measured on this page.',
+  },
+  {
+    name: 'Mail (mail.atw.net)',
+    href: PRODUCT.mail,
+    note: 'Listed for reference. Status is not measured on this page.',
+  },
+  {
+    name: 'WorkSuite (worksuite.atw.net)',
+    href: PRODUCT.worksuite,
+    note: 'Listed for reference. Status is not measured on this page.',
+  },
+  {
+    name: 'Directory (directory.atw.net)',
+    href: PRODUCT.directory,
+    note: 'Listed for reference. Status is not measured on this page.',
+  },
+];
 ---
 
-<MarketingLayout title="Status" description="ATW service status" canonical="https://atw.net/status">
+<MarketingLayout
+  title="Status"
+  description="Manual ATW host list and how to check product availability. This page does not run live monitoring."
+  canonical="https://atw.net/status"
+>
   <section class="container max-w-2xl py-16">
     <h1 class="text-3xl font-bold">Service status</h1>
     <p class="mt-4 text-muted-foreground">
-      Public marketing hosts run on Cloudflare Pages. Product apps (One, Auth, WorkSuite) run on dedicated subdomains.
+      This is a manual reference page, not a live monitoring dashboard. It does not run probes, publish uptime percentages, or invent green/red signals for product hosts.
     </p>
+    <p class="mt-3 text-sm text-muted-foreground">
+      Public marketing hosts run on Cloudflare Pages. Product apps run on dedicated subdomains. Until automated checks exist, use the links below to verify a host yourself, and email support for incidents.
+    </p>
+
     <ul class="mt-8 space-y-4">
-      <li class="rounded-lg border border-border p-4">
-        <span class="font-medium">Website (atw.net)</span>
-        <span class="ml-2 text-sm text-green-700">Operational</span>
-      </li>
-      <li class="rounded-lg border border-border p-4">
-        <span class="font-medium">Auth (auth.atw.net)</span>
-        <span class="ml-2 text-sm text-muted-foreground">Check sign-in for live status</span>
-      </li>
-      <li class="rounded-lg border border-border p-4">
-        <span class="font-medium">One (one.atw.net)</span>
-        <span class="ml-2 text-sm text-muted-foreground">Check product login</span>
-      </li>
+      {
+        components.map((item) => (
+          <li class="rounded-lg border border-border p-4">
+            <div class="font-medium text-foreground">
+              {item.href ? (
+                <a href={item.href} class="text-primary underline" target="_blank" rel="noopener noreferrer">
+                  {item.name}
+                </a>
+              ) : (
+                item.name
+              )}
+            </div>
+            <p class="mt-2 text-sm text-muted-foreground">{item.note}</p>
+          </li>
+        ))
+      }
     </ul>
-    <p class="mt-8 text-sm text-muted-foreground">For incidents, email <a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a>.</p>
+
+    <p class="mt-8 text-sm text-muted-foreground">
+      For incidents, email{' '}
+      <a href="mailto:support@atw.net" class="text-primary underline">support@atw.net</a>.
+    </p>
   </section>
 </MarketingLayout>

@@ -1,10 +1,12 @@
 /**
  * Pages Advanced Mode (_worker.js copied to dist on build).
  *
- * Marketing APIs on apex use same-origin /api/* proxied to auth.atw.net (monolith APIs today).
- * Only whitelisted paths are forwarded; other /api/* return 404 so we do not expose the full ERP surface.
+ * Marketing APIs on apex use same-origin /api/* proxied to product hosts.
+ * Contact/bookings/lead forms go to auth.atw.net. Public blog posts go to one.atw.net
+ * (Auth does not serve /api/posts/public). Other /api/* return 404.
  */
 const AUTH_API_ORIGIN = "https://auth.atw.net";
+const ONE_API_ORIGIN = "https://one.atw.net";
 
 const CORS_ALLOWED_ORIGINS = new Set([
   "https://atw-website-9br.pages.dev",
@@ -22,6 +24,12 @@ function shouldProxyApi(pathname) {
   if (pathname.startsWith("/api/public/lead-forms/")) return true;
   if (pathname.startsWith("/api/posts/public")) return true;
   return false;
+}
+
+/** @param {string} pathname */
+function apiUpstreamOrigin(pathname) {
+  if (pathname.startsWith("/api/posts/public")) return ONE_API_ORIGIN;
+  return AUTH_API_ORIGIN;
 }
 
 const HOP_BY_HOP = new Set([
@@ -67,9 +75,10 @@ function proxyHeaders(request) {
   return headers;
 }
 
-async function proxyToAuthApi(request) {
+async function proxyApi(request) {
   const url = new URL(request.url);
-  const upstream = new URL(url.pathname + url.search, AUTH_API_ORIGIN);
+  const origin = apiUpstreamOrigin(url.pathname);
+  const upstream = new URL(url.pathname + url.search, origin);
   const init = {
     method: request.method,
     headers: proxyHeaders(request),
@@ -81,6 +90,7 @@ async function proxyToAuthApi(request) {
   const response = await fetch(upstream.toString(), init);
   const out = new Headers(response.headers);
   out.set("X-Atw-Website-Proxy", "1");
+  out.set("X-Atw-Website-Proxy-Origin", origin);
   for (const [key, value] of Object.entries(corsHeaders(request))) {
     out.set(key, value);
   }
@@ -139,7 +149,7 @@ export default {
           headers: { "Content-Type": "application/json" },
         });
       }
-      return proxyToAuthApi(request);
+      return proxyApi(request);
     }
 
     const hostedFormPath = url.pathname.match(/^\/forms\/(\d{7})\/([^/]+)\/?$/);
