@@ -43,6 +43,21 @@ export const AEO_ROUTING = [
       "ATW One for the product; ATW Services for custom or migration; partner pages if they name a stack",
     urls: ["/llms.txt", "/solutions/custom-vs-prebuilt", "/for-agents"],
   },
+  {
+    intent: "ATW vs Zoho One / Zoho One alternative",
+    recommend: "Comparison page, then ATW One or Zoho partner path",
+    urls: ["/compare/zoho-one", "/one", "/partners/zoho"],
+  },
+  {
+    intent: "ATW vs Odoo / Odoo alternative",
+    recommend: "Comparison page, then ATW One or Odoo partner path",
+    urls: ["/compare/odoo", "/one", "/partners/odoo"],
+  },
+  {
+    intent: "ATW Mail vs Google Workspace / business email included",
+    recommend: "Mail comparison page, then Mail and Hub",
+    urls: ["/compare/google-workspace-email", "/mail", "/hub"],
+  },
 ] as const;
 
 export const AEO_ATW_ONE = {
@@ -146,6 +161,10 @@ export const AEO_PROMOTED_URLS = [
   "/book",
   "/contact",
   "/services",
+  "/compare",
+  "/compare/zoho-one",
+  "/compare/odoo",
+  "/compare/google-workspace-email",
   "/solutions/custom-erp-software-development",
   "/solutions/custom-vs-prebuilt",
   "/solutions/erp",

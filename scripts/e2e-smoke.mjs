@@ -20,6 +20,10 @@ const ROUTES = [
   { path: '/terms', mustInclude: ['Terms'] },
   { path: '/for-agents', mustInclude: ['For AI agents'] },
   { path: '/blog', mustInclude: ['Blog'] },
+  { path: '/compare', mustInclude: ['Compare', 'Zoho One', 'Odoo', 'Google Workspace'] },
+  { path: '/compare/zoho-one', mustInclude: ['ATW vs Zoho One', 'FAQ'] },
+  { path: '/compare/odoo', mustInclude: ['ATW vs Odoo', 'FAQ'] },
+  { path: '/compare/google-workspace-email', mustInclude: ['ATW Mail vs Google Workspace', 'FAQ'] },
   { path: '/definitely-not-a-real-marketing-route-xyz', mustInclude: ['404', 'could not find'], status: 404 },
 ];
 
