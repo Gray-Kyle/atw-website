@@ -11,6 +11,8 @@ import {
 import { WHY_US } from '../../../data/whyUs';
 import { WORKFORCE } from '../../../data/workforce';
 import { livePath } from '../../../lib/site';
+/** Kyle Photoroom dark logo; display crop removes empty transparent canvas only. */
+import brandLogo from '../../../assets/images/branding/atw-one-logo-dark-photoroom-display.png';
 import dashboardImg from '../../../assets/images/marketing/atw-one-dashboard-clean.png';
 import crmImg from '../../../assets/images/marketing/erp-product-crm.png';
 import financeImg from '../../../assets/images/marketing/erp-product-finance.png';
@@ -31,13 +33,16 @@ const showcaseImages = {
     <div class="grid items-end gap-12 lg:grid-cols-[1.05fr_0.95fr]">
       <div class="preview-reveal max-w-2xl">
         <div class="mb-7">
-          <img
-            src="/images/branding/atw-one-logo.svg"
+          <Picture
+            src={brandLogo}
             alt="ATW One"
-            width="320"
-            height="103"
-            class="h-auto w-[200px] bg-transparent sm:w-[240px]"
-            decoding="async"
+            formats={['avif', 'webp']}
+            widths={[240, 360, 480]}
+            sizes="(max-width: 640px) 200px, 260px"
+            width={480}
+            height={223}
+            class="h-auto w-[200px] max-w-full bg-transparent object-contain object-left sm:w-[260px]"
+            loading="eager"
             fetchpriority="high"
           />
         </div>

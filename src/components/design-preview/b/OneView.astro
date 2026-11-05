@@ -4,6 +4,8 @@ import { ERP_HERO, ERP_TRIAL_LABEL, ERP_APP_SHOWCASE_ENTRIES } from '../../../da
 import { ONE_FAQS } from '../../../data/oneFaqs';
 import { WORKFORCE } from '../../../data/workforce';
 import { PRODUCT, livePath } from '../../../lib/site';
+/** Kyle Photoroom dark logo; display crop removes empty transparent canvas only. */
+import brandLogo from '../../../assets/images/branding/atw-one-logo-dark-photoroom-display.png';
 import dashboardImg from '../../../assets/images/marketing/atw-one-dashboard-clean.png';
 import crmImg from '../../../assets/images/marketing/erp-product-crm.png';
 import financeImg from '../../../assets/images/marketing/erp-product-finance.png';
@@ -19,13 +21,16 @@ const showcaseImages = {
 <section class="relative overflow-hidden px-4 pb-12 pt-8">
   <div class="xl-container grid items-center gap-12 lg:grid-cols-2">
     <div>
-      <img
-        src="/images/branding/atw-one-logo.svg"
+      <Picture
+        src={brandLogo}
         alt="ATW One"
-        width="280"
-        height="90"
-        class="mb-6 h-auto w-[180px] bg-transparent sm:w-[220px]"
-        decoding="async"
+        formats={['avif', 'webp']}
+        widths={[220, 340, 440]}
+        sizes="(max-width: 640px) 180px, 220px"
+        width={440}
+        height={204}
+        class="mb-6 h-auto w-[180px] max-w-full bg-transparent object-contain object-left sm:w-[220px]"
+        loading="eager"
         fetchpriority="high"
       />
       <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#7ee0ff]">{ERP_HERO.badge}</p>
