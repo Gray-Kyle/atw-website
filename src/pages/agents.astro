@@ -4,10 +4,14 @@ import PageHero from '../components/marketing/PageHero.astro';
 import { PRODUCT } from '../lib/site';
 ---
 
-<MarketingLayout title="ATW Agents" description="Named AI seats, configuration, and Overseer." canonical="https://atw.net/agents">
+<MarketingLayout
+  title="ATW Agents"
+  description="AI work that draws from your organization's Credits pool, with configuration and Overseer."
+  canonical="https://atw.net/agents"
+>
   <PageHero
-    title="Hire your AI team"
-    description="Named AI seats, Agent Configuration, Overseer, and shared Credits for your organization."
+    title="AI work that draws Credits"
+    description="Agents do work against your shared Credits pool. Configure agents and Overseer for your organization without buying named AI seats as a separate SKU."
   >
     <div class="mt-8 flex flex-wrap justify-center gap-3">
       <a href={PRODUCT.agents} class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Open Agents console</a>

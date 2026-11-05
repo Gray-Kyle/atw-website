@@ -109,8 +109,19 @@ export const marketingSystems: MarketingSystem[] = [
     id: 'hub',
     title: 'Hub',
     href: '/hub',
-    summary: 'Team chat for the people in your organization.',
+    summary:
+      'Single-tenant productivity for your organization: Mail, Chat, Calendar, Meetings, and Tasks. Included with ATW base hosting.',
     apps: [
+      {
+        id: 'hub-mail',
+        title: 'Mail',
+        href: '/mail',
+        summary: 'Business email on your domain. Mail is included in ATW; hosted inboxes use Credits.',
+        modules: [
+          { title: 'Inbox', href: '/mail' },
+          { title: 'Domains', href: '/mail' },
+        ],
+      },
       {
         id: 'chat',
         title: 'Chat',
@@ -121,13 +132,34 @@ export const marketingSystems: MarketingSystem[] = [
           { title: 'Direct messages', href: PRODUCT.hub },
         ],
       },
+      {
+        id: 'calendar',
+        title: 'Calendar',
+        href: PRODUCT.hub,
+        summary: 'Shared calendars for the organization.',
+        modules: [{ title: 'Calendar', href: PRODUCT.hub }],
+      },
+      {
+        id: 'meetings',
+        title: 'Meetings',
+        href: PRODUCT.hub,
+        summary: 'Meetings for the team.',
+        modules: [{ title: 'Meetings', href: PRODUCT.hub }],
+      },
+      {
+        id: 'tasks',
+        title: 'Tasks',
+        href: PRODUCT.hub,
+        summary: 'Tasks for people in your organization.',
+        modules: [{ title: 'Tasks', href: PRODUCT.hub }],
+      },
     ],
   },
   {
     id: 'mail',
     title: 'Mail',
     href: '/mail',
-    summary: 'Mailboxes on your domain.',
+    summary: 'Mail is included in ATW; hosted inboxes use Credits.',
     apps: [
       {
         id: 'webmail',
@@ -158,7 +190,7 @@ export const marketingSystems: MarketingSystem[] = [
     id: 'workspace',
     title: 'WorkSuite',
     href: '/workspace',
-    summary: 'Calendar, documents, meetings, and messaging next to One.',
+    summary: 'Calendar, documents, meetings, and messaging next to One and Mail.',
     apps: [
       {
         id: 'mail-calendar',
@@ -232,13 +264,13 @@ export const marketingSystems: MarketingSystem[] = [
     id: 'agents',
     title: 'Agents',
     href: '/agents',
-    summary: 'Named AI seats, Agent Configuration, Overseer, and shared credits.',
+    summary: 'AI work that draws from your organization Credits pool, with configuration and Overseer.',
     apps: [
       {
-        id: 'seats',
-        title: 'Seats',
+        id: 'workforce',
+        title: 'Workforce',
         href: '/agents',
-        summary: 'Hire named AI teammates for your organization.',
+        summary: 'AI teammates that draw Credits when they work.',
         modules: [
           { title: 'Overview', href: '/agents' },
           {
@@ -253,7 +285,7 @@ export const marketingSystems: MarketingSystem[] = [
         id: 'overseer',
         title: 'Overseer',
         href: '/agents',
-        summary: 'Watch seat activity across the Agent Organization.',
+        summary: 'Watch agent activity across the organization.',
         modules: [{ title: 'Overseer', href: '/agents' }],
       },
     ],
@@ -284,7 +316,7 @@ export const marketingSystems: MarketingSystem[] = [
         id: 'embedded-agents',
         title: 'In-app agents',
         href: '/agents',
-        summary: 'Named seats and help that stays inside your systems.',
+        summary: 'In-app agents that draw from the same Credits pool.',
         modules: [
           { title: 'Agents', href: '/agents' },
           { title: 'CRM', href: '/erp/apps/crm' },
