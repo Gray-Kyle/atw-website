@@ -1,0 +1,14 @@
+---
+interface Props {
+  data: Record<string, unknown> | Record<string, unknown>[] | null | undefined;
+}
+
+const { data } = Astro.props;
+const items = !data ? [] : Array.isArray(data) ? data.filter(Boolean) : [data];
+---
+
+{
+  items.map((item) => (
+    <script type="application/ld+json" set:html={JSON.stringify(item)} />
+  ))
+}

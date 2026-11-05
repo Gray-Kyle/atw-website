@@ -2,6 +2,7 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
 import { PRODUCT } from '../lib/site';
+import { faqPageJsonLd } from '../lib/seo';
 
 const faqs = [
   {
@@ -20,9 +21,10 @@ const faqs = [
 ---
 
 <MarketingLayout
-  title="ATW WorkSuite — calendar, docs, meetings, messaging"
+  title="ATW WorkSuite | calendar, docs, meetings, messaging"
   description="Calendar, documents, meetings, and messaging next to ATW One and Mail."
   canonical="https://atw.net/workspace"
+  jsonLd={faqPageJsonLd('/workspace', faqs)}
 >
   <SystemMarketingPage
     systemId="workspace"

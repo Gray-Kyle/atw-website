@@ -7,6 +7,12 @@ interface Props {
   title: string;
   description?: string;
   canonical?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[] | null;
+  includeSoftwareApplication?: boolean;
+  ogType?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
 }
 
 const props = Astro.props;

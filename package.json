@@ -7,13 +7,14 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp pages-worker/_worker.js dist/_worker.js",
+    "build": "astro build && cp pages-worker/_worker.js dist/_worker.js && node scripts/publish-sitemap.mjs",
     "preview": "astro preview",
     "e2e:smoke": "node scripts/e2e-smoke.mjs",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.18.2",
     "gray-matter": "^4.0.3",

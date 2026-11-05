@@ -2,6 +2,7 @@
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../../components/marketing/SystemMarketingPage.astro';
 import { PRODUCT } from '../../lib/site';
+import { faqPageJsonLd } from '../../lib/seo';
 
 const faqs = [
   {
@@ -20,9 +21,10 @@ const faqs = [
 ---
 
 <MarketingLayout
-  title="ATW Directory — people and access"
+  title="ATW Directory | people and access"
   description="Who can sign in and which systems they can open across One, Hub, Mail, Agents, and more."
   canonical="https://atw.net/systems/directory"
+  jsonLd={faqPageJsonLd('/systems/directory', faqs)}
 >
   <SystemMarketingPage
     systemId="directory"

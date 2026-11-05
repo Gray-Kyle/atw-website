@@ -1,6 +1,7 @@
 ---
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../../components/marketing/SystemMarketingPage.astro';
+import { faqPageJsonLd } from '../../lib/seo';
 
 const faqs = [
   {
@@ -19,9 +20,10 @@ const faqs = [
 ---
 
 <MarketingLayout
-  title="ATW Mail — secure business email"
-  description="Professional mailboxes on your domain with webmail and admin controls."
+  title="ATW Mail | secure business email"
+  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. Included in ATW; hosted inboxes use Credits."
   canonical="https://atw.net/mail"
+  jsonLd={faqPageJsonLd('/mail', faqs)}
 >
   <SystemMarketingPage
     systemId="mail"

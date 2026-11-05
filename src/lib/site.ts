@@ -7,10 +7,17 @@ export const PRODUCT = {
   directory: 'https://directory.atw.net',
   agents: 'https://agents.atw.net',
   ai: 'https://ai.atw.net',
+  mail: 'https://mail.atw.net',
 } as const;
 
-/** Monolith API routes proxied on apex via Pages worker (see pages-worker/_worker.js). */
+/**
+ * Monolith marketing APIs (contact, bookings, lead forms) proxied on apex via
+ * Pages worker to auth.atw.net. Public blog posts live on One, not Auth.
+ */
 export const API_ORIGIN = PRODUCT.auth;
+
+/** Public blog / posts API host (One product, not Auth). */
+export const BLOG_API_ORIGIN = PRODUCT.one;
 
 /** Same-site marketing paths (apex is Cloudflare Pages). */
 export function livePath(path: string): string {
