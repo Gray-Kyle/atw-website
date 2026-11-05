@@ -1,5 +1,6 @@
 ---
 import { AUTH_SIGNIN, livePath } from '../lib/site';
+import { SOCIAL_PROFILES } from '../lib/seo';
 
 const companyLinks = [
   { title: 'Home', href: '/' },
@@ -33,9 +34,25 @@ const year = new Date().getFullYear();
               loading="lazy"
             />
           </a>
-          <p class="mb-10 text-base text-zinc-500">
+          <p class="mb-6 text-base text-zinc-500">
             ATW One: one workspace for sales, finance, and operations.
           </p>
+          <ul class="flex flex-wrap gap-4">
+            {
+              SOCIAL_PROFILES.map((profile) => (
+                <li>
+                  <a
+                    href={profile.href}
+                    class="font-heading text-base text-zinc-200 hover:text-[#9db6ff]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {profile.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </div>
       </div>
 

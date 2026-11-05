@@ -4,6 +4,22 @@ export const SITE_ORIGIN = 'https://atw.net';
 export const SITE_NAME = 'ATW Network';
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/images/logo/logo.png`;
 export const DEFAULT_OG_IMAGE_ALT = 'ATW Network';
+export const TWITTER_HANDLE = '@atwnet';
+
+export const SOCIAL_PROFILES = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/atwnet',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com/atwnet',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/No-Name-Development',
+  },
+] as const;
 
 export type FaqItem = {
   q: string;
@@ -32,7 +48,7 @@ export function organizationJsonLd() {
     '@type': 'Organization',
     '@id': `${SITE_ORIGIN}/#organization`,
     name: 'ATW Network',
-    alternateName: ['ATW.Net', 'ATW', 'No Name Marketing, LLC'],
+    alternateName: ['ATW.Net', 'ATW'],
     url: `${SITE_ORIGIN}/`,
     logo: DEFAULT_OG_IMAGE,
     email: 'support@atw.net',
@@ -55,8 +71,11 @@ export function organizationJsonLd() {
         availableLanguage: ['English'],
       },
     ],
-    // TODO(kyle): add official LinkedIn, Facebook, X, and GitHub profile URLs when confirmed.
-    sameAs: [] as string[],
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'No Name Marketing, LLC',
+    },
+    sameAs: SOCIAL_PROFILES.map((profile) => profile.href),
   };
 }
 
