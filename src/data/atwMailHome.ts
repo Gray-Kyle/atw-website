@@ -25,7 +25,7 @@ export const ATW_MAIL_FEATURE_PILLARS = [
   },
   {
     title: 'Included in ATW',
-    body: 'On paid hosting tiers, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
+    body: 'On paid hosting tiers, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
   },
   {
     title: 'Works with your favorite email app',
@@ -55,8 +55,8 @@ export const ATW_MAIL_FAQ = [
     a: 'No. There is no permanent free tier. Hosted mail inboxes are included on paid hosting tiers and draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the ATW trial.',
   },
   {
-    q: 'What is the difference between ATW Mail and WorkSuite?',
-    a: 'ATW Mail is business email: webmail, custom domain, and admin. On paid plans, Mail is included and hosted inboxes use Credits. WorkSuite is a product label for calendar, documents, meetings, and messaging alongside Mail and One (not a separate per-seat SKU).',
+    q: 'What is the difference between ATW Mail and ATW Orbit?',
+    a: 'ATW Mail is business email: webmail, custom domain, and admin. On paid plans, Mail is included and hosted inboxes use Credits. ATW Orbit is a product label for calendar, documents, meetings, and messaging alongside Mail and One (not a separate per-seat SKU).',
   },
   {
     q: 'What DNS records do I need?',

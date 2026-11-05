@@ -29,8 +29,8 @@ export const PRICING_FAQS = [
     a: `Credits are the shared usage pool for your organization. ${ERP_CREDITS_MODEL_NOTE}`,
   },
   {
-    q: 'Can I buy Mail without WorkSuite?',
-    a: 'Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Mail is not available during the trial. There is no separate WorkSuite per-seat SKU; WorkSuite remains a product label for calendar, documents, meetings, and messaging where offered on paid access.',
+    q: 'Can I buy Mail without ATW Orbit?',
+    a: 'Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Mail is not available during the trial. There is no separate ATW Orbit per-seat SKU; Orbit is the product label for mail, calendar, documents, meetings, and messaging where offered on paid access.',
   },
   {
     q: 'What do paid plans include beyond Credits?',

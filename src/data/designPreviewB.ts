@@ -69,10 +69,10 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     notInTrial: true,
   },
   {
-    id: 'worksuite',
-    title: 'WorkSuite',
-    href: '/workspace/',
-    summary: 'Calendar, documents, meetings, and messaging next to One and Mail.',
+    id: 'orbit',
+    title: 'ATW Orbit',
+    href: '/orbit/',
+    summary: 'Mail, meetings, calendar, docs, and messaging in one orbit.',
     notInTrial: true,
   },
 ];
@@ -184,11 +184,11 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     notInTrial: true,
   },
   {
-    id: 'worksuite',
-    title: 'WorkSuite',
+    id: 'orbit',
+    title: 'ATW Orbit',
     group: 'platform',
-    summary: 'Calendar, documents, meetings, and messaging next to One and Mail.',
-    href: '/workspace/',
+    summary: 'Mail, meetings, calendar, docs, and messaging in one orbit. Paid hosting only.',
+    href: '/orbit/',
     notInTrial: true,
   },
   {

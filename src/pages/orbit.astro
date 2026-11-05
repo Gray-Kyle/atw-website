@@ -1,0 +1,46 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import OrbitView from '../components/design-preview/b/OrbitView.astro';
+import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
+import { ORBIT } from '../data/orbit';
+import { PRODUCT } from '../lib/site';
+import { designVariant } from '../lib/designVariant';
+import { faqPageJsonLd } from '../lib/seo';
+
+const faqs = [
+  {
+    q: 'What is ATW Orbit?',
+    a: 'ATW Orbit is the productivity orbit next to ATW One: mail and calendar, docs, spreadsheets, presentations, video meetings, and messaging (SMS and voice). It is a product label, not a separate per-seat SKU.',
+  },
+  {
+    q: 'Is Orbit included in the trial?',
+    a: 'No. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit. The trial includes ATW One, Workforce, Directory, and ATW AI.',
+  },
+  {
+    q: 'How is Orbit billed?',
+    a: 'Orbit runs on paid hosting where offered and draws from your organization Credits pool. There is no separate per-seat Orbit price. Unlimited named seats.',
+  },
+] as const;
+---
+
+<MarketingLayout
+  title="ATW Orbit | mail, meetings, calendar, docs, messaging"
+  description="Each app is a planet in your Orbit. Mail and calendar, docs, spreadsheets, presentations, meetings, and messaging next to ATW One on paid hosting."
+  canonical="https://atw.net/orbit/"
+  jsonLd={faqPageJsonLd('/orbit', faqs)}
+>
+  {
+    designVariant === 'b' ? (
+      <OrbitView />
+    ) : (
+      <SystemMarketingPage
+        systemId="workspace"
+        headline="Each app is a planet in your Orbit"
+        lead={ORBIT.lead}
+        primaryCta={{ label: 'See pricing', href: '/pricing' }}
+        secondaryCta={{ label: ORBIT.consoleLabel, href: PRODUCT.worksuite }}
+        faqs={faqs}
+      />
+    )
+  }
+</MarketingLayout>

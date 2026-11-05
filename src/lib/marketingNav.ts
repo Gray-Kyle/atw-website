@@ -188,9 +188,9 @@ export const marketingSystems: MarketingSystem[] = [
   },
   {
     id: 'workspace',
-    title: 'WorkSuite',
-    href: '/workspace',
-    summary: 'Calendar, documents, meetings, and messaging next to One and Mail.',
+    title: 'ATW Orbit',
+    href: '/orbit',
+    summary: 'Mail, meetings, calendar, docs, and messaging in one orbit.',
     apps: [
       {
         id: 'mail-calendar',

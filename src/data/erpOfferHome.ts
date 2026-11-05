@@ -47,7 +47,7 @@ export const ERP_TRIAL_NOT_INCLUDED = [
   "Hosted mail inboxes",
   "Sandbox",
   "Hub",
-  "WorkSuite",
+  "ATW Orbit",
 ] as const;
 
 /**
