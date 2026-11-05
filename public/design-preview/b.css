@@ -127,6 +127,10 @@ html[data-design-variant='b'] .rounded-xl.border {
   html[data-design-variant='b'] .preview-reveal {
     animation: preview-b-rise 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+  /* Hero media: fade only, no downward start position that reads as empty space */
+  html[data-design-variant='b'] .preview-reveal-media {
+    animation: preview-b-fade 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
   html[data-design-variant='b'] .preview-reveal-delay {
     animation-delay: 140ms;
   }
@@ -146,6 +150,15 @@ html[data-design-variant='b'] .rounded-xl.border {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes preview-b-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

@@ -26,13 +26,18 @@ const showcaseImages = {
 } as const;
 ---
 
-<section class="relative overflow-hidden pb-16 pt-6">
+<section class="relative overflow-hidden pb-14 pt-6 sm:pb-16">
   <div class="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-[#5b9bff]/20 blur-3xl" aria-hidden="true"></div>
   <div class="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-[#7ee0ff]/10 blur-3xl" aria-hidden="true"></div>
   <div class="xl-container relative px-4">
-    <div class="grid items-end gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-      <div class="preview-reveal max-w-2xl">
-        <div class="mb-7">
+    {/*
+      Top-align columns (not items-end) so the product shot sits with the brand lockup
+      instead of leaving an empty band above the image. Image column is slightly wider
+      and uses an aspect box so layout reserves space before paint.
+    */}
+    <div class="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch lg:gap-10 xl:gap-12">
+      <div class="preview-reveal flex max-w-xl flex-col xl:max-w-2xl">
+        <div class="mb-6 sm:mb-7">
           <Picture
             src={brandLogo}
             alt="ATW One"
@@ -47,11 +52,11 @@ const showcaseImages = {
           />
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#7ee0ff]">ATW.Net</p>
-        <h1 class="mt-5 font-heading text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]">
+        <h1 class="mt-4 font-heading text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem]">
           CRM. Finance. Operations. AI.
           <span class="mt-2 block text-[#5b9bff]">One system.</span>
         </h1>
-        <p class="mt-6 max-w-xl text-base leading-relaxed text-[#c5d0e0] sm:text-lg">
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-[#c5d0e0] sm:mt-6 sm:text-lg">
           ATW One keeps customers, sales, finance, and operations in one workspace with hosting plus Credits billing and unlimited named seats.
         </p>
         <p class="mt-4 max-w-xl text-sm leading-relaxed text-[#a8b6c9]">
@@ -60,7 +65,7 @@ const showcaseImages = {
             {WORKFORCE.comingOnlineLabel}
           </span>
         </p>
-        <div class="mt-9 flex flex-wrap gap-3">
+        <div class="mt-8 flex flex-wrap gap-3 sm:mt-9">
           <a href={livePath('/trial')} class="rounded-md bg-[#5b9bff] px-6 py-3.5 text-sm font-semibold text-[#06101c] transition hover:brightness-110">
             Start {ERP_TRIAL_LABEL}
           </a>
@@ -69,20 +74,31 @@ const showcaseImages = {
           </a>
         </div>
       </div>
-      <div class="preview-reveal preview-reveal-delay relative">
-        <div class="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#5b9bff]/30 via-transparent to-[#7ee0ff]/10 blur-2xl" aria-hidden="true"></div>
-        <Picture
-          src={dashboardImg}
-          alt="ATW One dashboard showing apps, shortcuts, and organization overview"
-          formats={['avif', 'webp']}
-          widths={[720, 1100]}
-          sizes="(max-width: 1024px) 92vw, 520px"
-          width={1100}
-          height={565}
-          class="relative w-full rounded-2xl border border-white/15 shadow-2xl shadow-black/50"
-          loading="eager"
-          fetchpriority="high"
-        />
+
+      <div class="preview-reveal-media relative flex w-full flex-col">
+        <div class="pointer-events-none absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#5b9bff]/28 via-transparent to-[#7ee0ff]/10 blur-2xl sm:-inset-4" aria-hidden="true"></div>
+        {/*
+          On lg+, stretch the shot to the full copy-column height so there is no empty
+          band above or below the media. Mobile keeps intrinsic aspect ratio.
+        */}
+        <div class="relative min-h-[220px] flex-1 overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/50 aspect-[3838/1976] lg:aspect-auto lg:min-h-[28rem]">
+          <Picture
+            src={dashboardImg}
+            alt="ATW One dashboard showing apps, shortcuts, and organization overview"
+            formats={['avif', 'webp']}
+            widths={[720, 960, 1280, 1600]}
+            sizes="(max-width: 1023px) 92vw, (max-width: 1440px) 54vw, 720px"
+            width={3838}
+            height={1976}
+            class="absolute inset-0 h-full w-full object-cover object-top"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <p class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9]">
+          CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool. Workforce sits beside One ({WORKFORCE.comingOnlineLabel.toLowerCase()}).
+        </p>
       </div>
     </div>
   </div>
