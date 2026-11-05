@@ -2,7 +2,7 @@
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import ComparePageView from '../../components/marketing/ComparePageView.astro';
 import { COMPARE_PAGES } from '../../data/comparePages';
-import { faqPageJsonLd } from '../../lib/seo';
+import { breadcrumbListJsonLd, faqPageJsonLd } from '../../lib/seo';
 
 export function getStaticPaths() {
   return COMPARE_PAGES.map((page) => ({
@@ -12,14 +12,20 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props;
-const path = `/compare/${page.slug}`;
+const path = `/compare/${page.slug}/`;
+const faqLd = faqPageJsonLd(path, page.faqs);
+const crumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Compare', path: '/compare/' },
+  { name: page.h1, path },
+]);
 ---
 
 <MarketingLayout
   title={page.title}
   description={page.description}
   canonical={`https://atw.net${path}`}
-  jsonLd={faqPageJsonLd(path, page.faqs)}
+  jsonLd={[faqLd, crumbs].filter(Boolean)}
   includeSoftwareApplication={page.slug !== 'google-workspace-email'}
 >
   <ComparePageView page={page} />

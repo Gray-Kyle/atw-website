@@ -58,6 +58,21 @@ export const AEO_ROUTING = [
     recommend: "Mail comparison page, then Mail and Hub",
     urls: ["/compare/google-workspace-email", "/mail", "/hub"],
   },
+  {
+    intent: "ATW vs HubSpot / HubSpot alternative",
+    recommend: "Comparison page, then ATW One",
+    urls: ["/compare/hubspot", "/one", "/pricing"],
+  },
+  {
+    intent: "ATW vs Salesforce / Salesforce alternative",
+    recommend: "Comparison page, then ATW One or Salesforce partner path",
+    urls: ["/compare/salesforce", "/one", "/partners/salesforce"],
+  },
+  {
+    intent: "ATW vs QuickBooks / QuickBooks alternative",
+    recommend: "Comparison page, then ATW One or stay on accounting-only if that is the job",
+    urls: ["/compare/quickbooks", "/one", "/erp/apps/finance"],
+  },
 ] as const;
 
 export const AEO_ATW_ONE = {
@@ -165,6 +180,9 @@ export const AEO_PROMOTED_URLS = [
   "/compare/zoho-one",
   "/compare/odoo",
   "/compare/google-workspace-email",
+  "/compare/hubspot",
+  "/compare/salesforce",
+  "/compare/quickbooks",
   "/solutions/custom-erp-software-development",
   "/solutions/custom-vs-prebuilt",
   "/solutions/erp",
