@@ -31,12 +31,12 @@ const showcaseImages = {
   <div class="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-[#7ee0ff]/10 blur-3xl" aria-hidden="true"></div>
   <div class="xl-container relative px-4">
     {/*
-      Top-align columns (not items-end) so the product shot sits with the brand lockup
-      instead of leaving an empty band above the image. Image column is slightly wider
-      and uses an aspect box so layout reserves space before paint.
+      Top-align with natural image aspect (no stretch/squash). Wider media column so the
+      intrinsic-height shot sits with the brand lockup; space below the frame is intentional,
+      filled with a short approved caption rather than distorting the UI screenshot.
     */}
-    <div class="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch lg:gap-10 xl:gap-12">
-      <div class="preview-reveal flex max-w-xl flex-col xl:max-w-2xl">
+    <div class="grid items-start gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 xl:gap-12">
+      <div class="preview-reveal max-w-xl xl:max-w-2xl">
         <div class="mb-6 sm:mb-7">
           <Picture
             src={brandLogo}
@@ -75,30 +75,28 @@ const showcaseImages = {
         </div>
       </div>
 
-      <div class="preview-reveal-media relative flex w-full flex-col">
+      <div class="preview-reveal-media relative w-full">
         <div class="pointer-events-none absolute -inset-3 rounded-3xl bg-gradient-to-br from-[#5b9bff]/28 via-transparent to-[#7ee0ff]/10 blur-2xl sm:-inset-4" aria-hidden="true"></div>
-        {/*
-          On lg+, stretch the shot to the full copy-column height so there is no empty
-          band above or below the media. Mobile keeps intrinsic aspect ratio.
-        */}
-        <div class="relative min-h-[220px] flex-1 overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/50 aspect-[3838/1976] lg:aspect-auto lg:min-h-[28rem]">
-          <Picture
-            src={dashboardImg}
-            alt="ATW One dashboard showing apps, shortcuts, and organization overview"
-            formats={['avif', 'webp']}
-            widths={[720, 960, 1280, 1600]}
-            sizes="(max-width: 1023px) 92vw, (max-width: 1440px) 54vw, 720px"
-            width={3838}
-            height={1976}
-            class="absolute inset-0 h-full w-full object-cover object-top"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </div>
-        <p class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9]">
-          CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool. Workforce sits beside One ({WORKFORCE.comingOnlineLabel.toLowerCase()}).
-        </p>
+        <figure class="relative m-0">
+          <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/50">
+            <Picture
+              src={dashboardImg}
+              alt="ATW One dashboard showing apps, shortcuts, and organization overview"
+              formats={['avif', 'webp']}
+              widths={[720, 960, 1280, 1600]}
+              sizes="(max-width: 1023px) 92vw, (max-width: 1440px) 54vw, 720px"
+              width={3838}
+              height={1976}
+              class="block h-auto w-full max-w-full"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <figcaption class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9]">
+            CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool. Workforce sits beside One ({WORKFORCE.comingOnlineLabel.toLowerCase()}).
+          </figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -125,10 +123,11 @@ const showcaseImages = {
                 formats={['avif', 'webp']}
                 widths={[480, 720]}
                 sizes="(max-width: 768px) 92vw, 30vw"
-                width={720}
-                height={368}
-                class="h-44 w-full object-cover object-top opacity-95 transition duration-500 group-hover:scale-[1.03]"
+                width={1024}
+                height={523}
+                class="h-auto w-full max-w-full opacity-95 transition duration-500 group-hover:scale-[1.02]"
                 loading="lazy"
+                decoding="async"
               />
               <div class="p-5">
                 <h3 class="font-heading text-xl font-semibold text-white">{entry.cardTitle}</h3>
