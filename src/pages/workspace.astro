@@ -11,25 +11,25 @@ const faqs = [
   },
   {
     q: 'Do I need Mail?',
-    a: 'Mail and calendar often travel together. You can start with Mail and grow into WorkSuite tools as you need them.',
+    a: 'Mail is included in ATW; hosted inboxes use Credits. Users without a hosted inbox are free named seats. Calendar and other WorkSuite tools sit alongside Mail when you need them.',
   },
   {
     q: 'How do I learn more?',
-    a: 'Contact us for WorkSuite enablement, or see Mail pricing if you need domain email first.',
+    a: 'Contact us for WorkSuite enablement. For domain email, see Mail: it is included in ATW, and hosted inboxes use Credits.',
   },
 ] as const;
 ---
 
 <MarketingLayout
   title="ATW WorkSuite | calendar, docs, meetings, messaging"
-  description="Calendar, documents, meetings, and messaging next to ATW One and Mail."
+  description="Calendar, documents, meetings, and messaging next to ATW One and Mail. Mail is included in ATW; hosted inboxes use Credits."
   canonical="https://atw.net/workspace"
   jsonLd={faqPageJsonLd('/workspace', faqs)}
 >
   <SystemMarketingPage
     systemId="workspace"
     headline="Calendar, documents, meetings, and messaging"
-    lead="WorkSuite sits next to ATW One so your team can schedule, collaborate, meet, and message without another disconnected suite."
+    lead="WorkSuite sits next to ATW One so your team can schedule, collaborate, meet, and message without another disconnected suite. Mail is included in ATW; hosted inboxes use Credits."
     primaryCta={{ label: 'Talk to us', href: '/contact' }}
     secondaryCta={{ label: 'Open WorkSuite', href: PRODUCT.worksuite }}
     faqs={faqs}

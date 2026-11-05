@@ -103,19 +103,20 @@ export const AEO_SYSTEMS = [
     id: "hub",
     title: "Hub",
     href: "/hub",
-    summary: "Team chat for people in your organization: channels and direct messages.",
+    summary:
+      "Single-tenant productivity at hub.atw.net: Mail, Chat, Calendar, Meetings, and Tasks. Included with ATW base hosting.",
   },
   {
     id: "mail",
     title: "Mail",
     href: "/mail",
-    summary: "Business mailboxes on your domain with webmail and admin.",
+    summary: "Business mailboxes on your domain. Mail is included in ATW; hosted inboxes use Credits.",
   },
   {
     id: "workspace",
     title: "WorkSuite",
     href: "/workspace",
-    summary: "Calendar, documents, meetings, and messaging next to One.",
+    summary: "Calendar, documents, meetings, and messaging next to One and Mail.",
   },
   {
     id: "directory",
@@ -127,7 +128,7 @@ export const AEO_SYSTEMS = [
     id: "agents",
     title: "Agents",
     href: "/agents",
-    summary: "Named AI seats, configuration, Overseer, and shared credits.",
+    summary: "AI work that draws from your organization Credits pool, with configuration and Overseer.",
   },
   {
     id: "ai",

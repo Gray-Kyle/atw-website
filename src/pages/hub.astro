@@ -1,17 +1,37 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
-import PageHero from '../components/marketing/PageHero.astro';
+import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
 import { PRODUCT } from '../lib/site';
+import { faqPageJsonLd } from '../lib/seo';
+
+const faqs = [
+  {
+    q: 'What is ATW Hub?',
+    a: 'Hub is the single-tenant productivity suite at hub.atw.net: Mail, Chat, Calendar, Meetings, and Tasks for your organization.',
+  },
+  {
+    q: 'Is Hub a separate purchase?',
+    a: 'No. Hub is included with ATW base hosting. It is not a customer-paid SKU.',
+  },
+  {
+    q: 'How does Hub relate to Mail?',
+    a: 'Mail is part of Hub. Mail is included in ATW; hosted inboxes use Credits. Users without a hosted inbox are free named seats.',
+  },
+] as const;
 ---
 
-<MarketingLayout title="ATW Hub | team chat" description="Channels and direct messages for your organization." canonical="https://atw.net/hub">
-  <PageHero
-    title="Team chat for your organization"
-    description="Channels and direct messages for the people in your company, with the same ATW sign-in model as the rest of the network."
-  >
-    <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="/contact" class="rounded-lg bg-brand-navy px-6 py-3 text-sm font-semibold text-white">Talk to us</a>
-      <a href={PRODUCT.hub} class="rounded-lg border-2 border-brand-navy px-6 py-3 text-sm font-semibold text-brand-ink">Open Hub</a>
-    </div>
-  </PageHero>
+<MarketingLayout
+  title="ATW Hub | Mail, Chat, Calendar, Meetings, Tasks"
+  description="Single-tenant productivity for your organization: Mail, Chat, Calendar, Meetings, and Tasks. Included with ATW base hosting."
+  canonical="https://atw.net/hub"
+  jsonLd={faqPageJsonLd('/hub', faqs)}
+>
+  <SystemMarketingPage
+    systemId="hub"
+    headline="Productivity suite for your organization"
+    lead="Hub brings Mail, Chat, Calendar, Meetings, and Tasks together at hub.atw.net. It is included with ATW base hosting, not a separate purchase."
+    primaryCta={{ label: 'Talk to us', href: '/contact' }}
+    secondaryCta={{ label: 'Open Hub', href: PRODUCT.hub }}
+    faqs={faqs}
+  />
 </MarketingLayout>

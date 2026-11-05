@@ -7,7 +7,7 @@ export const ATW_MAIL_HERO = {
   badge: ATW_MAIL_PRODUCT_NAME,
   headline: 'Secure business email for your organization',
   subhead:
-    'Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. Start with a free trial, then keep mail only or add the full WorkSuite inside ATW One.',
+    'Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. Mail is included in ATW; hosted inboxes use Credits.',
   primaryCta: `Start ${ERP_TRIAL_LABEL}`,
   primaryHref: MAIL_SIGNUP,
   secondaryCta: 'Sign in to webmail',
@@ -24,8 +24,8 @@ export const ATW_MAIL_FEATURE_PILLARS = [
     body: 'No ads in your inbox. Clean webmail built for business, not consumer mail with upsells.',
   },
   {
-    title: 'Part of WorkSuite, or mail on its own',
-    body: 'Use ATW Mail standalone, or upgrade to WorkSuite for calendar, office files, meetings, and messaging in the same ATW One workspace.',
+    title: 'Included in ATW',
+    body: 'Mail is included in ATW; hosted inboxes use Credits. Users without a hosted inbox are free named seats.',
   },
   {
     title: 'Works with your favorite email app',
@@ -52,11 +52,11 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'Is there a free plan forever?',
-    a: `No. There is no permanent free tier. ATW Mail starts with a ${ERP_TRIAL_PROMO_LABEL.toLowerCase()}. After the trial, choose mail-only billing or add WorkSuite for calendar, documents, and more.`,
+    a: `No. There is no permanent free tier. Mail is included in ATW; hosted inboxes use Credits. Users without a hosted inbox are free named seats. ATW Mail starts with a ${ERP_TRIAL_PROMO_LABEL.toLowerCase()}.`,
   },
   {
     q: 'What is the difference between ATW Mail and WorkSuite?',
-    a: 'ATW Mail is business email only: webmail, custom domain, and admin. WorkSuite adds shared calendars, in-app office files, and optional meetings and messaging, all integrated into your ATW One dashboard.',
+    a: 'ATW Mail is business email: webmail, custom domain, and admin. Mail is included in ATW; hosted inboxes use Credits. WorkSuite covers calendar, documents, meetings, and messaging alongside Mail and One.',
   },
   {
     q: 'What DNS records do I need?',
@@ -64,7 +64,7 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'How does ATW Mail relate to ATW One?',
-    a: 'ATW One is your CRM, finance, and operations workspace. ATW Mail can run standalone at mail.atw.net, or as the email module inside WorkSuite when you use ATW One, with the same org and sign-in.',
+    a: 'ATW One is your CRM, finance, and operations workspace. Mail is included in ATW; hosted inboxes use Credits. Sign-in and org boundaries stay shared across One, Mail, and Hub.',
   },
 ] as const;
 

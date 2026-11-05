@@ -9,8 +9,8 @@ const faqs = [
     a: 'Hosted business email on your domain with webmail, admin controls, and IMAP/SMTP for any mail client.',
   },
   {
-    q: 'Can I use ATW Mail without ATW One?',
-    a: 'Yes. Mail can run standalone or as part of WorkSuite inside One.',
+    q: 'Is Mail a separate plan?',
+    a: 'No. Mail is included in ATW; hosted inboxes use Credits. Users without a hosted inbox are free named seats.',
   },
   {
     q: 'How do I get started?',
@@ -21,14 +21,14 @@ const faqs = [
 
 <MarketingLayout
   title="ATW Mail | secure business email"
-  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. Included in ATW; hosted inboxes use Credits."
+  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. Mail is included in ATW; hosted inboxes use Credits."
   canonical="https://atw.net/mail"
   jsonLd={faqPageJsonLd('/mail', faqs)}
 >
   <SystemMarketingPage
     systemId="mail"
     headline="Secure business email for your organization"
-    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP."
+    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. Mail is included in ATW; hosted inboxes use Credits."
     primaryCta={{ label: 'Talk to us', href: '/contact' }}
     secondaryCta={{ label: 'WorkSuite', href: '/workspace' }}
     faqs={faqs}
