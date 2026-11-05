@@ -32,10 +32,14 @@ html[data-design-variant='b'] {
 
 html[data-design-variant='b'] body {
   background:
-    radial-gradient(900px 500px at 85% -5%, rgba(91, 155, 255, 0.2), transparent 55%),
-    radial-gradient(700px 420px at 0% 20%, rgba(126, 224, 255, 0.08), transparent 50%),
-    linear-gradient(165deg, var(--preview-b-deep), #07111f 40%, #0a1628 100%);
+    radial-gradient(900px 480px at 88% -8%, rgba(91, 155, 255, 0.14), transparent 55%),
+    linear-gradient(180deg, var(--preview-b-deep), #07111f 45%, #091425 100%);
   color: var(--color-foreground);
+  letter-spacing: 0.005em;
+}
+
+html[data-design-variant='b'] .xl-container {
+  max-width: 72rem;
 }
 
 html[data-design-variant='b'] ::selection {

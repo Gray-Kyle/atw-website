@@ -1,21 +1,26 @@
 ---
 import { Picture } from 'astro:assets';
-import { AUTH_SIGNIN, livePath } from '../../../lib/site';
+import {
+  B_NAV_PRODUCTS,
+  B_NAV_RESOURCES,
+  B_NAV_WHY,
+  B_PRIMARY_CTA,
+  B_SECONDARY_AUTH,
+} from '../../../data/designPreviewB';
+import { livePath } from '../../../lib/site';
 import siteLogoLight from '../../../assets/images/logo/logo_light.png';
 
 const path = Astro.url.pathname;
-const links = [
-  { href: '/one/', label: 'One' },
-  { href: '/#workforce', label: 'Workforce' },
-  { href: '/why-us/', label: 'Why Us' },
-  { href: '/pricing/', label: 'Pricing' },
-  { href: '/compare/', label: 'Compare' },
-];
+const isActive = (href: string) => {
+  const base = href.replace(/\/$/, '') || '/';
+  if (base === '/') return path === '/' || path === '';
+  return path === base || path.startsWith(`${base}/`) || path.startsWith(`${base}#`);
+};
 ---
 
-<header class="relative z-50 w-full border-b border-white/10 bg-[#07111f]/95 backdrop-blur-xl">
-  <div class="xl-container flex items-center justify-between gap-4 py-3.5">
-    <a href="/" class="flex items-center" aria-label="ATW.Net home">
+<header class="relative z-50 w-full border-b border-white/10 bg-[#07111f]/96 backdrop-blur-xl" data-b-nav>
+  <div class="xl-container flex items-center justify-between gap-3 py-3.5">
+    <a href="/" class="flex shrink-0 items-center" aria-label="ATW.Net home">
       <Picture
         src={siteLogoLight}
         alt="ATW.Net"
@@ -29,56 +34,249 @@ const links = [
         decoding="async"
       />
     </a>
-    <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
-      {
-        links.map((link) => (
-          <a
-            href={link.href}
-            class:list={[
-              'text-sm font-medium tracking-wide transition-colors',
-              path.startsWith(link.href.replace(/\/$/, '')) ? 'text-white' : 'text-white/65 hover:text-white',
-            ]}
+
+    <nav class="hidden items-center gap-1 xl:gap-2 lg:flex" aria-label="Primary">
+      <div class="relative" data-nav-dropdown>
+        <button
+          type="button"
+          class="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-nav-trigger
+        >
+          Products
+          <svg class="h-3.5 w-3.5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+            ><path
+              fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd"></path></svg
           >
-            {link.label}
-          </a>
-        ))
-      }
+        </button>
+        <div
+          class="invisible absolute left-0 top-full z-50 mt-2 w-[min(92vw,40rem)] origin-top-left scale-95 rounded-xl border border-white/12 bg-[#0b1628] p-3 opacity-0 shadow-2xl shadow-black/50 transition duration-150"
+          data-nav-panel
+          hidden
+        >
+          <p class="px-2 pb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7ee0ff]">ATW systems</p>
+          <div class="grid gap-1 sm:grid-cols-2">
+            {
+              B_NAV_PRODUCTS.map((item) => (
+                <a
+                  href={item.href}
+                  class="rounded-lg px-3 py-3 transition hover:bg-white/5"
+                >
+                  <span class="flex flex-wrap items-center gap-2">
+                    <span class="text-sm font-semibold text-white">{item.title}</span>
+                    {item.status === 'coming-online' ? (
+                      <span class="rounded border border-[#5b9bff]/35 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7ee0ff]">
+                        Coming online
+                      </span>
+                    ) : null}
+                    {item.notInTrial ? (
+                      <span class="rounded border border-white/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#a8b6c9]">
+                        Paid hosting
+                      </span>
+                    ) : null}
+                  </span>
+                  <span class="mt-1 block text-xs leading-relaxed text-[#a8b6c9]">{item.summary}</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
       <a
-        href={livePath('/book')}
-        class="preview-glow-pulse rounded-md border border-[#4d8fff]/50 bg-[#4d8fff]/15 px-4 py-2 text-sm font-semibold text-white"
+        href={livePath('/pricing')}
+        class:list={[
+          'rounded-md px-3 py-2 text-sm font-medium transition',
+          isActive('/pricing') ? 'text-white' : 'text-white/70 hover:bg-white/5 hover:text-white',
+        ]}
       >
-        Book a Call
+        Pricing
       </a>
-      <a href={AUTH_SIGNIN} class="text-sm font-medium text-white/70 hover:text-white">Sign In</a>
+
+      <div class="relative" data-nav-dropdown>
+        <button
+          type="button"
+          class="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-nav-trigger
+        >
+          Why ATW
+          <svg class="h-3.5 w-3.5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+            ><path
+              fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd"></path></svg
+          >
+        </button>
+        <div
+          class="invisible absolute left-0 top-full z-50 mt-2 w-72 origin-top-left scale-95 rounded-xl border border-white/12 bg-[#0b1628] p-2 opacity-0 shadow-2xl shadow-black/50 transition duration-150"
+          data-nav-panel
+          hidden
+        >
+          {
+            B_NAV_WHY.map((item) => (
+              <a href={item.href} class="block rounded-lg px-3 py-3 transition hover:bg-white/5">
+                <span class="text-sm font-semibold text-white">{item.title}</span>
+                {item.summary ? <span class="mt-1 block text-xs text-[#a8b6c9]">{item.summary}</span> : null}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="relative" data-nav-dropdown>
+        <button
+          type="button"
+          class="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/5 hover:text-white"
+          aria-expanded="false"
+          aria-haspopup="true"
+          data-nav-trigger
+        >
+          Resources
+          <svg class="h-3.5 w-3.5 opacity-70" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+            ><path
+              fill-rule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+              clip-rule="evenodd"></path></svg
+          >
+        </button>
+        <div
+          class="invisible absolute left-0 top-full z-50 mt-2 w-80 origin-top-left scale-95 rounded-xl border border-white/12 bg-[#0b1628] p-2 opacity-0 shadow-2xl shadow-black/50 transition duration-150"
+          data-nav-panel
+          hidden
+        >
+          {
+            B_NAV_RESOURCES.map((item) => (
+              <a href={item.href} class="block rounded-lg px-3 py-3 transition hover:bg-white/5">
+                <span class="text-sm font-semibold text-white">{item.title}</span>
+                {item.summary ? <span class="mt-1 block text-xs text-[#a8b6c9]">{item.summary}</span> : null}
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </nav>
+
+    <div class="hidden items-center gap-2 lg:flex">
+      <a href={B_SECONDARY_AUTH.href} class="rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:text-white">
+        {B_SECONDARY_AUTH.label}
+      </a>
+      <a
+        href={B_PRIMARY_CTA.href}
+        class="rounded-md bg-[#5b9bff] px-4 py-2 text-sm font-semibold text-[#06101c] transition hover:brightness-110"
+      >
+        {B_PRIMARY_CTA.label}
+      </a>
+    </div>
+
     <button
       type="button"
       id="mobile-nav-toggle"
-      class="inline-flex items-center rounded border border-white/20 px-3 py-2 text-sm font-medium text-white lg:hidden"
+      class="inline-flex items-center rounded-md border border-white/20 px-3 py-2 text-sm font-medium text-white lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-nav-panel"
     >
       Menu
     </button>
   </div>
-  <div id="mobile-nav-panel" class="hidden border-t border-white/10 bg-[#0b1729] lg:hidden" aria-hidden="true">
-    <div class="xl-container flex flex-col gap-1 py-3">
-      {links.map((link) => <a href={link.href} class="py-2.5 text-sm font-medium text-white">{link.label}</a>)}
-      <a href={livePath('/book')} class="py-2.5 text-sm font-semibold text-[#6ee7ff]">Book a Call</a>
-      <a href={AUTH_SIGNIN} class="py-2.5 text-sm text-white/70">Sign In</a>
-      <a href="/services/" class="py-2.5 text-sm text-white/55">Services</a>
-      <a href="/partners/" class="py-2.5 text-sm text-white/55">Partners</a>
+
+  <div id="mobile-nav-panel" class="hidden max-h-[min(80vh,40rem)] overflow-y-auto border-t border-white/10 bg-[#0b1729] lg:hidden" aria-hidden="true">
+    <div class="xl-container flex flex-col gap-1 py-4">
+      <p class="px-1 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7ee0ff]">Products</p>
+      {
+        B_NAV_PRODUCTS.map((item) => (
+          <a href={item.href} class="rounded-md px-2 py-2.5 text-sm font-medium text-white">
+            {item.title}
+            {item.status === 'coming-online' ? (
+              <span class="ml-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7ee0ff]">Coming online</span>
+            ) : null}
+            {item.notInTrial ? (
+              <span class="ml-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#a8b6c9]">Paid hosting</span>
+            ) : null}
+          </a>
+        ))
+      }
+      <a href={livePath('/pricing')} class="mt-2 rounded-md px-2 py-2.5 text-sm font-medium text-white">Pricing</a>
+      <p class="mt-3 px-1 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7ee0ff]">Why ATW</p>
+      {B_NAV_WHY.map((item) => <a href={item.href} class="rounded-md px-2 py-2.5 text-sm font-medium text-white">{item.title}</a>)}
+      <p class="mt-3 px-1 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#7ee0ff]">Resources</p>
+      {B_NAV_RESOURCES.map((item) => <a href={item.href} class="rounded-md px-2 py-2.5 text-sm font-medium text-white">{item.title}</a>)}
+      <div class="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4">
+        <a href={B_PRIMARY_CTA.href} class="rounded-md bg-[#5b9bff] px-4 py-3 text-center text-sm font-semibold text-[#06101c]">
+          {B_PRIMARY_CTA.label}
+        </a>
+        <a href={B_SECONDARY_AUTH.href} class="rounded-md border border-white/20 px-4 py-3 text-center text-sm font-medium text-white">
+          {B_SECONDARY_AUTH.label}
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
 <script>
-  const toggle = document.getElementById('mobile-nav-toggle');
-  const panel = document.getElementById('mobile-nav-panel');
-  toggle?.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    panel?.classList.toggle('hidden', !open);
-    panel?.setAttribute('aria-hidden', open ? 'false' : 'true');
+  const root = document.querySelector('[data-b-nav]');
+  const mobileToggle = document.getElementById('mobile-nav-toggle');
+  const mobilePanel = document.getElementById('mobile-nav-panel');
+
+  function closeDropdown(dropdown: Element) {
+    const trigger = dropdown.querySelector('[data-nav-trigger]');
+    const panel = dropdown.querySelector('[data-nav-panel]');
+    trigger?.setAttribute('aria-expanded', 'false');
+    panel?.classList.add('invisible', 'opacity-0', 'scale-95');
+    panel?.classList.remove('visible', 'opacity-100', 'scale-100');
+    panel?.setAttribute('hidden', '');
+  }
+
+  function openDropdown(dropdown: Element) {
+    root?.querySelectorAll('[data-nav-dropdown]').forEach((d) => {
+      if (d !== dropdown) closeDropdown(d);
+    });
+    const trigger = dropdown.querySelector('[data-nav-trigger]');
+    const panel = dropdown.querySelector('[data-nav-panel]');
+    trigger?.setAttribute('aria-expanded', 'true');
+    panel?.removeAttribute('hidden');
+    panel?.classList.remove('invisible', 'opacity-0', 'scale-95');
+    panel?.classList.add('visible', 'opacity-100', 'scale-100');
+  }
+
+  root?.querySelectorAll('[data-nav-dropdown]').forEach((dropdown) => {
+    const trigger = dropdown.querySelector('[data-nav-trigger]');
+    trigger?.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const open = trigger.getAttribute('aria-expanded') === 'true';
+      if (open) closeDropdown(dropdown);
+      else openDropdown(dropdown);
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node | null;
+    root?.querySelectorAll('[data-nav-dropdown]').forEach((dropdown) => {
+      if (target && dropdown.contains(target)) return;
+      closeDropdown(dropdown);
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      root?.querySelectorAll('[data-nav-dropdown]').forEach(closeDropdown);
+      if (mobileToggle && mobilePanel && mobileToggle.getAttribute('aria-expanded') === 'true') {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobilePanel.classList.add('hidden');
+        mobilePanel.setAttribute('aria-hidden', 'true');
+      }
+    }
+  });
+
+  mobileToggle?.addEventListener('click', () => {
+    const open = mobileToggle.getAttribute('aria-expanded') !== 'true';
+    mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobilePanel?.classList.toggle('hidden', !open);
+    mobilePanel?.setAttribute('aria-hidden', open ? 'false' : 'true');
   });
 </script>
