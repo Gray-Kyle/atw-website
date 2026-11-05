@@ -5,6 +5,7 @@ import {
   DEFAULT_OG_IMAGE,
   DEFAULT_OG_IMAGE_ALT,
   DEFAULT_OG_IMAGE_HEIGHT,
+  DEFAULT_OG_IMAGE_TYPE,
   DEFAULT_OG_IMAGE_WIDTH,
   SITE_NAME,
   TWITTER_HANDLE,
@@ -26,6 +27,7 @@ interface Props {
   ogImageAlt?: string;
   ogImageWidth?: number;
   ogImageHeight?: number;
+  ogImageType?: string;
   noindex?: boolean;
 }
 
@@ -40,6 +42,7 @@ const {
   ogImageAlt = DEFAULT_OG_IMAGE_ALT,
   ogImageWidth = DEFAULT_OG_IMAGE_WIDTH,
   ogImageHeight = DEFAULT_OG_IMAGE_HEIGHT,
+  ogImageType = DEFAULT_OG_IMAGE_TYPE,
   noindex = false,
 } = Astro.props;
 
@@ -93,6 +96,7 @@ if (jsonLd) {
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:image:width" content={String(ogImageWidth)} />
     <meta property="og:image:height" content={String(ogImageHeight)} />
+    <meta property="og:image:type" content={ogImageType} />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />

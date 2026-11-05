@@ -2,11 +2,14 @@
 
 export const SITE_ORIGIN = 'https://atw.net';
 export const SITE_NAME = 'ATW Network';
-export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/images/logo/logo.png`;
-export const DEFAULT_OG_IMAGE_ALT = 'ATW Network';
-/** Current default share image dimensions (square logo). Replace when 1200×630 art ships. */
-export const DEFAULT_OG_IMAGE_WIDTH = 1050;
-export const DEFAULT_OG_IMAGE_HEIGHT = 1050;
+/** Organization JSON-LD logo (keep as the brand mark, not the social share art). */
+export const ORGANIZATION_LOGO = `${SITE_ORIGIN}/images/logo/logo.png`;
+export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og/atw-default.png`;
+export const DEFAULT_OG_IMAGE_ALT =
+  'ATW One: CRM, Finance, Operations, and AI in One Place';
+export const DEFAULT_OG_IMAGE_WIDTH = 1200;
+export const DEFAULT_OG_IMAGE_HEIGHT = 630;
+export const DEFAULT_OG_IMAGE_TYPE = 'image/png';
 export const TWITTER_HANDLE = '@atwnet';
 
 export const SOCIAL_PROFILES = [
@@ -73,7 +76,7 @@ export function organizationJsonLd() {
     name: 'ATW Network',
     alternateName: ['ATW.Net', 'ATW'],
     url: `${SITE_ORIGIN}/`,
-    logo: DEFAULT_OG_IMAGE,
+    logo: ORGANIZATION_LOGO,
     email: 'support@atw.net',
     telephone: '+1-330-333-2256',
     address: {
