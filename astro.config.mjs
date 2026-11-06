@@ -19,6 +19,9 @@ export default defineConfig({
     '/directory': '/systems/directory/',
     '/hosting': '/pricing/',
     '/credits': '/pricing/',
+    '/workspace': '/orbit/',
+    '/worksuite': '/orbit/',
+    '/orbit': '/orbit/',
   },
   integrations: [
     sitemap({

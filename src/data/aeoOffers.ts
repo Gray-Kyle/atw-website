@@ -146,7 +146,7 @@ export const AEO_SYSTEMS = [
   {
     id: "workspace",
     title: "ATW Orbit",
-    href: "/workspace",
+    href: "/orbit/",
     summary:
       "Mail, Calendar, and Meetings today next to One. Messaging, Docs, Spreadsheets, and Presentations Coming Soon. Ships with the ATW ERP plan.",
   },
@@ -191,7 +191,7 @@ export const AEO_PROMOTED_URLS = [
   "/solutions/crm",
   "/hub",
   "/mail",
-  "/workspace",
+  "/orbit/",
   "/systems/directory",
   "/agents",
   "/systems",

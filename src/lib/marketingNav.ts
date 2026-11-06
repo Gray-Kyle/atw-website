@@ -162,7 +162,7 @@ export const marketingSystems: MarketingSystem[] = [
   {
     id: 'workspace',
     title: 'Orbit',
-    href: '/workspace',
+    href: '/orbit/',
     summary:
       'ATW Orbit productivity apps next to One: Mail, Calendar, and Meetings are available today. Messaging (SMS, Voice), Docs, Spreadsheets, and Presentations are Coming Soon. Ships with the ATW ERP plan; Mail draws from the organization Credits pool.',
     apps: [

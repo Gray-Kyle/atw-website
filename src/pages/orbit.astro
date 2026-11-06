@@ -23,15 +23,20 @@ const faqs = [
 <MarketingLayout
   title="ATW Orbit | Mail, Calendar, Meetings"
   description="ATW Orbit sits next to ATW One: Mail, Calendar, and Meetings today; Messaging, Docs, Spreadsheets, and Presentations Coming Soon. Mail draws from your Credits pool."
-  canonical="https://atw.net/workspace"
-  jsonLd={faqPageJsonLd('/workspace', faqs)}
+  canonical="https://atw.net/orbit/"
+  jsonLd={faqPageJsonLd('/orbit/', faqs)}
 >
   <SystemMarketingPage
     systemId="workspace"
     headline="Mail, Calendar, and Meetings next to ATW One"
     lead="ATW Orbit ships with the ATW ERP plan so your team can schedule and meet without another disconnected suite. Mail is an Orbit app that draws from the organization Credits pool. Messaging, Docs, Spreadsheets, and Presentations are Coming Soon."
-    primaryCta={{ label: 'See pricing', href: '/pricing' }}
+    primaryCta={{ label: 'See pricing', href: '/pricing/' }}
     secondaryCta={{ label: 'Open ATW Orbit', href: PRODUCT.worksuite }}
     faqs={faqs}
+    productWordmarkSrc="/images/logo/atw-orbit-wordmark.webp"
+    productWordmarkPng="/images/logo/atw-orbit-wordmark.png"
+    productWordmarkAlt="ATW Orbit"
+    productWordmarkWidth={320}
+    productWordmarkHeight={72}
   />
 </MarketingLayout>

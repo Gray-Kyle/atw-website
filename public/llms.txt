@@ -24,7 +24,7 @@ Agent hub: https://atw.net/for-agents
 - One: https://atw.net/one
 - Hub: https://atw.net/hub
 - Mail: https://atw.net/mail
-- ATW Orbit: https://atw.net/workspace
+- ATW Orbit: https://atw.net/orbit/
 - Directory: https://atw.net/systems/directory
 - Agents: https://atw.net/agents
 - Catalog: https://atw.net/systems

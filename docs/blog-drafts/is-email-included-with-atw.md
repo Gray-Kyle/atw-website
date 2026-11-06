@@ -21,7 +21,7 @@ If you are leaving Gmail, Microsoft 365, or another host, plan DNS, cutover wind
 ## Related reading on the site
 
 - Mail product page: atw.net/mail
-- ATW Orbit: atw.net/workspace
+- ATW Orbit: atw.net/orbit
 - Hub: atw.net/hub
 - ATW Mail vs Google Workspace: atw.net/compare/google-workspace-email
 

@@ -17,6 +17,7 @@ const ROUTES = [
   { path: '/partners', mustInclude: ['Technology partners'] },
   { path: '/book', mustInclude: ['Book a call', 'atw-booking-root'] },
   { path: '/one', mustInclude: ['ATW One'] },
+  { path: '/orbit/', mustInclude: ['ATW Orbit', 'Mail', 'Calendar', 'Meetings'] },
   { path: '/terms', mustInclude: ['Terms'] },
   { path: '/for-agents', mustInclude: ['For AI agents'] },
   { path: '/blog', mustInclude: ['Blog'] },
