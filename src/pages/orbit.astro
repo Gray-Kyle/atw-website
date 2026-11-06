@@ -1,0 +1,42 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
+import { PRODUCT } from '../lib/site';
+import { faqPageJsonLd } from '../lib/seo';
+
+const faqs = [
+  {
+    q: 'What is ATW Orbit?',
+    a: 'ATW Orbit is the productivity suite next to ATW One. Mail, Calendar, and Meetings are available today. Messaging (SMS, Voice), Docs, Spreadsheets, and Presentations are Coming Soon. Orbit ships with the ATW ERP plan; there is no separate per-seat Orbit SKU.',
+  },
+  {
+    q: 'Is Mail part of Orbit?',
+    a: 'Yes. Mail is an ATW Orbit app. You can add mailboxes for any user; hosted inboxes draw from the organization Credits pool. There is no separate Mail plan.',
+  },
+  {
+    q: 'How do I learn more?',
+    a: 'See /pricing for the ATW ERP plan that includes Orbit and Hub, or contact us. The trial includes ATW One, Workforce, Directory, and ATW AI only. Mail, Orbit mailboxes, and Sandbox are not part of the trial.',
+  },
+] as const;
+---
+
+<MarketingLayout
+  title="ATW Orbit | Mail, Calendar, Meetings"
+  description="ATW Orbit sits next to ATW One: Mail, Calendar, and Meetings today; Messaging, Docs, Spreadsheets, and Presentations Coming Soon. Mail draws from your Credits pool."
+  canonical="https://atw.net/orbit/"
+  jsonLd={faqPageJsonLd('/orbit/', faqs)}
+>
+  <SystemMarketingPage
+    systemId="workspace"
+    headline="Mail, Calendar, and Meetings next to ATW One"
+    lead="ATW Orbit ships with the ATW ERP plan so your team can schedule and meet without another disconnected suite. Mail is an Orbit app that draws from the organization Credits pool. Messaging, Docs, Spreadsheets, and Presentations are Coming Soon."
+    primaryCta={{ label: 'See pricing', href: '/pricing/' }}
+    secondaryCta={{ label: 'Open ATW Orbit', href: PRODUCT.worksuite }}
+    faqs={faqs}
+    productWordmarkSrc="/images/logo/atw-orbit-wordmark.webp"
+    productWordmarkPng="/images/logo/atw-orbit-wordmark.png"
+    productWordmarkAlt="ATW Orbit"
+    productWordmarkWidth={320}
+    productWordmarkHeight={110}
+  />
+</MarketingLayout>

@@ -1,22 +1,23 @@
 # What is ATW One?
 
-ATW One is ATW Network's ERP/CRM workspace: one place for customers, sales, finance, operations, and related work, with a shared Credits pool for usage instead of charging mainly by named seats. Hub productivity (Mail, Chat, Calendar, Meetings, Tasks) is included with ATW base hosting, and AI work draws from the same Credits pool.
+ATW One is ATW.Net's ERP/CRM workspace: one place for customers, sales, finance, operations, and related work, with a shared Credits pool for usage instead of charging mainly by named seats. ATW Orbit (Mail, Calendar, and Meetings today) and Hub (an Outlook-like client) ship with the ATW ERP plan, and AI work draws from the same Credits pool.
 
 ## Who it is for
 
-Teams that are tired of duplicate customer records, spreadsheet handoffs, and separate tools for pipeline, books, and day-to-day collaboration. If you want one organization boundary for ERP/CRM plus mail and Hub, ATW One is the product path.
+Teams that are tired of duplicate customer records, spreadsheet handoffs, and separate tools for pipeline, books, and day-to-day collaboration. If you want one organization boundary for ERP/CRM plus Orbit mail and Hub, ATW One is the product path.
 
 ## What you get in the workspace
 
 - CRM and customer records shared with finance and operations
 - Finance and operational workflows on the same platform
 - Room for HR, marketing, knowledge, and custom apps when you need them
-- Hub included: Mail, Chat, Calendar, Meetings, and Tasks
+- ATW Orbit: Mail, Calendar, and Meetings (Messaging, Docs, Spreadsheets, and Presentations Coming Soon)
+- Hub included with every plan as an Outlook-like client
 - Agents and related AI features that draw organization Credits
 
 ## How billing is framed
 
-ATW uses a base hosting tier plus Credits. Named users are not the primary meter for the core suite. Mail is included; hosted inboxes use Credits. Users without a hosted inbox are free named seats. Exact dollar amounts and Credit rates are published on the live pricing experience when you are ready to buy; this article does not quote them.
+ATW uses a base hosting tier plus Credits. Named users are not the primary meter for the core suite. Mail is an Orbit app; hosted inboxes use Credits. Users without a hosted inbox are free named seats. Exact dollar amounts and Credit rates are published on the live pricing experience when you are ready to buy; this article does not quote them.
 
 ## ATW One vs ATW Services
 
@@ -34,7 +35,7 @@ Both. It is positioned as a unified ERP/CRM workspace so sales, finance, and ope
 
 ### Is email a separate product?
 
-Mail is included in ATW. Hosted inboxes use Credits. Hub bundles Mail with Chat, Calendar, Meetings, and Tasks on base hosting.
+No. Mail is an ATW Orbit app. Hosted inboxes use Credits. Hub is a separate Outlook-like client included with every plan.
 
 ### Does AI cost extra seats?
 

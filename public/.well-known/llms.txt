@@ -1,4 +1,4 @@
-# ATW Network
+# ATW.Net
 > See https://atw.net/llms.txt for the canonical agent summary.
 
 Canonical: https://atw.net/llms.txt

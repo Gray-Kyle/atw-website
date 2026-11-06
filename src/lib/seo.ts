@@ -1,7 +1,7 @@
 /** Shared SEO / AEO helpers for the marketing site. */
 
 export const SITE_ORIGIN = 'https://atw.net';
-export const SITE_NAME = 'ATW Network';
+export const SITE_NAME = 'ATW.Net';
 /** Organization JSON-LD logo (keep as the brand mark, not the social share art). */
 export const ORGANIZATION_LOGO = `${SITE_ORIGIN}/images/logo/logo.png`;
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og/atw-default.png`;
@@ -73,8 +73,8 @@ export function organizationJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     '@id': `${SITE_ORIGIN}/#organization`,
-    name: 'ATW Network',
-    alternateName: ['ATW.Net', 'ATW'],
+    name: 'ATW.Net',
+    alternateName: ['ATW', 'ATW.Net'],
     url: `${SITE_ORIGIN}/`,
     logo: ORGANIZATION_LOGO,
     email: 'support@atw.net',
@@ -127,7 +127,7 @@ const ATW_ONE_OFFERS = [
     name: 'Starter',
     price: '299',
     priceCurrency: 'USD',
-    description: 'Starter hosting with 1,200,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    description: 'Starter hosting with 1,200,000 Credits per month. Includes ATW Orbit, Hub, and sandbox.',
     url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
@@ -142,7 +142,7 @@ const ATW_ONE_OFFERS = [
     name: 'Growth',
     price: '1999',
     priceCurrency: 'USD',
-    description: 'Growth hosting with 12,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    description: 'Growth hosting with 12,000,000 Credits per month. Includes ATW Orbit, Hub, and sandbox.',
     url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
@@ -157,7 +157,7 @@ const ATW_ONE_OFFERS = [
     name: 'Business',
     price: '9999',
     priceCurrency: 'USD',
-    description: 'Business hosting with 120,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    description: 'Business hosting with 120,000,000 Credits per month. Includes ATW Orbit, Hub, and sandbox.',
     url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {

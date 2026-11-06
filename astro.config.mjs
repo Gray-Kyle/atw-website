@@ -19,6 +19,10 @@ export default defineConfig({
     '/directory': '/systems/directory/',
     '/hosting': '/pricing/',
     '/credits': '/pricing/',
+    // Slashless /orbit is handled in public/_redirects + pages-worker.
+    // Do not add '/orbit' here: it would overwrite src/pages/orbit.astro.
+    '/workspace': '/orbit/',
+    '/worksuite': '/orbit/',
   },
   integrations: [
     sitemap({
