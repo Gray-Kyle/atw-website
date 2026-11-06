@@ -7,7 +7,7 @@ export const ATW_MAIL_HERO = {
   badge: ATW_MAIL_PRODUCT_NAME,
   headline: 'Secure business email for your organization',
   subhead:
-    'Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits.',
+    'Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On every paid ATW plan, Mail is included and hosted inboxes use Credits.',
   primaryCta: 'See Mail pricing',
   primaryHref: '/pricing',
   secondaryCta: 'Sign in to webmail',
@@ -25,7 +25,7 @@ export const ATW_MAIL_FEATURE_PILLARS = [
   },
   {
     title: 'Included in ATW',
-    body: 'On paid hosting tiers, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
+    body: 'On every paid ATW plan, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
   },
   {
     title: 'Works with your favorite email app',
@@ -52,7 +52,7 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'Is there a free plan forever?',
-    a: 'No. There is no permanent free tier. Hosted mail inboxes are included on paid hosting tiers and draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the ATW trial.',
+    a: 'No. There is no permanent free tier. Hosted mail inboxes are included with every paid ATW plan and draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the ATW trial.',
   },
   {
     q: 'What is the difference between ATW Mail and ATW Orbit?',
@@ -64,7 +64,7 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'How does ATW Mail relate to ATW One?',
-    a: 'ATW One is your CRM, finance, and operations workspace. On paid hosting tiers, Mail is included and hosted inboxes use Credits. Sign-in and org boundaries stay shared across One, Mail, and Hub.',
+    a: 'ATW One is your CRM, finance, and operations workspace. On every paid ATW plan, Mail is included and hosted inboxes use Credits. Sign-in and org boundaries stay shared across One, Mail, and Hub.',
   },
 ] as const;
 

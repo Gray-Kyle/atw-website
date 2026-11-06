@@ -324,12 +324,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with HubSpot: unified CRM, finance, operations, AI, and Directory versus a CRM and marketing-led customer platform, plus when each fit is stronger.',
     h1: 'ATW vs HubSpot',
     directAnswer:
-      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included on paid hosting and usage billed from a shared Credits pool. HubSpot is widely known as a customer platform centered on CRM plus marketing, sales, and related hubs for attracting and converting demand. Choose ATW when you want ERP-style finance and operations beside CRM in one ATW-hosted suite. Choose HubSpot when your priority is inbound marketing, sales engagement, and a CRM-first growth stack rather than a full finance and operations workspace.',
+      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included with every paid ATW plan and usage billed from a shared Credits pool. HubSpot is widely known as a customer platform centered on CRM plus marketing, sales, and related hubs for attracting and converting demand. Choose ATW when you want ERP-style finance and operations beside CRM in one ATW-hosted suite. Choose HubSpot when your priority is inbound marketing, sales engagement, and a CRM-first growth stack rather than a full finance and operations workspace.',
     tableCaption: 'ATW One and HubSpot: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'ATW One ERP/CRM workspace: customers, sales, finance, and operations together, with AI that draws organization Credits and Directory for people and access. Hub (Mail, Chat, Calendar, Meetings, Tasks) sits on the same organization on paid hosting.',
+        atw: 'ATW One ERP/CRM workspace: customers, sales, finance, and operations together, with AI that draws organization Credits and Directory for people and access. Hub (Mail, Chat, Calendar, Meetings, Tasks) sits on the same organization with every paid ATW plan.',
         other:
           'HubSpot is a customer platform best known for CRM plus Marketing Hub and Sales Hub tools for campaigns, lead capture, pipeline, and revenue workflows (HubSpot products overview).',
       },
@@ -353,7 +353,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Mail, Hub, and Directory',
-        atw: 'Mail is included on paid hosting; hosted inboxes use Credits. Hub bundles Mail, Chat, Calendar, Meetings, and Tasks. Directory is the shared identity layer for who can sign in and which systems they open.',
+        atw: 'Mail is included with every paid ATW plan; hosted inboxes use Credits. Hub bundles Mail, Chat, Calendar, Meetings, and Tasks. Directory is the shared identity layer for who can sign in and which systems they open.',
         other:
           'HubSpot connects email and sales sequences to CRM contacts and offers marketing email inside its marketing tools. Identity and productivity usually sit beside your existing Google or Microsoft stack rather than replacing it as ATW Hub and Directory do.',
       },
@@ -391,7 +391,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         q: 'Does ATW include email and Directory like a full workspace?',
-        a: 'On paid hosting, Mail is included and hosted inboxes use Credits. Hub adds Chat, Calendar, Meetings, and Tasks. Directory covers who can sign in and which systems they can open across One, Hub, Mail, and related apps.',
+        a: 'On every paid ATW plan, Mail is included and hosted inboxes use Credits. Hub adds Chat, Calendar, Meetings, and Tasks. Directory covers who can sign in and which systems they can open across One, Hub, Mail, and related apps.',
       },
       {
         q: 'Where should I start if I am undecided?',
@@ -411,12 +411,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with Salesforce: unified CRM, finance, operations, AI, and Directory versus a CRM-centered enterprise platform, plus when each fit is stronger.',
     h1: 'ATW vs Salesforce',
     directAnswer:
-      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included on paid hosting and usage billed from a shared Credits pool. Salesforce is widely known as an enterprise CRM platform (Sales Cloud, Service Cloud, and a large AppExchange ecosystem). Choose ATW when you want hosted ERP/CRM with finance and operations in the same suite. Choose Salesforce when you need deep CRM customization, enterprise CRM programs, or an existing Salesforce org you plan to keep.',
+      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included with every paid ATW plan and usage billed from a shared Credits pool. Salesforce is widely known as an enterprise CRM platform (Sales Cloud, Service Cloud, and a large AppExchange ecosystem). Choose ATW when you want hosted ERP/CRM with finance and operations in the same suite. Choose Salesforce when you need deep CRM customization, enterprise CRM programs, or an existing Salesforce org you plan to keep.',
     tableCaption: 'ATW One and Salesforce: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'Hosted ATW One ERP/CRM with finance and operations beside CRM, AI on organization Credits, Directory for access, and Hub productivity on paid hosting.',
+        atw: 'Hosted ATW One ERP/CRM with finance and operations beside CRM, AI on organization Credits, Directory for access, and Hub productivity with every paid ATW plan.',
         other:
           'Salesforce is a leading CRM platform known for sales and service clouds, platform customization, and a large partner and AppExchange ecosystem.',
       },
@@ -446,7 +446,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Mail, Hub, Directory, and AI',
-        atw: 'Mail included on paid hosting (hosted inboxes use Credits). Hub for Chat, Calendar, Meetings, and Tasks. Directory for sign-in and system access. AI draws from Credits.',
+        atw: 'Mail included with every paid ATW plan (hosted inboxes use Credits). Hub for Chat, Calendar, Meetings, and Tasks. Directory for sign-in and system access. AI draws from Credits.',
         other:
           'Email and calendar usually integrate with corporate Google or Microsoft accounts. Salesforce markets Einstein and related AI features inside CRM workflows for eligible products.',
       },
@@ -498,12 +498,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with QuickBooks: unified CRM, finance, operations, AI, and Directory versus accounting-first bookkeeping, plus when each fit is stronger.',
     h1: 'ATW vs QuickBooks',
     directAnswer:
-      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included on paid hosting and usage billed from a shared Credits pool. QuickBooks is widely known as accounting and bookkeeping software for small and midsize businesses (invoicing, expenses, bank feeds, and financial reports). Choose ATW when you want CRM and operations beside finance in one suite. Choose QuickBooks when your primary need is dedicated accounting and you are happy keeping CRM and operations in other tools.',
+      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included with every paid ATW plan and usage billed from a shared Credits pool. QuickBooks is widely known as accounting and bookkeeping software for small and midsize businesses (invoicing, expenses, bank feeds, and financial reports). Choose ATW when you want CRM and operations beside finance in one suite. Choose QuickBooks when your primary need is dedicated accounting and you are happy keeping CRM and operations in other tools.',
     tableCaption: 'ATW One and QuickBooks: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'ATW One ERP/CRM workspace where finance shares records with CRM and operations, plus AI on Credits and Directory for access. Hub productivity is included on paid hosting.',
+        atw: 'ATW One ERP/CRM workspace where finance shares records with CRM and operations, plus AI on Credits and Directory for access. Hub productivity is included with every paid ATW plan.',
         other:
           'QuickBooks is Intuit\'s accounting product family, best known for bookkeeping, invoicing, expense tracking, payroll add-ons, and financial reporting for small and midsize businesses.',
       },
@@ -533,7 +533,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'AI and collaboration',
-        atw: 'AI draws from organization Credits. Hub covers Mail, Chat, Calendar, Meetings, and Tasks on paid hosting.',
+        atw: 'AI draws from organization Credits. Hub covers Mail, Chat, Calendar, Meetings, and Tasks with every paid ATW plan.',
         other:
           'QuickBooks focuses on accounting workflows. Collaboration and AI features, where offered, sit inside the accounting product rather than a full ERP/CRM plus Hub workspace.',
       },

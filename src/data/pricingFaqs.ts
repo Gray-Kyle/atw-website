@@ -30,7 +30,7 @@ export const PRICING_FAQS = [
   },
   {
     q: 'Can I buy Mail without ATW Orbit?',
-    a: 'Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Mail is not available during the trial. There is no separate ATW Orbit per-seat SKU. Orbit today covers Mail, Calendar, Meetings, and Messaging on paid access, with Docs, Spreadsheets, and Presentations coming soon.',
+    a: 'Hosted mail inboxes are included with every paid ATW plan (Starter and above) and draw from your organization Credits pool. Mail is not available during the trial. There is no separate ATW Orbit per-seat SKU. Orbit today covers Mail, Calendar, Meetings, and Messaging on every paid ATW plan, with Docs, Spreadsheets, and Presentations coming soon.',
   },
   {
     q: 'What do paid plans include beyond Credits?',

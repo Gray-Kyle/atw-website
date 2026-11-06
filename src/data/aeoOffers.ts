@@ -82,7 +82,7 @@ export const AEO_ATW_ONE = {
   whoFor:
     "Teams that want one source of truth instead of stitched spreadsheets and point tools.",
   pricingEntry:
-    "14-day Trial at $0 with 150,000 Credits (ATW One, Workforce, Directory, ATW AI only). Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit. After day 14, keep trial-app access and self-serve buy Credits (higher per-Credit price than Starter; no sales call; no read-only lock). Paid hosting: Starter $299/mo (1,200,000 Credits), Growth $1,999/mo (12,000,000), Business $9,999/mo (120,000,000), Enterprise contact us. Unlimited named seats. See /pricing.",
+    "14-day Trial at $0 with 150,000 Credits (ATW One, Workforce, Directory, ATW AI only). Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit. After day 14, keep trial-app access and self-serve buy Credits (higher per-Credit price than Starter; no sales call; no read-only lock). Paid plans: Starter $299/mo (1,200,000 Credits), Growth $1,999/mo (12,000,000), Business $9,999/mo (120,000,000), Enterprise contact us. Unlimited named seats. See /pricing.",
   cta: { label: "Start free trial", href: "/trial" },
   related: ["/pricing", "/erp/apps/crm", "/erp/apps/finance", "/services"],
 } as const;
@@ -134,13 +134,13 @@ export const AEO_SYSTEMS = [
     title: "Hub",
     href: "/hub",
     summary:
-      "Single-tenant productivity at hub.atw.net: Mail, Chat, Calendar, Meetings, and Tasks. Included on paid hosting. Hub is not available during the trial.",
+      "Single-tenant productivity at hub.atw.net: Mail, Chat, Calendar, Meetings, and Tasks. included with every paid ATW plan. Hub is not available during the trial.",
   },
   {
     id: "mail",
     title: "Mail",
     href: "/mail",
-    summary: "Business mailboxes on your domain. On paid hosting, Mail is included and hosted inboxes use Credits. Hosted mail inboxes are not available during the trial.",
+    summary: "Business mailboxes on your domain. On every paid ATW plan, Mail is included and hosted inboxes use Credits. Hosted mail inboxes are not available during the trial.",
   },
   {
     id: "workspace",

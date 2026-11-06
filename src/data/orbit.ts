@@ -1,7 +1,7 @@
 /**
  * ATW Orbit marketing facts for Option B (/orbit/).
  * Product console remains worksuite.atw.net until the new host is confirmed.
- * No per-seat SKU. Paid hosting only. Not in the 14-day trial.
+ * No per-seat SKU. Included with every paid ATW plan. Not in the 14-day trial.
  *
  * Live today: Mail, Calendar, Meetings, Messaging.
  * Coming soon: Docs, Spreadsheets, Presentations.
@@ -13,14 +13,17 @@ import { PRODUCT } from '../lib/site';
 export const ORBIT_ONE_LINER =
   'Mail, calendar, meetings, and messaging in one orbit, with Docs, Spreadsheets, and Presentations coming soon.';
 
+/** Inclusion / Credits framing for Orbit (no per-seat SKU) */
+export const ORBIT_INCLUSION =
+  'Included with every paid ATW plan, with unlimited named seats. Apps like Mail are added per user and draw from your organization Credits pool. There is no separate per-seat SKU.';
+
 export const ORBIT = {
   eyebrow: 'ATW Orbit',
   title: 'Each app is a planet in your Orbit',
-  lead: `${ORBIT_ONE_LINER} Runs on paid hosting with unlimited named seats. There is no separate per-seat SKU.`,
+  lead: `${ORBIT_ONE_LINER} ${ORBIT_INCLUSION}`,
   trialNote:
     'Not available during the 14-day Trial. Trial includes ATW One, Workforce, Directory, and ATW AI only.',
-  paidNote:
-    'ATW Orbit ships with paid hosting where offered and draws from your organization Credits pool.',
+  inclusionNote: ORBIT_INCLUSION,
   consoleHref: PRODUCT.worksuite,
   consoleLabel: 'Open ATW Orbit',
   moreComing: 'More apps coming into Orbit',

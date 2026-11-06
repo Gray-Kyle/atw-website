@@ -22,7 +22,7 @@ export const ONE_FAQS = [
   },
   {
     q: 'Is email included with ATW One?',
-    a: `Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
+    a: `Hosted mail inboxes are included with every paid ATW plan (Starter and above) and draw from your organization Credits pool. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
   },
   {
     q: 'How does ATW Workforce relate to One?',

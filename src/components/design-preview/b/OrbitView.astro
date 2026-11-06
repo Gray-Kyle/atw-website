@@ -3,6 +3,7 @@ import {
   ORBIT,
   ORBIT_APPS_COMING_SOON,
   ORBIT_APPS_LIVE,
+  ORBIT_ONE_LINER,
 } from '../../../data/orbit';
 import { livePath } from '../../../lib/site';
 
@@ -35,8 +36,8 @@ function planetStyle(ring: number, angle: number) {
       <h1 class="mt-4 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl">
         {ORBIT.title}
       </h1>
-      <p class="mt-5 text-base leading-relaxed text-[#c5d0e0] sm:text-lg">{ORBIT.lead}</p>
-      <p class="mt-4 text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.paidNote}</p>
+      <p class="mt-5 text-base leading-relaxed text-[#c5d0e0] sm:text-lg">{ORBIT_ONE_LINER}</p>
+      <p class="mt-4 text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.inclusionNote}</p>
       <p class="mt-3 text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.trialNote}</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a
@@ -126,9 +127,9 @@ function planetStyle(ring: number, angle: number) {
 
 <section class="px-4 py-16 sm:py-20">
   <div class="xl-container border border-white/12 bg-[#0d1a2e]/80 px-8 py-12 text-center sm:px-12">
-    <h2 class="font-heading text-2xl font-semibold text-white sm:text-3xl">Run Orbit on paid hosting</h2>
+    <h2 class="font-heading text-2xl font-semibold text-white sm:text-3xl">Included with every paid ATW plan</h2>
     <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#c5d0e0] sm:text-base">
-      Unlimited named seats. Shared Credits pool. No separate Orbit seat price. Open the console or review hosting plans.
+      {ORBIT.inclusionNote} Open the console or review plans on Pricing.
     </p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
       <a href={ORBIT.consoleHref} class="rounded-md bg-[#5b9bff] px-6 py-3 text-sm font-semibold text-[#06101c]">

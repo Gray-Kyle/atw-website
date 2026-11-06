@@ -116,7 +116,7 @@ export const marketingSystems: MarketingSystem[] = [
         id: 'hub-mail',
         title: 'Mail',
         href: '/mail',
-        summary: 'Business email on your domain. On paid hosting, Mail is included and hosted inboxes use Credits.',
+        summary: 'Business email on your domain. On every paid ATW plan, Mail is included and hosted inboxes use Credits.',
         modules: [
           { title: 'Inbox', href: '/mail' },
           { title: 'Domains', href: '/mail' },
@@ -159,7 +159,7 @@ export const marketingSystems: MarketingSystem[] = [
     id: 'mail',
     title: 'Mail',
     href: '/mail',
-    summary: 'On paid hosting, Mail is included and hosted inboxes use Credits.',
+    summary: 'On every paid ATW plan, Mail is included and hosted inboxes use Credits.',
     apps: [
       {
         id: 'webmail',

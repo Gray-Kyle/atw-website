@@ -1,6 +1,6 @@
 /**
  * WorkSuite: product label for calendar, documents, meetings, messaging.
- * Pricing is no longer per-seat; WorkSuite capabilities ship with paid hosting
+ * Pricing is no longer per-seat; WorkSuite capabilities ship with every paid ATW plan
  * where offered and draw from the org Credits pool. Plan tiers below are
  * capability grouping for product docs only (not sold as seat SKUs).
  */

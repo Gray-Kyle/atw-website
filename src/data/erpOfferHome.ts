@@ -282,7 +282,7 @@ export type ErpHostingPlan = {
   includes: string[];
 };
 
-/** Paid hosting tiers (Credits included monthly). Trial is rendered separately. */
+/** paid ATW plan tiers (Credits included monthly). Trial is rendered separately. */
 export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
   {
     id: "starter",
@@ -341,7 +341,7 @@ export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
   },
 ];
 
-/** Trial package shown on pricing (not a paid hosting tier). */
+/** Trial package shown on pricing (not a paid ATW plans tier). */
 export const ERP_TRIAL_PACKAGE = {
   id: "trial",
   name: "Trial",

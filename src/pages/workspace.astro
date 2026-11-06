@@ -12,25 +12,25 @@ const faqs = [
   },
   {
     q: 'Do I need Mail?',
-    a: 'On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Calendar and other live Orbit tools sit alongside Mail when you need them.',
+    a: 'On every paid ATW plan, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Calendar and other live Orbit tools sit alongside Mail when you need them.',
   },
   {
     q: 'How do I learn more?',
-    a: 'See /pricing for paid hosting that includes Mail, or visit /orbit for the Orbit overview. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
+    a: 'See /pricing for paid ATW plans that include Mail, or visit /orbit for the Orbit overview. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
   },
 ] as const;
 ---
 
 <MarketingLayout
   title="ATW Orbit | mail, calendar, meetings, messaging"
-  description={`${ORBIT_ONE_LINER} On paid hosting, Mail and related tools draw from your Credits pool.`}
+  description={`${ORBIT_ONE_LINER} On every paid ATW plan, Mail and related tools draw from your Credits pool.`}
   canonical="https://atw.net/workspace"
   jsonLd={faqPageJsonLd('/workspace', faqs)}
 >
   <SystemMarketingPage
     systemId="workspace"
     headline="Each app is a planet in your Orbit"
-    lead={`${ORBIT_ONE_LINER} On paid hosting, Mail is included and hosted inboxes use Credits.`}
+    lead={`${ORBIT_ONE_LINER} On every paid ATW plan, Mail is included and hosted inboxes use Credits.`}
     primaryCta={{ label: 'Orbit overview', href: '/orbit' }}
     secondaryCta={{ label: 'Open ATW Orbit', href: PRODUCT.worksuite }}
     faqs={faqs}
