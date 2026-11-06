@@ -6,31 +6,31 @@ import { faqPageJsonLd } from '../../lib/seo';
 const faqs = [
   {
     q: 'What is ATW Mail?',
-    a: 'Hosted business email on your domain with webmail, admin controls, and IMAP/SMTP for any mail client.',
+    a: 'Hosted business email on your domain with webmail, admin controls, and IMAP/SMTP for any mail client. Mail is an ATW Orbit app, not a separate product.',
   },
   {
     q: 'Is Mail a separate plan?',
-    a: 'No. On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
+    a: 'No. Mail ships with the ATW ERP plan as an Orbit app. You can add mailboxes for any user; hosted inboxes draw from the organization Credits pool. There is no separate Mail SKU. Mail and Orbit mailboxes are not part of the trial.',
   },
   {
     q: 'How do I get started?',
-    a: 'Choose a paid hosting plan on /pricing, or talk to us about migration from Gmail or Microsoft 365. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
+    a: 'Choose a plan on /pricing, or talk to us about migration from Gmail or Microsoft 365. The trial includes ATW One, Workforce, Directory, and ATW AI only; Mail and Orbit mailboxes are not included in the trial.',
   },
 ] as const;
 ---
 
 <MarketingLayout
   title="ATW Mail | secure business email"
-  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits."
+  description="Professional mailboxes on your domain with webmail, admin controls, and IMAP/SMTP. Mail is an ATW Orbit app; hosted inboxes draw from the organization Credits pool."
   canonical="https://atw.net/mail"
   jsonLd={faqPageJsonLd('/mail', faqs)}
 >
   <SystemMarketingPage
     systemId="mail"
     headline="Secure business email for your organization"
-    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On paid hosting tiers, Mail is included and hosted inboxes use Credits. Hosted mail inboxes are not available during the trial."
+    lead="Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. Mail is an ATW Orbit app you can add for any user; hosted inboxes draw from the organization Credits pool. Mail is not part of the trial."
     primaryCta={{ label: 'See pricing', href: '/pricing' }}
-    secondaryCta={{ label: 'WorkSuite', href: '/workspace' }}
+    secondaryCta={{ label: 'ATW Orbit', href: '/workspace' }}
     faqs={faqs}
   />
 </MarketingLayout>

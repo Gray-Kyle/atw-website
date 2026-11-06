@@ -3,7 +3,6 @@ import {
   ERP_INCLUDED_CREDITS_BY_PLAN,
   ERP_TRIAL_INCLUDED,
   ERP_TRIAL_LABEL,
-  ERP_TRIAL_NOT_INCLUDED,
 } from './erpOfferHome';
 
 /** Visible FAQ + FAQPage JSON-LD for /one (no dollar amounts so schema stays safe sitewide). */
@@ -22,10 +21,14 @@ export const ONE_FAQS = [
   },
   {
     q: 'Is email included with ATW One?',
-    a: `Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
+    a: 'Yes. Mail is an ATW Orbit app that ships with the ATW ERP plan. You can add mailboxes for any user; hosted inboxes draw from the organization Credits pool. Mail and Orbit mailboxes are not part of the trial.',
+  },
+  {
+    q: 'How does ATW Workforce relate to One?',
+    a: 'ATW Workforce is a first-class ATW system beside One, Directory, and ATW AI (not a CRM or Finance submodule inside One). Named AI agent seats share the same organization Credits and base-tier model. Seats and approval modes are in build; live agent runtime is not claimed yet.',
   },
   {
     q: 'Who builds and supports ATW One?',
-    a: 'ATW Network staff build and operate ATW One. Implementation and support stay with the same team instead of third-party resellers.',
+    a: 'ATW.Net staff build and operate ATW One. Implementation and support stay with the same team instead of third-party resellers.',
   },
 ] as const;

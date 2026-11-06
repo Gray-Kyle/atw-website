@@ -6,32 +6,32 @@ import { faqPageJsonLd } from '../lib/seo';
 
 const faqs = [
   {
-    q: 'What is ATW WorkSuite?',
-    a: 'WorkSuite covers calendar, documents, meetings, and business text/voice messaging alongside One and Mail. It is a product label, not a separate per-seat SKU.',
+    q: 'What is ATW Orbit?',
+    a: 'ATW Orbit is the productivity suite next to ATW One. Mail, Calendar, and Meetings are available today. Messaging (SMS, Voice), Docs, Spreadsheets, and Presentations are Coming Soon. Orbit ships with the ATW ERP plan; there is no separate per-seat Orbit SKU.',
   },
   {
-    q: 'Do I need Mail?',
-    a: 'On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Calendar and other WorkSuite tools sit alongside Mail when you need them.',
+    q: 'Is Mail part of Orbit?',
+    a: 'Yes. Mail is an ATW Orbit app. You can add mailboxes for any user; hosted inboxes draw from the organization Credits pool. There is no separate Mail plan.',
   },
   {
     q: 'How do I learn more?',
-    a: 'See /pricing for paid hosting that includes Mail, or contact us for WorkSuite enablement. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, WorkSuite.',
+    a: 'See /pricing for the ATW ERP plan that includes Orbit and Hub, or contact us. The trial includes ATW One, Workforce, Directory, and ATW AI only. Mail, Orbit mailboxes, and Sandbox are not part of the trial.',
   },
 ] as const;
 ---
 
 <MarketingLayout
-  title="ATW WorkSuite | calendar, docs, meetings, messaging"
-  description="Calendar, documents, meetings, and messaging next to ATW One and Mail. On paid hosting, Mail and related tools draw from your Credits pool."
+  title="ATW Orbit | Mail, Calendar, Meetings"
+  description="ATW Orbit sits next to ATW One: Mail, Calendar, and Meetings today; Messaging, Docs, Spreadsheets, and Presentations Coming Soon. Mail draws from your Credits pool."
   canonical="https://atw.net/workspace"
   jsonLd={faqPageJsonLd('/workspace', faqs)}
 >
   <SystemMarketingPage
     systemId="workspace"
-    headline="Calendar, documents, meetings, and messaging"
-    lead="WorkSuite sits next to ATW One so your team can schedule, collaborate, meet, and message without another disconnected suite. On paid hosting, Mail is included and hosted inboxes use Credits."
+    headline="Mail, Calendar, and Meetings next to ATW One"
+    lead="ATW Orbit ships with the ATW ERP plan so your team can schedule and meet without another disconnected suite. Mail is an Orbit app that draws from the organization Credits pool. Messaging, Docs, Spreadsheets, and Presentations are Coming Soon."
     primaryCta={{ label: 'See pricing', href: '/pricing' }}
-    secondaryCta={{ label: 'Open WorkSuite', href: PRODUCT.worksuite }}
+    secondaryCta={{ label: 'Open ATW Orbit', href: PRODUCT.worksuite }}
     faqs={faqs}
   />
 </MarketingLayout>

@@ -7,7 +7,8 @@ ATW bills a base hosting tier plus a shared Credits pool for usage, instead of m
 - **Base hosting** covers the organization on ATW.
 - **Credits** are the shared monthly usage pool for activity such as records, automation, hosted inboxes, storage footprint, messaging draw, and AI assistance.
 - **Named users** on the core suite are not billed as the primary per-seat software fee in this model.
-- **Hub** (Mail, Chat, Calendar, Meetings, Tasks) is included with base hosting.
+- **ATW Orbit** (Mail, Calendar, and Meetings today) ships with the ATW ERP plan. Messaging, Docs, Spreadsheets, and Presentations are Coming Soon.
+- **Hub** is an Outlook-like client included with every plan.
 - This article does not quote ATW dollar amounts or Credit rates. Use the live pricing page or a sales conversation for commercial numbers.
 
 ## What "per-seat" usually means
@@ -20,7 +21,7 @@ Credits collapse several usage categories into one customer-facing pool. Leaders
 
 ## Mail and AI under Credits
 
-Mail is included in ATW. Creating and running hosted inboxes draws Credits. People who only need a named login without a hosted inbox are free named seats under the current marketing description. AI agents and related assistance also draw from the same organization pool rather than a separate seat type.
+Mail is an ATW Orbit app. Creating and running hosted inboxes draws Credits. People who only need a named login without a hosted inbox are free named seats under the current marketing description. AI agents and related assistance also draw from the same organization pool rather than a separate seat type.
 
 ## When Credits help
 

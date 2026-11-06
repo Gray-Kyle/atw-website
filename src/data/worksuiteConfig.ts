@@ -1,8 +1,9 @@
 /**
- * WorkSuite: product label for calendar, documents, meetings, messaging.
- * Pricing is no longer per-seat; WorkSuite capabilities ship with paid hosting
- * where offered and draw from the org Credits pool. Plan tiers below are
+ * ATW Orbit (legacy code id: WorkSuite): product label for Mail, Calendar,
+ * Meetings, and Coming Soon apps (Messaging, Docs, Spreadsheets, Presentations).
+ * Ships with the ATW ERP plan (base hosting + Credits). Plan tiers below are
  * capability grouping for product docs only (not sold as seat SKUs).
+ * Host URL remains https://worksuite.atw.net until a subdomain move is approved.
  */
 
 export type WorkSuitePlanId = "starter" | "business" | "scale";
@@ -17,28 +18,29 @@ export type WorkSuitePlan = {
 export const WORKSUITE_PLANS: WorkSuitePlan[] = [
   {
     id: "starter",
-    name: "WorkSuite Starter",
+    name: "ATW Orbit Starter",
     includes: [
-      "Business email & shared calendars (your UI + optional desktop clients)",
-      "Docs, spreadsheets, presentations, and PDFs inside ATW One",
+      "Business email and shared calendars (your UI + optional desktop clients)",
+      "Meetings for the team",
+      "Docs, Spreadsheets, Presentations, and Messaging: Coming Soon",
     ],
   },
   {
     id: "business",
-    name: "WorkSuite Business",
+    name: "ATW Orbit Business",
     includes: [
       "Everything in Starter",
-      "HD video meetings (pooled minutes & fair-use caps)",
-      "Business SMS, MMS, and voice (pooled credits; regulatory setup required)",
+      "HD video meetings (pooled minutes and fair-use caps)",
+      "Business SMS, MMS, and voice Coming Soon (pooled credits; regulatory setup required)",
     ],
   },
   {
     id: "scale",
-    name: "WorkSuite Scale",
+    name: "ATW Orbit Scale",
     includes: [
       "Everything in Business with higher included pools",
       "Larger meeting capacity and recording allowances",
-      "Higher messaging & voice pools",
+      "Higher messaging and voice pools when Messaging ships",
     ],
   },
 ];
@@ -62,7 +64,7 @@ export type WorkSuiteModuleSpec = {
   docRelativePath: string;
   /** Primary upstream systems (internal engineering vocabulary). */
   upstreamNotes: string;
-  /** Which WorkSuite capability tier first ships this module (planning default). */
+  /** Which Orbit capability tier first ships this module (planning default). */
   minPlan: WorkSuitePlanId;
   implementationPhase: "discovery" | "mvp" | "beta" | "ga";
 };
@@ -70,7 +72,7 @@ export type WorkSuiteModuleSpec = {
 export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
   {
     id: "mail-calendar",
-    title: "Mail & calendar",
+    title: "Mail and calendar",
     summary:
       "Hosted mailboxes, domain onboarding (MX/SPF/DKIM), shared calendars, and server-side mail APIs for your UI.",
     docRelativePath: "docs/worksuite/MODULE_MAIL_CALENDAR.md",
@@ -80,9 +82,9 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
   },
   {
     id: "office-documents",
-    title: "Office documents",
+    title: "Office documents (Coming Soon)",
     summary:
-      "In-app Word/Excel/PowerPoint/PDF experiences with storage under your org model (embed + save-back).",
+      "Coming Soon. In-app Docs, Spreadsheets, Presentations, and PDF experiences with storage under your org model.",
     docRelativePath: "docs/worksuite/MODULE_OFFICE_DOCUMENTS.md",
     upstreamNotes: "Zoho Office Integrator (or Zoho Writer/Sheet/Show within Workplace); webhook save path.",
     minPlan: "starter",
@@ -110,9 +112,9 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
   },
   {
     id: "messaging-voice",
-    title: "Messaging & voice",
+    title: "Messaging and voice (Coming Soon)",
     summary:
-      "SMS/MMS, programmable voice, optional WhatsApp Business: pooled usage, consent, and audit trails.",
+      "Coming Soon. SMS/MMS, programmable voice, optional WhatsApp Business: pooled usage, consent, and audit trails.",
     docRelativePath: "docs/worksuite/MODULE_MESSAGING_VOICE.md",
     upstreamNotes: "Twilio (10DLC, Messaging Service, Voice, WhatsApp templates).",
     minPlan: "business",
@@ -120,7 +122,7 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
   },
   {
     id: "outlook-desktop",
-    title: "Outlook & mobile sync",
+    title: "Outlook and mobile sync",
     summary:
       "Document how customers attach Exchange ActiveSync clients to the hosted mailbox backend.",
     docRelativePath: "docs/worksuite/MODULE_OUTLOOK_DESKTOP.md",
@@ -130,9 +132,9 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
   },
   {
     id: "ai-voice",
-    title: "AI-assisted calling",
+    title: "AI-assisted calling (Coming Soon)",
     summary:
-      "Optional: conversational IVR, call summarization, or agent assist; tightly capped and billed as add-on usage.",
+      "Optional Coming Soon: conversational IVR, call summarization, or agent assist; tightly capped and billed as add-on usage.",
     docRelativePath: "docs/worksuite/MODULE_AI_VOICE.md",
     upstreamNotes: "Twilio conversational / speech products + your policy layer; HIPAA review if applicable.",
     minPlan: "scale",

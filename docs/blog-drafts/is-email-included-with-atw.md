@@ -1,18 +1,18 @@
 # Is email included with ATW?
 
-Yes. Mail is included in ATW. Hosted inboxes use Credits from your organization pool, and Hub (Mail, Chat, Calendar, Meetings, Tasks) is included with base hosting. Users without a hosted inbox are free named seats.
+Yes. Mail is an ATW Orbit app that ships with the ATW ERP plan. Hosted inboxes use Credits from your organization pool. You can add mailboxes for any user. Users without a hosted inbox are free named seats. There is no separate Mail SKU.
 
 ## What "included" means
 
-You do not buy a separate ATW Mail SKU to get business email on your domain. Professional mailboxes, webmail, admin controls, and IMAP/SMTP sit inside the ATW organization. Usage for hosted inboxes draws Credits alongside other platform activity.
+You do not buy a separate ATW Mail plan to get business email on your domain. Professional mailboxes, webmail, admin controls, and IMAP/SMTP sit inside ATW Orbit on the same organization. Usage for hosted inboxes draws Credits alongside other platform activity.
 
-## Hub around the inbox
+## Orbit and Hub around the inbox
 
-Email rarely stands alone. Hub adds Chat, Calendar, Meetings, and Tasks next to Mail so day-to-day collaboration lives with the same sign-in boundary as ATW One. Hub is included with base hosting rather than sold as a customer-paid add-on SKU on the current marketing model.
+Email rarely stands alone. ATW Orbit also includes Calendar and Meetings today (Messaging, Docs, Spreadsheets, and Presentations are Coming Soon). Hub is a separate Outlook-like inbox and workspace client that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook. Hub is included with every plan.
 
 ## How this differs from many email suites
 
-Products such as Google Workspace typically sell business email as part of a per-user edition. That is a strong fit when your company already lives in Google accounts and Drive. ATW's model is different: base hosting plus Credits, with mail included and hosted inboxes consuming Credits.
+Products such as Google Workspace typically sell business email as part of a per-user edition. That is a strong fit when your company already lives in Google accounts and Drive. ATW's model is different: base hosting plus Credits, with Mail as an Orbit app and hosted inboxes consuming Credits.
 
 ## Migration notes
 
@@ -21,6 +21,7 @@ If you are leaving Gmail, Microsoft 365, or another host, plan DNS, cutover wind
 ## Related reading on the site
 
 - Mail product page: atw.net/mail
+- ATW Orbit: atw.net/workspace
 - Hub: atw.net/hub
 - ATW Mail vs Google Workspace: atw.net/compare/google-workspace-email
 

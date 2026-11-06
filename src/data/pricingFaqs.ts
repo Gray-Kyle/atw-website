@@ -14,7 +14,7 @@ export const PRICING_FAQS = [
   },
   {
     q: 'What is not available during the trial?',
-    a: `Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
+    a: `Not part of the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
   },
   {
     q: 'What happens when the trial ends?',
@@ -29,11 +29,11 @@ export const PRICING_FAQS = [
     a: `Credits are the shared usage pool for your organization. ${ERP_CREDITS_MODEL_NOTE}`,
   },
   {
-    q: 'Can I buy Mail without WorkSuite?',
-    a: 'Hosted mail inboxes are included on paid hosting tiers (Starter and above) and draw from your organization Credits pool. Mail is not available during the trial. There is no separate WorkSuite per-seat SKU; WorkSuite remains a product label for calendar, documents, meetings, and messaging where offered on paid access.',
+    q: 'Can I buy Mail without ATW Orbit?',
+    a: 'Mail is an ATW Orbit app, not a separate SKU. Hosted mailboxes draw from your organization Credits pool and can be added for any user. Mail is not available during the trial. There is no separate Orbit per-seat SKU.',
   },
   {
-    q: 'What do paid plans include beyond Credits?',
-    a: `Starter ($299/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString('en-US')} Credits), Growth ($1,999/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString('en-US')} Credits), and Business ($9,999/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString('en-US')} Credits) include Mail, Hub, and sandbox. Enterprise is custom; contact us.`,
+    q: 'What do plans include beyond Credits?',
+    a: `Starter ($299/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString('en-US')} Credits), Growth ($1,999/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString('en-US')} Credits), and Business ($9,999/mo, ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString('en-US')} Credits) include ATW Orbit, Hub, and sandbox. Enterprise is custom; contact us.`,
   },
 ] as const;

@@ -4,9 +4,10 @@
  * Competitor facts: general, well-known capabilities only (no competitor prices
  * or unverifiable claims). Zoho / Odoo / Google Workspace rows that cite vendor
  * public pages were checked 2026-11-05.
- * ATW facts: site copy plus base hosting + Credits (not per-seat); Mail included
- * (hosted inboxes use Credits); Hub included; AI draws from Credits; Directory
- * for access. Link ATW pricing to /pricing/ only; do not invent Credit rates.
+ * ATW facts: site copy plus base hosting + Credits (not per-seat); Mail is an
+ * Orbit app (hosted inboxes use Credits); Hub is an Outlook-like client included
+ * with every plan; AI draws from Credits; Directory for access. Link ATW pricing
+ * to /pricing/ only; do not invent Credit rates.
  *
  * Sources (do not invent beyond these):
  * - Zoho One: https://www.zoho.com/one/ ; https://www.zoho.com/one/pricing/ ;
@@ -54,7 +55,7 @@ export const COMPARE_INDEX = {
   description:
     'Side-by-side pages for buyers comparing ATW One and ATW Mail with Zoho One, Odoo, Google Workspace business email, HubSpot, Salesforce, and QuickBooks.',
   intro:
-    'These pages answer common buyer questions with a short direct answer, a feature and approach table, fair "when to choose" notes, and FAQ. ATW uses a base hosting tier plus a shared Credits pool (not per-seat for the core suite). Mail and Hub are included; hosted inboxes and AI work draw Credits. Directory covers who can sign in and which systems they can open. Published hosting tiers are on /pricing/.',
+    'These pages answer common buyer questions with a short direct answer, a feature and approach table, fair "when to choose" notes, and FAQ. ATW uses a base hosting tier plus a shared Credits pool (not per-seat for the core suite). Mail is an ATW Orbit app; hosted inboxes and AI work draw Credits. Hub is an Outlook-like client included with every plan. Directory covers who can sign in and which systems they can open. Published hosting tiers are on /pricing/.',
 } as const;
 
 export const COMPARE_PAGES: ComparePage[] = [
@@ -67,18 +68,18 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with Zoho One: suite scope, billing approach, mail and Hub, and when each fit is stronger for growing teams.',
     h1: 'ATW vs Zoho One',
     directAnswer:
-      'ATW One is a Credits-based ERP/CRM workspace with Hub (Mail, Chat, Calendar, Meetings, Tasks) included on base hosting. Zoho One is Zoho\'s all-in-one suite of dozens of business apps under one organization license model. Choose ATW when you want one hosted workspace, included mail and Hub, and usage billed from a shared Credits pool instead of stacking per-seat licenses. Choose Zoho One when you want Zoho\'s broad app catalog and a mature per-user suite with deep Zoho-native integrations.',
+      'ATW One is a Credits-based ERP/CRM workspace with ATW Orbit (Mail, Calendar, and Meetings today) and Hub (an Outlook-like client) included on the ATW ERP plan. Zoho One is Zoho\'s all-in-one suite of dozens of business apps under one organization license model. Choose ATW when you want one hosted workspace, Orbit mail, included Hub, and usage billed from a shared Credits pool instead of stacking per-seat licenses. Choose Zoho One when you want Zoho\'s broad app catalog and a mature per-user suite with deep Zoho-native integrations.',
     tableCaption: 'ATW One and Zoho One: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'ATW One ERP/CRM workspace plus Hub productivity (Mail, Chat, Calendar, Meetings, Tasks) on ATW hosting.',
+        atw: 'ATW One ERP/CRM workspace plus ATW Orbit (Mail, Calendar, Meetings) and Hub on ATW hosting.',
         other:
           'Zoho One is marketed as an operating system for business: a unified suite with 45+ apps spanning sales, marketing, service, finance, HR, operations, and collaboration (Zoho One homepage).',
       },
       {
         dimension: 'App breadth',
-        atw: 'One shared business suite (CRM, finance, operations, HR, marketing, custom apps) with Hub and Agents on the same organization.',
+        atw: 'One shared business suite (CRM, finance, operations, HR, marketing, custom apps) with Orbit, Hub, and Agents on the same organization.',
         other:
           'Essentials covers 15+ apps; Standard includes 50+ unified business apps with centralized admin, MDM, and platform customization (Zoho One pricing and plan details).',
       },
@@ -90,7 +91,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Mail and collaboration',
-        atw: 'Mail is included in ATW; hosted inboxes use Credits. Hub bundles Mail, Chat, Calendar, Meetings, and Tasks with base hosting.',
+        atw: 'Mail is an ATW Orbit app; hosted inboxes use Credits. Hub is an Outlook-like client included with every plan and can connect to ATW Orbit.',
         other:
           'Zoho One includes Zoho Mail and Cliq among its collaboration apps, plus WorkDrive, Meeting, and related tools in the suite catalog (Zoho One applications and plan details).',
       },
@@ -107,7 +108,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
     ],
     chooseAtw: [
-      'You want ERP/CRM plus included Hub mail and collaboration without a separate per-seat productivity SKU.',
+      'You want ERP/CRM plus Orbit mail and included Hub without a separate per-seat productivity SKU.',
       'You prefer one organization Credits pool for records, automation, hosted inboxes, and AI instead of scaling mainly by user licenses.',
       'You want to work with the same ATW team that builds and operates the product (see Why Us).',
       'You may need custom apps or implementation on ATW One rather than assembling many point products.',
@@ -121,7 +122,7 @@ export const COMPARE_PAGES: ComparePage[] = [
     faqs: [
       {
         q: 'Is ATW a Zoho One alternative?',
-        a: 'Yes for teams comparing all-in-one business suites. ATW One centers ERP/CRM with included Hub and Credits-based usage. Zoho One centers a large catalog of Zoho apps under one organization license. Many buyers evaluate both when consolidating tools.',
+        a: 'Yes for teams comparing all-in-one business suites. ATW One centers ERP/CRM with Orbit, included Hub, and Credits-based usage. Zoho One centers a large catalog of Zoho apps under one organization license. Many buyers evaluate both when consolidating tools.',
       },
       {
         q: 'Does Zoho One include email?',
@@ -152,12 +153,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with Odoo Community and Enterprise: hosting, billing approach, apps, and when each platform fits better.',
     h1: 'ATW vs Odoo',
     directAnswer:
-      'ATW One is a hosted ERP/CRM workspace billed as base hosting plus Credits, with Hub productivity included. Odoo is a modular ERP available as open-source Community or licensed Enterprise, with Online, Odoo.sh, and on-premise hosting options. Choose ATW when you want a managed ATW-operated suite and Credits-based usage without running your own ERP stack. Choose Odoo when you want Odoo\'s modular app ecosystem, Community self-hosting, or Enterprise\'s all-apps subscription model.',
+      'ATW One is a hosted ERP/CRM workspace billed as base hosting plus Credits, with ATW Orbit and Hub included. Odoo is a modular ERP available as open-source Community or licensed Enterprise, with Online, Odoo.sh, and on-premise hosting options. Choose ATW when you want a managed ATW-operated suite and Credits-based usage without running your own ERP stack. Choose Odoo when you want Odoo\'s modular app ecosystem, Community self-hosting, or Enterprise\'s all-apps subscription model.',
     tableCaption: 'ATW One and Odoo: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'Hosted ATW One ERP/CRM with included Hub (Mail, Chat, Calendar, Meetings, Tasks) and Agents on organization Credits.',
+        atw: 'Hosted ATW One ERP/CRM with ATW Orbit (Mail, Calendar, Meetings), Hub, and Agents on organization Credits.',
         other:
           'Odoo is modular business management software offered as Community (open-source) and Enterprise (licensed), covering CRM, accounting, inventory, manufacturing, websites, HR, and more (Odoo editions page).',
       },
@@ -175,7 +176,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Apps included',
-        atw: 'CRM, finance, operations, HR, marketing, knowledge, custom apps, plus Hub mail and collaboration.',
+        atw: 'CRM, finance, operations, HR, marketing, knowledge, custom apps, plus ATW Orbit and Hub.',
         other:
           'Paid Enterprise plans are described as including all apps for that fee. Community includes a core open-source set; many advanced features are Enterprise-only on the editions comparison (Odoo pricing and editions).',
       },
@@ -187,13 +188,13 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Email',
-        atw: 'Mail is included in ATW; hosted inboxes use Credits.',
+        atw: 'Mail is an ATW Orbit app; hosted inboxes use Credits.',
         other:
           'Odoo Online subscriptions include email integration as part of the hosted environment description on the pricing page. Self-hosted setups handle mail infrastructure separately.',
       },
     ],
     chooseAtw: [
-      'You want a managed ATW-operated ERP/CRM with Hub included, without standing up Community hosting yourself.',
+      'You want a managed ATW-operated ERP/CRM with Orbit and Hub included, without standing up Community hosting yourself.',
       'You prefer Credits-based usage for automation, AI, and hosted mailboxes over scaling mainly by paying users.',
       'You want direct access to the team that builds ATW One for implementation and custom apps.',
       'You are consolidating CRM, finance, and operations and do not need Odoo-specific manufacturing or POS depth.',
@@ -235,27 +236,27 @@ export const COMPARE_PAGES: ComparePage[] = [
     competitorName: 'Google Workspace',
     title: 'ATW Mail vs Google Workspace | business email compared',
     description:
-      'Compare ATW Mail with Google Workspace business email: included mail and Hub, Credits vs per-user seats, and when each is the better fit.',
+      'Compare ATW Mail with Google Workspace business email: Orbit mail, included Hub, Credits vs per-user seats, and when each is the better fit.',
     h1: 'ATW Mail vs Google Workspace',
     directAnswer:
-      'ATW Mail is business email included with ATW; hosted inboxes use Credits, and Hub adds Chat, Calendar, Meetings, and Tasks on base hosting. Google Workspace provides custom-domain Gmail plus Calendar, Meet, Chat, Drive, and related apps under per-user Workspace editions. Choose ATW Mail when email should sit inside your ATW organization Credits and Hub. Choose Google Workspace when you want Google\'s Gmail client, Drive collaboration, and the wider Workspace admin ecosystem.',
+      'ATW Mail is business email as an ATW Orbit app; hosted inboxes use Credits. ATW Orbit also includes Calendar and Meetings today. Hub is a separate Outlook-like client included with every plan. Google Workspace provides custom-domain Gmail plus Calendar, Meet, Chat, Drive, and related apps under per-user Workspace editions. Choose ATW Mail when email should sit inside your ATW organization Credits and Orbit. Choose Google Workspace when you want Google\'s Gmail client, Drive collaboration, and the wider Workspace admin ecosystem.',
     tableCaption: 'ATW Mail and Google Workspace: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'Hosted business email on your domain with webmail, admin controls, and IMAP/SMTP. Part of ATW Hub.',
+        atw: 'Hosted business email on your domain with webmail, admin controls, and IMAP/SMTP. An ATW Orbit app.',
         other:
           'Google Workspace business email is custom-domain Gmail, with Meet, Calendar, Chat, and productivity apps in the same Workspace subscription (Google Workspace Gmail product page).',
       },
       {
         dimension: 'How you pay',
-        atw: 'Mail is included in ATW. Hosted inboxes use Credits from the organization pool. Users without a hosted inbox are free named seats. Hub is included with base hosting.',
+        atw: 'Mail is an ATW Orbit app. Hosted inboxes use Credits from the organization pool. Users without a hosted inbox are free named seats. Hub is included with every plan.',
         other:
           'Google Workspace Business editions are sold per user, with Flexible (monthly, adjustable seats) and Annual/Fixed-Term commitment options (Google Workspace billing help and pricing pages).',
       },
       {
         dimension: 'Suite around email',
-        atw: 'Hub: Mail, Chat, Calendar, Meetings, and Tasks. ATW One ERP/CRM sits alongside on the same organization.',
+        atw: 'ATW Orbit: Mail, Calendar, and Meetings today (Messaging, Docs, Spreadsheets, and Presentations Coming Soon). Hub is a separate Outlook-like client. ATW One ERP/CRM sits alongside on the same organization.',
         other:
           'Workspace pairs Gmail with Calendar, Meet, Chat, Drive, Docs, Sheets, and related Google apps. Gemini features are described as available with Workspace plans on Google\'s Gmail product page.',
       },
@@ -279,8 +280,8 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
     ],
     chooseAtw: [
-      'You want mail included with ATW hosting, with hosted inboxes drawing Credits instead of a separate per-user mail suite.',
-      'You want Hub chat, calendar, meetings, and tasks next to ATW One without adopting Google as the identity plane.',
+      'You want mail as an Orbit app on the ATW ERP plan, with hosted inboxes drawing Credits instead of a separate per-user mail suite.',
+      'You want Orbit Calendar and Meetings next to ATW One, plus Hub as a client, without adopting Google as the identity plane.',
       'You need IMAP/SMTP flexibility for existing desktop clients while keeping org billing on Credits.',
       'You are already evaluating ATW One and want email on the same organization boundary.',
     ],
@@ -293,7 +294,7 @@ export const COMPARE_PAGES: ComparePage[] = [
     faqs: [
       {
         q: 'Is email included with ATW?',
-        a: 'Yes. Mail is included in ATW. Hosted inboxes use Credits. Users without a hosted inbox are free named seats. Hub (Mail, Chat, Calendar, Meetings, Tasks) is included with base hosting.',
+        a: 'Yes. Mail is an ATW Orbit app. Hosted inboxes use Credits. Users without a hosted inbox are free named seats. Hub is included with every plan as a separate Outlook-like client.',
       },
       {
         q: 'Is Google Workspace only email?',
@@ -305,7 +306,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         q: 'Does ATW Mail replace Google Meet and Drive?',
-        a: 'Hub covers Mail, Chat, Calendar, Meetings, and Tasks. It is not positioned as a full Google Drive documents suite replacement. Compare Meeting and file needs explicitly before switching.',
+        a: 'ATW Orbit covers Mail, Calendar, and Meetings today; Docs, Spreadsheets, Presentations, and Messaging are Coming Soon. Hub is a separate client, not a documents suite. Compare meeting and file needs explicitly before switching.',
       },
       {
         q: 'How does billing compare at a high level?',
@@ -324,12 +325,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with HubSpot: unified CRM, finance, operations, AI, and Directory versus a CRM and marketing-led customer platform, plus when each fit is stronger.',
     h1: 'ATW vs HubSpot',
     directAnswer:
-      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included on paid hosting and usage billed from a shared Credits pool. HubSpot is widely known as a customer platform centered on CRM plus marketing, sales, and related hubs for attracting and converting demand. Choose ATW when you want ERP-style finance and operations beside CRM in one ATW-hosted suite. Choose HubSpot when your priority is inbound marketing, sales engagement, and a CRM-first growth stack rather than a full finance and operations workspace.',
+      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with ATW Orbit and Hub included on the ATW ERP plan and usage billed from a shared Credits pool. HubSpot is widely known as a customer platform centered on CRM plus marketing, sales, and related hubs for attracting and converting demand. Choose ATW when you want ERP-style finance and operations beside CRM in one ATW-hosted suite. Choose HubSpot when your priority is inbound marketing, sales engagement, and a CRM-first growth stack rather than a full finance and operations workspace.',
     tableCaption: 'ATW One and HubSpot: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'ATW One ERP/CRM workspace: customers, sales, finance, and operations together, with AI that draws organization Credits and Directory for people and access. Hub (Mail, Chat, Calendar, Meetings, Tasks) sits on the same organization on paid hosting.',
+        atw: 'ATW One ERP/CRM workspace: customers, sales, finance, and operations together, with AI that draws organization Credits and Directory for people and access. ATW Orbit (Mail, Calendar, Meetings) and Hub sit on the same organization.',
         other:
           'HubSpot is a customer platform best known for CRM plus Marketing Hub and Sales Hub tools for campaigns, lead capture, pipeline, and revenue workflows (HubSpot products overview).',
       },
@@ -353,7 +354,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Mail, Hub, and Directory',
-        atw: 'Mail is included on paid hosting; hosted inboxes use Credits. Hub bundles Mail, Chat, Calendar, Meetings, and Tasks. Directory is the shared identity layer for who can sign in and which systems they open.',
+        atw: 'Mail is an ATW Orbit app; hosted inboxes use Credits. Hub is an Outlook-like client included with every plan. Directory is the shared identity layer for who can sign in and which systems they open.',
         other:
           'HubSpot connects email and sales sequences to CRM contacts and offers marketing email inside its marketing tools. Identity and productivity usually sit beside your existing Google or Microsoft stack rather than replacing it as ATW Hub and Directory do.',
       },
@@ -367,7 +368,7 @@ export const COMPARE_PAGES: ComparePage[] = [
     chooseAtw: [
       'You want CRM next to finance and operations in one ATW-hosted workspace, not a CRM/marketing stack plus a separate ERP or books tool.',
       'You prefer base hosting plus a shared Credits pool (see /pricing/) instead of stacking hub seats as headcount grows.',
-      'You want Mail, Hub, Directory, and AI on the same organization boundary as ERP/CRM.',
+      'You want Orbit Mail, Hub, Directory, and AI on the same organization boundary as ERP/CRM.',
       'You may need custom apps or ATW Services implementation on ATW One rather than assembling many point products.',
     ],
     chooseOther: [
@@ -391,7 +392,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         q: 'Does ATW include email and Directory like a full workspace?',
-        a: 'On paid hosting, Mail is included and hosted inboxes use Credits. Hub adds Chat, Calendar, Meetings, and Tasks. Directory covers who can sign in and which systems they can open across One, Hub, Mail, and related apps.',
+        a: 'Mail is an ATW Orbit app; hosted inboxes use Credits. Hub is included with every plan as a separate Outlook-like client. Directory covers who can sign in and which systems they can open across One, Orbit, Hub, and related apps.',
       },
       {
         q: 'Where should I start if I am undecided?',
@@ -411,12 +412,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with Salesforce: unified CRM, finance, operations, AI, and Directory versus a CRM-centered enterprise platform, plus when each fit is stronger.',
     h1: 'ATW vs Salesforce',
     directAnswer:
-      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included on paid hosting and usage billed from a shared Credits pool. Salesforce is widely known as an enterprise CRM platform (Sales Cloud, Service Cloud, and a large AppExchange ecosystem). Choose ATW when you want hosted ERP/CRM with finance and operations in the same suite. Choose Salesforce when you need deep CRM customization, enterprise CRM programs, or an existing Salesforce org you plan to keep.',
+      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with ATW Orbit and Hub included on the ATW ERP plan and usage billed from a shared Credits pool. Salesforce is widely known as an enterprise CRM platform (Sales Cloud, Service Cloud, and a large AppExchange ecosystem). Choose ATW when you want hosted ERP/CRM with finance and operations in the same suite. Choose Salesforce when you need deep CRM customization, enterprise CRM programs, or an existing Salesforce org you plan to keep.',
     tableCaption: 'ATW One and Salesforce: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'Hosted ATW One ERP/CRM with finance and operations beside CRM, AI on organization Credits, Directory for access, and Hub productivity on paid hosting.',
+        atw: 'Hosted ATW One ERP/CRM with finance and operations beside CRM, AI on organization Credits, Directory for access, plus ATW Orbit and Hub.',
         other:
           'Salesforce is a leading CRM platform known for sales and service clouds, platform customization, and a large partner and AppExchange ecosystem.',
       },
@@ -446,7 +447,7 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Mail, Hub, Directory, and AI',
-        atw: 'Mail included on paid hosting (hosted inboxes use Credits). Hub for Chat, Calendar, Meetings, and Tasks. Directory for sign-in and system access. AI draws from Credits.',
+        atw: 'Mail is an ATW Orbit app (hosted inboxes use Credits). Hub is an Outlook-like client included with every plan. Directory for sign-in and system access. AI draws from Credits.',
         other:
           'Email and calendar usually integrate with corporate Google or Microsoft accounts. Salesforce markets Einstein and related AI features inside CRM workflows for eligible products.',
       },
@@ -454,7 +455,7 @@ export const COMPARE_PAGES: ComparePage[] = [
     chooseAtw: [
       'You want CRM, finance, and operations in one ATW-hosted workspace with Directory and Credits-based usage.',
       'You prefer published hosting plus Credits on /pricing/ over scaling mainly by CRM user licenses.',
-      'You want Mail and Hub on the same organization as ERP/CRM without a separate productivity identity plane.',
+      'You want Orbit Mail and Hub on the same organization as ERP/CRM without a separate productivity identity plane.',
       'You want direct access to the team that builds ATW One for implementation and custom apps.',
     ],
     chooseOther: [
@@ -498,12 +499,12 @@ export const COMPARE_PAGES: ComparePage[] = [
       'Compare ATW One with QuickBooks: unified CRM, finance, operations, AI, and Directory versus accounting-first bookkeeping, plus when each fit is stronger.',
     h1: 'ATW vs QuickBooks',
     directAnswer:
-      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with Hub productivity included on paid hosting and usage billed from a shared Credits pool. QuickBooks is widely known as accounting and bookkeeping software for small and midsize businesses (invoicing, expenses, bank feeds, and financial reports). Choose ATW when you want CRM and operations beside finance in one suite. Choose QuickBooks when your primary need is dedicated accounting and you are happy keeping CRM and operations in other tools.',
+      'ATW One is a unified workspace for CRM, finance, operations, AI, and Directory on one organization, with ATW Orbit and Hub included on the ATW ERP plan and usage billed from a shared Credits pool. QuickBooks is widely known as accounting and bookkeeping software for small and midsize businesses (invoicing, expenses, bank feeds, and financial reports). Choose ATW when you want CRM and operations beside finance in one suite. Choose QuickBooks when your primary need is dedicated accounting and you are happy keeping CRM and operations in other tools.',
     tableCaption: 'ATW One and QuickBooks: approach comparison',
     rows: [
       {
         dimension: 'What it is',
-        atw: 'ATW One ERP/CRM workspace where finance shares records with CRM and operations, plus AI on Credits and Directory for access. Hub productivity is included on paid hosting.',
+        atw: 'ATW One ERP/CRM workspace where finance shares records with CRM and operations, plus AI on Credits and Directory for access. ATW Orbit and Hub are included with the ATW ERP plan.',
         other:
           'QuickBooks is Intuit\'s accounting product family, best known for bookkeeping, invoicing, expense tracking, payroll add-ons, and financial reporting for small and midsize businesses.',
       },
@@ -527,13 +528,13 @@ export const COMPARE_PAGES: ComparePage[] = [
       },
       {
         dimension: 'Who it fits',
-        atw: 'Teams consolidating sales, finance, and operations who want one ATW-hosted system of record with Mail, Hub, Directory, and AI available on the same org.',
+        atw: 'Teams consolidating sales, finance, and operations who want one ATW-hosted system of record with Orbit, Hub, Directory, and AI available on the same org.',
         other:
           'Teams whose main job is keeping the books accurate, filing, and reporting, and who already have (or do not yet need) a separate CRM and operations stack.',
       },
       {
         dimension: 'AI and collaboration',
-        atw: 'AI draws from organization Credits. Hub covers Mail, Chat, Calendar, Meetings, and Tasks on paid hosting.',
+        atw: 'AI draws from organization Credits. ATW Orbit covers Mail, Calendar, and Meetings today; Hub is a separate Outlook-like client included with every plan.',
         other:
           'QuickBooks focuses on accounting workflows. Collaboration and AI features, where offered, sit inside the accounting product rather than a full ERP/CRM plus Hub workspace.',
       },
@@ -541,7 +542,7 @@ export const COMPARE_PAGES: ComparePage[] = [
     chooseAtw: [
       'You want finance beside CRM and operations in one workspace, not accounting alone.',
       'You prefer hosting plus Credits for the whole suite (see /pricing/) instead of separate CRM, mail, and books products.',
-      'You want Directory, Hub, and AI on the same organization as finance.',
+      'You want Directory, Orbit, Hub, and AI on the same organization as finance.',
       'You may need custom apps or ATW Services implementation on ATW One as processes grow beyond bookkeeping.',
     ],
     chooseOther: [

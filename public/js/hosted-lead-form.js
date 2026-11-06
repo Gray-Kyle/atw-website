@@ -52,7 +52,7 @@
       }
       const draftNote =
         form.status === "draft"
-          ? `<p class="mb-4 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-center text-sm text-amber-900">Preview only — this form is not published yet.</p>`
+          ? `<p class="mb-4 rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-center text-sm text-amber-900">Preview only. This form is not published yet.</p>`
           : "";
       const fields = Array.isArray(form.hostedFields) ? form.hostedFields : [];
       root.innerHTML = `
