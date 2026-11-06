@@ -1,5 +1,6 @@
 ---
 import { findMarketingSystem } from '../../lib/marketingNav';
+import { designVariant } from '../../lib/designVariant';
 
 type Faq = { q: string; a: string };
 
@@ -36,13 +37,14 @@ if (!system) {
   throw new Error(`Unknown marketing system: ${systemId}`);
 }
 const showWordmark = Boolean(productWordmarkSrc || productWordmarkPng);
+const darkHero = showWordmark || designVariant === 'b';
 ---
 
 <main class="min-h-screen">
   <section
     class:list={[
       'border-b border-border pt-16',
-      showWordmark
+      darkHero
         ? 'bg-gradient-to-b from-[#060a12] via-[#0a1628] to-[#0f1f38] text-white'
         : 'bg-gradient-to-b from-slate-50 to-white',
     ]}
@@ -73,7 +75,7 @@ const showWordmark = Boolean(productWordmarkSrc || productWordmarkPng);
       <h1
         class:list={[
           'mt-3 max-w-3xl font-heading text-4xl font-bold sm:text-5xl',
-          showWordmark ? 'text-white' : 'text-foreground',
+          darkHero ? 'text-white' : 'text-foreground',
         ]}
       >
         {headline}
@@ -81,7 +83,7 @@ const showWordmark = Boolean(productWordmarkSrc || productWordmarkPng);
       <p
         class:list={[
           'mt-4 max-w-2xl text-lg',
-          showWordmark ? 'text-zinc-300' : 'text-muted-foreground',
+          darkHero ? 'text-zinc-300' : 'text-muted-foreground',
         ]}
       >
         {lead}
@@ -91,8 +93,10 @@ const showWordmark = Boolean(productWordmarkSrc || productWordmarkPng);
           href={primaryCta.href}
           class:list={[
             'inline-flex items-center rounded px-6 py-3 font-heading text-sm',
-            showWordmark
-              ? 'bg-white text-brand-navy hover:bg-white/90'
+            darkHero
+              ? designVariant === 'b'
+                ? 'bg-[#5b9bff] text-[#06101c] hover:brightness-110'
+                : 'bg-white text-brand-navy hover:bg-white/90'
               : 'bg-brand-navy text-white hover:bg-brand-navy/90',
           ]}
         >
@@ -104,7 +108,7 @@ const showWordmark = Boolean(productWordmarkSrc || productWordmarkPng);
               href={secondaryCta.href}
               class:list={[
                 'inline-flex items-center rounded border-2 px-6 py-3 font-heading text-sm',
-                showWordmark
+                darkHero
                   ? 'border-white/50 text-white hover:bg-white/10'
                   : 'border-brand-navy text-foreground hover:bg-brand-navy/10',
               ]}

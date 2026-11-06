@@ -139,8 +139,6 @@ const mainPad = isDesignPreview ? 'pt-8 pb-16 md:pt-10' : 'pt-24 pb-16 md:pt-28'
     {!forceNoindex ? <link rel="canonical" href={canonicalUrl} /> : null}
     <title>{fullTitle}</title>
     <slot name="head" />
-    {designVariant === 'a' ? <link rel="stylesheet" href="/design-preview/a.css" /> : null}
-    {designVariant === 'b' ? <link rel="stylesheet" href="/design-preview/b.css" /> : null}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_NAME} />
@@ -178,5 +176,8 @@ const mainPad = isDesignPreview ? 'pt-8 pb-16 md:pt-10' : 'pt-24 pb-16 md:pt-28'
     </main>
     <slot name="footer" />
     <PreviewMotion />
+    {/* Load variant CSS after Astro/Tailwind so remaps win the cascade without racing utilities. */}
+    {designVariant === 'a' ? <link rel="stylesheet" href="/design-preview/a.css" /> : null}
+    {designVariant === 'b' ? <link rel="stylesheet" href="/design-preview/b.css" /> : null}
   </body>
 </html>

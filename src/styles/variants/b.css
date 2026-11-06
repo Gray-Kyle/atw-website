@@ -99,41 +99,89 @@ html[data-design-variant='b'] .even\:bg-gray-50 {
   color: var(--color-foreground);
 }
 
+/* Zebra rows: paint TR and cells (axe samples transparent TD against body, missing white TR) */
 html[data-design-variant='b'] .odd\:bg-white:nth-child(odd),
 html[data-design-variant='b'] tr.odd\:bg-white:nth-child(odd),
-html[data-design-variant='b'] tbody tr:nth-child(odd) {
+html[data-design-variant='b'] .odd\:bg-\[\#0d1a2e\]:nth-child(odd),
+html[data-design-variant='b'] tbody tr:nth-child(odd),
+html[data-design-variant='b'] tbody tr:nth-child(odd) > th,
+html[data-design-variant='b'] tbody tr:nth-child(odd) > td {
   background-color: var(--preview-b-panel) !important;
+  color: var(--color-foreground) !important;
 }
 
 html[data-design-variant='b'] .even\:bg-slate-50\/70:nth-child(even),
+html[data-design-variant='b'] .even\:bg-slate-50\/70:nth-child(2n),
 html[data-design-variant='b'] tr.even\:bg-slate-50\/70:nth-child(even),
-html[data-design-variant='b'] tbody tr:nth-child(even) {
+html[data-design-variant='b'] tr.even\:bg-slate-50\/70:nth-child(2n),
+html[data-design-variant='b'] .even\:bg-\[\#13233a\]:nth-child(even),
+html[data-design-variant='b'] .even\:bg-\[\#13233a\]:nth-child(2n),
+html[data-design-variant='b'] tbody tr:nth-child(even),
+html[data-design-variant='b'] tbody tr:nth-child(2n),
+html[data-design-variant='b'] tbody tr:nth-child(even) > th,
+html[data-design-variant='b'] tbody tr:nth-child(even) > td,
+html[data-design-variant='b'] tbody tr:nth-child(2n) > th,
+html[data-design-variant='b'] tbody tr:nth-child(2n) > td {
   background-color: var(--preview-b-panel-strong) !important;
+  color: var(--color-foreground) !important;
 }
 
-/* Light gradients used by system/compare/hero templates */
-html[data-design-variant='b'] .bg-gradient-to-b,
-html[data-design-variant='b'] .bg-gradient-to-br,
-html[data-design-variant='b'] .bg-gradient-to-r,
+html[data-design-variant='b'] tbody tr:nth-child(odd) > td,
+html[data-design-variant='b'] tbody tr:nth-child(even) > td,
+html[data-design-variant='b'] tbody tr:nth-child(2n) > td {
+  color: var(--preview-b-body) !important;
+}
+
+/*
+ * Tailwind v4 gradients set --tw-gradient-from/to vars, then paint via
+ * background-image: linear-gradient(var(--tw-gradient-stops)). Remap the
+ * STOP TOKENS so light from-/to- classes cannot paint white even if the
+ * background-image utility still applies.
+ */
 html[data-design-variant='b'] .from-slate-50,
 html[data-design-variant='b'] .from-slate-50\/90,
 html[data-design-variant='b'] .from-muted\/40,
 html[data-design-variant='b'] .from-muted\/60,
 html[data-design-variant='b'] .from-white,
 html[data-design-variant='b'] .from-white\/90,
-html[data-design-variant='b'] .via-white,
-html[data-design-variant='b'] .via-slate-50\/80,
-html[data-design-variant='b'] .to-white,
 html[data-design-variant='b'] .from-brand-blue\/10 {
-  background-image: none !important;
+  --tw-gradient-from: var(--preview-b-panel-strong) !important;
+  --tw-gradient-stops: var(
+    --tw-gradient-via-stops,
+    var(--tw-gradient-position),
+    var(--tw-gradient-from) var(--tw-gradient-from-position),
+    var(--tw-gradient-to) var(--tw-gradient-to-position)
+  ) !important;
 }
 
-html[data-design-variant='b'] section.bg-gradient-to-b,
-html[data-design-variant='b'] section.from-slate-50,
-html[data-design-variant='b'] section.from-muted\/60,
-html[data-design-variant='b'] .border-b.bg-gradient-to-b,
-html[data-design-variant='b'] .border-b.from-slate-50,
-html[data-design-variant='b'] .border-b.from-muted\/60 {
+html[data-design-variant='b'] .via-white,
+html[data-design-variant='b'] .via-slate-50\/80 {
+  --tw-gradient-via: var(--preview-b-panel) !important;
+  --tw-gradient-via-stops: var(--tw-gradient-position),
+    var(--tw-gradient-from) var(--tw-gradient-from-position),
+    var(--tw-gradient-via) var(--tw-gradient-via-position),
+    var(--tw-gradient-to) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-via-stops) !important;
+}
+
+html[data-design-variant='b'] .to-white {
+  --tw-gradient-to: var(--preview-b-deep) !important;
+  --tw-gradient-stops: var(
+    --tw-gradient-via-stops,
+    var(--tw-gradient-position),
+    var(--tw-gradient-from) var(--tw-gradient-from-position),
+    var(--tw-gradient-to) var(--tw-gradient-to-position)
+  ) !important;
+}
+
+html[data-design-variant='b'] .bg-gradient-to-b.from-slate-50,
+html[data-design-variant='b'] .bg-gradient-to-b.from-muted\/60,
+html[data-design-variant='b'] .bg-gradient-to-b.from-muted\/40,
+html[data-design-variant='b'] .bg-gradient-to-b.to-white,
+html[data-design-variant='b'] section.bg-gradient-to-b.from-slate-50,
+html[data-design-variant='b'] section.bg-gradient-to-b.to-white,
+html[data-design-variant='b'] .border-b.bg-gradient-to-b.from-slate-50,
+html[data-design-variant='b'] .border-b.from-slate-50 {
   background-color: var(--preview-b-panel) !important;
   background-image: linear-gradient(
     180deg,
@@ -141,7 +189,7 @@ html[data-design-variant='b'] .border-b.from-muted\/60 {
     var(--preview-b-panel) 55%,
     var(--preview-b-deep) 100%
   ) !important;
-  color: var(--color-foreground);
+  color: var(--color-foreground) !important;
 }
 
 /* ---------- Text ---------- */
