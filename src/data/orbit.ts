@@ -40,7 +40,7 @@ export const ORBIT_APPS_LIVE: OrbitApp[] = [
   {
     id: 'mail',
     title: 'Mail',
-    summary: 'Business email for your organization.',
+    summary: 'Mail can be added for any user and draws from the organization Credits pool.',
     status: 'live',
   },
   {

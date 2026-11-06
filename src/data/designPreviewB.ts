@@ -56,17 +56,11 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     summary: 'AI across the systems you already use, drawn from organization Credits.',
   },
   {
-    id: 'mail',
-    title: 'Mail',
-    href: '/mail/',
-    summary: 'Business email on your domain. Hosted inboxes draw Credits on paid hosting.',
-    notInTrial: true,
-  },
-  {
     id: 'hub',
     title: 'Hub',
     href: '/hub/',
-    summary: 'Mail, Chat, Calendar, Meetings, and Tasks for your organization.',
+    summary:
+      'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
     notInTrial: true,
   },
   {
@@ -169,18 +163,11 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     href: '/solutions/ai-use-cases/',
   },
   {
-    id: 'mail',
-    title: 'Mail',
-    group: 'platform',
-    summary: 'Hosted inboxes on paid hosting; usage draws from Credits.',
-    href: '/mail/',
-    notInTrial: true,
-  },
-  {
     id: 'hub',
     title: 'Hub',
     group: 'platform',
-    summary: 'Mail, Chat, Calendar, Meetings, and Tasks for your organization.',
+    summary:
+      'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
     href: '/hub/',
     notInTrial: true,
   },
@@ -188,7 +175,7 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     id: 'orbit',
     title: 'ATW Orbit',
     group: 'platform',
-    summary: `${ORBIT_ONE_LINER} Paid hosting only.`,
+    summary: ORBIT_ONE_LINER,
     href: '/orbit/',
     notInTrial: true,
   },
