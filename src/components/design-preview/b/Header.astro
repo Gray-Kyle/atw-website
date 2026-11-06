@@ -72,11 +72,6 @@ const isActive = (href: string) => {
                         Coming online
                       </span>
                     ) : null}
-                    {item.notInTrial ? (
-                      <span class="rounded border border-white/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#a8b6c9]">
-                        Paid hosting
-                      </span>
-                    ) : null}
                   </span>
                   <span class="mt-1 block text-xs leading-relaxed text-[#a8b6c9]">{item.summary}</span>
                 </a>
@@ -193,9 +188,6 @@ const isActive = (href: string) => {
             {item.title}
             {item.status === 'coming-online' ? (
               <span class="ml-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7ee0ff]">Coming online</span>
-            ) : null}
-            {item.notInTrial ? (
-              <span class="ml-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#a8b6c9]">Paid hosting</span>
             ) : null}
           </a>
         ))
