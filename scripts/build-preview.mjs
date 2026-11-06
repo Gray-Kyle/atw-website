@@ -61,7 +61,7 @@ copyFileSync(previewWorker, join(outPath, '_worker.js'));
 
 writeFileSync(
   join(outPath, 'robots.txt'),
-  `# Design preview (${label}) — not for indexing
+  `# Design preview (${label}) - not for indexing
 User-agent: *
 Disallow: /
 

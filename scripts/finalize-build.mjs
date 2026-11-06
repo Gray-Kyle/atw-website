@@ -60,7 +60,7 @@ function stripSearchArtifacts() {
 function writeNoindexRobots(label) {
   writeFileSync(
     join(outPath, 'robots.txt'),
-    `# ${label} — not for indexing
+    `# ${label} - not for indexing
 User-agent: *
 Disallow: /
 

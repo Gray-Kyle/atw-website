@@ -1,4 +1,4 @@
-/* Option B — Dark navy / electric editorial art direction (WCAG-minded tokens) */
+/* Option B - Dark navy / electric editorial art direction (WCAG-minded tokens) */
 html[data-design-variant='b'] {
   --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
