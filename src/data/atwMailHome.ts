@@ -56,7 +56,7 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'What is the difference between ATW Mail and ATW Orbit?',
-    a: 'ATW Mail is business email: webmail, custom domain, and admin. On paid plans, Mail is included and hosted inboxes use Credits. ATW Orbit is a product label for calendar, documents, meetings, and messaging alongside Mail and One (not a separate per-seat SKU).',
+    a: 'ATW Mail is business email: webmail, custom domain, and admin. On paid plans, Mail is included and hosted inboxes use Credits. ATW Orbit is a product label for Mail, Calendar, Meetings, and Messaging alongside One today, with Docs, Spreadsheets, and Presentations coming soon (not a separate per-seat SKU).',
   },
   {
     q: 'What DNS records do I need?',

@@ -1,15 +1,20 @@
 ---
-import { ORBIT, ORBIT_APPS } from '../../../data/orbit';
+import {
+  ORBIT,
+  ORBIT_APPS_COMING_SOON,
+  ORBIT_APPS_LIVE,
+} from '../../../data/orbit';
 import { livePath } from '../../../lib/site';
 
 /** Planet positions on concentric rings (percent of stage) */
 const planets = [
-  { id: 'mail-calendar', label: 'Mail & calendar', ring: 1, angle: -20 },
-  { id: 'docs', label: 'Docs', ring: 1, angle: 100 },
-  { id: 'spreadsheets', label: 'Spreadsheets', ring: 1, angle: 210 },
-  { id: 'presentations', label: 'Presentations', ring: 2, angle: 40 },
-  { id: 'meetings', label: 'Meetings', ring: 2, angle: 150 },
-  { id: 'messaging', label: 'Messaging', ring: 2, angle: 280 },
+  { id: 'mail', label: 'Mail', ring: 1, angle: -10, soon: false },
+  { id: 'calendar', label: 'Calendar', ring: 1, angle: 95, soon: false },
+  { id: 'meetings', label: 'Meetings', ring: 1, angle: 200, soon: false },
+  { id: 'messaging', label: 'Messaging', ring: 2, angle: 40, soon: false },
+  { id: 'docs', label: 'Docs', ring: 2, angle: 130, soon: true },
+  { id: 'spreadsheets', label: 'Spreadsheets', ring: 2, angle: 220, soon: true },
+  { id: 'presentations', label: 'Presentations', ring: 2, angle: 300, soon: true },
 ] as const;
 
 function planetStyle(ring: number, angle: number) {
@@ -58,13 +63,17 @@ function planetStyle(ring: number, angle: number) {
         </div>
         {
           planets.map((p) => (
-            <div class:list={['orbit-planet', `orbit-planet--r${p.ring}`]} style={planetStyle(p.ring, p.angle)}>
+            <div
+              class:list={['orbit-planet', `orbit-planet--r${p.ring}`, p.soon && 'orbit-planet--soon']}
+              style={planetStyle(p.ring, p.angle)}
+            >
               <span class="orbit-planet__dot" />
               <span class="orbit-planet__label">{p.label}</span>
+              {p.soon ? <span class="orbit-planet__soon">Soon</span> : null}
             </div>
           ))
         }
-        <div class="orbit-future" style={planetStyle(2, 330)}>
+        <div class="orbit-future" style={planetStyle(2, 355)}>
           <span class="orbit-future__dot" />
           <span class="orbit-future__label">{ORBIT.moreComing}</span>
         </div>
@@ -75,13 +84,13 @@ function planetStyle(ring: number, angle: number) {
 
 <section class="border-y border-white/10 py-16 sm:py-20" data-preview-animate>
   <div class="xl-container px-4">
-    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">Current apps</p>
+    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">Live today</p>
     <h2 class="mt-3 max-w-2xl font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
       Planets in Orbit today
     </h2>
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
-        ORBIT_APPS.map((app) => (
+        ORBIT_APPS_LIVE.map((app) => (
           <li class="border-t border-white/15 pt-4">
             <h3 class="font-heading text-lg font-semibold text-white">{app.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-[#a8b6c9]">{app.summary}</p>
@@ -89,6 +98,25 @@ function planetStyle(ring: number, angle: number) {
         ))
       }
     </ul>
+
+    <p class="mt-14 text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">Coming soon</p>
+    <h2 class="mt-3 max-w-2xl font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      Docs, Spreadsheets, and Presentations
+    </h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        ORBIT_APPS_COMING_SOON.map((app) => (
+          <li class="border-t border-white/15 pt-4">
+            <div class="flex flex-wrap items-baseline gap-2">
+              <h3 class="font-heading text-lg font-semibold text-white">{app.title}</h3>
+              <span class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#7ee0ff]">Coming soon</span>
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-[#a8b6c9]">{app.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
+
     <div class="mt-12 border border-dashed border-white/20 bg-[#0d1a2e]/60 px-5 py-6 sm:px-6">
       <h3 class="font-heading text-lg font-semibold text-white">{ORBIT.moreComing}</h3>
       <p class="mt-2 max-w-2xl text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.moreComingDetail}</p>
@@ -166,7 +194,7 @@ function planetStyle(ring: number, angle: number) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.25rem;
     width: max-content;
     max-width: 7.5rem;
     transform: translate(-50%, -50%);
@@ -183,6 +211,11 @@ function planetStyle(ring: number, angle: number) {
     width: 0.7rem;
     height: 0.7rem;
   }
+  .orbit-planet--soon .orbit-planet__dot {
+    background: transparent;
+    border: 1.5px solid rgba(126, 224, 255, 0.45);
+    box-shadow: none;
+  }
   .orbit-planet__label,
   .orbit-future__label {
     text-align: center;
@@ -190,6 +223,13 @@ function planetStyle(ring: number, angle: number) {
     font-weight: 600;
     line-height: 1.25;
     color: #c5d0e0;
+  }
+  .orbit-planet__soon {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7ee0ff;
   }
   .orbit-future__dot {
     background: transparent;

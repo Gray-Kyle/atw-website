@@ -1,17 +1,18 @@
 ---
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
+import { ORBIT_ONE_LINER } from '../data/orbit';
 import { PRODUCT } from '../lib/site';
 import { faqPageJsonLd } from '../lib/seo';
 
 const faqs = [
   {
     q: 'What is ATW Orbit?',
-    a: 'ATW Orbit covers mail and calendar, documents, meetings, and business text/voice messaging alongside One. It is a product label, not a separate per-seat SKU. The product console remains on the existing host until the Orbit subdomain is confirmed.',
+    a: 'ATW Orbit covers Mail, Calendar, Meetings, and Messaging alongside One today. Docs, Spreadsheets, and Presentations are coming soon. It is a product label, not a separate per-seat SKU. The product console remains on the existing host until the Orbit subdomain is confirmed.',
   },
   {
     q: 'Do I need Mail?',
-    a: 'On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Calendar and other Orbit tools sit alongside Mail when you need them.',
+    a: 'On paid hosting tiers, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Calendar and other live Orbit tools sit alongside Mail when you need them.',
   },
   {
     q: 'How do I learn more?',
@@ -21,15 +22,15 @@ const faqs = [
 ---
 
 <MarketingLayout
-  title="ATW Orbit | calendar, docs, meetings, messaging"
-  description="Mail, meetings, calendar, docs, and messaging in one orbit next to ATW One. On paid hosting, Mail and related tools draw from your Credits pool."
+  title="ATW Orbit | mail, calendar, meetings, messaging"
+  description={`${ORBIT_ONE_LINER} On paid hosting, Mail and related tools draw from your Credits pool.`}
   canonical="https://atw.net/workspace"
   jsonLd={faqPageJsonLd('/workspace', faqs)}
 >
   <SystemMarketingPage
     systemId="workspace"
     headline="Each app is a planet in your Orbit"
-    lead="ATW Orbit sits next to ATW One so your team can schedule, collaborate, meet, and message without another disconnected suite. On paid hosting, Mail is included and hosted inboxes use Credits."
+    lead={`${ORBIT_ONE_LINER} On paid hosting, Mail is included and hosted inboxes use Credits.`}
     primaryCta={{ label: 'Orbit overview', href: '/orbit' }}
     secondaryCta={{ label: 'Open ATW Orbit', href: PRODUCT.worksuite }}
     faqs={faqs}

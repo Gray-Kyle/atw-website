@@ -9,6 +9,7 @@ import {
   ERP_TRIAL_INCLUDED,
   ERP_TRIAL_NOT_INCLUDED,
 } from './erpOfferHome';
+import { ORBIT_ONE_LINER } from './orbit';
 
 export type DesignPreviewNavProduct = {
   id: string;
@@ -72,7 +73,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     id: 'orbit',
     title: 'ATW Orbit',
     href: '/orbit/',
-    summary: 'Mail, meetings, calendar, docs, and messaging in one orbit.',
+    summary: ORBIT_ONE_LINER,
     notInTrial: true,
   },
 ];
@@ -187,7 +188,7 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     id: 'orbit',
     title: 'ATW Orbit',
     group: 'platform',
-    summary: 'Mail, meetings, calendar, docs, and messaging in one orbit. Paid hosting only.',
+    summary: `${ORBIT_ONE_LINER} Paid hosting only.`,
     href: '/orbit/',
     notInTrial: true,
   },

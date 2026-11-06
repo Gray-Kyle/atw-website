@@ -2,7 +2,7 @@
 import MarketingLayout from '../layouts/MarketingLayout.astro';
 import OrbitView from '../components/design-preview/b/OrbitView.astro';
 import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
-import { ORBIT } from '../data/orbit';
+import { ORBIT, ORBIT_ONE_LINER } from '../data/orbit';
 import { PRODUCT } from '../lib/site';
 import { designVariant } from '../lib/designVariant';
 import { faqPageJsonLd } from '../lib/seo';
@@ -10,7 +10,7 @@ import { faqPageJsonLd } from '../lib/seo';
 const faqs = [
   {
     q: 'What is ATW Orbit?',
-    a: 'ATW Orbit is the productivity orbit next to ATW One: mail and calendar, docs, spreadsheets, presentations, video meetings, and messaging (SMS and voice). It is a product label, not a separate per-seat SKU.',
+    a: 'ATW Orbit is the productivity orbit next to ATW One. Live today: Mail, Calendar, Meetings, and Messaging (SMS and voice). Coming soon: Docs, Spreadsheets, and Presentations. It is a product label, not a separate per-seat SKU.',
   },
   {
     q: 'Is Orbit included in the trial?',
@@ -24,8 +24,8 @@ const faqs = [
 ---
 
 <MarketingLayout
-  title="ATW Orbit | mail, meetings, calendar, docs, messaging"
-  description="Each app is a planet in your Orbit. Mail and calendar, docs, spreadsheets, presentations, meetings, and messaging next to ATW One on paid hosting."
+  title="ATW Orbit | mail, calendar, meetings, messaging"
+  description={`${ORBIT_ONE_LINER} Paid hosting next to ATW One.`}
   canonical="https://atw.net/orbit/"
   jsonLd={faqPageJsonLd('/orbit', faqs)}
 >

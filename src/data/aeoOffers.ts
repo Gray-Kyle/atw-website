@@ -146,7 +146,7 @@ export const AEO_SYSTEMS = [
     id: "workspace",
     title: "ATW Orbit",
     href: "/orbit",
-    summary: "Mail, meetings, calendar, docs, and messaging in one orbit.",
+    summary: "Mail, calendar, meetings, and messaging in one orbit, with Docs, Spreadsheets, and Presentations coming soon.",
   },
   {
     id: "directory",

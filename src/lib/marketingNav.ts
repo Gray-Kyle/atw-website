@@ -190,28 +190,22 @@ export const marketingSystems: MarketingSystem[] = [
     id: 'workspace',
     title: 'ATW Orbit',
     href: '/orbit',
-    summary: 'Mail, meetings, calendar, docs, and messaging in one orbit.',
+    summary:
+      'Mail, calendar, meetings, and messaging in one orbit, with Docs, Spreadsheets, and Presentations coming soon.',
     apps: [
       {
-        id: 'mail-calendar',
-        title: 'Mail & calendar',
+        id: 'mail',
+        title: 'Mail',
         href: PRODUCT.worksuite,
-        summary: 'Shared calendars with your mailboxes.',
-        modules: [
-          { title: 'Calendar', href: PRODUCT.worksuite },
-          { title: 'Mailboxes', href: 'https://mail.atw.net' },
-        ],
+        summary: 'Business email for your organization.',
+        modules: [{ title: 'Mailboxes', href: 'https://mail.atw.net' }],
       },
       {
-        id: 'documents',
-        title: 'Documents',
+        id: 'calendar',
+        title: 'Calendar',
         href: PRODUCT.worksuite,
-        summary: 'Docs, sheets, and decks in the org.',
-        modules: [
-          { title: 'Documents', href: PRODUCT.worksuite },
-          { title: 'Spreadsheets', href: PRODUCT.worksuite },
-          { title: 'Presentations', href: PRODUCT.worksuite },
-        ],
+        summary: 'Shared calendars next to Mail.',
+        modules: [{ title: 'Calendar', href: PRODUCT.worksuite }],
       },
       {
         id: 'meetings',
@@ -228,6 +222,17 @@ export const marketingSystems: MarketingSystem[] = [
         modules: [
           { title: 'SMS', href: PRODUCT.worksuite },
           { title: 'Voice', href: PRODUCT.worksuite },
+        ],
+      },
+      {
+        id: 'documents',
+        title: 'Docs',
+        href: '/orbit',
+        summary: 'Coming soon.',
+        modules: [
+          { title: 'Docs (coming soon)', href: '/orbit' },
+          { title: 'Spreadsheets (coming soon)', href: '/orbit' },
+          { title: 'Presentations (coming soon)', href: '/orbit' },
         ],
       },
     ],
