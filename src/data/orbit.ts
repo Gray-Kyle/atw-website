@@ -3,15 +3,15 @@
  * Product console remains worksuite.atw.net until the new host is confirmed.
  * No per-seat SKU. Included with every paid ATW plan. Not in the 14-day trial.
  *
- * Live today: Mail, Calendar, Meetings, Messaging.
- * Coming soon: Docs, Spreadsheets, Presentations.
+ * Live today: Mail, Calendar, Meetings.
+ * Coming soon: Messaging, Docs, Spreadsheets, Presentations.
  */
 
 import { PRODUCT } from '../lib/site';
 
 /** Shared one-liner for nav, What's included, and page hero */
 export const ORBIT_ONE_LINER =
-  'Mail, calendar, meetings, and messaging in one orbit, with Docs, Spreadsheets, and Presentations coming soon.';
+  'Mail, calendar, and meetings in one orbit, with Messaging, Docs, Spreadsheets, and Presentations coming soon.';
 
 /** Inclusion / Credits framing for Orbit (no per-seat SKU) */
 export const ORBIT_INCLUSION =
@@ -58,16 +58,16 @@ export const ORBIT_APPS_LIVE: OrbitApp[] = [
     summary: 'Video meetings for the team.',
     status: 'live',
   },
-  {
-    id: 'messaging',
-    title: 'Messaging',
-    summary: 'Business SMS and voice messaging.',
-    status: 'live',
-  },
 ];
 
 /** Named apps not live yet (exact product names Kyle wants kept) */
 export const ORBIT_APPS_COMING_SOON: OrbitApp[] = [
+  {
+    id: 'messaging',
+    title: 'Messaging',
+    summary: 'Business SMS and voice messaging.',
+    status: 'coming-soon',
+  },
   {
     id: 'docs',
     title: 'Docs',
