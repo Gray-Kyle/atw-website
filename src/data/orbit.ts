@@ -20,9 +20,9 @@ export const ORBIT_INCLUSION =
 export const ORBIT_WORDMARK = {
   webp: '/images/logo/atw-orbit-wordmark.webp',
   png: '/images/logo/atw-orbit-wordmark.png',
-  alt: 'ATW Orbit',
-  width: 320,
-  height: 110,
+  alt: 'ATW Orbit logo',
+  width: 1163,
+  height: 397,
 } as const;
 
 export const ORBIT = {

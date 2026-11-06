@@ -2,6 +2,7 @@
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../../components/marketing/SystemMarketingPage.astro';
 import { faqPageJsonLd } from '../../lib/seo';
+import { PRODUCT_MARKS } from '../../data/productMarks';
 
 const faqs = [
   {
@@ -32,5 +33,7 @@ const faqs = [
     primaryCta={{ label: 'See pricing', href: '/pricing' }}
     secondaryCta={{ label: 'ATW Orbit', href: '/orbit/' }}
     faqs={faqs}
+    brandWordmark={PRODUCT_MARKS.mail.wordmark}
+    brandOrbitWithMail
   />
 </MarketingLayout>

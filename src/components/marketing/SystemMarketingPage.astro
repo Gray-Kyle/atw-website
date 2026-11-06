@@ -1,8 +1,19 @@
 ---
 import { findMarketingSystem } from '../../lib/marketingNav';
 import { designVariant } from '../../lib/designVariant';
+import { HERO_LOGO_CLASS } from '../../data/productMarks';
 
 type Faq = { q: string; a: string };
+
+type BrandWordmark = {
+  webp?: string;
+  png: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+type BrandMarkLabel = BrandWordmark & { label: string };
 
 type Props = {
   systemId: string;
@@ -17,6 +28,11 @@ type Props = {
   productWordmarkAlt?: string;
   productWordmarkWidth?: number;
   productWordmarkHeight?: number;
+  /** Structured brand for Option B (preferred over legacy wordmark props). */
+  brandWordmark?: BrandWordmark;
+  brandMarkWithLabel?: BrandMarkLabel;
+  /** Orbit wordmark + Mail icon combo (Mail is an Orbit app). */
+  brandOrbitWithMail?: boolean;
 };
 
 const {
@@ -31,13 +47,29 @@ const {
   productWordmarkAlt = 'ATW',
   productWordmarkWidth = 280,
   productWordmarkHeight = 64,
+  brandWordmark,
+  brandMarkWithLabel,
+  brandOrbitWithMail = false,
 } = Astro.props;
 const system = findMarketingSystem(systemId);
 if (!system) {
   throw new Error(`Unknown marketing system: ${systemId}`);
 }
-const showWordmark = Boolean(productWordmarkSrc || productWordmarkPng);
-const darkHero = showWordmark || designVariant === 'b';
+
+const legacyWordmark: BrandWordmark | null =
+  productWordmarkPng || productWordmarkSrc
+    ? {
+        webp: productWordmarkSrc?.endsWith('.webp') ? productWordmarkSrc : undefined,
+        png: productWordmarkPng || productWordmarkSrc!,
+        alt: productWordmarkAlt,
+        width: productWordmarkWidth,
+        height: productWordmarkHeight,
+      }
+    : null;
+
+const wordmark = brandWordmark || legacyWordmark;
+const showBrand = Boolean(wordmark || brandMarkWithLabel || brandOrbitWithMail);
+const darkHero = showBrand || designVariant === 'b';
 ---
 
 <main class="min-h-screen">
@@ -51,18 +83,60 @@ const darkHero = showWordmark || designVariant === 'b';
   >
     <div class="container px-4 pb-16 pt-8">
       {
-        showWordmark ? (
-          <div class="mb-6">
+        brandOrbitWithMail && wordmark ? (
+          <div class="mb-6 flex flex-wrap items-center gap-3 sm:gap-4">
             <picture>
-              {productWordmarkSrc ? (
-                <source srcset={productWordmarkSrc} type="image/webp" />
+              {wordmark.webp ? <source srcset={wordmark.webp} type="image/webp" /> : null}
+              <img
+                src={wordmark.png}
+                alt={wordmark.alt}
+                width={wordmark.width}
+                height={wordmark.height}
+                class={HERO_LOGO_CLASS}
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <img
+              src="/images/atw-marks/system-mail.svg"
+              alt=""
+              width={64}
+              height={64}
+              class="h-10 w-10 object-contain sm:h-12 sm:w-12"
+              aria-hidden="true"
+            />
+            <span class="sr-only">Mail</span>
+          </div>
+        ) : brandMarkWithLabel ? (
+          <div class="mb-6 flex flex-wrap items-center gap-3 sm:gap-4">
+            <picture>
+              {brandMarkWithLabel.webp ? (
+                <source srcset={brandMarkWithLabel.webp} type="image/webp" />
               ) : null}
               <img
-                src={productWordmarkPng || productWordmarkSrc}
-                alt={productWordmarkAlt}
-                width={productWordmarkWidth}
-                height={productWordmarkHeight}
-                class="h-auto w-[min(100%,20rem)] max-w-full object-contain object-left"
+                src={brandMarkWithLabel.png}
+                alt={brandMarkWithLabel.alt}
+                width={brandMarkWithLabel.width}
+                height={brandMarkWithLabel.height}
+                class="h-14 w-auto max-w-[5.5rem] object-contain object-left sm:h-16 md:h-[4.5rem]"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+            <span class="font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              {brandMarkWithLabel.label}
+            </span>
+          </div>
+        ) : wordmark ? (
+          <div class="mb-6">
+            <picture>
+              {wordmark.webp ? <source srcset={wordmark.webp} type="image/webp" /> : null}
+              <img
+                src={wordmark.png}
+                alt={wordmark.alt}
+                width={wordmark.width}
+                height={wordmark.height}
+                class={HERO_LOGO_CLASS}
                 loading="eager"
                 decoding="async"
               />

@@ -44,11 +44,13 @@ const faqs = [
         primaryCta={{ label: 'See pricing', href: '/pricing/' }}
         secondaryCta={{ label: ORBIT.consoleLabel, href: PRODUCT.worksuite }}
         faqs={faqs}
-        productWordmarkSrc="/images/logo/atw-orbit-wordmark.webp"
-        productWordmarkPng="/images/logo/atw-orbit-wordmark.png"
-        productWordmarkAlt="ATW Orbit"
-        productWordmarkWidth={320}
-        productWordmarkHeight={110}
+        brandWordmark={{
+          webp: '/images/logo/atw-orbit-wordmark.webp',
+          png: '/images/logo/atw-orbit-wordmark.png',
+          alt: 'ATW Orbit logo',
+          width: 1163,
+          height: 397,
+        }}
       />
     )
   }

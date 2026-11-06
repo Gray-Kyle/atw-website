@@ -10,6 +10,7 @@ import {
   ERP_TRIAL_NOT_INCLUDED,
 } from './erpOfferHome';
 import { ORBIT_ONE_LINER } from './orbit';
+import { PRODUCT_MARKS } from './productMarks';
 
 export type DesignPreviewNavProduct = {
   id: string;
@@ -20,6 +21,8 @@ export type DesignPreviewNavProduct = {
   status?: 'coming-online';
   /** True when the item is not part of the 14-day trial package */
   notInTrial?: boolean;
+  /** Small system mark for Products menu */
+  icon?: string;
 };
 
 export type DesignPreviewNavLink = {
@@ -35,6 +38,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     title: 'ATW One',
     href: '/one/',
     summary: 'CRM, Finance, Marketing, HR, and Custom Apps in one workspace.',
+    icon: PRODUCT_MARKS.one.icon,
   },
   {
     id: 'workforce',
@@ -42,12 +46,14 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     href: '/agents/',
     summary: 'Named AI agent seats next to One on the same Credits pool.',
     status: 'coming-online',
+    icon: PRODUCT_MARKS.workforce.icon,
   },
   {
     id: 'directory',
     title: 'Directory',
     href: '/systems/directory/',
     summary: 'Who can sign in and which systems they can open.',
+    icon: PRODUCT_MARKS.directory.icon,
   },
   {
     id: 'ai',
@@ -61,12 +67,14 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     href: '/hub/',
     summary:
       'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
+    icon: PRODUCT_MARKS.hub.icon,
   },
   {
     id: 'orbit',
     title: 'ATW Orbit',
     href: '/orbit/',
     summary: ORBIT_ONE_LINER,
+    icon: PRODUCT_MARKS.orbit.icon,
   },
 ];
 
@@ -199,10 +207,20 @@ export type BProductCard = {
   href: string;
   summary: string;
   status?: 'coming-online';
+  icon?: string;
   wordmark?: {
     src: string;
     png?: string;
     alt: string;
+    width: number;
+    height: number;
+  };
+  /** Icon + text label when no italic product wordmark exists */
+  markWithLabel?: {
+    src: string;
+    png?: string;
+    alt: string;
+    label: string;
     width: number;
     height: number;
   };
@@ -214,9 +232,10 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
     title: 'ATW One',
     href: '/one/',
     summary: 'Run CRM, finance, and operations in one workspace on a shared Credits pool.',
+    icon: PRODUCT_MARKS.one.icon,
     wordmark: {
       src: '', // filled via Astro asset in HomeView
-      alt: 'ATW One',
+      alt: 'ATW One logo',
       width: 200,
       height: 93,
     },
@@ -227,15 +246,26 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
     href: '/agents/',
     summary: 'Named AI agent seats beside One, drawing from the same Credits pool.',
     status: 'coming-online',
+    icon: PRODUCT_MARKS.workforce.icon,
+    markWithLabel: {
+      src: PRODUCT_MARKS.workforce.markWithLabel!.webp!,
+      png: PRODUCT_MARKS.workforce.markWithLabel!.png,
+      alt: PRODUCT_MARKS.workforce.markWithLabel!.alt,
+      label: 'Workforce',
+      width: PRODUCT_MARKS.workforce.markWithLabel!.width,
+      height: PRODUCT_MARKS.workforce.markWithLabel!.height,
+    },
   },
   {
     id: 'directory',
     title: 'Directory',
     href: '/systems/directory/',
     summary: 'Control who can sign in and which systems they can open.',
+    icon: PRODUCT_MARKS.directory.icon,
     wordmark: {
-      src: '/images/logo/atw-directory-wordmark.png',
-      alt: 'ATW Directory',
+      src: '/images/logo/atw-directory-wordmark.webp',
+      png: '/images/logo/atw-directory-wordmark.png',
+      alt: 'ATW Directory logo',
       width: 220,
       height: 52,
     },
@@ -252,16 +282,26 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
     href: '/hub/',
     summary:
       'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
+    icon: PRODUCT_MARKS.hub.icon,
+    markWithLabel: {
+      src: PRODUCT_MARKS.hub.markWithLabel!.webp!,
+      png: PRODUCT_MARKS.hub.markWithLabel!.png,
+      alt: PRODUCT_MARKS.hub.markWithLabel!.alt,
+      label: 'Hub',
+      width: PRODUCT_MARKS.hub.markWithLabel!.width,
+      height: PRODUCT_MARKS.hub.markWithLabel!.height,
+    },
   },
   {
     id: 'orbit',
     title: 'ATW Orbit',
     href: '/orbit/',
     summary: ORBIT_ONE_LINER,
+    icon: PRODUCT_MARKS.orbit.icon,
     wordmark: {
       src: '/images/logo/atw-orbit-wordmark.webp',
       png: '/images/logo/atw-orbit-wordmark.png',
-      alt: 'ATW Orbit',
+      alt: 'ATW Orbit logo',
       width: 220,
       height: 76,
     },

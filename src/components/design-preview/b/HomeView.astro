@@ -118,7 +118,7 @@ const showcaseImages = {
                 {card.id === 'one' ? (
                   <Picture
                     src={brandLogo}
-                    alt="ATW One"
+                    alt="ATW One logo"
                     formats={['avif', 'webp']}
                     widths={[160, 240]}
                     sizes="160px"
@@ -143,12 +143,42 @@ const showcaseImages = {
                       decoding="async"
                     />
                   </picture>
+                ) : card.markWithLabel ? (
+                  <span class="flex items-center gap-2">
+                    <picture>
+                      {card.markWithLabel.src.endsWith('.webp') ? (
+                        <source srcset={card.markWithLabel.src} type="image/webp" />
+                      ) : null}
+                      <img
+                        src={card.markWithLabel.png || card.markWithLabel.src}
+                        alt={card.markWithLabel.alt}
+                        width={card.markWithLabel.width}
+                        height={card.markWithLabel.height}
+                        class="h-8 w-auto max-w-[2.5rem] object-contain object-left"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
+                    <span class="font-heading text-lg font-semibold text-white">{card.markWithLabel.label}</span>
+                  </span>
+                ) : card.icon ? (
+                  <span class="flex items-center gap-2">
+                    <img
+                      src={card.icon}
+                      alt=""
+                      width={24}
+                      height={24}
+                      class="h-6 w-6 object-contain"
+                      aria-hidden="true"
+                    />
+                    <span class="font-heading text-lg font-semibold text-white">{card.title}</span>
+                  </span>
                 ) : (
                   <span class="font-heading text-lg font-semibold text-white">{card.title}</span>
                 )}
               </div>
               <span class="mt-4 flex flex-wrap items-center gap-2">
-                {card.wordmark || card.id === 'one' ? (
+                {card.wordmark || card.id === 'one' || card.markWithLabel ? (
                   <span class="sr-only">{card.title}</span>
                 ) : null}
                 {card.status === 'coming-online' ? (
