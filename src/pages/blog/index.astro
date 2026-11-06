@@ -1,8 +1,12 @@
 ---
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
-import { fetchPublicPosts } from '../../lib/blog';
+import { fetchPublicPosts, stripEmDashes } from '../../lib/blog';
 
-const posts = await fetchPublicPosts(50);
+const posts = (await fetchPublicPosts(50)).map((post) => ({
+  ...post,
+  title: stripEmDashes(post.title),
+  excerpt: post.excerpt ? stripEmDashes(post.excerpt) : post.excerpt,
+}));
 ---
 
 <MarketingLayout

@@ -7,29 +7,29 @@ import { faqPageJsonLd } from '../lib/seo';
 const faqs = [
   {
     q: 'What is ATW Hub?',
-    a: 'Hub is the single-tenant productivity suite at hub.atw.net: Mail, Chat, Calendar, Meetings, and Tasks for your organization.',
+    a: 'Hub is an Outlook-like inbox and workspace client at hub.atw.net. It connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
   },
   {
     q: 'Is Hub a separate purchase?',
-    a: 'No. Hub is included with ATW base hosting. It is not a customer-paid SKU.',
+    a: 'No. Hub is included with every plan. It is not a customer-paid SKU.',
   },
   {
-    q: 'How does Hub relate to Mail?',
-    a: 'Mail is part of Hub. On every paid ATW plan, Mail is included and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
+    q: 'How does Hub relate to Mail and Orbit?',
+    a: 'Mail is an app inside ATW Orbit, not inside Hub. Hub is a separate client that can connect to ATW Orbit (and to Google Workspace, Microsoft Teams, and Outlook). Orbit mailboxes draw from the organization Credits pool.',
   },
 ] as const;
 ---
 
 <MarketingLayout
-  title="ATW Hub | Mail, Chat, Calendar, Meetings, Tasks"
-  description="Single-tenant productivity for your organization: Mail, Chat, Calendar, Meetings, and Tasks. Included with ATW base hosting."
+  title="ATW Hub | inbox and workspace client"
+  description="ATW Hub is an Outlook-like inbox and workspace client that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook. Included with every plan."
   canonical="https://atw.net/hub"
   jsonLd={faqPageJsonLd('/hub', faqs)}
 >
   <SystemMarketingPage
     systemId="hub"
-    headline="Productivity suite for your organization"
-    lead="Hub brings Mail, Chat, Calendar, Meetings, and Tasks together at hub.atw.net. It is included with ATW base hosting, not a separate purchase."
+    headline="An Outlook-like client for your workspace"
+    lead="Hub connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook so you can work from one inbox and workspace client. It is included with every plan, not a separate purchase."
     primaryCta={{ label: 'Talk to us', href: '/contact' }}
     secondaryCta={{ label: 'Open Hub', href: PRODUCT.hub }}
     faqs={faqs}

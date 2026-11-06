@@ -42,12 +42,14 @@ export const ERP_TRIAL_INCLUDED = [
   "ATW AI",
 ] as const;
 
-/** Explicitly not available during the trial. */
+/**
+ * Explicitly not available during the trial.
+ * Hub is included with every plan, so do not list Hub here; trial copy should
+ * emphasize what the trial includes (ERP_TRIAL_INCLUDED) instead.
+ */
 export const ERP_TRIAL_NOT_INCLUDED = [
-  "Hosted mail inboxes",
+  "Mail / Orbit mailboxes",
   "Sandbox",
-  "Hub",
-  "ATW Orbit",
 ] as const;
 
 /**
@@ -282,7 +284,7 @@ export type ErpHostingPlan = {
   includes: string[];
 };
 
-/** paid ATW plan tiers (Credits included monthly). Trial is rendered separately. */
+/** Paid hosting tiers (Credits included monthly). Trial is rendered separately. */
 export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
   {
     id: "starter",
@@ -292,7 +294,7 @@ export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
     includes: [
       ERP_UNLIMITED_USERS_BULLET,
       `${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")} Credits per month`,
-      "Mail (hosted inboxes draw Credits), Hub, and sandbox",
+      "ATW Orbit (Mail draws Credits), Hub, and sandbox",
       "Full ATW One core access",
       "Secure cloud environment, backups, and standard updates",
       "Core CRM, finance, operations, and admin tools",
@@ -307,7 +309,7 @@ export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
       ERP_UNLIMITED_USERS_BULLET,
       "Everything in Starter",
       `${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")} Credits per month`,
-      "Mail, Hub, and sandbox included",
+      "ATW Orbit, Hub, and sandbox included",
       "More throughput, automation, and reporting capacity",
     ],
   },
@@ -320,7 +322,7 @@ export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
       ERP_UNLIMITED_USERS_BULLET,
       "Everything in Growth",
       `${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} Credits per month`,
-      "Mail, Hub, and sandbox included",
+      "ATW Orbit, Hub, and sandbox included",
       "Highest throughput and workflow volume",
       "Priority platform performance",
       "Strong fit for multi-department operations",
@@ -335,13 +337,13 @@ export const ERP_HOSTING_PLANS: ErpHostingPlan[] = [
     includes: [
       ERP_UNLIMITED_USERS_BULLET,
       "Custom Credits pool",
-      "Mail, Hub, sandbox, and broader system access as scoped",
+      "ATW Orbit, Hub, sandbox, and broader system access as scoped",
       "Dedicated commercial and technical guidance",
     ],
   },
 ];
 
-/** Trial package shown on pricing (not a paid ATW plans tier). */
+/** Trial package shown on pricing (not a paid plan tier). */
 export const ERP_TRIAL_PACKAGE = {
   id: "trial",
   name: "Trial",
@@ -399,7 +401,7 @@ export const ERP_IMPLEMENTATION = {
 };
 
 export const ERP_PRICING_FOOTNOTE =
-  `Hosting plans include a monthly Credits pool shared across apps, mail inboxes, storage, automations, AI, and Workforce. Named seats are unlimited (not priced per user). Paid tiers include Mail, Hub, and sandbox. ${ERP_CREDITS_MODEL_NOTE} One free trial per organization domain. HIPAA support is on our roadmap. Contact us.`;
+  `Hosting plans include a monthly Credits pool shared across apps, mail inboxes, storage, automations, AI, and Workforce. Named seats are unlimited (not priced per user). Plans include ATW Orbit (Mail draws Credits), Hub, and sandbox. ${ERP_CREDITS_MODEL_NOTE} One free trial per organization domain. HIPAA support is on our roadmap. Contact us.`;
 
 /** Intro paragraph under plan pricing (see ErpPricing). Trial also highlighted in the pricing banner. */
 export const ERP_PRICING_SECTION_PARAGRAPH =
@@ -407,7 +409,7 @@ export const ERP_PRICING_SECTION_PARAGRAPH =
 
 /** Short line under the trial banner on the pricing page. */
 export const ERP_PRICING_TRIAL_SUBTEXT =
-  `${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} trial Credits for ${ERP_TRIAL_DAYS} days. Includes ATW One, Workforce, Directory, and ATW AI only. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join("; ")}. ${ERP_TRIAL_PACKAGE.afterTrial}`;
+  `${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} trial Credits for ${ERP_TRIAL_DAYS} days. The trial includes ATW One, Workforce, Directory, and ATW AI only. Mail, Orbit mailboxes, and Sandbox are not part of the trial. ${ERP_TRIAL_PACKAGE.afterTrial}`;
 
 export const ERP_CREDITS_SYSTEM_UPDATE = {
   eyebrow: "Credits",
@@ -416,7 +418,7 @@ export const ERP_CREDITS_SYSTEM_UPDATE = {
     "ATW uses a single Credits pool per organization. Usage across apps, mail inboxes, storage, automations, AI, and Workforce draws from that pool, with optional category detail for operators.",
   bullets: [
     `Trial includes ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits; Starter ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")}/mo; Growth ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")}/mo; Business ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")}/mo. Enterprise is custom.`,
-    "Paid tiers include Mail (hosted inboxes draw Credits), Hub, and sandbox.",
+    "Plans include ATW Orbit (Mail draws Credits), Hub, and sandbox.",
     "Credits make usage easier to explain while raw metrics remain available internally for operations and dispute resolution.",
     "A detailed Credit rate sheet is coming; we are not publishing per-meter rates yet.",
   ],
@@ -455,7 +457,7 @@ export const ERP_LONG_FORM = {
   usageAllowancesBullets: [
     `Trial includes ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits; Starter includes ${ERP_INCLUDED_CREDITS_BY_PLAN.starter.toLocaleString("en-US")}; Growth includes ${ERP_INCLUDED_CREDITS_BY_PLAN.growth.toLocaleString("en-US")}; Business includes ${ERP_INCLUDED_CREDITS_BY_PLAN.business.toLocaleString("en-US")} each month. Enterprise is custom.`,
     "Apps, mail inboxes, storage, automations, AI, and Workforce all draw from the same Credits pool.",
-    `Paid tiers include Mail, Hub, and sandbox. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join("; ")}.`,
+    `Plans include ATW Orbit (Mail draws Credits), Hub, and sandbox. The trial includes ${ERP_TRIAL_INCLUDED.join(", ")} only. Not part of the trial: ${ERP_TRIAL_NOT_INCLUDED.join("; ")}.`,
     "A detailed Credit rate sheet is coming; we do not publish per-meter or overage block prices yet.",
   ],
 };

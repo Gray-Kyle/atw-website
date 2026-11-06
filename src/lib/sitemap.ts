@@ -22,6 +22,10 @@ export function shouldIncludeInSitemap(pageUrl: string): boolean {
   if (pathname === '/credits' || pathname === '/credits/') return false;
   if (pathname === '/privacy' || pathname === '/privacy/') return false;
   if (pathname === '/directory' || pathname === '/directory/') return false;
+  if (pathname === '/workspace' || pathname === '/workspace/') return false;
+  if (pathname === '/worksuite' || pathname === '/worksuite/') return false;
+  // /orbit without trailing slash is a redirect shell; /orbit/ is the canonical page.
+  if (pathname === '/orbit') return false;
   if (pathname.endsWith('.txt') || pathname.endsWith('.md') || pathname.endsWith('.json')) {
     return false;
   }

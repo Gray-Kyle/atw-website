@@ -10,10 +10,10 @@ Teams that want one source of truth instead of stitched spreadsheets and disconn
 
 ## Pricing (entry)
 - Model: hosting + unified Credits pool; unlimited named seats (not per-seat)
-- Trial: $0, 150,000 Credits, 14 days; includes ATW One, Workforce, Directory, ATW AI only. Not available during the trial: Hosted mail inboxes; Sandbox; Hub; ATW Orbit: https://atw.net/trial
+- Trial: $0, 150,000 Credits, 14 days; includes ATW One, Workforce, Directory, ATW AI only. Mail, Orbit mailboxes, and Sandbox are not part of the trial: https://atw.net/trial
 - After day 14: keep access to trial apps; self-serve buy Credits at a higher per-Credit price than Starter; no sales call; no read-only lock
 - Starter $299/mo (1,200,000 Credits); Growth $1,999/mo (12,000,000); Business $9,999/mo (120,000,000); Enterprise contact us
-- Paid tiers include Mail (hosted inboxes draw Credits), Hub, and sandbox
+- Plans include ATW Orbit (Mail draws Credits), Hub, and sandbox
 - Full grid: https://atw.net/pricing
 
 ## Canonical URLs

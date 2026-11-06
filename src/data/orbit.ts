@@ -4,7 +4,7 @@
  * No per-seat SKU. Included with every paid ATW plan. Not in the 14-day trial.
  *
  * Live today: Mail, Calendar, Meetings.
- * Coming soon: Messaging, Docs, Spreadsheets, Presentations.
+ * Coming soon: Messaging (internal team chat), Docs, Spreadsheets, Presentations.
  */
 
 import { PRODUCT } from '../lib/site';
@@ -16,6 +16,14 @@ export const ORBIT_ONE_LINER =
 /** Inclusion / Credits framing for Orbit (no per-seat SKU) */
 export const ORBIT_INCLUSION =
   'Included with every paid ATW plan, with unlimited named seats. Apps like Mail are added per user and draw from your organization Credits pool. There is no separate per-seat SKU.';
+
+export const ORBIT_WORDMARK = {
+  webp: '/images/logo/atw-orbit-wordmark.webp',
+  png: '/images/logo/atw-orbit-wordmark.png',
+  alt: 'ATW Orbit',
+  width: 320,
+  height: 110,
+} as const;
 
 export const ORBIT = {
   eyebrow: 'ATW Orbit',
@@ -43,29 +51,29 @@ export const ORBIT_APPS_LIVE: OrbitApp[] = [
   {
     id: 'mail',
     title: 'Mail',
-    summary: 'Mail can be added for any user and draws from the organization Credits pool.',
+    summary: 'Add mailboxes for any user. Hosted inboxes draw from the organization Credits pool.',
     status: 'live',
   },
   {
     id: 'calendar',
     title: 'Calendar',
-    summary: 'Shared calendars next to Mail.',
+    summary: 'Shared calendars next to Mail for the whole organization.',
     status: 'live',
   },
   {
     id: 'meetings',
     title: 'Meetings',
-    summary: 'Video meetings for the team.',
+    summary: 'Video meetings for the team, next to Mail and Calendar.',
     status: 'live',
   },
 ];
 
-/** Named apps not live yet (exact product names Kyle wants kept) */
+/** Named apps not live yet */
 export const ORBIT_APPS_COMING_SOON: OrbitApp[] = [
   {
     id: 'messaging',
     title: 'Messaging',
-    summary: 'Business SMS and voice messaging.',
+    summary: 'Internal team messaging for your organization. Coming Soon.',
     status: 'coming-soon',
   },
   {

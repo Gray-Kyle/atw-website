@@ -1,5 +1,5 @@
 /**
- * Option B design-preview navigation and "What's included" facts.
+ * Option B design-preview navigation, product cards, and "What's included" facts.
  * Sourced only from existing ATW site / pricing copy. No invented claims.
  */
 
@@ -40,7 +40,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     id: 'workforce',
     title: 'Workforce',
     href: '/agents/',
-    summary: "Named AI agent seats next to One on the same Credits pool.",
+    summary: 'Named AI agent seats next to One on the same Credits pool.',
     status: 'coming-online',
   },
   {
@@ -61,14 +61,12 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     href: '/hub/',
     summary:
       'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
-    notInTrial: true,
   },
   {
     id: 'orbit',
     title: 'ATW Orbit',
     href: '/orbit/',
     summary: ORBIT_ONE_LINER,
-    notInTrial: true,
   },
 ];
 
@@ -167,9 +165,8 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     title: 'Hub',
     group: 'platform',
     summary:
-      'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
+      'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook. Included with every plan.',
     href: '/hub/',
-    notInTrial: true,
   },
   {
     id: 'orbit',
@@ -177,7 +174,6 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     group: 'platform',
     summary: ORBIT_ONE_LINER,
     href: '/orbit/',
-    notInTrial: true,
   },
   {
     id: 'credits',
@@ -192,9 +188,85 @@ export const B_WHATS_INCLUDED_INTRO = {
   eyebrow: "What's included",
   title: "What's included with ATW",
   paragraph:
-    'ATW One modules, sibling systems, and a shared Credits pool under one organization. Unlimited named seats. Hosting plans determine capacity.',
+    'ATW One modules, sibling systems, and a shared Credits pool under one organization. Unlimited named seats. Plans determine capacity.',
   trialNote: `The 14-day Trial includes ${ERP_TRIAL_INCLUDED.join(', ')}. Not available during the trial: ${ERP_TRIAL_NOT_INCLUDED.join('; ')}.`,
 } as const;
+
+/** Home product cards: clear systems with approved one-liners only */
+export type BProductCard = {
+  id: string;
+  title: string;
+  href: string;
+  summary: string;
+  status?: 'coming-online';
+  wordmark?: {
+    src: string;
+    png?: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+};
+
+export const B_PRODUCT_CARDS: BProductCard[] = [
+  {
+    id: 'one',
+    title: 'ATW One',
+    href: '/one/',
+    summary: 'Run CRM, finance, and operations in one workspace on a shared Credits pool.',
+    wordmark: {
+      src: '', // filled via Astro asset in HomeView
+      alt: 'ATW One',
+      width: 200,
+      height: 93,
+    },
+  },
+  {
+    id: 'workforce',
+    title: 'Workforce',
+    href: '/agents/',
+    summary: 'Named AI agent seats beside One, drawing from the same Credits pool.',
+    status: 'coming-online',
+  },
+  {
+    id: 'directory',
+    title: 'Directory',
+    href: '/systems/directory/',
+    summary: 'Control who can sign in and which systems they can open.',
+    wordmark: {
+      src: '/images/logo/atw-directory-wordmark.png',
+      alt: 'ATW Directory',
+      width: 220,
+      height: 52,
+    },
+  },
+  {
+    id: 'ai',
+    title: 'ATW AI',
+    href: '/solutions/ai-use-cases/',
+    summary: 'Use AI across the systems you already run, billed from organization Credits.',
+  },
+  {
+    id: 'hub',
+    title: 'Hub',
+    href: '/hub/',
+    summary:
+      'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
+  },
+  {
+    id: 'orbit',
+    title: 'ATW Orbit',
+    href: '/orbit/',
+    summary: ORBIT_ONE_LINER,
+    wordmark: {
+      src: '/images/logo/atw-orbit-wordmark.webp',
+      png: '/images/logo/atw-orbit-wordmark.png',
+      alt: 'ATW Orbit',
+      width: 220,
+      height: 76,
+    },
+  },
+];
 
 export const B_PRIMARY_CTA = {
   label: 'Book a Call',

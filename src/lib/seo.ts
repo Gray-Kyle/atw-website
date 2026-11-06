@@ -127,7 +127,7 @@ const ATW_ONE_OFFERS = [
     name: 'Starter',
     price: '299',
     priceCurrency: 'USD',
-    description: 'Starter hosting with 1,200,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    description: 'Starter hosting with 1,200,000 Credits per month. Includes ATW Orbit, Hub, and sandbox.',
     url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
@@ -142,7 +142,7 @@ const ATW_ONE_OFFERS = [
     name: 'Growth',
     price: '1999',
     priceCurrency: 'USD',
-    description: 'Growth hosting with 12,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    description: 'Growth hosting with 12,000,000 Credits per month. Includes ATW Orbit, Hub, and sandbox.',
     url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {
@@ -157,7 +157,7 @@ const ATW_ONE_OFFERS = [
     name: 'Business',
     price: '9999',
     priceCurrency: 'USD',
-    description: 'Business hosting with 120,000,000 Credits per month. Includes Mail, Hub, and sandbox.',
+    description: 'Business hosting with 120,000,000 Credits per month. Includes ATW Orbit, Hub, and sandbox.',
     url: `${SITE_ORIGIN}/pricing/`,
     availability: 'https://schema.org/InStock',
     priceSpecification: {

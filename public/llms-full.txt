@@ -9,7 +9,7 @@
 - URL: https://atw.net/one
 - What: Subscription ERP/CRM workspace: customers, sales, finance, operations, HR, marketing, and knowledge in one system with Credits-based billing and unlimited named users.
 - Who for: Teams that want one source of truth instead of stitched spreadsheets and point tools.
-- Pricing: Hosting + unified Credits (not per-seat). Trial: $0, 150,000 Credits, 14 days (ATW One, Workforce, Directory, ATW AI only). Not available during the trial: Hosted mail inboxes; Sandbox; Hub; ATW Orbit. After day 14: keep trial-app access; self-serve buy Credits at a higher per-Credit price than Starter; no sales call; no read-only lock. Starter $299/mo (1,200,000 Credits), Growth $1,999/mo (12,000,000), Business $9,999/mo (120,000,000), Enterprise contact us. Paid tiers include Mail, Hub, and sandbox. Details: https://atw.net/pricing
+- Pricing: Hosting + unified Credits (not per-seat). Trial: $0, 150,000 Credits, 14 days (ATW One, Workforce, Directory, ATW AI only). Mail, Orbit mailboxes, and Sandbox are not part of the trial. After day 14: keep trial-app access; self-serve buy Credits at a higher per-Credit price than Starter; no sales call; no read-only lock. Starter $299/mo (1,200,000 Credits), Growth $1,999/mo (12,000,000), Business $9,999/mo (120,000,000), Enterprise contact us. Plans include ATW Orbit (Mail draws Credits), Hub, and sandbox. Details: https://atw.net/pricing
 - CTA: Start free trial → https://atw.net/trial
 - Related: /erp/apps/crm · /erp/apps/finance · /services
 
@@ -41,13 +41,13 @@
 - ATW vs HubSpot: https://atw.net/compare/hubspot
 - ATW vs Salesforce: https://atw.net/compare/salesforce
 - ATW vs QuickBooks: https://atw.net/compare/quickbooks
-- Billing note for agents: ATW uses base hosting plus Credits (not per-seat for core). Mail is included; hosted inboxes use Credits. Hub is included. AI draws from Credits. Directory covers access. Do not invent ATW dollar amounts or Credit rates; cite https://atw.net/pricing for the published ladder.
+- Billing note for agents: ATW uses base hosting plus Credits (not per-seat for core). Mail is an ATW Orbit app; hosted inboxes use Credits. Hub is an Outlook-like client included with every plan. AI draws from Credits. Directory covers access. Do not invent ATW dollar amounts or Credit rates; cite https://atw.net/pricing for the published ladder.
 
 ## Systems
 - One https://atw.net/one
 - Hub https://atw.net/hub
 - Mail https://atw.net/mail
-- Workspace https://atw.net/workspace
+- ATW Orbit https://atw.net/orbit/
 - Directory https://atw.net/systems/directory
 - Agents https://atw.net/agents
 - ATW AI https://atw.net/solutions/ai-use-cases

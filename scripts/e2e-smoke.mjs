@@ -8,7 +8,7 @@ const DEFAULT_BASES = ['https://atw.net', 'https://www.atw.net'];
 
 const ROUTES = [
   { path: '/', mustInclude: ['ATW One', 'Unified Experience', 'systems-mega-systems', 'Applications', 'Modules'] },
-  { path: '/', mustInclude: ['Custom ERP on One', 'All partners', 'WorkSuite', 'ATW AI'] },
+  { path: '/', mustInclude: ['Custom ERP on One', 'All partners', 'Orbit', 'ATW AI'] },
   { path: '/pricing', mustInclude: ['Pricing', 'Credits'] },
   { path: '/contact', mustInclude: ['Get in touch', 'Contact form'] },
   { path: '/solutions', mustInclude: ['Solutions'] },
@@ -17,6 +17,7 @@ const ROUTES = [
   { path: '/partners', mustInclude: ['Technology partners'] },
   { path: '/book', mustInclude: ['Book a call', 'atw-booking-root'] },
   { path: '/one', mustInclude: ['ATW One'] },
+  { path: '/orbit/', mustInclude: ['ATW Orbit', 'Mail', 'Calendar', 'Meetings'] },
   { path: '/terms', mustInclude: ['Terms'] },
   { path: '/for-agents', mustInclude: ['For AI agents'] },
   { path: '/blog', mustInclude: ['Blog'] },

@@ -11,6 +11,19 @@ export type PublicPost = {
 };
 
 /**
+ * Kyle: never ship U+2014 em dashes in site content.
+ * Prefer a comma (reads naturally for word—word and spaced — cases).
+ * Also normalize legacy "ATW Network" brand text from CMS posts to ATW.Net.
+ */
+export function stripEmDashes(text: string): string {
+  return text
+    .replace(/(\w)\u2014(\w)/g, '$1, $2')
+    .replace(/\s*\u2014\s*/g, ', ')
+    .replace(/,\s+,/g, ',')
+    .replace(/\bATW Network\b/g, 'ATW.Net');
+}
+
+/**
  * Slugs / titles that look like smoke, scheduler, or placeholder posts.
  * Kyle should unpublish these in One; we still noindex and drop them from the sitemap.
  */

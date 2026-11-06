@@ -110,48 +110,20 @@ export const marketingSystems: MarketingSystem[] = [
     title: 'Hub',
     href: '/hub',
     summary:
-      'Single-tenant productivity for your organization: Mail, Chat, Calendar, Meetings, and Tasks. Included with ATW base hosting.',
+      'An Outlook-like inbox and workspace client that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook. Included with every plan.',
     apps: [
       {
-        id: 'hub-mail',
-        title: 'Mail',
-        href: '/mail',
-        summary: 'Business email on your domain. On every paid ATW plan, Mail is included and hosted inboxes use Credits.',
+        id: 'hub-client',
+        title: 'Hub client',
+        href: PRODUCT.hub,
+        summary:
+          'Open your inbox and workspace in Hub. Connect ATW Orbit, Google Workspace, Microsoft Teams, or Outlook.',
         modules: [
-          { title: 'Inbox', href: '/mail' },
-          { title: 'Domains', href: '/mail' },
+          { title: 'ATW Orbit', href: PRODUCT.hub },
+          { title: 'Google Workspace', href: PRODUCT.hub },
+          { title: 'Microsoft Teams', href: PRODUCT.hub },
+          { title: 'Outlook', href: PRODUCT.hub },
         ],
-      },
-      {
-        id: 'chat',
-        title: 'Chat',
-        href: PRODUCT.hub,
-        summary: 'Channels and direct messages.',
-        modules: [
-          { title: 'Channels', href: PRODUCT.hub },
-          { title: 'Direct messages', href: PRODUCT.hub },
-        ],
-      },
-      {
-        id: 'calendar',
-        title: 'Calendar',
-        href: PRODUCT.hub,
-        summary: 'Shared calendars for the organization.',
-        modules: [{ title: 'Calendar', href: PRODUCT.hub }],
-      },
-      {
-        id: 'meetings',
-        title: 'Meetings',
-        href: PRODUCT.hub,
-        summary: 'Meetings for the team.',
-        modules: [{ title: 'Meetings', href: PRODUCT.hub }],
-      },
-      {
-        id: 'tasks',
-        title: 'Tasks',
-        href: PRODUCT.hub,
-        summary: 'Tasks for people in your organization.',
-        modules: [{ title: 'Tasks', href: PRODUCT.hub }],
       },
     ],
   },
@@ -159,7 +131,8 @@ export const marketingSystems: MarketingSystem[] = [
     id: 'mail',
     title: 'Mail',
     href: '/mail',
-    summary: 'On every paid ATW plan, Mail is included and hosted inboxes use Credits.',
+    summary:
+      'An ATW Orbit app. Add mailboxes for any user; hosted inboxes draw from the organization Credits pool. No separate Mail SKU.',
     apps: [
       {
         id: 'webmail',
@@ -188,23 +161,28 @@ export const marketingSystems: MarketingSystem[] = [
   },
   {
     id: 'workspace',
-    title: 'ATW Orbit',
-    href: '/orbit',
+    title: 'Orbit',
+    href: '/orbit/',
     summary:
-      'Mail, calendar, and meetings in one orbit, with Messaging, Docs, Spreadsheets, and Presentations coming soon.',
+      'Mail, calendar, and meetings in one orbit, with Messaging, Docs, Spreadsheets, and Presentations coming soon. Mail draws from the organization Credits pool.',
     apps: [
       {
         id: 'mail',
         title: 'Mail',
-        href: PRODUCT.worksuite,
-        summary: 'Business email for your organization.',
-        modules: [{ title: 'Mailboxes', href: 'https://mail.atw.net' }],
+        href: '/mail',
+        summary:
+          'Business email on your domain. Add for any user; hosted inboxes draw Credits. No separate Mail plan.',
+        modules: [
+          { title: 'Inbox', href: '/mail' },
+          { title: 'Domains', href: '/mail' },
+          { title: 'Mailboxes', href: 'https://mail.atw.net' },
+        ],
       },
       {
         id: 'calendar',
         title: 'Calendar',
         href: PRODUCT.worksuite,
-        summary: 'Shared calendars next to Mail.',
+        summary: 'Shared calendars for the organization.',
         modules: [{ title: 'Calendar', href: PRODUCT.worksuite }],
       },
       {
@@ -216,23 +194,20 @@ export const marketingSystems: MarketingSystem[] = [
       },
       {
         id: 'messaging',
-        title: 'Messaging',
-        href: '/orbit',
-        summary: 'Coming soon: business SMS and voice.',
-        modules: [
-          { title: 'SMS (coming soon)', href: '/orbit' },
-          { title: 'Voice (coming soon)', href: '/orbit' },
-        ],
+        title: 'Messaging (Coming Soon)',
+        href: '/orbit/',
+        summary: 'Internal team messaging for your organization. Coming Soon.',
+        modules: [{ title: 'Team messaging (Coming Soon)', href: '/orbit/' }],
       },
       {
         id: 'documents',
-        title: 'Docs',
-        href: '/orbit',
-        summary: 'Coming soon.',
+        title: 'Docs, Spreadsheets, Presentations',
+        href: '/orbit/',
+        summary: 'Coming Soon. Not available yet.',
         modules: [
-          { title: 'Docs (coming soon)', href: '/orbit' },
-          { title: 'Spreadsheets (coming soon)', href: '/orbit' },
-          { title: 'Presentations (coming soon)', href: '/orbit' },
+          { title: 'Docs (Coming Soon)', href: '/orbit/' },
+          { title: 'Spreadsheets (Coming Soon)', href: '/orbit/' },
+          { title: 'Presentations (Coming Soon)', href: '/orbit/' },
         ],
       },
     ],

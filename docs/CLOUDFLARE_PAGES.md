@@ -6,7 +6,7 @@ First successful production deploy: **2026-10-28** (commit `6a86e3f`, deployment
 
 GitHub: [Gray-Kyle/atw-website](https://github.com/Gray-Kyle/atw-website).
 
-## Option A — Cloudflare dashboard (Git-connected) — **active**
+## Option A: Cloudflare dashboard (Git-connected) (**active**)
 
 Project exists and is connected to **`Gray-Kyle/atw-website`** (`main`).
 
@@ -18,7 +18,7 @@ Project exists and is connected to **`Gray-Kyle/atw-website`** (`main`).
 
 Product subdomains stay on Amplify.
 
-## Option B — wrangler (machine with Cloudflare login)
+## Option B: wrangler (machine with Cloudflare login)
 
 ```bash
 npm ci
@@ -52,7 +52,7 @@ npm run deploy
 
 Create the token at [Cloudflare API tokens](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/).
 
-## Option C — GitHub Actions
+## Option C: GitHub Actions
 
 Workflow: `.github/workflows/pages-deploy.yml`. Add repository secrets:
 

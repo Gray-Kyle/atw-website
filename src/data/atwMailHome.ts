@@ -7,7 +7,7 @@ export const ATW_MAIL_HERO = {
   badge: ATW_MAIL_PRODUCT_NAME,
   headline: 'Secure business email for your organization',
   subhead:
-    'Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. On every paid ATW plan, Mail is included and hosted inboxes use Credits.',
+    'Professional @yourdomain.com mailboxes with webmail, admin controls, and standard IMAP/SMTP. Mail is an ATW Orbit app; hosted inboxes draw from the organization Credits pool.',
   primaryCta: 'See Mail pricing',
   primaryHref: '/pricing',
   secondaryCta: 'Sign in to webmail',
@@ -24,8 +24,8 @@ export const ATW_MAIL_FEATURE_PILLARS = [
     body: 'No ads in your inbox. Clean webmail built for business, not consumer mail with upsells.',
   },
   {
-    title: 'Included in ATW',
-    body: 'On every paid ATW plan, Mail is included in ATW and hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Not available during the trial: Hosted mail inboxes, Sandbox, Hub, ATW Orbit.',
+    title: 'Included in ATW Orbit',
+    body: 'Mail is an ATW Orbit app, not a separate product or SKU. Add mailboxes for any user; hosted inboxes draw Credits. Mail and Orbit mailboxes are not part of the trial.',
   },
   {
     title: 'Works with your favorite email app',
@@ -48,15 +48,15 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'Can I use Outlook, Gmail, Apple Mail, or another app?',
-    a: 'Yes. Any client that supports IMAP and SMTP can connect, including Outlook, Gmail (via Add account), Apple Mail, Thunderbird, and most mobile mail apps.',
+    a: 'Yes. Any client that supports IMAP and SMTP can connect, including Outlook, Gmail (via Add account), Apple Mail, Thunderbird, and most mobile mail apps. ATW Hub is an Outlook-like client that can also connect to ATW Orbit.',
   },
   {
     q: 'Is there a free plan forever?',
-    a: 'No. There is no permanent free tier. Hosted mail inboxes are included with every paid ATW plan and draw Credits. Users without a hosted inbox are free named seats. Hosted mail is not available during the ATW trial.',
+    a: 'No. There is no permanent free tier. Mail ships with the ATW ERP plan as an Orbit app; hosted inboxes draw Credits. Users without a hosted inbox are free named seats. Mail is not available during the ATW trial.',
   },
   {
     q: 'What is the difference between ATW Mail and ATW Orbit?',
-    a: 'ATW Mail is business email: webmail, custom domain, and admin. On paid plans, Mail is included and hosted inboxes use Credits. ATW Orbit is a product label for Mail, Calendar, and Meetings alongside One today, with Messaging, Docs, Spreadsheets, and Presentations coming soon (not a separate per-seat SKU).',
+    a: 'ATW Mail is the business email app inside ATW Orbit. Orbit also includes Calendar and Meetings today, with Messaging, Docs, Spreadsheets, and Presentations Coming Soon. There is no separate Mail or Orbit per-seat SKU.',
   },
   {
     q: 'What DNS records do I need?',
@@ -64,7 +64,7 @@ export const ATW_MAIL_FAQ = [
   },
   {
     q: 'How does ATW Mail relate to ATW One?',
-    a: 'ATW One is your CRM, finance, and operations workspace. On every paid ATW plan, Mail is included and hosted inboxes use Credits. Sign-in and org boundaries stay shared across One, Mail, and Hub.',
+    a: 'ATW One is your CRM, finance, and operations workspace. Mail is an Orbit app on the same organization Credits pool. Sign-in and org boundaries stay shared across One, Orbit, and Hub.',
   },
 ] as const;
 
