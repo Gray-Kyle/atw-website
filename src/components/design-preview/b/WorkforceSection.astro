@@ -1,0 +1,71 @@
+---
+import { WORKFORCE } from '../../../data/workforce';
+import { livePath } from '../../../lib/site';
+---
+
+<section id="workforce" class="scroll-mt-28 border-y border-white/10 bg-[#0d1a2e]/90 py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+      <div class="lg:col-span-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">{WORKFORCE.eyebrow}</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <p class="inline-flex rounded-md border border-[#5b9bff]/35 bg-[#5b9bff]/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7ee0ff]">
+            {WORKFORCE.comingOnlineLabel}
+          </p>
+          <p class="inline-flex rounded-md border border-white/15 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#a8b6c9]">
+            {WORKFORCE.inBuildLabel}
+          </p>
+        </div>
+        <h2 class="mt-5 font-heading text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl">
+          {WORKFORCE.aspiration}
+        </h2>
+        <p class="mt-5 text-base leading-relaxed text-[#c5d0e0] sm:text-lg">{WORKFORCE.oneLiner}</p>
+        <p class="mt-4 text-sm leading-relaxed text-[#a8b6c9]">{WORKFORCE.siblingNote}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href={WORKFORCE.consoleHref}
+            class="rounded-md bg-[#5b9bff] px-6 py-3 text-sm font-semibold text-[#06101c] transition hover:brightness-110"
+          >
+            {WORKFORCE.consoleLabel}
+          </a>
+          <a
+            href={livePath(WORKFORCE.learnHref)}
+            class="rounded-md border border-white/25 px-6 py-3 text-sm font-semibold text-white hover:bg-white/5"
+          >
+            {WORKFORCE.learnLabel}
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-6">
+        <div class="rounded-2xl border border-white/15 bg-[#0f1c30] p-6 sm:p-8">
+          <h3 class="font-heading text-xl font-semibold text-white">Goals, limits, and human oversight</h3>
+          <p class="mt-3 text-sm leading-relaxed text-[#c5d0e0]">{WORKFORCE.autopilotHonest}</p>
+          <p class="mt-3 text-sm leading-relaxed text-[#a8b6c9]">{WORKFORCE.comingOnlineNote}</p>
+          <ul class="mt-6 space-y-3">
+            {
+              WORKFORCE.safeBullets.map((item) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-[#c5d0e0]">
+                  <span class="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#7ee0ff]" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mt-6 border-t border-white/10 pt-5 text-sm text-[#a8b6c9]">{WORKFORCE.trialNote}</p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3">
+          {
+            WORKFORCE.approvalModes.map((mode) => (
+              <div class="rounded-xl border border-white/12 bg-[#0f1c30]/80 p-4">
+                <h4 class="font-heading text-sm font-semibold text-white">{mode.title}</h4>
+                <p class="mt-2 text-xs leading-relaxed text-[#a8b6c9]">{mode.detail}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,282 @@
+---
+import {
+  ORBIT,
+  ORBIT_APPS_COMING_SOON,
+  ORBIT_APPS_LIVE,
+  ORBIT_ONE_LINER,
+  ORBIT_WORDMARK,
+} from '../../../data/orbit';
+import { livePath } from '../../../lib/site';
+
+/** Planet positions on concentric rings (percent of stage) */
+const planets = [
+  { id: 'mail', label: 'Mail', ring: 1, angle: -20, soon: false },
+  { id: 'calendar', label: 'Calendar', ring: 1, angle: 110, soon: false },
+  { id: 'meetings', label: 'Meetings', ring: 1, angle: 220, soon: false },
+  { id: 'messaging', label: 'Messaging', ring: 2, angle: 35, soon: true },
+  { id: 'docs', label: 'Docs', ring: 2, angle: 125, soon: true },
+  { id: 'spreadsheets', label: 'Spreadsheets', ring: 2, angle: 215, soon: true },
+  { id: 'presentations', label: 'Presentations', ring: 2, angle: 305, soon: true },
+] as const;
+
+function planetStyle(ring: number, angle: number) {
+  const radius = ring === 1 ? 34 : 48;
+  const rad = (angle * Math.PI) / 180;
+  const x = 50 + radius * Math.cos(rad);
+  const y = 50 + radius * Math.sin(rad);
+  return `left:${x.toFixed(2)}%;top:${y.toFixed(2)}%;`;
+}
+---
+
+<section class="relative overflow-hidden px-4 pb-12 pt-8 sm:pb-16 sm:pt-10">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(91,155,255,0.18),transparent_50%),radial-gradient(ellipse_at_90%_20%,rgba(126,224,255,0.12),transparent_45%)]" aria-hidden="true"></div>
+  <div class="xl-container relative grid items-start gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+    <div class="preview-reveal max-w-xl">
+      <picture>
+        <source srcset={ORBIT_WORDMARK.webp} type="image/webp" />
+        <img
+          src={ORBIT_WORDMARK.png}
+          alt="ATW Orbit logo"
+          width={ORBIT_WORDMARK.width}
+          height={ORBIT_WORDMARK.height}
+          class="h-14 w-auto max-w-full object-contain object-left sm:h-16 md:h-[4.5rem]"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+      <h1 class="mt-7 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl">
+        {ORBIT.title}
+      </h1>
+      <p class="mt-5 text-base leading-relaxed text-[#c5d0e0] sm:text-lg">{ORBIT_ONE_LINER}</p>
+      <p class="mt-4 text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.inclusionNote}</p>
+      <p class="mt-3 text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.trialNote}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={ORBIT.consoleHref}
+          class="rounded-md bg-[#5b9bff] px-6 py-3.5 text-sm font-semibold text-[#06101c] transition hover:brightness-110"
+        >
+          {ORBIT.consoleLabel}
+        </a>
+        <a
+          href={livePath('/pricing')}
+          class="rounded-md border border-white/25 px-6 py-3.5 text-sm font-semibold text-white hover:bg-white/5"
+        >
+          See pricing
+        </a>
+      </div>
+    </div>
+
+    <div class="preview-reveal-media relative mx-auto w-full max-w-lg lg:max-w-none" aria-hidden="true">
+      <div class="orbit-stage relative mx-auto aspect-square w-full max-w-[28rem] sm:max-w-[32rem]">
+        <div class="orbit-ring orbit-ring--1"></div>
+        <div class="orbit-ring orbit-ring--2"></div>
+        <div class="orbit-core">
+          <span class="orbit-core__label">ATW<br />Orbit</span>
+        </div>
+        {
+          planets.map((p) => (
+            <div
+              class:list={['orbit-planet', `orbit-planet--r${p.ring}`, p.soon && 'orbit-planet--soon']}
+              style={planetStyle(p.ring, p.angle)}
+            >
+              <span class="orbit-planet__dot" />
+              <span class="orbit-planet__label">{p.label}</span>
+              {p.soon ? <span class="orbit-planet__soon">Soon</span> : null}
+            </div>
+          ))
+        }
+        <div class="orbit-future" style={planetStyle(2, 355)}>
+          <span class="orbit-future__dot" />
+          <span class="orbit-future__label">{ORBIT.moreComing}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-y border-white/10 py-16 sm:py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">Live today</p>
+    <h2 class="mt-3 max-w-2xl font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+      Planets in Orbit today
+    </h2>
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        ORBIT_APPS_LIVE.map((app) => (
+          <li class="border-t border-white/15 pt-4">
+            <h3 class="font-heading text-lg font-semibold text-white">{app.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[#a8b6c9]">{app.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-14 text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">Coming soon</p>
+    <h2 class="mt-3 max-w-2xl font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      Messaging, Docs, Spreadsheets, and Presentations
+    </h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        ORBIT_APPS_COMING_SOON.map((app) => (
+          <li class="border-t border-white/15 pt-4">
+            <div class="flex flex-wrap items-baseline gap-2">
+              <h3 class="font-heading text-lg font-semibold text-white">{app.title}</h3>
+              <span class="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#7ee0ff]">Coming soon</span>
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-[#a8b6c9]">{app.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-12 border border-dashed border-white/20 bg-[#0d1a2e]/60 px-5 py-6 sm:px-6">
+      <h3 class="font-heading text-lg font-semibold text-white">{ORBIT.moreComing}</h3>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-[#a8b6c9]">{ORBIT.moreComingDetail}</p>
+    </div>
+  </div>
+</section>
+
+<section class="px-4 py-16 sm:py-20">
+  <div class="xl-container border border-white/12 bg-gradient-to-br from-[#0d1a2e] to-[#0a1424] px-8 py-12 text-center sm:px-12">
+    <h2 class="font-heading text-2xl font-semibold text-white sm:text-3xl">Included with every paid ATW plan</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#c5d0e0] sm:text-base">
+      {ORBIT.inclusionNote} Open the console or review plans on Pricing.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href={ORBIT.consoleHref} class="rounded-md bg-[#5b9bff] px-6 py-3 text-sm font-semibold text-[#06101c]">
+        {ORBIT.consoleLabel}
+      </a>
+      <a href={livePath('/pricing')} class="rounded-md border border-white/25 px-6 py-3 text-sm font-semibold text-white">
+        Pricing
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .orbit-stage {
+    container-type: inline-size;
+  }
+  .orbit-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 9999px;
+    border: 1px solid rgba(126, 224, 255, 0.22);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .orbit-ring--1 {
+    width: 68%;
+    height: 68%;
+  }
+  .orbit-ring--2 {
+    width: 96%;
+    height: 96%;
+    border-color: rgba(91, 155, 255, 0.2);
+  }
+  .orbit-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(91, 155, 255, 0.45);
+    background: radial-gradient(circle at 35% 30%, #1a3a66, #07111f 70%);
+    box-shadow: 0 0 40px rgba(91, 155, 255, 0.25);
+    transform: translate(-50%, -50%);
+  }
+  .orbit-core__label {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #e8f1ff;
+    line-height: 1.2;
+  }
+  .orbit-planet,
+  .orbit-future {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: max-content;
+    max-width: 7.5rem;
+    transform: translate(-50%, -50%);
+  }
+  .orbit-planet__dot,
+  .orbit-future__dot {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #5b9bff, #7ee0ff);
+    box-shadow: 0 0 14px rgba(126, 224, 255, 0.55);
+  }
+  .orbit-planet--r2 .orbit-planet__dot {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+  .orbit-planet--soon .orbit-planet__dot {
+    background: transparent;
+    border: 1.5px solid rgba(126, 224, 255, 0.45);
+    box-shadow: none;
+  }
+  .orbit-planet__label,
+  .orbit-future__label {
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #c5d0e0;
+  }
+  .orbit-planet__soon {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7ee0ff;
+  }
+  .orbit-future__dot {
+    background: transparent;
+    border: 1.5px dashed rgba(126, 224, 255, 0.55);
+    box-shadow: none;
+  }
+  .orbit-future__label {
+    color: #8fa0b8;
+    font-weight: 500;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .orbit-ring--1 {
+      animation: orbit-spin 48s linear infinite;
+    }
+    .orbit-ring--2 {
+      animation: orbit-spin 72s linear infinite reverse;
+    }
+  }
+  @keyframes orbit-spin {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  @media (max-width: 640px) {
+    .orbit-core {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+    .orbit-planet__label,
+    .orbit-future__label {
+      font-size: 0.62rem;
+      max-width: 5.5rem;
+    }
+  }
+</style>

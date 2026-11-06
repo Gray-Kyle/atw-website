@@ -6,6 +6,16 @@
   const root = document.getElementById("atw-contact-form-root");
   if (!root) return;
 
+  // Design / CF preview sandboxes must never POST to live auth.atw.net.
+  if (document.documentElement.dataset.designPreview === "true" || document.body?.dataset?.designPreview === "true") {
+    root.innerHTML = `
+      <div class="rounded-xl border border-amber-200 bg-amber-50 p-6 text-sm text-amber-950" role="status">
+        <p class="font-semibold">Contact form disabled on design preview</p>
+        <p class="mt-2">This sandbox does not submit leads or proxy writes to production. Use <a class="underline" href="https://atw.net/contact/">atw.net/contact</a> for real inquiries.</p>
+      </div>`;
+    return;
+  }
+
   const turnstileSiteKey = root.dataset.turnstileSiteKey || "";
   let formStartTime = Date.now();
   let lastSubmissionTime = 0;

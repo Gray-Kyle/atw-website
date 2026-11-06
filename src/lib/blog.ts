@@ -12,7 +12,7 @@ export type PublicPost = {
 
 /**
  * Kyle: never ship U+2014 em dashes in site content.
- * Prefer a comma (reads naturally for word—word and spaced — cases).
+ * Prefer a comma (reads naturally for word-word and spaced - cases).
  * Also normalize legacy "ATW Network" brand text from CMS posts to ATW.Net.
  */
 export function stripEmDashes(text: string): string {

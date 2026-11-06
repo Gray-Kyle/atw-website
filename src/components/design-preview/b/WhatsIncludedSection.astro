@@ -1,0 +1,63 @@
+---
+import { B_WHATS_INCLUDED, B_WHATS_INCLUDED_INTRO } from '../../../data/designPreviewB';
+
+const groups = [
+  { id: 'one', label: 'ATW One' },
+  { id: 'platform', label: 'Platform systems' },
+  { id: 'billing', label: 'Billing' },
+] as const;
+---
+
+<section id="whats-included" class="scroll-mt-28 border-y border-white/10 py-20 sm:py-24" data-preview-animate>
+  <div class="xl-container px-4">
+    <div class="max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-[#7ee0ff]">{B_WHATS_INCLUDED_INTRO.eyebrow}</p>
+      <h2 class="mt-4 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.75rem]">
+        {B_WHATS_INCLUDED_INTRO.title}
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-[#c5d0e0] sm:text-lg">{B_WHATS_INCLUDED_INTRO.paragraph}</p>
+    </div>
+
+    <div class="mt-12 space-y-12">
+      {
+        groups.map((group) => {
+          const items = B_WHATS_INCLUDED.filter((item) => item.group === group.id);
+          return (
+            <div>
+              <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#a8b6c9]">{group.label}</h3>
+              <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="flex h-full flex-col border-t border-white/15 bg-transparent px-0 py-4 transition hover:border-[#5b9bff]/50"
+                    >
+                      <span class="flex flex-wrap items-center gap-2">
+                        <span class="font-heading text-base font-semibold text-white">{item.title}</span>
+                        {item.status === 'coming-online' ? (
+                          <span class="rounded border border-[#5b9bff]/35 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7ee0ff]">
+                            Coming online
+                          </span>
+                        ) : null}
+                        {item.notInTrial ? (
+                          <span class="rounded border border-white/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#a8b6c9]">
+                            Not in trial
+                          </span>
+                        ) : null}
+                      </span>
+                      <span class="mt-2 text-sm leading-relaxed text-[#a8b6c9]">{item.summary}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <p class="mt-10 max-w-3xl border-t border-white/10 pt-6 text-sm leading-relaxed text-[#a8b6c9]">
+      {B_WHATS_INCLUDED_INTRO.trialNote}
+    </p>
+  </div>
+</section>

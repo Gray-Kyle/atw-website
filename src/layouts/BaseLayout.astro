@@ -1,6 +1,13 @@
 ---
 import '../styles/global.css';
 import JsonLd from '../components/seo/JsonLd.astro';
+import PreviewBanner from '../components/design-preview/PreviewBanner.astro';
+import PreviewMotion from '../components/design-preview/PreviewMotion.astro';
+import {
+  designVariant,
+  isDesignPreview,
+  isDesignVariant,
+} from '../lib/designVariant';
 import {
   DEFAULT_OG_IMAGE,
   DEFAULT_OG_IMAGE_ALT,
@@ -54,6 +61,7 @@ const {
   lcpImageMedia,
 } = Astro.props;
 
+const forceNoindex = isDesignPreview || noindex;
 const fullTitle = title.includes('ATW') ? title : `${title} | ATW`;
 const canonicalUrl = absoluteUrl(canonical ?? Astro.url.pathname);
 const imageUrl = absoluteUrl(ogImage);
@@ -71,36 +79,51 @@ if (jsonLd) {
     graphs.push(jsonLd);
   }
 }
+
+const htmlAttrs: Record<string, string> = { lang: 'en' };
+if (isDesignVariant) {
+  htmlAttrs['data-design-variant'] = designVariant;
+}
+if (isDesignPreview) {
+  htmlAttrs['data-design-preview'] = 'true';
+}
+
+/** Sticky preview chrome is in-flow; only production needs large offset for fixed header. */
+const mainPad = isDesignPreview ? 'pt-8 pb-16 md:pt-10' : 'pt-24 pb-16 md:pt-28';
 ---
 
 <!doctype html>
-<html lang="en">
+<html {...htmlAttrs}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    {forceNoindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    {forceNoindex ? <meta name="googlebot" content="noindex, nofollow" /> : null}
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/favicon-16.png" sizes="16x16" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <!-- Preload only the fonts needed for first paint (body + heading). -->
-    <link
-      rel="preload"
-      href="/fonts/inter-latin-400-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/lexend-latin-600-normal.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    {!forceNoindex ? <link rel="sitemap" href="/sitemap-index.xml" /> : null}
+    {
+      designVariant === 'a' ? (
+        <>
+          <link rel="preload" href="/fonts/preview/figtree-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href="/fonts/preview/outfit-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+        </>
+      ) : designVariant === 'b' ? (
+        <>
+          <link rel="preload" href="/fonts/preview/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href="/fonts/preview/space-grotesk-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+        </>
+      ) : (
+        <>
+          <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+          <link rel="preload" href="/fonts/lexend-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
+        </>
+      )
+    }
     {
       lcpImageHref ? (
         <link
@@ -113,7 +136,7 @@ if (jsonLd) {
         />
       ) : null
     }
-    <link rel="canonical" href={canonicalUrl} />
+    {!forceNoindex ? <link rel="canonical" href={canonicalUrl} /> : null}
     <title>{fullTitle}</title>
     <slot name="head" />
 
@@ -137,13 +160,24 @@ if (jsonLd) {
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <JsonLd data={graphs} />
+    {!forceNoindex ? <JsonLd data={graphs} /> : null}
   </head>
-  <body class="min-h-screen antialiased">
-    <slot name="header" />
-    <main class="pt-24 pb-16 md:pt-28">
+  <body
+    class="min-h-screen antialiased"
+    data-design-preview={isDesignPreview ? 'true' : undefined}
+    data-design-variant={isDesignVariant ? designVariant : undefined}
+  >
+    <div class="sticky top-0 z-[60]">
+      <PreviewBanner />
+      <slot name="header" />
+    </div>
+    <main class={mainPad}>
       <slot />
     </main>
     <slot name="footer" />
+    <PreviewMotion />
+    {/* Load variant CSS after Astro/Tailwind so remaps win the cascade without racing utilities. */}
+    {designVariant === 'a' ? <link rel="stylesheet" href="/design-preview/a.css" /> : null}
+    {designVariant === 'b' ? <link rel="stylesheet" href="/design-preview/b.css" /> : null}
   </body>
 </html>

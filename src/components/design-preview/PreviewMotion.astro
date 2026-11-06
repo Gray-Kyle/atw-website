@@ -1,0 +1,30 @@
+---
+import { isDesignVariant } from '../../lib/designVariant';
+---
+
+{
+  isDesignVariant ? (
+    <script is:inline>
+      (() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+        const nodes = document.querySelectorAll('[data-preview-animate]');
+        if (!('IntersectionObserver' in window) || nodes.length === 0) {
+          nodes.forEach((el) => el.classList.add('preview-reveal'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('preview-reveal');
+              io.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
+        );
+        nodes.forEach((el) => io.observe(el));
+      })();
+    </script>
+  ) : null
+}

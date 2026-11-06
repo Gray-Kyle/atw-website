@@ -1,0 +1,40 @@
+---
+import ErpPricing from '../../marketing/ErpPricing.astro';
+import PricingFaq from '../../marketing/PricingFaq.astro';
+import {
+  ERP_PRIMARY_CTA_LABEL,
+  ERP_TRIAL_LABEL,
+  ERP_TRIAL_PROMO_LABEL,
+} from '../../../data/erpOfferHome';
+import { livePath } from '../../../lib/site';
+---
+
+<section class="border-b border-border bg-white/70 px-4 pb-12 pt-10">
+  <div class="xl-container text-center">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">Commercial hub</p>
+    <h1 class="mt-4 font-heading text-4xl font-semibold text-brand-ink sm:text-5xl">ATW pricing</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-lg text-dark-text">
+      Hosting plans with a unified Credits pool and unlimited named seats. {ERP_TRIAL_PROMO_LABEL}.
+    </p>
+    <nav aria-label="Pricing sections" class="mx-auto mt-7 flex flex-wrap justify-center gap-3">
+      <a href="#one" class="rounded-xl border border-brand-ink/15 bg-white px-5 py-2.5 text-sm font-semibold text-brand-ink">Plans</a>
+      <a href="#faq" class="rounded-xl border border-border px-5 py-2.5 text-sm font-semibold text-brand-ink">FAQ</a>
+    </nav>
+    <p class="mx-auto mt-5 max-w-2xl text-sm text-muted-foreground">
+      Need implementation help?
+      <a href={livePath('/services')} class="text-primary underline">ATW Services</a>
+      scopes separately from these plans.
+    </p>
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <a href={livePath('/trial')} class="rounded-xl bg-brand-ink px-6 py-3 text-sm font-semibold text-white">Start {ERP_TRIAL_LABEL}</a>
+      <a href={livePath('/book')} class="rounded-xl border border-brand-ink/15 bg-white px-6 py-3 text-sm font-semibold text-brand-ink">{ERP_PRIMARY_CTA_LABEL}</a>
+    </div>
+  </div>
+</section>
+
+<div data-preview-animate>
+  <ErpPricing showTrialBanner={false} />
+</div>
+<div data-preview-animate>
+  <PricingFaq />
+</div>

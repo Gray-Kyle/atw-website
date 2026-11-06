@@ -2,6 +2,9 @@
 import BaseLayout from './BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import HeaderA from '../components/design-preview/a/Header.astro';
+import HeaderB from '../components/design-preview/b/Header.astro';
+import { designVariant } from '../lib/designVariant';
 
 interface Props {
   title: string;
@@ -26,7 +29,15 @@ const props = Astro.props;
 
 <BaseLayout {...props}>
   <slot name="head" slot="head" />
-  <SiteHeader slot="header" />
+  {
+    designVariant === 'a' ? (
+      <HeaderA slot="header" />
+    ) : designVariant === 'b' ? (
+      <HeaderB slot="header" />
+    ) : (
+      <SiteHeader slot="header" />
+    )
+  }
   <slot />
   <SiteFooter slot="footer" />
 </BaseLayout>

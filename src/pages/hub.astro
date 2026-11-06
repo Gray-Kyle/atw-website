@@ -3,6 +3,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import SystemMarketingPage from '../components/marketing/SystemMarketingPage.astro';
 import { PRODUCT } from '../lib/site';
 import { faqPageJsonLd } from '../lib/seo';
+import { PRODUCT_MARKS } from '../data/productMarks';
 
 const faqs = [
   {
@@ -33,5 +34,6 @@ const faqs = [
     primaryCta={{ label: 'Talk to us', href: '/contact' }}
     secondaryCta={{ label: 'Open Hub', href: PRODUCT.hub }}
     faqs={faqs}
+    brandMarkWithLabel={PRODUCT_MARKS.hub.markWithLabel}
   />
 </MarketingLayout>

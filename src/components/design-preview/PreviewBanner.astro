@@ -1,0 +1,22 @@
+---
+import { designVariantLabel, designVariantShort, isDesignPreview, isDesignVariant } from '../../lib/designVariant';
+
+if (!isDesignPreview) return;
+
+const detail = isDesignVariant
+  ? `${designVariantLabel} sandbox. Not production. Forms and live API writes are disabled.`
+  : 'Cloudflare branch preview. Not production. Forms and live API writes are disabled.';
+---
+
+<div
+  id="preview-banner"
+  class="preview-banner relative z-[60] border-b px-4 py-2.5 text-center text-sm"
+  style={isDesignVariant && designVariantShort === 'B'
+    ? 'background:#0b1729;color:#d7e6ff;border-color:rgba(125,160,210,0.25)'
+    : 'background:#10253f;color:#f4f7fb;border-color:rgba(255,255,255,0.12)'}
+  role="status"
+>
+  <strong class="font-semibold">Design preview{designVariantShort ? ` ${designVariantShort}` : ''}</strong>
+  <span class="mx-2 opacity-50" aria-hidden="true">·</span>
+  <span>{detail}</span>
+</div>

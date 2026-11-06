@@ -7,9 +7,16 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp pages-worker/_worker.js dist/_worker.js && node scripts/publish-sitemap.mjs",
+    "build": "astro build && node scripts/finalize-build.mjs",
+    "build:preview-a": "node scripts/build-preview.mjs a",
+    "build:preview-b": "node scripts/build-preview.mjs b",
+    "build:previews": "node scripts/build-preview.mjs a && node scripts/build-preview.mjs b",
+    "package:preview-zips": "node scripts/package-preview-zips.mjs",
     "preview": "astro preview",
+    "preview:a": "ATW_DESIGN_VARIANT=a astro preview --outDir dist-preview-a",
+    "preview:b": "ATW_DESIGN_VARIANT=b astro preview --outDir dist-preview-b",
     "e2e:smoke": "node scripts/e2e-smoke.mjs",
+    "e2e:preview-smoke": "node scripts/e2e-preview-smoke.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
