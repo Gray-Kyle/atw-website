@@ -6,7 +6,7 @@ import { PRODUCT } from '../lib/site';
 import { designVariant } from '../lib/designVariant';
 import { PRODUCT_MARKS, HERO_LOGO_CLASS } from '../data/productMarks';
 
-const agentsMark = PRODUCT_MARKS.agents.wordmark!;
+const workforceMark = PRODUCT_MARKS.workforce.wordmark!;
 ---
 
 <MarketingLayout
@@ -20,12 +20,12 @@ const agentsMark = PRODUCT_MARKS.agents.wordmark!;
         <div class="container max-w-3xl">
           <div class="mb-6">
             <picture>
-              <source srcset={agentsMark.webp} type="image/webp" />
+              <source srcset={workforceMark.webp} type="image/webp" />
               <img
-                src={agentsMark.png}
-                alt={agentsMark.alt}
-                width={agentsMark.width}
-                height={agentsMark.height}
+                src={workforceMark.png}
+                alt={workforceMark.alt}
+                width={workforceMark.width}
+                height={workforceMark.height}
                 class={HERO_LOGO_CLASS}
                 loading="eager"
                 decoding="async"

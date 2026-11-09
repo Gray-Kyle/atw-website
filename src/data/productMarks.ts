@@ -1,6 +1,6 @@
 /**
  * Official ATW system marks for Option B heroes, cards, and Products nav.
- * Paths point at optimized public assets (webp + png). Do not invent wordmarks.
+ * Paths point at optimized public assets (webp + png).
  */
 
 export type ProductMark = {
@@ -17,7 +17,7 @@ export type ProductMark = {
   };
   /**
    * When no italic product wordmark exists: show corporate/icon mark plus a text label.
-   * Used for Hub (constellation + "Hub") and Workforce cards (network + "Workforce").
+   * Prefer wordmark when an ATW {Product} asset is available.
    */
   markWithLabel?: {
     webp?: string;
@@ -70,13 +70,12 @@ export const PRODUCT_MARKS = {
   hub: {
     id: 'hub',
     icon: '/images/atw-marks/system-hub.svg',
-    markWithLabel: {
-      webp: '/images/logo/hub-logo-white.webp',
-      png: '/images/logo/hub-logo-white.png',
+    wordmark: {
+      webp: '/images/logo/atw-hub-wordmark.webp',
+      png: '/images/logo/atw-hub-wordmark.png',
       alt: 'ATW Hub logo',
-      label: 'Hub',
-      width: 800,
-      height: 717,
+      width: 1293,
+      height: 505,
     },
   },
   mail: {
@@ -105,17 +104,22 @@ export const PRODUCT_MARKS = {
   workforce: {
     id: 'workforce',
     icon: '/images/atw-marks/system-agents.svg',
-    markWithLabel: {
-      webp: '/images/logo/directory-network.webp',
-      png: '/images/logo/directory-network.png',
-      alt: 'ATW Workforce mark',
-      label: 'Workforce',
-      width: 462,
-      height: 323,
+    wordmark: {
+      webp: '/images/logo/atw-workforce-wordmark.webp',
+      png: '/images/logo/atw-workforce-wordmark.png',
+      alt: 'ATW Workforce logo',
+      width: 2478,
+      height: 505,
     },
   },
   ai: {
     id: 'ai',
-    /** No official ATW AI logo; text only */
+    wordmark: {
+      webp: '/images/logo/atw-ai-wordmark.webp',
+      png: '/images/logo/atw-ai-wordmark.png',
+      alt: 'ATW AI logo',
+      width: 993,
+      height: 502,
+    },
   },
 } as const satisfies Record<string, ProductMark>;

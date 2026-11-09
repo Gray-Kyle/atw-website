@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="320" viewBox="0 0 1560 320" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="300" y1="0" x2="1540" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e4b96"/>
+      <stop offset="40%" stop-color="#4A6CF7"/>
+      <stop offset="100%" stop-color="#7ee0ff"/>
+    </linearGradient>
+    <style>
+      @font-face {
+        font-family: 'InterWM';
+        src: url('file:///usr/share/fonts/truetype/macos/Inter-BoldItalic.ttf');
+        font-weight: 700;
+        font-style: italic;
+      }
+      .atw, .name {
+        font-family: 'InterWM', 'Inter', 'Arial Black', Arial, sans-serif;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 148px;
+        letter-spacing: -0.07em;
+        paint-order: stroke fill;
+      }
+      .atw {
+        fill: #ffffff;
+        stroke: #ffffff;
+        stroke-width: 1.25px;
+      }
+      .name {
+        fill: url(#grad);
+        stroke: url(#grad);
+        stroke-width: 1.25px;
+      }
+    </style>
+  </defs>
+  <line x1="322" y1="52" x2="368" y2="22" stroke="url(#grad)" stroke-width="6" stroke-linecap="round"/>
+<line x1="368" y1="22" x2="418" y2="48" stroke="url(#grad)" stroke-width="6" stroke-linecap="round"/>
+<line x1="322" y1="52" x2="418" y2="48" stroke="url(#grad)" stroke-width="6" stroke-linecap="round"/>
+<line x1="418" y1="48" x2="382" y2="82" stroke="url(#grad)" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="322" cy="52" r="16" fill="url(#grad)"/>
+<circle cx="368" cy="22" r="12" fill="url(#grad)"/>
+<circle cx="418" cy="48" r="14" fill="url(#grad)"/>
+<circle cx="382" cy="82" r="9" fill="url(#grad)"/>
+  <text x="24" y="250" class="atw">ATW</text>
+  <text x="360" y="250" class="name">WORKFORCE</text>
+</svg>

@@ -42,7 +42,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
   },
   {
     id: 'workforce',
-    title: 'Workforce',
+    title: 'ATW Workforce',
     href: '/agents/',
     summary: 'Named AI agent seats next to One on the same Credits pool.',
     status: 'coming-online',
@@ -63,7 +63,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
   },
   {
     id: 'hub',
-    title: 'Hub',
+    title: 'ATW Hub',
     href: '/hub/',
     summary:
       'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
@@ -242,18 +242,17 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
   },
   {
     id: 'workforce',
-    title: 'Workforce',
+    title: 'ATW Workforce',
     href: '/agents/',
     summary: 'Named AI agent seats beside One, drawing from the same Credits pool.',
     status: 'coming-online',
     icon: PRODUCT_MARKS.workforce.icon,
-    markWithLabel: {
-      src: PRODUCT_MARKS.workforce.markWithLabel!.webp!,
-      png: PRODUCT_MARKS.workforce.markWithLabel!.png,
-      alt: PRODUCT_MARKS.workforce.markWithLabel!.alt,
-      label: 'Workforce',
-      width: PRODUCT_MARKS.workforce.markWithLabel!.width,
-      height: PRODUCT_MARKS.workforce.markWithLabel!.height,
+    wordmark: {
+      src: '/images/logo/atw-workforce-wordmark.webp',
+      png: '/images/logo/atw-workforce-wordmark.png',
+      alt: 'ATW Workforce logo',
+      width: 220,
+      height: 55,
     },
   },
   {
@@ -275,21 +274,27 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
     title: 'ATW AI',
     href: '/solutions/ai-use-cases/',
     summary: 'Use AI across the systems you already run, billed from organization Credits.',
+    wordmark: {
+      src: '/images/logo/atw-ai-wordmark.webp',
+      png: '/images/logo/atw-ai-wordmark.png',
+      alt: 'ATW AI logo',
+      width: 160,
+      height: 86,
+    },
   },
   {
     id: 'hub',
-    title: 'Hub',
+    title: 'ATW Hub',
     href: '/hub/',
     summary:
       'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
     icon: PRODUCT_MARKS.hub.icon,
-    markWithLabel: {
-      src: PRODUCT_MARKS.hub.markWithLabel!.webp!,
-      png: PRODUCT_MARKS.hub.markWithLabel!.png,
-      alt: PRODUCT_MARKS.hub.markWithLabel!.alt,
-      label: 'Hub',
-      width: PRODUCT_MARKS.hub.markWithLabel!.width,
-      height: PRODUCT_MARKS.hub.markWithLabel!.height,
+    wordmark: {
+      src: '/images/logo/atw-hub-wordmark.webp',
+      png: '/images/logo/atw-hub-wordmark.png',
+      alt: 'ATW Hub logo',
+      width: 180,
+      height: 84,
     },
   },
   {
