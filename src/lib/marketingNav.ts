@@ -164,7 +164,7 @@ export const marketingSystems: MarketingSystem[] = [
     title: 'Orbit',
     href: '/orbit/',
     summary:
-      'ATW Orbit productivity apps next to One: Mail, Calendar, and Meetings are available today. Messaging (SMS, Voice), Docs, Spreadsheets, and Presentations are Coming Soon. Ships with the ATW ERP plan; Mail draws from the organization Credits pool.',
+      'Mail, calendar, and meetings in one orbit, with Messaging, Docs, Spreadsheets, and Presentations coming soon. Mail draws from the organization Credits pool.',
     apps: [
       {
         id: 'mail',
@@ -195,22 +195,19 @@ export const marketingSystems: MarketingSystem[] = [
       {
         id: 'messaging',
         title: 'Messaging (Coming Soon)',
-        href: PRODUCT.worksuite,
-        summary: 'Coming Soon. Business SMS and voice are not available yet.',
-        modules: [
-          { title: 'SMS (Coming Soon)', href: PRODUCT.worksuite },
-          { title: 'Voice (Coming Soon)', href: PRODUCT.worksuite },
-        ],
+        href: '/orbit/',
+        summary: 'Internal team messaging for your organization. Coming Soon.',
+        modules: [{ title: 'Team messaging (Coming Soon)', href: '/orbit/' }],
       },
       {
         id: 'documents',
         title: 'Docs, Spreadsheets, Presentations',
-        href: PRODUCT.worksuite,
+        href: '/orbit/',
         summary: 'Coming Soon. Not available yet.',
         modules: [
-          { title: 'Docs (Coming Soon)', href: PRODUCT.worksuite },
-          { title: 'Spreadsheets (Coming Soon)', href: PRODUCT.worksuite },
-          { title: 'Presentations (Coming Soon)', href: PRODUCT.worksuite },
+          { title: 'Docs (Coming Soon)', href: '/orbit/' },
+          { title: 'Spreadsheets (Coming Soon)', href: '/orbit/' },
+          { title: 'Presentations (Coming Soon)', href: '/orbit/' },
         ],
       },
     ],

@@ -1,0 +1,49 @@
+---
+import { COMPARE_INDEX, COMPARE_PAGES } from '../../../data/comparePages';
+import { livePath } from '../../../lib/site';
+---
+
+<section class="border-b border-border bg-white/70 px-4 py-14 sm:py-16">
+  <div class="xl-container max-w-3xl">
+    <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">Compare</p>
+    <h1 class="mt-4 font-heading text-4xl font-semibold tracking-tight text-brand-ink sm:text-5xl">
+      ATW compared with Zoho One, Odoo, Google Workspace, HubSpot, Salesforce, and QuickBooks
+    </h1>
+    <p class="mt-6 text-lg leading-relaxed text-dark-text">{COMPARE_INDEX.intro}</p>
+  </div>
+</section>
+
+<section class="px-4 py-16" data-preview-animate>
+  <div class="xl-container">
+    <h2 class="font-heading text-2xl font-semibold text-brand-ink">Comparison guides</h2>
+    <p class="mt-2 max-w-2xl text-dark-text">
+      Each page opens with a direct answer, then a table, fair "when to choose" notes, FAQ, and a contact CTA.
+    </p>
+    <ul class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {
+        COMPARE_PAGES.map((page) => (
+          <li>
+            <a href={`/compare/${page.slug}/`} class="block h-full border-t border-brand-ink/10 pt-5 transition hover:border-brand-blue">
+              <h3 class="font-heading text-lg font-semibold text-brand-ink">{page.h1}</h3>
+              <p class="mt-2 text-sm text-dark-text">{page.description}</p>
+              <p class="mt-4 text-sm font-semibold text-primary">Read comparison</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="px-4 pb-20">
+  <div class="xl-container rounded-[2rem] bg-brand-ink px-8 py-12 text-center text-white">
+    <h2 class="font-heading text-3xl font-semibold">Still deciding between stacks?</h2>
+    <p class="mx-auto mt-3 max-w-2xl text-white/75">
+      Tell us what you run today. We will recommend ATW One, ATW Mail, or staying on your current vendor when that is smarter.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href={livePath('/contact')} class="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-brand-ink">Contact us</a>
+      <a href={livePath('/book')} class="rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white">Book a call</a>
+    </div>
+  </div>
+</section>

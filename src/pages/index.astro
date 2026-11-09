@@ -5,6 +5,9 @@ import HomeHero from '../components/marketing/HomeHero.astro';
 import OfferLanes from '../components/marketing/OfferLanes.astro';
 import HomeSections from '../components/marketing/HomeSections.astro';
 import ErpPricing from '../components/marketing/ErpPricing.astro';
+import HomeViewA from '../components/design-preview/a/HomeView.astro';
+import HomeViewB from '../components/design-preview/b/HomeView.astro';
+import { designVariant } from '../lib/designVariant';
 import dashboardPreview from '../assets/images/marketing/atw-one-dashboard-clean.png';
 
 /** Mobile LCP candidate: hero dashboard (AVIF ~640w). */
@@ -24,8 +27,18 @@ const lcpImage = await getImage({
   lcpImageType="image/avif"
   lcpImageMedia="(min-width: 1024px)"
 >
-  <HomeHero />
-  <OfferLanes />
-  <HomeSections />
-  <ErpPricing />
+  {
+    designVariant === 'a' ? (
+      <HomeViewA />
+    ) : designVariant === 'b' ? (
+      <HomeViewB />
+    ) : (
+      <>
+        <HomeHero />
+        <OfferLanes />
+        <HomeSections />
+        <ErpPricing />
+      </>
+    )
+  }
 </MarketingLayout>

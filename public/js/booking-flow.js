@@ -5,6 +5,15 @@
   const root = document.getElementById("atw-booking-root");
   if (!root) return;
 
+  if (document.documentElement.dataset.designPreview === "true" || document.body?.dataset?.designPreview === "true") {
+    root.innerHTML = `
+      <div class="rounded-xl border border-amber-200 bg-amber-50 p-6 text-sm text-amber-950" role="status">
+        <p class="font-semibold">Booking disabled on design preview</p>
+        <p class="mt-2">This sandbox does not call Zoho Bookings or production APIs. Use <a class="underline" href="https://atw.net/book/">atw.net/book</a> to schedule.</p>
+      </div>`;
+    return;
+  }
+
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const MONTHS_FULL = [
     "January",

@@ -1,0 +1,210 @@
+---
+import { Picture } from 'astro:assets';
+import {
+  ERP_APP_SHOWCASE_ENTRIES,
+  ERP_CAPABILITIES,
+  ERP_CREDITS_SYSTEM_UPDATE,
+  ERP_POSITIONING,
+  ERP_PRIMARY_CTA_LABEL,
+  ERP_PRODUCT_WELCOME,
+  ERP_TRIAL_LABEL,
+} from '../../../data/erpOfferHome';
+import { WHY_US } from '../../../data/whyUs';
+import { livePath } from '../../../lib/site';
+import brandLogo from '../../../assets/images/branding/atw-one-logo-no-erp.jpg';
+import dashboardImg from '../../../assets/images/marketing/atw-one-dashboard-clean.png';
+import crmImg from '../../../assets/images/marketing/erp-product-crm.png';
+import financeImg from '../../../assets/images/marketing/erp-product-finance.png';
+import ErpPricing from '../../marketing/ErpPricing.astro';
+
+const showcaseImages = {
+  dashboard: { src: dashboardImg, alt: 'ATW One dashboard home screen with apps launcher and organization overview' },
+  crm: { src: crmImg, alt: 'ATW One CRM lead list with company, contact, and pipeline fields' },
+  finance: { src: financeImg, alt: 'ATW One finance workspace with invoices, AR metrics, and customer counts' },
+} as const;
+
+const story = [
+  { title: 'CRM', body: 'Leads, accounts, contacts, and deals stay connected to the same customer story.' },
+  { title: 'Finance', body: 'Invoices, AR, and purchasing share the same org context as sales.' },
+  { title: 'Operations', body: 'Tasks, documents, and workflows run where the work already lives.' },
+  { title: 'AI', body: 'Assistive AI is grounded in your ATW One records, not a separate chat silo.' },
+];
+---
+
+<section class="relative overflow-hidden pb-8 pt-2 md:pb-10">
+  <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70vh] bg-[radial-gradient(ellipse_at_top,rgba(31,94,255,0.14),transparent_55%)]" aria-hidden="true"></div>
+  <div class="xl-container px-4">
+    <div class="preview-reveal mx-auto max-w-4xl text-center">
+      <div class="mb-8 flex justify-center">
+        <Picture
+          src={brandLogo}
+          alt="ATW One"
+          formats={['avif', 'webp']}
+          widths={[160, 320]}
+          sizes="160px"
+          width={160}
+          height={100}
+          class="h-auto w-[140px] sm:w-[160px]"
+          loading="eager"
+        />
+      </div>
+      <p class="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">ATW.Net</p>
+      <h1 class="mt-4 font-heading text-4xl font-semibold tracking-tight text-brand-ink sm:text-5xl md:text-6xl md:leading-[1.05]">
+        One workspace for CRM, finance, operations, and AI.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-dark-text">
+        ATW One connects customers, sales, finance, and operations in one system with hosting plus Credits billing and unlimited named seats.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <a href={livePath('/trial')} class="rounded-xl bg-brand-ink px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-blue/20 transition hover:brightness-110">
+          Start {ERP_TRIAL_LABEL}
+        </a>
+        <a href={livePath('/why-us')} class="rounded-xl border border-brand-ink/15 bg-white/80 px-7 py-3.5 text-sm font-semibold text-brand-ink hover:bg-white">
+          Why ATW
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-muted-foreground">No credit card required.</p>
+    </div>
+
+    <div class="preview-reveal preview-reveal-delay preview-float mx-auto mt-14 max-w-5xl">
+      <Picture
+        src={dashboardImg}
+        alt="ATW One dashboard showing apps, shortcuts, and organization overview"
+        formats={['avif', 'webp']}
+        widths={[720, 1100, 1400]}
+        sizes="(max-width: 768px) 94vw, 980px"
+        width={1400}
+        height={720}
+        class="w-full rounded-2xl border border-border shadow-[0_40px_80px_-40px_rgba(16,37,63,0.35)]"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">Product story</p>
+      <h2 class="mt-3 font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">Consolidate the stack without burying the value in menus.</h2>
+      <p class="mt-4 text-lg text-dark-text">{ERP_POSITIONING.paragraph}</p>
+    </div>
+    <div class="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+      {
+        story.map((item, index) => (
+          <div class="border-t border-brand-ink/10 pt-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue">0{index + 1}</p>
+            <h3 class="mt-3 font-heading text-xl font-semibold text-brand-ink">{item.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-dark-text">{item.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="border-y border-border bg-white/70 py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">{ERP_PRODUCT_WELCOME.mainTitle}</p>
+      <h2 class="mt-3 font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">{ERP_PRODUCT_WELCOME.title}</h2>
+      <p class="mt-4 text-dark-text">{ERP_PRODUCT_WELCOME.paragraph}</p>
+    </div>
+    <div class="mt-14 space-y-16">
+      {
+        ERP_APP_SHOWCASE_ENTRIES.map((entry, i) => {
+          const image = showcaseImages[entry.slug as keyof typeof showcaseImages];
+          const reverse = i % 2 === 1;
+          return (
+            <article class:list={['grid items-center gap-10 lg:grid-cols-2', reverse && 'lg:[&>div:first-child]:order-2']}>
+              <div>
+                <h3 class="font-heading text-2xl font-semibold text-brand-ink">{entry.cardTitle}</h3>
+                <p class="mt-3 text-dark-text">{entry.cardCaption}</p>
+                <a href={livePath(`/erp/apps/${entry.slug}`)} class="mt-5 inline-flex text-sm font-semibold text-primary hover:underline">
+                  Tour {entry.cardTitle}
+                </a>
+              </div>
+              <Picture
+                src={image.src}
+                alt={image.alt}
+                formats={['avif', 'webp']}
+                widths={[640, 960]}
+                sizes="(max-width: 1024px) 92vw, 480px"
+                width={960}
+                height={490}
+                class="w-full rounded-xl border border-border shadow-xl shadow-brand-ink/5"
+                loading="lazy"
+              />
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<section class="py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">{ERP_CREDITS_SYSTEM_UPDATE.eyebrow}</p>
+    <h2 class="mt-3 max-w-3xl font-heading text-3xl font-semibold text-brand-ink">{ERP_CREDITS_SYSTEM_UPDATE.title}</h2>
+    <p class="mt-4 max-w-3xl text-dark-text">{ERP_CREDITS_SYSTEM_UPDATE.paragraph}</p>
+    <ul class="mt-6 max-w-3xl space-y-2 text-sm text-dark-text">
+      {ERP_CREDITS_SYSTEM_UPDATE.bullets.map((b) => <li class="flex gap-2"><span class="text-brand-blue" aria-hidden="true">•</span><span>{b}</span></li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="border-y border-border bg-[#f8fbff] py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-brand-blue">{WHY_US.eyebrow}</p>
+    <h2 class="mt-3 max-w-4xl font-heading text-3xl font-semibold text-brand-ink sm:text-4xl">{WHY_US.title}</h2>
+    <p class="mt-5 max-w-3xl text-lg text-dark-text">{WHY_US.paragraph}</p>
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
+      {
+        WHY_US.pillars.map((pillar) => (
+          <div class="border-l-2 border-brand-blue/40 pl-5">
+            <h3 class="font-heading text-lg font-semibold text-brand-ink">{pillar.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-dark-text">{pillar.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-10">
+      <a href={livePath('/why-us')} class="text-sm font-semibold text-primary hover:underline">{WHY_US.learnMoreLabel}</a>
+    </p>
+  </div>
+</section>
+
+<section class="py-20" data-preview-animate>
+  <div class="xl-container px-4">
+    <h2 class="text-center font-heading text-3xl font-semibold text-brand-ink">Capabilities</h2>
+    <div class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        ERP_CAPABILITIES.map((block) => (
+          <div>
+            <h3 class="font-heading text-lg font-semibold text-brand-ink">{block.title}</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-dark-text">
+              {block.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="pb-8" data-preview-animate>
+  <ErpPricing />
+</section>
+
+<section class="px-4 pb-20">
+  <div class="xl-container overflow-hidden rounded-[2rem] bg-brand-ink px-8 py-14 text-center text-white sm:px-12">
+    <h2 class="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">See how ATW One could run your business</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-white/80">Work directly with the team that builds ATW One. Start a trial or book a free business process review.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href={livePath('/book')} class="rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-brand-ink">{ERP_PRIMARY_CTA_LABEL}</a>
+      <a href={livePath('/trial')} class="rounded-xl border border-white/30 px-7 py-3.5 text-sm font-semibold text-white">Start {ERP_TRIAL_LABEL}</a>
+    </div>
+  </div>
+</section>

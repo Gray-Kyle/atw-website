@@ -1,7 +1,10 @@
 ---
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
 import CtaBand from '../../components/marketing/CtaBand.astro';
+import CompareViewA from '../../components/design-preview/a/CompareView.astro';
+import CompareViewB from '../../components/design-preview/b/CompareView.astro';
 import { COMPARE_INDEX, COMPARE_PAGES } from '../../data/comparePages';
+import { designVariant } from '../../lib/designVariant';
 ---
 
 <MarketingLayout
@@ -9,51 +12,61 @@ import { COMPARE_INDEX, COMPARE_PAGES } from '../../data/comparePages';
   description={COMPARE_INDEX.description}
   canonical="https://atw.net/compare"
 >
-  <section class="border-b border-border bg-gradient-to-b from-slate-50 to-white px-4 py-14 sm:py-16">
-    <div class="container max-w-3xl">
-      <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Compare</p>
-      <h1 class="mt-2 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-        ATW compared with Zoho One, Odoo, Google Workspace, HubSpot, Salesforce, and QuickBooks
-      </h1>
-      <p class="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{COMPARE_INDEX.intro}</p>
-    </div>
-  </section>
+  {
+    designVariant === 'a' ? (
+      <CompareViewA />
+    ) : designVariant === 'b' ? (
+      <CompareViewB />
+    ) : (
+      <>
+        <section class="border-b border-border bg-gradient-to-b from-slate-50 to-white px-4 py-14 sm:py-16">
+          <div class="container max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Compare</p>
+            <h1 class="mt-2 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+              ATW compared with Zoho One, Odoo, Google Workspace, HubSpot, Salesforce, and QuickBooks
+            </h1>
+            <p class="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{COMPARE_INDEX.intro}</p>
+          </div>
+        </section>
 
-  <section class="container px-4 py-14 sm:py-16">
-    <h2 class="font-heading text-2xl font-semibold text-foreground">Comparison guides</h2>
-    <p class="mt-2 max-w-2xl text-muted-foreground">
-      Each page opens with a direct answer, then a table, fair "when to choose" notes, FAQ, and a contact CTA.
-    </p>
-    <ul class="mt-8 grid gap-4 md:grid-cols-3">
-      {
-        COMPARE_PAGES.map((page) => (
-          <li>
-            <a
-              href={`/compare/${page.slug}`}
-              class="flex h-full flex-col rounded-xl border border-border bg-card p-6 hover:border-brand-blue/40 hover:shadow-sm"
-            >
-              <h3 class="font-heading text-lg font-semibold text-foreground">{page.h1}</h3>
-              <p class="mt-2 flex-1 text-sm text-muted-foreground">{page.description}</p>
-              <p class="mt-4 text-sm font-medium text-primary">Read comparison →</p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+        <section class="container px-4 py-14 sm:py-16">
+          <h2 class="font-heading text-2xl font-semibold text-foreground">Comparison guides</h2>
+          <p class="mt-2 max-w-2xl text-muted-foreground">
+            Each page opens with a direct answer, then a table, fair "when to choose" notes, FAQ, and a contact CTA.
+          </p>
+          <ul class="mt-8 grid gap-4 md:grid-cols-3">
+            {
+              COMPARE_PAGES.map((page) => (
+                <li>
+                  <a
+                    href={`/compare/${page.slug}`}
+                    class="flex h-full flex-col rounded-xl border border-border bg-card p-6 hover:border-brand-blue/40 hover:shadow-sm"
+                  >
+                    <h3 class="font-heading text-lg font-semibold text-foreground">{page.h1}</h3>
+                    <p class="mt-2 flex-1 text-sm text-muted-foreground">{page.description}</p>
+                    <p class="mt-4 text-sm font-medium text-primary">Read comparison →</p>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
 
-  <CtaBand
-    title="Still deciding between stacks?"
-    description="Tell us what you run today. We will recommend ATW One, ATW Mail, or staying on your current vendor when that is smarter."
-  >
-    <a href="/contact" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy hover:bg-blue-50">
-      Contact us
-    </a>
-    <a
-      href="/book"
-      class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-    >
-      Book a call
-    </a>
-  </CtaBand>
+        <CtaBand
+          title="Still deciding between stacks?"
+          description="Tell us what you run today. We will recommend ATW One, ATW Mail, or staying on your current vendor when that is smarter."
+        >
+          <a href="/contact" class="rounded-lg bg-white px-6 py-3 text-sm font-semibold text-brand-navy hover:bg-blue-50">
+            Contact us
+          </a>
+          <a
+            href="/book"
+            class="rounded-lg border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+          >
+            Book a call
+          </a>
+        </CtaBand>
+      </>
+    )
+  }
 </MarketingLayout>

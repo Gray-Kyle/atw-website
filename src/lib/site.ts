@@ -2,10 +2,12 @@
 export const PRODUCT = {
   auth: 'https://auth.atw.net',
   one: 'https://one.atw.net',
-  worksuite: 'https://worksuite.atw.net',
+  worksuite: 'https://orbit.atw.net',
   hub: 'https://hub.atw.net',
   directory: 'https://directory.atw.net',
+  /** Same Workforce app; agents.atw.net remains a legacy host alias. */
   agents: 'https://agents.atw.net',
+  workforce: 'https://workforce.atw.net',
   ai: 'https://ai.atw.net',
   mail: 'https://mail.atw.net',
 } as const;

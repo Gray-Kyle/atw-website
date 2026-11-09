@@ -1,31 +1,69 @@
 ---
 import CtaBand from './CtaBand.astro';
 import type { ComparePage } from '../../data/comparePages';
+import { designVariant } from '../../lib/designVariant';
 
 interface Props {
   page: ComparePage;
 }
 
 const { page } = Astro.props;
+const dark = designVariant === 'b';
 ---
 
-<section class="border-b border-border bg-gradient-to-b from-slate-50 to-white px-4 py-14 sm:py-16">
+<section
+  class:list={[
+    'border-b border-border px-4 py-14 sm:py-16',
+    dark
+      ? 'bg-gradient-to-b from-[#060a12] via-[#0a1628] to-[#0f1f38] text-white'
+      : 'bg-gradient-to-b from-slate-50 to-white',
+  ]}
+>
   <div class="container max-w-3xl">
-    <p class="text-sm font-semibold uppercase tracking-wide text-brand-blue">Compare</p>
-    <h1 class="mt-2 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+    <p
+      class:list={[
+        'text-sm font-semibold uppercase tracking-wide',
+        dark ? 'text-[#7ee0ff]' : 'text-brand-blue',
+      ]}
+    >
+      Compare
+    </p>
+    <h1
+      class:list={[
+        'mt-2 font-heading text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl',
+        dark ? 'text-white' : 'text-foreground',
+      ]}
+    >
       {page.h1}
     </h1>
-    <p class="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{page.directAnswer}</p>
+    <p
+      class:list={[
+        'mt-5 text-base leading-relaxed sm:text-lg',
+        dark ? 'text-zinc-300' : 'text-muted-foreground',
+      ]}
+    >
+      {page.directAnswer}
+    </p>
     <div class="mt-8 flex flex-wrap gap-3">
       <a
         href="/contact"
-        class="inline-flex items-center rounded bg-brand-navy px-6 py-3 font-heading text-sm text-white hover:bg-brand-navy/90"
+        class:list={[
+          'inline-flex items-center rounded px-6 py-3 font-heading text-sm',
+          dark
+            ? 'bg-[#5b9bff] text-[#06101c] hover:brightness-110'
+            : 'bg-brand-navy text-white hover:bg-brand-navy/90',
+        ]}
       >
         Contact ATW
       </a>
       <a
         href="/compare"
-        class="inline-flex items-center rounded border-2 border-brand-navy px-6 py-3 font-heading text-sm text-brand-ink hover:bg-brand-navy/10"
+        class:list={[
+          'inline-flex items-center rounded border-2 px-6 py-3 font-heading text-sm',
+          dark
+            ? 'border-white/50 text-white hover:bg-white/10'
+            : 'border-brand-navy text-brand-ink hover:bg-brand-navy/10',
+        ]}
       >
         All comparisons
       </a>
@@ -36,9 +74,14 @@ const { page } = Astro.props;
 <section class="container px-4 py-14 sm:py-16">
   <h2 class="font-heading text-2xl font-semibold text-foreground sm:text-3xl">Feature and approach</h2>
   <p class="mt-2 max-w-2xl text-muted-foreground">{page.tableCaption}</p>
-  <div class="mt-8 overflow-x-auto rounded-xl border border-border">
+  <div
+    class:list={[
+      'mt-8 overflow-x-auto rounded-xl border border-border',
+      dark ? 'bg-[#0d1a2e]' : null,
+    ]}
+  >
     <table class="min-w-full border-collapse text-left text-sm">
-      <thead class="bg-muted/60">
+      <thead class:list={[dark ? 'bg-[#13233a]' : 'bg-muted/60']}>
         <tr>
           <th scope="col" class="border-b border-border px-4 py-3 font-heading font-semibold text-foreground">
             Dimension
@@ -54,12 +97,37 @@ const { page } = Astro.props;
       <tbody>
         {
           page.rows.map((row) => (
-            <tr class="align-top odd:bg-white even:bg-slate-50/70">
-              <th scope="row" class="border-b border-border px-4 py-4 font-medium text-foreground">
+            <tr
+              class:list={[
+                'align-top',
+                dark ? 'odd:bg-[#0d1a2e] even:bg-[#13233a]' : 'odd:bg-white even:bg-slate-50/70',
+              ]}
+            >
+              <th
+                scope="row"
+                class:list={[
+                  'border-b border-border px-4 py-4 font-medium',
+                  dark ? 'bg-inherit text-[#f2f6fc]' : 'text-foreground',
+                ]}
+              >
                 {row.dimension}
               </th>
-              <td class="border-b border-border px-4 py-4 text-muted-foreground">{row.atw}</td>
-              <td class="border-b border-border px-4 py-4 text-muted-foreground">{row.other}</td>
+              <td
+                class:list={[
+                  'border-b border-border px-4 py-4',
+                  dark ? 'bg-inherit text-[#c5d0e0]' : 'text-muted-foreground',
+                ]}
+              >
+                {row.atw}
+              </td>
+              <td
+                class:list={[
+                  'border-b border-border px-4 py-4',
+                  dark ? 'bg-inherit text-[#c5d0e0]' : 'text-muted-foreground',
+                ]}
+              >
+                {row.other}
+              </td>
             </tr>
           ))
         }

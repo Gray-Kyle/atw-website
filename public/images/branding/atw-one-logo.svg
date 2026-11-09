@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180" fill="none" role="img" aria-label="ATW One">
+  <title>ATW One</title>
+  <defs>
+    <linearGradient id="oneGrad" x1="250" y1="40" x2="520" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a5fff"/>
+      <stop offset="55%" stop-color="#3db7ff"/>
+      <stop offset="100%" stop-color="#7ee0ff"/>
+    </linearGradient>
+  </defs>
+  <!-- Network constellation above W/O -->
+  <g stroke="url(#oneGrad)" stroke-width="3.5" stroke-linecap="round">
+    <line x1="268" y1="48" x2="298" y2="20"/>
+    <line x1="298" y1="20" x2="330" y2="44"/>
+  </g>
+  <g fill="url(#oneGrad)">
+    <circle cx="268" cy="48" r="7"/>
+    <circle cx="298" cy="20" r="7"/>
+    <circle cx="330" cy="44" r="7"/>
+    <circle cx="342" cy="66" r="5"/>
+  </g>
+  <!-- ATW (white for dark surfaces) -->
+  <text x="8" y="132" font-family="Arial Black, Impact, Haettenschweiler, sans-serif" font-size="96" font-weight="900" letter-spacing="-4" fill="#ffffff">ATW</text>
+  <!-- ONE with gradient -->
+  <text x="268" y="132" font-family="Arial Black, Impact, Haettenschweiler, sans-serif" font-size="96" font-weight="900" letter-spacing="-4" fill="url(#oneGrad)">ONE</text>
+</svg>

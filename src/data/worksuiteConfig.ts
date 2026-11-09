@@ -3,7 +3,7 @@
  * Meetings, and Coming Soon apps (Messaging, Docs, Spreadsheets, Presentations).
  * Ships with the ATW ERP plan (base hosting + Credits). Plan tiers below are
  * capability grouping for product docs only (not sold as seat SKUs).
- * Host URL remains https://worksuite.atw.net until a subdomain move is approved.
+ * App host: https://orbit.atw.net
  */
 
 export type WorkSuitePlanId = "starter" | "business" | "scale";
@@ -31,7 +31,7 @@ export const WORKSUITE_PLANS: WorkSuitePlan[] = [
     includes: [
       "Everything in Starter",
       "HD video meetings (pooled minutes and fair-use caps)",
-      "Business SMS, MMS, and voice Coming Soon (pooled credits; regulatory setup required)",
+      "Internal team messaging Coming Soon",
     ],
   },
   {
@@ -40,7 +40,7 @@ export const WORKSUITE_PLANS: WorkSuitePlan[] = [
     includes: [
       "Everything in Business with higher included pools",
       "Larger meeting capacity and recording allowances",
-      "Higher messaging and voice pools when Messaging ships",
+      "Higher internal messaging capacity when Messaging ships",
     ],
   },
 ];
@@ -112,11 +112,11 @@ export const WORKSUITE_MODULES: WorkSuiteModuleSpec[] = [
   },
   {
     id: "messaging-voice",
-    title: "Messaging and voice (Coming Soon)",
+    title: "Messaging (Coming Soon)",
     summary:
-      "Coming Soon. SMS/MMS, programmable voice, optional WhatsApp Business: pooled usage, consent, and audit trails.",
+      "Coming Soon. Internal team messaging for people in the organization.",
     docRelativePath: "docs/worksuite/MODULE_MESSAGING_VOICE.md",
-    upstreamNotes: "Twilio (10DLC, Messaging Service, Voice, WhatsApp templates).",
+    upstreamNotes: "Internal chat product planning; not SMS or external voice.",
     minPlan: "business",
     implementationPhase: "discovery",
   },
