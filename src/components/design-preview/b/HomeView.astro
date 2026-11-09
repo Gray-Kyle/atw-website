@@ -28,11 +28,12 @@ const showcaseImages = {
 } as const;
 ---
 
-<section class="relative overflow-hidden pb-10 pt-6 sm:pb-12 lg:pb-16">
+<section class="relative overflow-hidden pb-12 pt-6 sm:pb-14">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(91,155,255,0.22),transparent_52%),radial-gradient(ellipse_at_85%_10%,rgba(126,224,255,0.12),transparent_48%)]" aria-hidden="true"></div>
-  <div class="relative lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:items-center xl:grid-cols-[minmax(0,32rem)_minmax(0,1fr)]">
-    <div class="xl-container relative z-10 w-full px-4 lg:max-w-none lg:pr-0 xl:pl-[max(1rem,calc((100vw-72rem)/2+1rem))]">
-      <div class="preview-reveal max-w-xl pb-8 lg:pb-4 xl:max-w-2xl">
+  {/* Balanced copy + media: media still kisses the right edge, without dominating the hero. */}
+  <div class="relative lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+    <div class="xl-container relative z-10 w-full px-4 lg:max-w-none lg:pr-6 xl:pl-[max(1rem,calc((100vw-72rem)/2+1rem))] xl:pr-8">
+      <div class="preview-reveal max-w-xl pb-8 lg:max-w-none lg:pb-2 xl:max-w-xl">
         <div class="mb-6 sm:mb-7">
           <Picture
             src={brandLogo}
@@ -48,10 +49,10 @@ const showcaseImages = {
           />
         </div>
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-[#7ee0ff]">ATW.Net</p>
-        <h1 class="mt-4 font-heading text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4rem]">
+        <h1 class="mt-4 font-heading text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:mt-5 sm:text-5xl md:text-[3.25rem] lg:text-[2.75rem] xl:text-[3.25rem]">
           One system for the work that runs your business.
         </h1>
-        <p class="mt-5 max-w-xl text-base leading-relaxed text-[#c5d0e0] sm:mt-6 sm:text-lg">
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-[#c5d0e0] sm:mt-6 sm:text-lg lg:text-base xl:text-lg">
           ATW One brings CRM, finance, and operations together with Credits billing and unlimited named seats. Orbit, Hub, Directory, and AI sit beside it under one organization.
         </p>
         <p class="mt-4 max-w-xl text-sm leading-relaxed text-[#a8b6c9]">
@@ -71,26 +72,25 @@ const showcaseImages = {
       </div>
     </div>
 
-    {/* Full-bleed product shot: fills the right half to the viewport edge on desktop. */}
-    <div class="preview-reveal-media relative w-full min-w-0 lg:self-stretch">
-      <div class="pointer-events-none absolute -inset-y-6 left-0 right-0 bg-gradient-to-l from-[#5b9bff]/18 via-transparent to-transparent blur-2xl lg:-inset-y-10" aria-hidden="true"></div>
-      <figure class="relative m-0 px-4 lg:flex lg:h-full lg:min-h-[30rem] lg:flex-col lg:justify-center lg:px-0 xl:min-h-[34rem]">
-        <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/50 lg:h-full lg:min-h-[30rem] lg:rounded-l-2xl lg:rounded-r-none lg:border-r-0 xl:min-h-[34rem]">
+    <div class="preview-reveal-media relative w-full min-w-0">
+      <div class="pointer-events-none absolute -inset-y-4 left-0 right-0 bg-gradient-to-l from-[#5b9bff]/14 via-transparent to-transparent blur-2xl" aria-hidden="true"></div>
+      <figure class="relative m-0 px-4 lg:pl-2 lg:pr-0">
+        <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/45 lg:rounded-l-2xl lg:rounded-r-none lg:border-r-0">
           <Picture
             src={dashboardImg}
             alt="ATW One dashboard showing apps, shortcuts, and organization overview"
             formats={['avif', 'webp']}
-            widths={[720, 960, 1280, 1600, 1920]}
-            sizes="(max-width: 1023px) 92vw, 60vw"
+            widths={[720, 960, 1280, 1600]}
+            sizes="(max-width: 1023px) 92vw, 48vw"
             width={3838}
             height={1976}
-            class="block h-auto w-full max-w-none lg:h-full lg:min-h-[30rem] lg:w-full lg:object-cover lg:object-left-top xl:min-h-[34rem]"
+            class="block h-auto w-full max-w-full"
             loading="eager"
             fetchpriority="high"
             decoding="async"
           />
         </div>
-        <figcaption class="relative mt-3 px-0 text-sm leading-relaxed text-[#a8b6c9] lg:mt-4 lg:pl-4 xl:pl-6">
+        <figcaption class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9] lg:pl-1">
           CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool.
         </figcaption>
       </figure>
