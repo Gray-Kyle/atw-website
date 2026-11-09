@@ -1,10 +1,10 @@
 /**
  * Build-time design / preview safety flags.
  *
- * - ATW_DESIGN_VARIANT=a|b → intentional redesign sandboxes (dist-preview-a/b)
+ * - Production default (no ATW_DESIGN_VARIANT): Option B look (formerly web2.atw.net)
+ * - ATW_DESIGN_VARIANT=a|b → intentional redesign sandboxes (dist-preview-a/b), noindex
  * - Cloudflare Pages preview branches (CF_PAGES_BRANCH set and not main) →
- *   default look but noindex + write APIs disabled (PR auto-previews)
- * - main / local default build → production presentation unchanged
+ *   production look but noindex + write APIs disabled (PR auto-previews)
  */
 
 export type DesignVariant = 'default' | 'a' | 'b';
@@ -13,7 +13,8 @@ function normalizeVariant(raw: string | undefined): DesignVariant {
   const value = (raw || '').trim().toLowerCase();
   if (value === 'a' || value === 'option-a' || value === 'bright') return 'a';
   if (value === 'b' || value === 'option-b' || value === 'dark') return 'b';
-  return 'default';
+  // Unset / unknown → Option B is the live production presentation.
+  return 'b';
 }
 
 function readEnv(name: string): string {
@@ -26,8 +27,13 @@ function readEnv(name: string): string {
   return '';
 }
 
-/** Resolved at build time via Vite define. */
-export const designVariant: DesignVariant = normalizeVariant(readEnv('ATW_DESIGN_VARIANT'));
+/** Explicit sandbox env only (empty string on production main builds). */
+const explicitVariantEnv = readEnv('ATW_DESIGN_VARIANT').trim();
+
+/** Resolved visual variant. Production builds default to Option B. */
+export const designVariant: DesignVariant = normalizeVariant(
+  explicitVariantEnv || 'b',
+);
 
 /**
  * True for Cloudflare Pages builds of any branch other than main.
@@ -35,12 +41,22 @@ export const designVariant: DesignVariant = normalizeVariant(readEnv('ATW_DESIGN
  */
 export const isCloudflarePreviewBranch = readEnv('ATW_CF_PAGES_PREVIEW') === '1';
 
-/** Intentional Option A / Option B redesign builds. */
-export const isDesignVariant = designVariant === 'a' || designVariant === 'b';
+/**
+ * Intentional Option A / Option B sandbox builds (env explicitly set).
+ * Production main builds leave this false even though the look is Option B.
+ */
+export const isDesignVariant =
+  Boolean(explicitVariantEnv) &&
+  (explicitVariantEnv.toLowerCase() === 'a' ||
+    explicitVariantEnv.toLowerCase() === 'b' ||
+    explicitVariantEnv.toLowerCase() === 'option-a' ||
+    explicitVariantEnv.toLowerCase() === 'option-b' ||
+    explicitVariantEnv.toLowerCase() === 'bright' ||
+    explicitVariantEnv.toLowerCase() === 'dark');
 
 /**
- * Any non-production marketing preview: design variants OR CF preview branch.
- * Production main builds leave this false.
+ * Any non-production marketing preview: explicit design sandboxes OR CF preview branch.
+ * Production main builds leave this false (indexable, live worker, real forms).
  */
 export const isDesignPreview = isDesignVariant || isCloudflarePreviewBranch;
 
@@ -58,6 +74,6 @@ export const designVariantShort =
 
 export function outDirForVariant(variant: DesignVariant = designVariant): string {
   if (variant === 'a') return 'dist-preview-a';
-  if (variant === 'b') return 'dist-preview-b';
+  if (variant === 'b' && isDesignVariant) return 'dist-preview-b';
   return 'dist';
 }

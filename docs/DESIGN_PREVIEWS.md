@@ -1,39 +1,41 @@
-# Design preview sandboxes (Option A / Option B)
+# Design preview sandboxes
 
-Isolated redesign concepts for Kyle to compare before any production redesign is approved.
+Option B (dark navy / electric editorial) is the **production** look on `atw.net`
+(formerly previewed at `web2.atw.net`). Production `npm run build` with no
+`ATW_DESIGN_VARIANT` ships Option B, remains indexable, and uses the live Pages
+worker.
 
-**Do not merge to `main` for production look changes.** Production `npm run build` (no `ATW_DESIGN_VARIANT`) keeps the current site presentation.
+Option A remains an isolated sandbox for comparison.
 
 ## Variants
 
-| Variant | Intent | Env | Output dir | Intended host (pending hosting) |
-|---------|--------|-----|------------|----------------------------------|
-| Option A | Bright premium business | `ATW_DESIGN_VARIANT=a` | `dist-preview-a/` | `web.atw.net` |
-| Option B | Dark navy / electric editorial | `ATW_DESIGN_VARIANT=b` | `dist-preview-b/` | `web2.atw.net` |
+| Variant | Intent | Env | Output dir | Host |
+|---------|--------|-----|------------|------|
+| Production (Option B) | Live site | *(unset)* | `dist/` | `atw.net` |
+| Option A sandbox | Bright premium business | `ATW_DESIGN_VARIANT=a` | `dist-preview-a/` | `web.atw.net` (optional) |
+| Option B sandbox | Same look as prod, preview-safe | `ATW_DESIGN_VARIANT=b` | `dist-preview-b/` | `web2.atw.net` (optional) |
 
 ## Exact build commands
 
 ```bash
 npm ci
 
-# Production / default (unchanged presentation) → dist/
+# Production (Option B look, indexable, live worker) → dist/
 npm run build
 
 # Option A sandbox → dist-preview-a/
 npm run build:preview-a
-# equivalent: ATW_DESIGN_VARIANT=a node scripts/build-preview.mjs a
 
-# Option B sandbox → dist-preview-b/
+# Option B sandbox (noindex, preview worker) → dist-preview-b/
 npm run build:preview-b
-# equivalent: ATW_DESIGN_VARIANT=b node scripts/build-preview.mjs b
 
-# Both
+# Both sandboxes
 npm run build:previews
 ```
 
 ### Deploy-ready ZIPs (dashboard Direct Upload)
 
-After building previews:
+After building preview sandboxes:
 
 ```bash
 rm -f /opt/cursor/artifacts/atw-design-preview-a.pages-upload.zip
@@ -42,7 +44,9 @@ rm -f /opt/cursor/artifacts/atw-design-preview-b.pages-upload.zip
 (cd dist-preview-b && zip -r /opt/cursor/artifacts/atw-design-preview-b.pages-upload.zip .)
 ```
 
-Upload each ZIP to a **separate** Cloudflare Pages project via the dashboard (Direct Upload). Do not change the production `atw-website` Git integration, build command, or settings.
+Upload each ZIP to a **separate** Cloudflare Pages project via the dashboard
+(Direct Upload). Do not change the production `atw-website` Git integration,
+build command, or settings.
 
 Production Pages project remains Git-integrated:
 
@@ -66,7 +70,8 @@ Production Pages project remains Git-integrated:
 
 ### Cloudflare Git preview branches (`CF_PAGES=1` and `CF_PAGES_BRANCH !== main`)
 
-PR / preview branch auto-builds use the **default** visual design but still:
+PR / preview branch auto-builds use the **production** visual design (Option B)
+but still:
 
 - Copy the preview worker (writes/API proxies disabled)
 - Force noindex robots + headers
@@ -87,6 +92,6 @@ npx astro preview --outDir dist-preview-a --host 127.0.0.1 --port 4321
 ## Content rules
 
 - Source of truth: existing why-us / product / pricing / compare copy
-- Preserve WorkSuite spelling, pricing numbers, legal facts, existing logo
+- Preserve Orbit naming, pricing numbers, legal facts, existing logo
 - Do not invent customer quotes, logos, metrics, integrations, or guarantees
 - No em dashes in new marketing copy

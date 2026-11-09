@@ -3,7 +3,7 @@
  * Meetings, and Coming Soon apps (Messaging, Docs, Spreadsheets, Presentations).
  * Ships with the ATW ERP plan (base hosting + Credits). Plan tiers below are
  * capability grouping for product docs only (not sold as seat SKUs).
- * Host URL remains https://worksuite.atw.net until a subdomain move is approved.
+ * App host: https://orbit.atw.net
  */
 
 export type WorkSuitePlanId = "starter" | "business" | "scale";

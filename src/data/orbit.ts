@@ -1,6 +1,6 @@
 /**
  * ATW Orbit marketing facts for Option B (/orbit/).
- * Product console remains worksuite.atw.net until the new host is confirmed.
+ * Product console: https://orbit.atw.net
  * No per-seat SKU. Included with every paid ATW plan. Not in the 14-day trial.
  *
  * Live today: Mail, Calendar, Meetings.
