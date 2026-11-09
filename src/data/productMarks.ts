@@ -74,8 +74,8 @@ export const PRODUCT_MARKS = {
       webp: '/images/logo/atw-hub-wordmark.webp',
       png: '/images/logo/atw-hub-wordmark.png',
       alt: 'ATW Hub logo',
-      width: 1293,
-      height: 505,
+      width: 939,
+      height: 419,
     },
   },
   mail: {
@@ -108,8 +108,8 @@ export const PRODUCT_MARKS = {
       webp: '/images/logo/atw-workforce-wordmark.webp',
       png: '/images/logo/atw-workforce-wordmark.png',
       alt: 'ATW Workforce logo',
-      width: 2478,
-      height: 505,
+      width: 1862,
+      height: 419,
     },
   },
   ai: {
@@ -118,8 +118,8 @@ export const PRODUCT_MARKS = {
       webp: '/images/logo/atw-ai-wordmark.webp',
       png: '/images/logo/atw-ai-wordmark.png',
       alt: 'ATW AI logo',
-      width: 993,
-      height: 502,
+      width: 701,
+      height: 419,
     },
   },
 } as const satisfies Record<string, ProductMark>;
