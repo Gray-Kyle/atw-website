@@ -36,7 +36,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=atw-website
+          # Explicit production branch: Actions checkout can leave branch metadata that
+          # Pages treats as preview-only, so custom domains (atw.net) never update.
+          command: pages deploy dist --project-name=atw-website --branch=main
 
       # Production only (this workflow already runs only on main / workflow_dispatch).
       # Never fails the deploy: IndexNow is best-effort after a successful Pages publish.
