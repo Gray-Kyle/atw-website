@@ -23,6 +23,14 @@ export type DesignPreviewNavProduct = {
   notInTrial?: boolean;
   /** Small system mark for Products menu */
   icon?: string;
+  /** Same product wordmark used on home cards */
+  wordmark?: {
+    src: string;
+    png?: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 };
 
 export type DesignPreviewNavLink = {
@@ -39,6 +47,13 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     href: '/one/',
     summary: 'CRM, Finance, Marketing, HR, and Custom Apps in one workspace.',
     icon: PRODUCT_MARKS.one.icon,
+    wordmark: {
+      src: PRODUCT_MARKS.one.wordmark.webp,
+      png: PRODUCT_MARKS.one.wordmark.png,
+      alt: PRODUCT_MARKS.one.wordmark.alt,
+      width: PRODUCT_MARKS.one.wordmark.width,
+      height: PRODUCT_MARKS.one.wordmark.height,
+    },
   },
   {
     id: 'workforce',
@@ -47,6 +62,13 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     summary: 'Named AI agent seats next to One on the same Credits pool.',
     status: 'coming-online',
     icon: PRODUCT_MARKS.workforce.icon,
+    wordmark: {
+      src: PRODUCT_MARKS.workforce.wordmark.webp,
+      png: PRODUCT_MARKS.workforce.wordmark.png,
+      alt: PRODUCT_MARKS.workforce.wordmark.alt,
+      width: PRODUCT_MARKS.workforce.wordmark.width,
+      height: PRODUCT_MARKS.workforce.wordmark.height,
+    },
   },
   {
     id: 'directory',
@@ -54,12 +76,27 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     href: '/systems/directory/',
     summary: 'Who can sign in and which systems they can open.',
     icon: PRODUCT_MARKS.directory.icon,
+    wordmark: {
+      src: PRODUCT_MARKS.directory.wordmark.webp,
+      png: PRODUCT_MARKS.directory.wordmark.png,
+      alt: PRODUCT_MARKS.directory.wordmark.alt,
+      width: PRODUCT_MARKS.directory.wordmark.width,
+      height: PRODUCT_MARKS.directory.wordmark.height,
+    },
   },
   {
     id: 'ai',
     title: 'ATW AI',
     href: '/solutions/ai-use-cases/',
     summary: 'AI across the systems you already use, drawn from organization Credits.',
+    icon: PRODUCT_MARKS.ai.icon,
+    wordmark: {
+      src: PRODUCT_MARKS.ai.wordmark.webp,
+      png: PRODUCT_MARKS.ai.wordmark.png,
+      alt: PRODUCT_MARKS.ai.wordmark.alt,
+      width: PRODUCT_MARKS.ai.wordmark.width,
+      height: PRODUCT_MARKS.ai.wordmark.height,
+    },
   },
   {
     id: 'hub',
@@ -68,6 +105,13 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     summary:
       'One inbox and workspace that connects to ATW Orbit, Google Workspace, Microsoft Teams, and Outlook.',
     icon: PRODUCT_MARKS.hub.icon,
+    wordmark: {
+      src: PRODUCT_MARKS.hub.wordmark.webp,
+      png: PRODUCT_MARKS.hub.wordmark.png,
+      alt: PRODUCT_MARKS.hub.wordmark.alt,
+      width: PRODUCT_MARKS.hub.wordmark.width,
+      height: PRODUCT_MARKS.hub.wordmark.height,
+    },
   },
   {
     id: 'orbit',
@@ -75,6 +119,13 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
     href: '/orbit/',
     summary: ORBIT_ONE_LINER,
     icon: PRODUCT_MARKS.orbit.icon,
+    wordmark: {
+      src: PRODUCT_MARKS.orbit.wordmark.webp,
+      png: PRODUCT_MARKS.orbit.wordmark.png,
+      alt: PRODUCT_MARKS.orbit.wordmark.alt,
+      width: PRODUCT_MARKS.orbit.wordmark.width,
+      height: PRODUCT_MARKS.orbit.wordmark.height,
+    },
   },
 ];
 
@@ -274,6 +325,7 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
     title: 'ATW AI',
     href: '/solutions/ai-use-cases/',
     summary: 'Use AI across the systems you already run, billed from organization Credits.',
+    icon: PRODUCT_MARKS.ai.icon,
     wordmark: {
       src: '/images/logo/atw-ai-wordmark.webp',
       png: '/images/logo/atw-ai-wordmark.png',

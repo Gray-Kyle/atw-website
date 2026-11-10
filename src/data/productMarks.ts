@@ -114,6 +114,7 @@ export const PRODUCT_MARKS = {
   },
   ai: {
     id: 'ai',
+    icon: '/images/atw-marks/system-ai.svg',
     wordmark: {
       webp: '/images/logo/atw-ai-wordmark.webp',
       png: '/images/logo/atw-ai-wordmark.png',
