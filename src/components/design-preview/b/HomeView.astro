@@ -31,9 +31,13 @@ const showcaseImages = {
 <section class="relative overflow-hidden pb-12 pt-6 sm:pb-14 lg:pb-16">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(91,155,255,0.22),transparent_52%),radial-gradient(ellipse_at_85%_10%,rgba(126,224,255,0.12),transparent_48%)]" aria-hidden="true"></div>
 
-  {/* Balanced desktop hero: copy and dashboard share one content row at equal visual weight. */}
+  {/*
+    Desktop: copy sets the row height. Dashboard scales to that height with its
+    original aspect ratio (no stretch) and may overflow to the right; section
+    overflow-hidden clips what falls off the viewport.
+  */}
   <div class="xl-container relative px-4">
-    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
+    <div class="grid items-start gap-8 lg:grid-cols-2 lg:items-stretch lg:gap-10 xl:gap-12">
       <div class="preview-reveal relative z-10 max-w-xl lg:max-w-none">
         <div class="mb-6 sm:mb-7">
           <Picture
@@ -72,25 +76,25 @@ const showcaseImages = {
         </div>
       </div>
 
-      <div class="preview-reveal-media relative min-w-0">
-        <div class="pointer-events-none absolute -inset-4 bg-gradient-to-l from-[#5b9bff]/14 via-transparent to-transparent blur-2xl" aria-hidden="true"></div>
-        <figure class="relative m-0">
-          <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/45">
+      <div class="preview-reveal-media relative min-h-0 min-w-0">
+        <div class="pointer-events-none absolute -inset-y-4 left-0 w-[50vw] bg-gradient-to-l from-[#5b9bff]/14 via-transparent to-transparent blur-2xl" aria-hidden="true"></div>
+        <figure class="relative m-0 lg:h-full">
+          <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/45 lg:h-full lg:w-max lg:max-w-none">
             <Picture
               src={dashboardImg}
               alt="ATW One dashboard showing apps, shortcuts, and organization overview"
               formats={['avif', 'webp']}
-              widths={[720, 960, 1280]}
-              sizes="(max-width: 1023px) 92vw, 36rem"
+              widths={[720, 960, 1280, 1600]}
+              sizes="(max-width: 1023px) 92vw, 70vw"
               width={3838}
               height={1976}
-              class="block h-auto w-full max-w-full"
+              class="block h-auto w-full max-w-full lg:h-full lg:w-auto lg:max-w-none"
               loading="eager"
               fetchpriority="high"
               decoding="async"
             />
           </div>
-          <figcaption class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9]">
+          <figcaption class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9] lg:absolute lg:left-0 lg:top-full lg:mt-3 lg:whitespace-nowrap">
             CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool.
           </figcaption>
         </figure>
