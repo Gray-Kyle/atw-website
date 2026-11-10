@@ -379,7 +379,7 @@ export const ERP_IMPLEMENTATION = {
   tiers: [
     {
       name: "Standard Setup",
-      price: "Starting at $1,500 one-time",
+      price: "Starting at $1,500",
       bullets: [
         "ATW One onboarding and company setup",
         "Users, roles, and permissions",
@@ -441,7 +441,7 @@ export const ERP_LONG_FORM = {
     "Starter at $299/month with 1,200,000 Credits. Upgrade when you need more",
     "Unlimited named seats (no per-seat software fees)",
     "Premium Support optional, starting at $99.99/month",
-    "Implementation starting at $1,500 one-time",
+    "Implementation starting at $1,500",
   ],
   guardrailsTitle: "What We Promise To Be Clear About",
   guardrails: [
