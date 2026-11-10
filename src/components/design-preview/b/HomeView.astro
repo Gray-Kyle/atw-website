@@ -31,14 +31,10 @@ const showcaseImages = {
 <section class="relative overflow-hidden pb-12 pt-6 sm:pb-14 lg:pb-16">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_15%_0%,rgba(91,155,255,0.22),transparent_52%),radial-gradient(ellipse_at_85%_10%,rgba(126,224,255,0.12),transparent_48%)]" aria-hidden="true"></div>
 
-  {/*
-    First track = site left gutter + copy width so text lines up with the
-    xl-container. Media track runs to the viewport edge; the shot is sized in
-    rem and object-left so zoom crops the right instead of shrinking to fit.
-  */}
-  <div class="relative lg:grid lg:grid-cols-[minmax(0,calc((100vw-72rem)/2+30rem))_minmax(0,1fr)] lg:items-center">
-    <div class="relative z-10 px-4 lg:pl-[max(1rem,calc((100vw-72rem)/2+1rem))] lg:pr-8">
-      <div class="preview-reveal max-w-xl pb-8 lg:max-w-[28rem] lg:pb-2 xl:max-w-[30rem]">
+  {/* Balanced desktop hero: copy and dashboard share one content row at equal visual weight. */}
+  <div class="xl-container relative px-4">
+    <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
+      <div class="preview-reveal relative z-10 max-w-xl lg:max-w-none">
         <div class="mb-6 sm:mb-7">
           <Picture
             src={brandLogo}
@@ -75,30 +71,30 @@ const showcaseImages = {
           </a>
         </div>
       </div>
-    </div>
 
-    <div class="preview-reveal-media relative min-w-0 w-full">
-      <div class="pointer-events-none absolute -inset-y-6 left-0 right-0 bg-gradient-to-l from-[#5b9bff]/16 via-transparent to-transparent blur-2xl" aria-hidden="true"></div>
-      <figure class="relative m-0 px-4 lg:px-0">
-        <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/45 lg:h-[22rem] lg:rounded-l-2xl lg:rounded-r-none lg:border-r-0 xl:h-[25rem]">
-          <Picture
-            src={dashboardImg}
-            alt="ATW One dashboard showing apps, shortcuts, and organization overview"
-            formats={['avif', 'webp']}
-            widths={[720, 960, 1280, 1600]}
-            sizes="(max-width: 1023px) 92vw, 60vw"
-            width={3838}
-            height={1976}
-            class="block h-auto w-full max-w-none lg:h-full lg:w-[max(100%,48rem)] lg:max-w-none lg:object-cover lg:object-left-top"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </div>
-        <figcaption class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9] lg:pl-1">
-          CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool.
-        </figcaption>
-      </figure>
+      <div class="preview-reveal-media relative min-w-0">
+        <div class="pointer-events-none absolute -inset-4 bg-gradient-to-l from-[#5b9bff]/14 via-transparent to-transparent blur-2xl" aria-hidden="true"></div>
+        <figure class="relative m-0">
+          <div class="overflow-hidden rounded-2xl border border-white/15 bg-[#0a1526] shadow-2xl shadow-black/45">
+            <Picture
+              src={dashboardImg}
+              alt="ATW One dashboard showing apps, shortcuts, and organization overview"
+              formats={['avif', 'webp']}
+              widths={[720, 960, 1280]}
+              sizes="(max-width: 1023px) 92vw, 36rem"
+              width={3838}
+              height={1976}
+              class="block h-auto w-full max-w-full"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+          <figcaption class="relative mt-3 text-sm leading-relaxed text-[#a8b6c9]">
+            CRM, Finance, Marketing, HR, and Custom Apps on one Credits pool.
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
