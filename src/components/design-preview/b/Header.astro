@@ -66,16 +66,6 @@ const isActive = (href: string) => {
                   class="rounded-lg px-3 py-3 transition hover:bg-white/5"
                 >
                   <span class="flex flex-wrap items-center gap-2.5">
-                    {item.icon ? (
-                      <img
-                        src={item.icon}
-                        alt=""
-                        width={22}
-                        height={22}
-                        class="h-[22px] w-[22px] shrink-0 object-contain"
-                        aria-hidden="true"
-                      />
-                    ) : null}
                     {item.wordmark ? (
                       <picture>
                         {item.wordmark.src.endsWith('.webp') ? (
@@ -86,11 +76,23 @@ const isActive = (href: string) => {
                           alt={item.wordmark.alt}
                           width={item.wordmark.width}
                           height={item.wordmark.height}
-                          class="h-6 w-auto max-w-[9.5rem] object-contain object-left sm:h-7 sm:max-w-[11rem]"
+                          class="h-7 w-auto max-w-[11rem] object-contain object-left sm:h-8 sm:max-w-[13rem]"
                           loading="lazy"
                           decoding="async"
                         />
                       </picture>
+                    ) : item.icon ? (
+                      <span class="flex items-center gap-2">
+                        <img
+                          src={item.icon}
+                          alt=""
+                          width={22}
+                          height={22}
+                          class="h-[22px] w-[22px] shrink-0 object-contain"
+                          aria-hidden="true"
+                        />
+                        <span class="text-sm font-semibold text-white">{item.title}</span>
+                      </span>
                     ) : (
                       <span class="text-sm font-semibold text-white">{item.title}</span>
                     )}
@@ -213,9 +215,6 @@ const isActive = (href: string) => {
       {
         B_NAV_PRODUCTS.map((item) => (
           <a href={item.href} class="flex items-center gap-2.5 rounded-md px-2 py-2.5 text-sm font-medium text-white">
-            {item.icon ? (
-              <img src={item.icon} alt="" width={20} height={20} class="h-5 w-5 shrink-0 object-contain" aria-hidden="true" />
-            ) : null}
             {item.wordmark ? (
               <picture>
                 {item.wordmark.src.endsWith('.webp') ? (
@@ -226,11 +225,16 @@ const isActive = (href: string) => {
                   alt={item.wordmark.alt}
                   width={item.wordmark.width}
                   height={item.wordmark.height}
-                  class="h-6 w-auto max-w-[10rem] object-contain object-left"
+                  class="h-7 w-auto max-w-[12rem] object-contain object-left"
                   loading="lazy"
                   decoding="async"
                 />
               </picture>
+            ) : item.icon ? (
+              <span class="flex items-center gap-2">
+                <img src={item.icon} alt="" width={20} height={20} class="h-5 w-5 shrink-0 object-contain" aria-hidden="true" />
+                <span>{item.title}</span>
+              </span>
             ) : (
               <span>{item.title}</span>
             )}

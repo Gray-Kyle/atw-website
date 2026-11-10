@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="ATW AI">
-  <!-- Three-node constellation from the ATW AI wordmark glyph -->
-  <circle cx="18" cy="44" r="5.5" stroke="#4A6CF7" stroke-width="2.25"/>
-  <circle cx="46" cy="44" r="5.5" stroke="#4A6CF7" stroke-width="2.25"/>
-  <circle cx="32" cy="18" r="5.5" stroke="#7ee0ff" stroke-width="2.25"/>
-  <path d="M21.5 39.5 29 22.5" stroke="#4A6CF7" stroke-width="2.25" stroke-linecap="round"/>
-  <path d="M42.5 39.5 35 22.5" stroke="#4A6CF7" stroke-width="2.25" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="ATW">
+  <!-- Official ATW 3-dot constellation (suite mark) -->
+  <circle cx="22" cy="40" r="7" fill="#3d6ef0"/>
+  <circle cx="38" cy="18" r="8" fill="#5b9bff"/>
+  <circle cx="48" cy="34" r="9" fill="#7ee0ff"/>
+  <circle cx="42" cy="48" r="4.5" fill="#5b9bff"/>
+  <path d="M26 35.5 34 23" stroke="#7ee0ff" stroke-width="2.25" stroke-linecap="round"/>
+  <path d="M28.5 38.5 41 36" stroke="#5b9bff" stroke-width="2.25" stroke-linecap="round"/>
+  <path d="M41 25.5 45.5 30" stroke="#7ee0ff" stroke-width="2.25" stroke-linecap="round"/>
 </svg>
