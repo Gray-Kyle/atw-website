@@ -360,13 +360,13 @@ export const ERP_TRIAL_PACKAGE = {
 export const ERP_OPTIONAL_ADDONS = [
   {
     name: "Premium Support",
-    priceNote: "$99.99/month",
+    priceNote: "Starting at $99.99/month",
     description:
       "Priority support, a monthly improvement call, configuration help, and guidance on getting more value from ATW One. Also covers ongoing workflow updates, practical automation improvements, report tuning, and lighter integrations that fit a monthly support rhythm (not a separate automation retainer).",
   },
   {
     name: "Custom Application",
-    priceNote: "One time $499.99",
+    priceNote: "Starting at $499.99",
     description:
       "Purpose-built screens, modules, or applications that extend ATW One: scoped development for a defined deliverable. Quoted higher for complexity, data model, and integration surface.",
   },
@@ -389,7 +389,7 @@ export const ERP_IMPLEMENTATION = {
     },
     {
       name: "Advanced Implementation",
-      price: "$3,000–$5,000+ one-time",
+      price: "Starting at $3,000",
       bullets: [
         "Data migration",
         "Custom fields and workflows",
@@ -440,7 +440,7 @@ export const ERP_LONG_FORM = {
     `${ERP_TRIAL_LABEL} with ${ERP_INCLUDED_CREDITS_BY_PLAN.trial.toLocaleString("en-US")} Credits (ATW One, Workforce, Directory, ATW AI)`,
     "Starter at $299/month with 1,200,000 Credits. Upgrade when you need more",
     "Unlimited named seats (no per-seat software fees)",
-    "Premium Support optional at $99.99/month",
+    "Premium Support optional, starting at $99.99/month",
     "Implementation starting at $1,500 one-time",
   ],
   guardrailsTitle: "What We Promise To Be Clear About",
