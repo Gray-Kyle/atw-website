@@ -23,8 +23,10 @@ Product subdomains stay on Amplify.
 ```bash
 npm ci
 npm run build
-npx wrangler pages deploy dist --project-name=atw-website
+npx wrangler pages deploy dist --project-name=atw-website --branch=main
 ```
+
+`--branch=main` marks the upload as a **production** deployment so `atw-website-9br.pages.dev`, `atw.net`, and `www.atw.net` update. Omitting it (or deploying from a non-production branch) only creates a preview URL (`<hash>.atw-website-9br.pages.dev`) and leaves custom domains on the previous production build.
 
 First deploy creates the Pages project if it does not exist. List projects:
 
@@ -61,7 +63,7 @@ Workflow: `.github/workflows/pages-deploy.yml`. Add repository secrets:
 | `CLOUDFLARE_API_TOKEN` | Pages deploy (same permissions as Option B) |
 | `CLOUDFLARE_ACCOUNT_ID` | Account id from Cloudflare dashboard URL or `wrangler whoami` |
 
-Push to `main` runs build + `wrangler pages deploy`. Secrets present on `Gray-Kyle/atw-website` as of 2026-10-29; latest successful run deploys commit on `main` (includes `pages-worker/_worker.js` copied in `npm run build`).
+Push to `main` runs build + `wrangler pages deploy dist --project-name=atw-website --branch=main`. Secrets present on `Gray-Kyle/atw-website` as of 2026-10-29; latest successful run deploys commit on `main` (includes `pages-worker/_worker.js` copied in `npm run build`).
 
 After a successful production publish, the workflow also runs IndexNow (best-effort, `continue-on-error`). See [INDEXNOW.md](./INDEXNOW.md).
 

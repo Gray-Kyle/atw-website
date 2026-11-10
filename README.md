@@ -27,7 +27,7 @@ npm run dev
 
 ```bash
 npm run build
-npx wrangler pages deploy dist --project-name=atw-website
+npx wrangler pages deploy dist --project-name=atw-website --branch=main
 # or: npm run deploy
 ```
 

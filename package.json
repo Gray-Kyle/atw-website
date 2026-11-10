@@ -19,7 +19,7 @@
     "e2e:preview-smoke": "node scripts/e2e-preview-smoke.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website"
+    "deploy": "astro build && wrangler pages deploy dist --project-name=atw-website --branch=main"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
