@@ -140,6 +140,10 @@ const PATH_REDIRECTS = new Map([
   ["/worksuite", "/orbit/"],
   ["/worksuite/", "/orbit/"],
   ["/orbit", "/orbit/"],
+  ["/agents", "/workforce/"],
+  ["/agents/", "/workforce/"],
+  ["/solutions/ai-use-cases", "/ai/"],
+  ["/solutions/ai-use-cases/", "/ai/"],
 ]);
 
 export default {

@@ -49,8 +49,8 @@
 - Mail https://atw.net/mail
 - ATW Orbit https://atw.net/orbit/
 - Directory https://atw.net/systems/directory
-- Agents https://atw.net/agents
-- ATW AI https://atw.net/solutions/ai-use-cases
+- Workforce https://atw.net/workforce/
+- ATW AI https://atw.net/ai/
 - Full catalog https://atw.net/systems
 
 ## Markdown fact sheets

@@ -241,64 +241,63 @@ export const marketingSystems: MarketingSystem[] = [
     ],
   },
   {
-    id: 'agents',
-    title: 'Agents',
-    href: '/agents',
-    summary: 'AI work that draws from your organization Credits pool, with configuration and Overseer.',
+    id: 'workforce',
+    title: 'Workforce',
+    href: '/workforce/',
+    summary:
+      'AI agents that take on routine business work alongside your team. Sibling product to ATW One on the same Credits pool.',
     apps: [
       {
-        id: 'workforce',
-        title: 'Workforce',
-        href: '/agents',
-        summary: 'AI teammates that draw Credits when they work.',
+        id: 'workforce-seats',
+        title: 'Agent seats',
+        href: '/workforce/',
+        summary: 'Named seats with goals, limits, and approval modes (in build).',
         modules: [
-          { title: 'Overview', href: '/agents' },
+          { title: 'Overview', href: '/workforce/' },
           {
-            title: 'Sign in',
-            href:
-              'https://auth.atw.net/auth/signin?callbackUrl=' +
-              encodeURIComponent('https://agents.atw.net/'),
+            title: 'Open console',
+            href: PRODUCT.workforce,
           },
         ],
       },
       {
         id: 'overseer',
         title: 'Overseer',
-        href: '/agents',
-        summary: 'Watch agent activity across the organization.',
-        modules: [{ title: 'Overseer', href: '/agents' }],
+        href: '/workforce/',
+        summary: 'Planned oversight for agent activity across the organization. Coming Soon.',
+        modules: [{ title: 'Overseer (Coming Soon)', href: '/workforce/' }],
       },
     ],
   },
   {
     id: 'ai',
     title: 'ATW AI',
-    href: '/solutions/ai-use-cases',
-    summary: 'ATW AI across the systems you already use.',
+    href: '/ai/',
+    summary: 'Platform AI across the systems you already use, drawn from organization Credits.',
     apps: [
       {
         id: 'assistant',
         title: 'Assistant',
-        href: '/solutions/ai-use-cases',
-        summary: 'Ask questions about your work.',
+        href: '/ai/',
+        summary: 'Assistive intelligence built into the ATW platform.',
         modules: [
-          { title: 'Chat', href: '/solutions/ai-use-cases' },
+          { title: 'Overview', href: '/ai/' },
           {
             title: 'Sign in',
             href:
               `${AUTH_SIGNIN}?callbackUrl=` +
               encodeURIComponent(`${PRODUCT.ai}/`),
           },
-          { title: 'Search', href: '/solutions/ai-use-cases' },
+          { title: 'Open ATW AI', href: PRODUCT.ai },
         ],
       },
       {
-        id: 'embedded-agents',
-        title: 'In-app agents',
-        href: '/agents',
-        summary: 'In-app agents that draw from the same Credits pool.',
+        id: 'with-workforce',
+        title: 'With Workforce',
+        href: '/workforce/',
+        summary: 'Named agent seats that share the same Credits pool as ATW AI.',
         modules: [
-          { title: 'Agents', href: '/agents' },
+          { title: 'Workforce', href: '/workforce/' },
           { title: 'CRM', href: '/erp/apps/crm' },
         ],
       },

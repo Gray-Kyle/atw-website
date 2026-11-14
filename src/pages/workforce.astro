@@ -1,0 +1,104 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import ProductSystemPage from '../components/marketing/ProductSystemPage.astro';
+import { WORKFORCE } from '../data/workforce';
+import { PRODUCT } from '../lib/site';
+import { faqPageJsonLd } from '../lib/seo';
+import { PRODUCT_MARKS } from '../data/productMarks';
+
+const faqs = [
+  {
+    q: 'What is ATW Workforce?',
+    a: 'ATW Workforce is a sibling product next to ATW One: AI agents that take on routine business work alongside your team. Named seats are designed with goals, limits, and human oversight, billed from the same organization Credits pool.',
+  },
+  {
+    q: 'Is Workforce the same as agents.atw.net?',
+    a: 'Yes. workforce.atw.net is the same app as agents.atw.net. The product name is ATW Workforce.',
+  },
+  {
+    q: 'What is live today?',
+    a: 'Named agent seats and approval modes are in build. Live agent runtime and production Workforce runs are not claimed yet. We mark those capabilities Coming Soon until they are ready.',
+  },
+  {
+    q: 'How does Workforce connect to the rest of ATW?',
+    a: 'Workforce sits beside One, Directory, and ATW AI on shared identity and Credits. Hub is included with every plan and connects Orbit, Google Workspace, Microsoft Teams, and Outlook.',
+  },
+  {
+    q: 'Is Workforce included in the trial?',
+    a: 'Yes. The 14-day Trial includes ATW One, Workforce, Directory, and ATW AI. Mail, Orbit mailboxes, and Sandbox are not part of the trial.',
+  },
+] as const;
+
+const capabilities = [
+  {
+    title: 'Named AI agent seats',
+    detail:
+      'Give a role a seat with goal, tone, CTA, daily action limit, monthly budget, and approval mode.',
+    status: WORKFORCE.inBuildLabel,
+  },
+  {
+    title: 'Approval modes',
+    detail:
+      'Draft and review, approve once then run within limits, or fully automatic within the caps you set.',
+    status: WORKFORCE.inBuildLabel,
+  },
+  {
+    title: 'Human escalation',
+    detail: 'Paths for work that needs a person, with Overseer planned for catching anything outside limits.',
+    status: 'Coming Soon',
+  },
+  {
+    title: 'Shared Credits metering',
+    detail:
+      'Runs are intended to meter as Workforce agent runs in Credits, plus AI tokens from the same organization pool.',
+    status: WORKFORCE.inBuildLabel,
+  },
+];
+
+const connections = [
+  {
+    title: 'ATW One',
+    href: '/one/',
+    detail: 'Workforce agents are meant to work next to your CRM, finance, and operations workspace.',
+  },
+  {
+    title: 'ATW AI',
+    href: '/ai/',
+    detail: 'Platform AI and Workforce seats share the organization Credits pool.',
+  },
+  {
+    title: 'Directory',
+    href: '/systems/directory/',
+    detail: 'Identity and access for who can open Workforce and related systems.',
+  },
+  {
+    title: 'Hub and Orbit',
+    href: '/hub/',
+    detail:
+      'Hub is included with every plan and connects Orbit, Google Workspace, Microsoft Teams, and Outlook. Orbit Mail, Calendar, and Meetings are live.',
+  },
+];
+---
+
+<MarketingLayout
+  title="ATW Workforce | AI agents next to ATW One"
+  description="ATW Workforce is where AI agents take on routine business work alongside your team. Sibling product to ATW One on the same Credits pool. workforce.atw.net is the same app as agents.atw.net."
+  canonical="https://atw.net/workforce/"
+  jsonLd={faqPageJsonLd('/workforce/', faqs)}
+>
+  <ProductSystemPage
+    headline="AI agents that take on routine work alongside your team"
+    lead={WORKFORCE.oneLiner}
+    brandWordmark={PRODUCT_MARKS.workforce.wordmark!}
+    primaryCta={{ label: WORKFORCE.consoleLabel, href: PRODUCT.workforce }}
+    secondaryCta={{ label: 'Explore ATW One', href: '/one/' }}
+    statusChip={WORKFORCE.comingOnlineLabel}
+    statusNote={WORKFORCE.comingOnlineNote}
+    capabilitiesIntro={WORKFORCE.siblingNote}
+    capabilities={capabilities}
+    connections={connections}
+    faqs={faqs}
+    trialNote={WORKFORCE.trialNote}
+    showTrialCta={true}
+  />
+</MarketingLayout>

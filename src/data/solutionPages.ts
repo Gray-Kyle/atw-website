@@ -87,13 +87,6 @@ export const SOLUTION_PAGES: SolutionPageDef[] = [
     bullets: ['Trigger-based workflows', 'Integration hooks', 'Audit logs'],
   },
   {
-    slug: 'ai-use-cases',
-    eyebrow: 'AI',
-    title: 'AI use cases on ATW',
-    description: 'Practical AI across CRM, support, and operations with guardrails and shared Credits.',
-    bullets: ['Assistants tied to your data', 'Overseer and agent seats', 'Human-in-the-loop workflows'],
-  },
-  {
     slug: 'custom-development',
     eyebrow: 'Custom development',
     title: 'Custom development on ATW One',

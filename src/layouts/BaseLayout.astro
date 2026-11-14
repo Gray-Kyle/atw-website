@@ -3,7 +3,7 @@ import '../styles/global.css';
 import JsonLd from '../components/seo/JsonLd.astro';
 import PreviewBanner from '../components/design-preview/PreviewBanner.astro';
 import PreviewMotion from '../components/design-preview/PreviewMotion.astro';
-import ErpBetaTopBar from '../components/ErpBetaTopBar.astro';
+import OrbitAnnouncementBar from '../components/OrbitAnnouncementBar.astro';
 import {
   designVariant,
   isDesignPreview,
@@ -180,7 +180,7 @@ const mainPad =
   >
     <div class="sticky top-0 z-[60]">
       <PreviewBanner />
-      <ErpBetaTopBar />
+      <OrbitAnnouncementBar />
       <slot name="header" />
     </div>
     <main class={mainPad}>
