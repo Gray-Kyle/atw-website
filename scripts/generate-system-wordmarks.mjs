@@ -161,27 +161,15 @@ for (const product of products) {
     .png()
     .toBuffer();
 
-  // Keep black presentation background like official Directory/Orbit marks.
-  const withBlack = await sharp({
-    create: {
-      width: canvasW,
-      height: canvasH,
-      channels: 4,
-      background: { r: 0, g: 0, b: 0, alpha: 1 },
-    },
-  })
-    .composite([{ input: composed, left: 0, top: 0 }])
-    .png()
-    .toBuffer();
-
-  const trimmed = await sharp(withBlack).trim({ threshold: 2 }).png().toBuffer();
+  // Transparent background like official Directory / Orbit / One marks.
+  const trimmed = await sharp(composed).trim({ threshold: 2 }).png().toBuffer();
   const padded = await sharp(trimmed)
     .extend({
       top: 4,
       bottom: 4,
       left: 4,
       right: 8,
-      background: { r: 0, g: 0, b: 0, alpha: 1 },
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
     .png({ compressionLevel: 9 })
     .toBuffer();
