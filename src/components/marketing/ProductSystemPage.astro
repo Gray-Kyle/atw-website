@@ -1,0 +1,229 @@
+---
+/**
+ * Full product marketing page: hero with wordmark, capabilities, ATW connections, FAQ, trial CTA.
+ */
+import { designVariant } from '../../lib/designVariant';
+import { HERO_LOGO_CLASS } from '../../data/productMarks';
+import { ERP_TRIAL_LABEL } from '../../data/erpOfferHome';
+import { livePath } from '../../lib/site';
+
+type Faq = { q: string; a: string };
+
+type BrandWordmark = {
+  webp?: string;
+  png: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+type Capability = { title: string; detail: string; status?: string };
+type Connection = { title: string; href: string; detail: string };
+
+type Props = {
+  headline: string;
+  lead: string;
+  brandWordmark: BrandWordmark;
+  primaryCta: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  statusChip?: string;
+  statusNote?: string;
+  capabilitiesHeading?: string;
+  capabilitiesIntro?: string;
+  capabilities: readonly Capability[];
+  connectionsHeading?: string;
+  connectionsIntro?: string;
+  connections: readonly Connection[];
+  faqs: readonly Faq[];
+  trialNote?: string;
+  showTrialCta?: boolean;
+};
+
+const {
+  headline,
+  lead,
+  brandWordmark,
+  primaryCta,
+  secondaryCta,
+  statusChip,
+  statusNote,
+  capabilitiesHeading = 'Key capabilities',
+  capabilitiesIntro,
+  capabilities,
+  connectionsHeading = 'How it connects across ATW',
+  connectionsIntro = 'ATW products share identity and Credits under one organization.',
+  connections,
+  faqs,
+  trialNote,
+  showTrialCta = true,
+} = Astro.props;
+
+const isB = designVariant === 'b';
+---
+
+<main class="min-h-screen">
+  <section
+    class:list={[
+      'border-b border-border pt-16',
+      'bg-gradient-to-b from-[#060a12] via-[#0a1628] to-[#0f1f38] text-white',
+    ]}
+  >
+    <div class="container px-4 pb-16 pt-8">
+      <div class="mb-6">
+        <picture>
+          {brandWordmark.webp ? <source srcset={brandWordmark.webp} type="image/webp" /> : null}
+          <img
+            src={brandWordmark.png}
+            alt={brandWordmark.alt}
+            width={brandWordmark.width}
+            height={brandWordmark.height}
+            class={HERO_LOGO_CLASS}
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+      </div>
+      <h1 class="mt-3 max-w-3xl font-heading text-4xl font-bold text-white sm:text-5xl">
+        {headline}
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-zinc-300">{lead}</p>
+      {
+        statusChip || statusNote ? (
+          <div class="mt-4 max-w-2xl space-y-2">
+            {statusChip ? (
+              <span class="inline-flex rounded border border-[#5b9bff]/35 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#7ee0ff]">
+                {statusChip}
+              </span>
+            ) : null}
+            {statusNote ? <p class="text-sm text-[#a8b6c9]">{statusNote}</p> : null}
+          </div>
+        ) : null
+      }
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={primaryCta.href}
+          class:list={[
+            'inline-flex items-center rounded px-6 py-3 font-heading text-sm',
+            isB
+              ? 'bg-[#5b9bff] text-[#06101c] hover:brightness-110'
+              : 'bg-white text-brand-navy hover:bg-white/90',
+          ]}
+        >
+          {primaryCta.label}
+        </a>
+        {
+          secondaryCta ? (
+            <a
+              href={secondaryCta.href}
+              class="inline-flex items-center rounded border-2 border-white/50 px-6 py-3 font-heading text-sm text-white hover:bg-white/10"
+            >
+              {secondaryCta.label}
+            </a>
+          ) : null
+        }
+        {
+          showTrialCta ? (
+            <a
+              href={livePath('/trial')}
+              class="inline-flex items-center rounded border border-white/25 px-6 py-3 font-heading text-sm text-white hover:bg-white/5"
+            >
+              Start {ERP_TRIAL_LABEL}
+            </a>
+          ) : null
+        }
+      </div>
+      {trialNote ? <p class="mt-6 max-w-2xl text-sm text-[#a8b6c9]">{trialNote}</p> : null}
+    </div>
+  </section>
+
+  <section class="container px-4 py-16">
+    <h2 class="text-2xl font-semibold text-foreground">{capabilitiesHeading}</h2>
+    {capabilitiesIntro ? <p class="mt-2 max-w-2xl text-muted-foreground">{capabilitiesIntro}</p> : null}
+    <div class="mt-8 grid gap-4 md:grid-cols-2">
+      {
+        capabilities.map((item) => (
+          <article class="rounded-xl border border-border bg-card p-5">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="text-lg font-semibold">{item.title}</h3>
+              {item.status ? (
+                <span class="inline-flex rounded border border-border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  {item.status}
+                </span>
+              ) : null}
+            </div>
+            <p class="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted/30 py-16">
+    <div class="container px-4">
+      <h2 class="text-2xl font-semibold text-foreground">{connectionsHeading}</h2>
+      <p class="mt-2 max-w-2xl text-muted-foreground">{connectionsIntro}</p>
+      <ul class="mt-8 grid gap-4 md:grid-cols-2">
+        {
+          connections.map((item) => (
+            <li class="rounded-xl border border-border bg-card p-5">
+              <a href={item.href} class="text-lg font-semibold text-foreground hover:text-primary">
+                {item.title}
+              </a>
+              <p class="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-8 text-sm text-muted-foreground">
+        See the full catalog on{' '}
+        <a href="/systems/" class="text-primary underline">
+          Systems
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+
+  <section class="border-t border-border py-16">
+    <div class="container max-w-3xl px-4">
+      <h2 class="text-2xl font-semibold">FAQ</h2>
+      <dl class="mt-6 space-y-6">
+        {
+          faqs.map((faq) => (
+            <div>
+              <dt class="font-medium text-foreground">{faq.q}</dt>
+              <dd class="mt-1 text-muted-foreground">{faq.a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  {
+    showTrialCta ? (
+      <section class="border-t border-border bg-gradient-to-b from-[#0a1628] to-[#060a12] py-16 text-white">
+        <div class="container max-w-3xl px-4 text-center">
+          <h2 class="font-heading text-2xl font-semibold sm:text-3xl">Try ATW with the free trial</h2>
+          <p class="mt-3 text-sm text-zinc-300 sm:text-base">
+            The trial covers ATW One, Workforce, Directory, and ATW AI. Mail, Orbit mailboxes, and Sandbox are not part of the trial. Hub is included with every plan.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href={livePath('/trial')}
+              class="inline-flex items-center rounded bg-[#5b9bff] px-6 py-3 font-heading text-sm font-semibold text-[#06101c] hover:brightness-110"
+            >
+              Start {ERP_TRIAL_LABEL}
+            </a>
+            <a
+              href="/book/"
+              class="inline-flex items-center rounded border-2 border-white/50 px-6 py-3 font-heading text-sm text-white hover:bg-white/10"
+            >
+              Book a call
+            </a>
+          </div>
+        </div>
+      </section>
+    ) : null
+  }
+</main>

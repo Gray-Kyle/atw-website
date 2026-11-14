@@ -1,0 +1,73 @@
+---
+/**
+ * Sitewide announcement: ATW Orbit status (live apps vs Coming Soon).
+ * Replaces the former ATW ERP beta top bar.
+ */
+---
+
+<div
+  id="orbit-announce-top-bar"
+  class="orbit-announce-top-bar relative z-[61] border-b border-[#5b9bff]/35 bg-[#0a1628] text-[#f2f6fc]"
+  data-orbit-announce-bar
+>
+  <div class="xl-container flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-2.5">
+    <p class="min-w-0 flex-1 text-sm leading-snug sm:text-[0.9375rem]">
+      <span class="font-semibold text-white">ATW Orbit:</span>
+      {' '}
+      <span class="text-[#c5d0e0]"
+        >Mail, Calendar, and Meetings are live. Docs, Spreadsheets, Presentations, and Messaging are Coming Soon.</span
+      >
+      {' '}
+      <a href="/orbit/" class="font-semibold text-[#7ee0ff] underline-offset-2 hover:underline">Learn more</a>
+    </p>
+    <button
+      type="button"
+      class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-[#a8b6c9] transition hover:bg-white/5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7ee0ff]"
+      data-orbit-announce-dismiss
+      aria-label="Dismiss announcement"
+    >
+      <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+        ><path
+          d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
+        ></path></svg
+      >
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    try {
+      if (localStorage.getItem('atw-orbit-announce-dismissed') === '1') {
+        document.documentElement.dataset.hideOrbitAnnounceBar = '1';
+      }
+    } catch (_) {}
+  })();
+</script>
+
+<script>
+  function bindOrbitAnnounceBar() {
+    const root = document.querySelector('[data-orbit-announce-bar]');
+    if (!root || root instanceof HTMLElement === false) return;
+    if (document.documentElement.dataset.hideOrbitAnnounceBar === '1') {
+      root.hidden = true;
+      return;
+    }
+    const dismiss = root.querySelector('[data-orbit-announce-dismiss]');
+    dismiss?.addEventListener('click', () => {
+      try {
+        localStorage.setItem('atw-orbit-announce-dismissed', '1');
+      } catch (_) {}
+      document.documentElement.dataset.hideOrbitAnnounceBar = '1';
+      root.hidden = true;
+    });
+  }
+  bindOrbitAnnounceBar();
+  document.addEventListener('astro:page-load', bindOrbitAnnounceBar);
+</script>
+
+<style is:global>
+  html[data-hide-orbit-announce-bar='1'] .orbit-announce-top-bar {
+    display: none;
+  }
+</style>

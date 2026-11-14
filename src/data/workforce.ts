@@ -50,6 +50,6 @@ export const WORKFORCE = {
   ],
   consoleHref: 'https://workforce.atw.net/',
   consoleLabel: 'Open Workforce console',
-  learnHref: '/agents/',
+  learnHref: '/workforce/',
   learnLabel: 'Workforce overview',
 } as const;

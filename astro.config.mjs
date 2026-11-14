@@ -39,6 +39,10 @@ export default defineConfig({
     // Do not add '/orbit' here: it would overwrite src/pages/orbit.astro.
     '/workspace': '/orbit/',
     '/worksuite': '/orbit/',
+    '/agents': '/workforce/',
+    '/agents/': '/workforce/',
+    '/solutions/ai-use-cases': '/ai/',
+    '/solutions/ai-use-cases/': '/ai/',
   },
   integrations: isPreviewSafeBuild
     ? []

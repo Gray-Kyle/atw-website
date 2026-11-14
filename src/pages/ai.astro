@@ -1,0 +1,52 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import ProductSystemPage from '../components/marketing/ProductSystemPage.astro';
+import { AI_PRODUCT } from '../data/aiProduct';
+import { PRODUCT } from '../lib/site';
+import { faqPageJsonLd } from '../lib/seo';
+import { PRODUCT_MARKS } from '../data/productMarks';
+
+const faqs = [
+  {
+    q: 'What is ATW AI?',
+    a: 'ATW AI is the platform AI layer built into ATW. It provides assistive intelligence across ATW systems and draws from your organization Credits pool.',
+  },
+  {
+    q: 'Is ATW AI a separate product purchase?',
+    a: 'ATW AI is built into the platform and meters from organization Credits. Plan capacity and Credits determine how much AI work you can run. We do not publish per-Credit rates on this site.',
+  },
+  {
+    q: 'How is ATW AI different from Workforce?',
+    a: 'ATW AI is the platform AI layer. ATW Workforce is a sibling product for named AI agent seats that take on routine business work next to One. Both share Credits and Directory identity.',
+  },
+  {
+    q: 'What does the trial include?',
+    a: 'The 14-day Trial includes ATW One, Workforce, Directory, and ATW AI. Mail, Orbit mailboxes, and Sandbox are not part of the trial. Hub is included with every plan.',
+  },
+  {
+    q: 'How does ATW AI connect to Hub and Orbit?',
+    a: 'Hub is included with every plan and connects Orbit, Google Workspace, Microsoft Teams, and Outlook. Orbit Mail, Calendar, and Meetings are live; Docs, Spreadsheets, Presentations, and Messaging are Coming Soon.',
+  },
+] as const;
+---
+
+<MarketingLayout
+  title="ATW AI | platform AI on shared Credits"
+  description="ATW AI is built into the ATW platform: assistive intelligence across One, Workforce, Directory, Hub, and Orbit, drawn from your organization Credits pool."
+  canonical="https://atw.net/ai/"
+  jsonLd={faqPageJsonLd('/ai/', faqs)}
+>
+  <ProductSystemPage
+    headline="AI built into the ATW platform"
+    lead={AI_PRODUCT.lead}
+    brandWordmark={PRODUCT_MARKS.ai.wordmark!}
+    primaryCta={{ label: 'Start free trial', href: '/trial/' }}
+    secondaryCta={{ label: AI_PRODUCT.consoleLabel, href: PRODUCT.ai }}
+    capabilitiesIntro={AI_PRODUCT.oneLiner}
+    capabilities={AI_PRODUCT.capabilities}
+    connections={AI_PRODUCT.connections}
+    faqs={faqs}
+    trialNote={AI_PRODUCT.trialNote}
+    showTrialCta={true}
+  />
+</MarketingLayout>

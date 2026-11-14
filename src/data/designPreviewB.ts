@@ -58,7 +58,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
   {
     id: 'workforce',
     title: 'ATW Workforce',
-    href: '/agents/',
+    href: '/workforce/',
     summary: 'Named AI agent seats next to One on the same Credits pool.',
     status: 'coming-online',
     icon: PRODUCT_MARKS.workforce.icon,
@@ -87,7 +87,7 @@ export const B_NAV_PRODUCTS: DesignPreviewNavProduct[] = [
   {
     id: 'ai',
     title: 'ATW AI',
-    href: '/solutions/ai-use-cases/',
+    href: '/ai/',
     summary: 'AI across the systems you already use, drawn from organization Credits.',
     icon: PRODUCT_MARKS.ai.icon,
     wordmark: {
@@ -202,7 +202,7 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     title: 'Workforce',
     group: 'platform',
     summary: 'Named AI agent seats beside One, Directory, and ATW AI on shared Credits.',
-    href: '/agents/',
+    href: '/workforce/',
     status: 'coming-online',
   },
   {
@@ -217,7 +217,7 @@ export const B_WHATS_INCLUDED: WhatsIncludedItem[] = [
     title: 'ATW AI',
     group: 'platform',
     summary: 'AI work drawn from the organization Credits pool.',
-    href: '/solutions/ai-use-cases/',
+    href: '/ai/',
   },
   {
     id: 'hub',
@@ -294,7 +294,7 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
   {
     id: 'workforce',
     title: 'ATW Workforce',
-    href: '/agents/',
+    href: '/workforce/',
     summary: 'Named AI agent seats beside One, drawing from the same Credits pool.',
     status: 'coming-online',
     icon: PRODUCT_MARKS.workforce.icon,
@@ -323,7 +323,7 @@ export const B_PRODUCT_CARDS: BProductCard[] = [
   {
     id: 'ai',
     title: 'ATW AI',
-    href: '/solutions/ai-use-cases/',
+    href: '/ai/',
     summary: 'Use AI across the systems you already run, billed from organization Credits.',
     icon: PRODUCT_MARKS.ai.icon,
     wordmark: {
