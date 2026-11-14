@@ -1,52 +1,244 @@
 ---
 import { marked } from 'marked';
 import MarketingLayout from '../../layouts/MarketingLayout.astro';
-import { fetchPublicPosts, isLikelyTestBlogPost, stripEmDashes } from '../../lib/blog';
-import { breadcrumbListJsonLd } from '../../lib/seo';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import {
+  defaultAuthorName,
+  enhanceHtmlWithToc,
+  estimateReadTimeMinutes,
+  extractFaqsFromHtml,
+  extractTakeawaysFromHtml,
+  fetchPublicPosts,
+  formatBlogDate,
+  isLikelyTestBlogPost,
+  normalizePost,
+  primaryTopicLabel,
+  productHrefForTopics,
+  productLabelForHref,
+  relatedPosts,
+  stripEmbeddedJsonLd,
+  toBlogCard,
+  topicsForPost,
+} from '../../lib/blog';
+import {
+  DEFAULT_OG_IMAGE,
+  blogPostingJsonLd,
+  breadcrumbListJsonLd,
+  faqPageJsonLd,
+} from '../../lib/seo';
+import { ERP_TRIAL_LABEL } from '../../data/erpOfferHome';
+import { livePath } from '../../lib/site';
 
 export async function getStaticPaths() {
   const posts = await fetchPublicPosts(100);
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
-const { post } = Astro.props;
-const title = stripEmDashes(post.title);
-const excerpt = post.excerpt ? stripEmDashes(post.excerpt) : undefined;
-const raw = stripEmDashes(post.content?.trim() ?? '');
-const html = raw
-  ? raw.startsWith('<')
-    ? raw
-    : String(marked.parse(raw))
-  : '';
+const allRaw = await fetchPublicPosts(100);
+const all = allRaw.map(normalizePost);
+const { post: rawPost } = Astro.props;
+const post = normalizePost(rawPost);
+
+const title = post.seoTitle?.trim() || post.title;
+const excerpt = (post.seoDescription?.trim() || post.excerpt || post.title).trim();
+const raw = (post.content?.trim() ?? '');
+const baseHtml = stripEmbeddedJsonLd(
+  raw ? (raw.startsWith('<') ? raw : String(marked.parse(raw))) : '',
+);
+const { html, toc } = enhanceHtmlWithToc(baseHtml);
+const takeaways = extractTakeawaysFromHtml(baseHtml);
+const faqs = extractFaqsFromHtml(baseHtml);
 const noindex = isLikelyTestBlogPost(post);
+const topics = topicsForPost(post);
+const categoryLabel = primaryTopicLabel(topics, post.category);
+const authorName = defaultAuthorName(post);
+const readTime = estimateReadTimeMinutes(post);
+const publishedLabel = formatBlogDate(post.publishedAt);
+const updatedLabel = formatBlogDate(post.updatedAt);
+const showUpdated =
+  Boolean(post.updatedAt) &&
+  Boolean(post.publishedAt) &&
+  post.updatedAt !== post.publishedAt &&
+  Math.abs(Date.parse(post.updatedAt!) - Date.parse(post.publishedAt!)) > 86_400_000;
+const productHref = productHrefForTopics(topics);
+const productLabel = productHref ? productLabelForHref(productHref) : null;
+const related = relatedPosts(post, all, 3).map(toBlogCard);
+const ogImage = post.featuredImage?.trim() || DEFAULT_OG_IMAGE;
+const showToc = toc.length >= 3;
+
 const crumbs = breadcrumbListJsonLd([
   { name: 'Home', path: '/' },
   { name: 'Blog', path: '/blog/' },
-  { name: title, path: `/blog/${post.slug}/` },
+  { name: post.title, path: `/blog/${post.slug}/` },
 ]);
+const articleLd = blogPostingJsonLd({
+  title: post.title,
+  description: excerpt,
+  path: `/blog/${post.slug}/`,
+  publishedAt: post.publishedAt,
+  updatedAt: post.updatedAt || post.publishedAt,
+  imageUrl: ogImage,
+  authorName,
+});
+const faqLd = faqs.length ? faqPageJsonLd(`/blog/${post.slug}/`, faqs) : null;
+const jsonLd = noindex ? null : [crumbs, articleLd, faqLd].filter(Boolean);
 ---
 
 <MarketingLayout
-  title={title}
-  description={excerpt || title}
+  title={title.includes('ATW') ? title : `${title} | ATW.Net Blog`}
+  description={excerpt}
   canonical={`https://atw.net/blog/${post.slug}/`}
   ogType="article"
+  ogImage={ogImage}
+  ogImageAlt={post.title}
   noindex={noindex}
-  jsonLd={noindex ? null : crumbs}
+  jsonLd={jsonLd}
 >
-  <article class="container max-w-3xl py-16">
-    <h1 class="text-3xl font-bold">{title}</h1>
+  <link slot="head" rel="alternate" type="application/rss+xml" title="ATW.Net Blog RSS" href="/blog/rss.xml" />
+  {
+    post.publishedAt ? (
+      <meta slot="head" property="article:published_time" content={post.publishedAt} />
+    ) : null
+  }
+  {
+    post.updatedAt || post.publishedAt ? (
+      <meta
+        slot="head"
+        property="article:modified_time"
+        content={post.updatedAt || post.publishedAt || ''}
+      />
+    ) : null
+  }
+
+  <article class="container py-12 sm:py-16">
+    <nav aria-label="Breadcrumb" class="text-sm text-muted-foreground">
+      <ol class="flex flex-wrap items-center gap-2">
+        <li><a href="/" class="hover:text-primary">Home</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/blog/" class="hover:text-primary">Blog</a></li>
+        <li aria-hidden="true">/</li>
+        <li class="text-foreground line-clamp-1">{post.title}</li>
+      </ol>
+    </nav>
+
+    <header class="mx-auto mt-8 max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-wide text-primary">{categoryLabel}</p>
+      <h1 class="mt-2 font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-[2.5rem] md:leading-tight">
+        {post.title}
+      </h1>
+      <div class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+        <span>By {authorName}</span>
+        {publishedLabel ? <time datetime={post.publishedAt ?? undefined}>Published {publishedLabel}</time> : null}
+        {showUpdated && updatedLabel ? (
+          <time datetime={post.updatedAt ?? undefined}>Updated {updatedLabel}</time>
+        ) : null}
+        <span>{readTime} min read</span>
+      </div>
+    </header>
+
     {
-      post.publishedAt ? (
-        <p class="mt-2 text-sm text-muted-foreground">
-          {new Date(post.publishedAt).toLocaleDateString('en-US')}
-          {post.author?.name ? ` · ${post.author.name}` : ''}
-        </p>
+      takeaways.length > 0 ? (
+        <aside class="mx-auto mt-8 max-w-3xl rounded-xl border border-[#5b9bff]/35 bg-[#0a1628] p-5 text-[#f2f6fc]">
+          <p class="text-sm font-semibold text-white">Short answer</p>
+          <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-[#c5d0e0]">
+            {takeaways.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </aside>
       ) : null
     }
-    <div class="prose prose-slate mt-8 max-w-none" set:html={html} />
-    <p class="mt-10">
-      <a href="/blog/" class="text-primary underline">← All posts</a>
-    </p>
+
+    <div class="mx-auto mt-10 grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,1fr)_14rem]">
+      <div class="min-w-0">
+        <div
+          class="prose prose-slate max-w-none prose-headings:scroll-mt-28 prose-headings:font-heading prose-a:text-primary prose-img:rounded-lg dark:prose-invert"
+          set:html={html}
+        />
+
+        {
+          faqs.length > 0 ? (
+            <section class="mt-12 border-t border-border pt-10">
+              <h2 class="font-heading text-2xl font-semibold text-foreground">FAQ</h2>
+              <dl class="mt-6 space-y-6">
+                {faqs.map((faq) => (
+                  <div>
+                    <dt class="font-medium text-foreground">{faq.q}</dt>
+                    <dd class="mt-1 text-muted-foreground">{faq.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          ) : null
+        }
+
+        {
+          productHref && productLabel ? (
+            <p class="mt-10 rounded-xl border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+              Related product:{' '}
+              <a href={productHref} class="font-medium text-primary underline">
+                {productLabel}
+              </a>
+            </p>
+          ) : null
+        }
+
+        <section class="mt-12 rounded-xl border border-[#5b9bff]/30 bg-gradient-to-b from-[#0a1628] to-[#060a12] p-6 text-white sm:p-8">
+          <h2 class="font-heading text-xl font-semibold sm:text-2xl">Try ATW with the free trial</h2>
+          <p class="mt-2 text-sm text-zinc-300">
+            The trial covers ATW One, Workforce, Directory, and ATW AI. Hub is included with every plan. Mail and Orbit
+            mailboxes are not part of the trial.
+          </p>
+          <div class="mt-5 flex flex-wrap gap-3">
+            <a
+              href={livePath('/trial')}
+              class="inline-flex rounded-lg bg-[#5b9bff] px-5 py-2.5 text-sm font-semibold text-[#06101c] hover:brightness-110"
+            >
+              Start {ERP_TRIAL_LABEL}
+            </a>
+            <a
+              href="/blog/"
+              class="inline-flex rounded-lg border border-white/30 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              Back to blog
+            </a>
+          </div>
+        </section>
+      </div>
+
+      {
+        showToc ? (
+          <aside class="hidden lg:block">
+            <div class="sticky top-28 rounded-xl border border-border bg-card p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">On this page</p>
+              <nav aria-label="Table of contents" class="mt-3">
+                <ol class="space-y-2 text-sm">
+                  {toc.map((item) => (
+                    <li class={item.level === 3 ? 'pl-3' : undefined}>
+                      <a href={`#${item.id}`} class="text-muted-foreground hover:text-primary">
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </div>
+          </aside>
+        ) : null
+      }
+    </div>
+
+    {
+      related.length > 0 ? (
+        <section class="mx-auto mt-16 max-w-5xl border-t border-border pt-12">
+          <h2 class="font-heading text-2xl font-semibold text-foreground">Related posts</h2>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((item) => (
+              <BlogCard post={item} />
+            ))}
+          </div>
+        </section>
+      ) : null
+    }
   </article>
 </MarketingLayout>

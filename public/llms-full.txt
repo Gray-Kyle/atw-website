@@ -53,6 +53,12 @@
 - ATW AI https://atw.net/ai/
 - Full catalog https://atw.net/systems
 
+## Blog
+- Index: https://atw.net/blog/
+- RSS: https://atw.net/blog/rss.xml
+- Topics: ATW One, Orbit, Hub, Workforce, Directory, ATW AI, business operations, and legacy ERP/CRM guides
+- Source of truth: posts are published in ATW One (Marketing/blog app) and loaded by the marketing site at build time from `GET https://one.atw.net/api/posts/public`
+
 ## Markdown fact sheets
 - ERP: https://atw.net/for-agents/erp.md
 - Custom ERP: https://atw.net/for-agents/custom-erp.md

@@ -1,0 +1,48 @@
+---
+import type { BlogCardPost } from '../../lib/blog';
+import { formatBlogDate } from '../../lib/blog';
+
+type Props = {
+  post: BlogCardPost;
+  featured?: boolean;
+  /** When false, omit data-blog-card so index pagination ignores this card. */
+  listed?: boolean;
+};
+
+const { post, featured = false, listed = true } = Astro.props;
+const href = `/blog/${post.slug}/`;
+const dateLabel = formatBlogDate(post.publishedAt);
+---
+
+<article
+  class:list={[
+    'flex h-full flex-col rounded-xl border border-border bg-card p-5 transition hover:border-primary/40',
+    featured ? 'sm:p-6' : null,
+  ]}
+  {...(listed ? { 'data-blog-card': '' } : {})}
+  data-topics={post.topics.join(' ')}
+  data-title={post.title.toLowerCase()}
+  data-excerpt={(post.excerpt || '').toLowerCase()}
+  data-category={post.category.toLowerCase()}
+>
+  <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+    <span class="rounded-full border border-border px-2 py-0.5 font-medium text-foreground/80">
+      {post.category}
+    </span>
+    {dateLabel ? <time datetime={post.publishedAt ?? undefined}>{dateLabel}</time> : null}
+    <span>{post.readTime} min read</span>
+  </div>
+  <h3 class:list={['mt-3 font-heading font-semibold text-foreground', featured ? 'text-xl sm:text-2xl' : 'text-lg']}>
+    <a href={href} class="hover:text-primary">{post.title}</a>
+  </h3>
+  {
+    post.excerpt ? (
+      <p class:list={['mt-2 text-sm text-muted-foreground', featured ? 'line-clamp-3' : 'line-clamp-2']}>
+        {post.excerpt}
+      </p>
+    ) : null
+  }
+  <p class="mt-4 mt-auto text-sm font-medium text-primary">
+    <a href={href} class="hover:underline">Read post</a>
+  </p>
+</article>

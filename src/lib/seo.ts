@@ -257,3 +257,72 @@ export function breadcrumbListJsonLd(items: readonly BreadcrumbItem[]) {
     })),
   };
 }
+
+export type BlogJsonLdOptions = {
+  name?: string;
+  description?: string;
+};
+
+/** Blog index CollectionPage / Blog JSON-LD. */
+export function blogJsonLd(options: BlogJsonLdOptions = {}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${SITE_ORIGIN}/blog/#blog`,
+    name: options.name ?? 'ATW.Net Blog',
+    description:
+      options.description ??
+      'Guides and updates on ATW One, Orbit, Hub, Workforce, Directory, ATW AI, and business operations.',
+    url: `${SITE_ORIGIN}/blog/`,
+    publisher: { '@id': `${SITE_ORIGIN}/#organization` },
+    inLanguage: 'en-US',
+  };
+}
+
+export type BlogPostingJsonLdInput = {
+  title: string;
+  description: string;
+  path: string;
+  publishedAt?: string | null;
+  updatedAt?: string | null;
+  imageUrl?: string | null;
+  authorName?: string | null;
+};
+
+/** Article / BlogPosting JSON-LD for individual posts. */
+export function blogPostingJsonLd(input: BlogPostingJsonLdInput) {
+  const url = absoluteUrl(input.path);
+  const image = absoluteUrl(input.imageUrl || DEFAULT_OG_IMAGE);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: input.title,
+    description: input.description,
+    url,
+    mainEntityOfPage: url,
+    image: [image],
+    datePublished: input.publishedAt || undefined,
+    dateModified: input.updatedAt || input.publishedAt || undefined,
+    author: {
+      '@type': 'Person',
+      name: input.authorName || 'ATW.Net team',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ATW.Net',
+      legalName: 'No Name Marketing, LLC',
+      url: `${SITE_ORIGIN}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: ORGANIZATION_LOGO,
+      },
+      parentOrganization: {
+        '@type': 'Organization',
+        name: 'No Name Marketing, LLC',
+      },
+    },
+    isPartOf: { '@id': `${SITE_ORIGIN}/blog/#blog` },
+    inLanguage: 'en-US',
+  };
+}

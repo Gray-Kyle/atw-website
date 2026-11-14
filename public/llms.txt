@@ -30,6 +30,11 @@ Agent hub: https://atw.net/for-agents
 - ATW AI: https://atw.net/ai/
 - Catalog: https://atw.net/systems
 
+## Blog
+
+- Blog index: https://atw.net/blog/
+- Blog RSS: https://atw.net/blog/rss.xml
+
 ## Services (delivery)
 
 - ATW Services hub: https://atw.net/services

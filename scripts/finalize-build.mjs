@@ -130,4 +130,12 @@ const sitemap = spawnSync('node', [join(root, 'scripts', 'publish-sitemap.mjs')]
 if (sitemap.status !== 0) {
   process.exit(sitemap.status || 1);
 }
+const enrich = spawnSync('node', [join(root, 'scripts', 'enrich-sitemap-blog.mjs')], {
+  cwd: root,
+  stdio: 'inherit',
+  env: { ...process.env, ATW_OUT_DIR: outDir },
+});
+if (enrich.status !== 0) {
+  process.exit(enrich.status || 1);
+}
 console.log('[finalize-build] Production worker + sitemap published');

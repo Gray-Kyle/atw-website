@@ -1,0 +1,120 @@
+---
+/**
+ * Progressive enhancement: topic filters, search, and pagination for /blog/.
+ * Posts are rendered server-side; this script only shows/hides and pages them.
+ */
+const pageSize = 12;
+---
+
+<script define:vars={{ pageSize }}>
+  (function () {
+    const root = document.querySelector('[data-blog-index]');
+    if (!(root instanceof HTMLElement)) return;
+
+    const cards = [...root.querySelectorAll('[data-blog-card]')];
+    const featured = [...root.querySelectorAll('[data-blog-featured-card]')];
+    const grid = root.querySelector('[data-blog-grid]');
+    const empty = root.querySelector('[data-blog-empty]');
+    const pager = root.querySelector('[data-blog-pager]');
+    const pageLabel = root.querySelector('[data-blog-page-label]');
+    const prevBtn = root.querySelector('[data-blog-prev]');
+    const nextBtn = root.querySelector('[data-blog-next]');
+    const search = root.querySelector('[data-blog-search]');
+    const filters = [...root.querySelectorAll('[data-blog-topic]')];
+    const countEl = root.querySelector('[data-blog-count]');
+
+    let topic = 'all';
+    let query = '';
+    let page = 1;
+
+    function matches(card) {
+      const topics = (card.getAttribute('data-topics') || '').split(/\s+/);
+      if (topic !== 'all' && !topics.includes(topic)) return false;
+      if (!query) return true;
+      const hay = [
+        card.getAttribute('data-title') || '',
+        card.getAttribute('data-excerpt') || '',
+        card.getAttribute('data-category') || '',
+      ].join(' ');
+      return hay.includes(query);
+    }
+
+    function render() {
+      const matched = cards.filter(matches);
+      const totalPages = Math.max(1, Math.ceil(matched.length / pageSize));
+      if (page > totalPages) page = totalPages;
+      const start = (page - 1) * pageSize;
+      const visible = new Set(matched.slice(start, start + pageSize));
+
+      for (const card of cards) {
+        card.hidden = !visible.has(card);
+      }
+
+      // Featured strip: hide cards that don't match current filter/search.
+      for (const card of featured) {
+        card.hidden = !matches(card);
+      }
+
+      if (empty instanceof HTMLElement) {
+        empty.hidden = matched.length > 0;
+      }
+      if (grid instanceof HTMLElement) {
+        grid.hidden = matched.length === 0;
+      }
+      if (countEl) {
+        countEl.textContent =
+          matched.length === 1 ? '1 post' : `${matched.length} posts`;
+      }
+      if (pager instanceof HTMLElement) {
+        pager.hidden = matched.length <= pageSize;
+      }
+      if (pageLabel) {
+        pageLabel.textContent = `Page ${page} of ${totalPages}`;
+      }
+      if (prevBtn instanceof HTMLButtonElement) {
+        prevBtn.disabled = page <= 1;
+      }
+      if (nextBtn instanceof HTMLButtonElement) {
+        nextBtn.disabled = page >= totalPages;
+      }
+    }
+
+    for (const btn of filters) {
+      btn.addEventListener('click', () => {
+        topic = btn.getAttribute('data-blog-topic') || 'all';
+        page = 1;
+        for (const other of filters) {
+          const active = other === btn;
+          other.setAttribute('aria-pressed', active ? 'true' : 'false');
+          if (active) {
+            other.setAttribute('style', 'background:#5b9bff;color:#06101c;border-color:transparent');
+          } else {
+            other.removeAttribute('style');
+          }
+        }
+        render();
+      });
+    }
+
+    if (search instanceof HTMLInputElement) {
+      search.addEventListener('input', () => {
+        query = search.value.trim().toLowerCase();
+        page = 1;
+        render();
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      page = Math.max(1, page - 1);
+      render();
+      grid?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    nextBtn?.addEventListener('click', () => {
+      page += 1;
+      render();
+      grid?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    render();
+  })();
+</script>
