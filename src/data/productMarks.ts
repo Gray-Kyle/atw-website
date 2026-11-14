@@ -75,8 +75,9 @@ export const PRODUCT_MARKS = {
     id: 'hub',
     icon: ATW_DOTS_ICON,
     wordmark: {
-      webp: '/images/logo/atw-hub-wordmark.webp',
-      png: '/images/logo/atw-hub-wordmark.png',
+      // -v2: transparent canvas; plain filenames were edge-cached immutable
+      webp: '/images/logo/atw-hub-wordmark-v2.webp',
+      png: '/images/logo/atw-hub-wordmark-v2.png',
       alt: 'ATW Hub logo',
       width: 895,
       height: 402,
@@ -109,8 +110,9 @@ export const PRODUCT_MARKS = {
     id: 'workforce',
     icon: ATW_DOTS_ICON,
     wordmark: {
-      webp: '/images/logo/atw-workforce-wordmark.webp',
-      png: '/images/logo/atw-workforce-wordmark.png',
+      // -v2: transparent canvas; plain filenames were edge-cached immutable
+      webp: '/images/logo/atw-workforce-wordmark-v2.webp',
+      png: '/images/logo/atw-workforce-wordmark-v2.png',
       alt: 'ATW Workforce logo',
       width: 1838,
       height: 402,
@@ -120,8 +122,9 @@ export const PRODUCT_MARKS = {
     id: 'ai',
     icon: ATW_DOTS_ICON,
     wordmark: {
-      webp: '/images/logo/atw-ai-wordmark.webp',
-      png: '/images/logo/atw-ai-wordmark.png',
+      // -v2: transparent canvas; plain filenames were edge-cached immutable
+      webp: '/images/logo/atw-ai-wordmark-v2.webp',
+      png: '/images/logo/atw-ai-wordmark-v2.png',
       alt: 'ATW AI logo',
       width: 656,
       height: 402,

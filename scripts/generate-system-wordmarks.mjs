@@ -177,13 +177,15 @@ for (const product of products) {
   const meta = await sharp(padded).metadata();
   const webp = await sharp(padded).webp({ quality: 92 }).toBuffer();
 
+  // -v2 suffix so CDN/browser immutable caches of prior opaque files are not reused.
+  const base = `atw-${product.id}-wordmark-v2`;
   const svg = `<!-- Generated from official ATW Directory wordmark; raster is source of truth. -->
 <svg xmlns="http://www.w3.org/2000/svg" width="${meta.width}" height="${meta.height}" viewBox="0 0 ${meta.width} ${meta.height}">
-  <image href="atw-${product.id}-wordmark.png" width="${meta.width}" height="${meta.height}"/>
+  <image href="${base}.png" width="${meta.width}" height="${meta.height}"/>
 </svg>`;
 
-  writeFileSync(join(outDir, `atw-${product.id}-wordmark.png`), padded);
-  writeFileSync(join(outDir, `atw-${product.id}-wordmark.webp`), webp);
-  writeFileSync(join(outDir, `atw-${product.id}-wordmark.svg`), svg);
-  console.log(`wrote atw-${product.id}-wordmark (${meta.width}x${meta.height})`);
+  writeFileSync(join(outDir, `${base}.png`), padded);
+  writeFileSync(join(outDir, `${base}.webp`), webp);
+  writeFileSync(join(outDir, `${base}.svg`), svg);
+  console.log(`wrote ${base} (${meta.width}x${meta.height})`);
 }

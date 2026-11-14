@@ -1,5 +1,7 @@
 # Long-cache hashed Astro build assets and self-hosted static binaries.
 # HTML stays short-lived (Cloudflare Pages default / no override here).
+# Unhashed /public/images files must NOT be immutable year-long: those
+# paths are rewritten in place when assets change (e.g. wordmark regen).
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
@@ -8,7 +10,7 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /images/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /favicon.ico
   Cache-Control: public, max-age=31536000, immutable
