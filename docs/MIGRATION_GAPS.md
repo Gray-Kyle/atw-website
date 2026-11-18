@@ -14,7 +14,7 @@ The Astro header now mirrors the Next `(site)` marketing nav: **Systems** three-
 | Zoho Bookings | `/book` + `/api/zoho-bookings/*` proxy |
 | Hosted lead forms | `/forms/{orgId}/{slug}` Astro shell + `GET/POST /api/public/lead-forms/...` proxy |
 
-Pages Advanced Mode worker: `pages-worker/_worker.js` (copied to `dist/_worker.js` on build). Only whitelisted marketing APIs are forwarded; other `/api/*` returns 404.
+Pages Advanced Mode worker: `pages-worker/_worker.js` (copied to `dist/_worker.js` on build). Only whitelisted marketing APIs are forwarded (including `POST /api/public/analytics/collect` → `one.atw.net`); other `/api/*` returns 404.
 
 Set `PUBLIC_TURNSTILE_SITE_KEY` on the Pages project (same value as Amplify `NEXT_PUBLIC_TURNSTILE_SITE_KEY`) for Turnstile on `/contact`.
 

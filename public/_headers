@@ -36,5 +36,9 @@
 /js/*
   Cache-Control: public, max-age=86400
 
+/analytics.js
+  Cache-Control: public, max-age=3600
+  Content-Type: application/javascript; charset=utf-8
+
 /blog/rss.xml
   Cache-Control: public, max-age=3600
