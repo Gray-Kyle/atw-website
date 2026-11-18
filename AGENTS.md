@@ -24,6 +24,14 @@ Wordmarks for Workforce, Hub, and AI use `-v2` filenames under `public/images/lo
 
 Sitewide announcement bar: `OrbitAnnouncementBar` in `BaseLayout` (Orbit live vs Coming Soon apps).
 
+## ATW Analytics (first-party pageviews)
+
+Indexable pages load the tracker from `AtwAnalytics` in `BaseLayout` (skipped when `noindex` or design preview).
+
+- Script: `/analytics.js` (static copy of the ATW One snippet; see `Gray-Kyle/ATWNetworkWebpage` `src/app/(site)/analytics.js/route.ts`).
+- Collect: same-origin `POST /api/public/analytics/collect`, proxied by `pages-worker/_worker.js` to `one.atw.net` (ATW One analytics API).
+- Build env (public site write key, not a secret): `PUBLIC_ATW_ANALYTICS_WRITE_KEY` (`awk_…`). Set in Cloudflare Pages project env for production and preview if you want branch builds to send pageviews. Copy from Amplify `NEXT_PUBLIC_ATW_ANALYTICS_WRITE_KEY` or from the platform seed in `ATWNetworkWebpage` (`npm run seed-platform-analytics-site`). Never commit the full key.
+
 ## Blog (where posts live)
 
 Posts are **not** Markdown in this repo. They are published in **ATW One** (Marketing / blog app on `one.atw.net`) and loaded at build time by `src/lib/blog.ts`:

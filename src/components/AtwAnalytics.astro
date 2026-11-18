@@ -1,0 +1,31 @@
+---
+/**
+ * First-party ATW Analytics (same-origin collect). Requires PUBLIC_ATW_ANALYTICS_WRITE_KEY
+ * at build time (platform site write key from One → Analytics → Sites).
+ */
+interface Props {
+  disabled?: boolean;
+}
+
+const { disabled = false } = Astro.props;
+const writeKey = (import.meta.env.PUBLIC_ATW_ANALYTICS_WRITE_KEY || '').trim();
+const enabled = Boolean(writeKey) && !disabled;
+const collectEndpoint = '/api/public/analytics/collect';
+---
+
+{
+  enabled ? (
+    <>
+      <script
+        is:inline
+        define:vars={{ writeKey, collectEndpoint }}
+      >{`window.__ATW_ANALYTICS_KEY=${JSON.stringify(writeKey)};window.__ATW_ANALYTICS_ENDPOINT=${JSON.stringify(collectEndpoint)};`}</script>
+      <script
+        defer
+        src="/analytics.js"
+        data-key={writeKey}
+        data-endpoint={collectEndpoint}
+      />
+    </>
+  ) : null
+}

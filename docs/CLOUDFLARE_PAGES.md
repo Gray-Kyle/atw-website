@@ -13,6 +13,7 @@ Project exists and is connected to **`Gray-Kyle/atw-website`** (`main`).
 - Build command: `npm ci && npm run build`
 - Build output directory: `dist`
 - Preview URL: https://atw-website-9br.pages.dev
+- **Build variable (optional but required for live pageviews):** `PUBLIC_ATW_ANALYTICS_WRITE_KEY` (same value as Amplify `NEXT_PUBLIC_ATW_ANALYTICS_WRITE_KEY` for the platform Analytics site `ATW Network website`).
 
 **Live custom domains:** `https://www.atw.net` and `https://atw.net` → Pages production (added 2026-10-28). Product subdomains stay on Amplify (see `../../ATW/docs/STEP1_WEBSITE_PEEL.md`).
 

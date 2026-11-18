@@ -2,8 +2,8 @@
  * Pages Advanced Mode (_worker.js copied to dist on build).
  *
  * Marketing APIs on apex use same-origin /api/* proxied to product hosts.
- * Contact/bookings/lead forms go to auth.atw.net. Public blog posts go to one.atw.net
- * (Auth does not serve /api/posts/public). Other /api/* return 404.
+ * Contact/bookings/lead forms go to auth.atw.net. Public blog posts and analytics collect
+ * go to one.atw.net (Auth does not serve those routes). Other /api/* return 404.
  */
 const AUTH_API_ORIGIN = "https://auth.atw.net";
 const ONE_API_ORIGIN = "https://one.atw.net";
@@ -23,12 +23,14 @@ function shouldProxyApi(pathname) {
   if (pathname.startsWith("/api/zoho-bookings/")) return true;
   if (pathname.startsWith("/api/public/lead-forms/")) return true;
   if (pathname.startsWith("/api/posts/public")) return true;
+  if (pathname === "/api/public/analytics/collect") return true;
   return false;
 }
 
 /** @param {string} pathname */
 function apiUpstreamOrigin(pathname) {
   if (pathname.startsWith("/api/posts/public")) return ONE_API_ORIGIN;
+  if (pathname === "/api/public/analytics/collect") return ONE_API_ORIGIN;
   return AUTH_API_ORIGIN;
 }
 
@@ -60,7 +62,7 @@ function corsHeaders(request) {
     "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
     "Access-Control-Allow-Headers":
       request.headers.get("Access-Control-Request-Headers") ||
-      "Content-Type, Authorization, X-Requested-With, X-Atw-User-Email",
+      "Content-Type, Authorization, X-Requested-With, X-Atw-User-Email, X-Atw-Analytics-Key",
     Vary: "Origin",
   };
 }
