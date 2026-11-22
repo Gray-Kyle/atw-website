@@ -1,0 +1,25 @@
+---
+interface Props {
+  tone?: 'dark' | 'light';
+}
+
+const { tone = 'dark' } = Astro.props;
+
+const buttonClass =
+  tone === 'dark'
+    ? 'inline-flex size-10 items-center justify-center rounded-md text-white/80 transition hover:bg-white/10 hover:text-white lg:hidden'
+    : 'inline-flex size-10 items-center justify-center rounded-md text-brand-ink transition hover:bg-brand-navy/5 lg:hidden';
+---
+
+<button
+  type="button"
+  id="mobile-nav-toggle"
+  class={buttonClass}
+  aria-expanded="false"
+  aria-controls="mobile-nav-panel"
+  aria-label="Open menu"
+>
+  <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+    <path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"></path>
+  </svg>
+</button>

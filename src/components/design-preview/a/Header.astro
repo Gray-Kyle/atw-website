@@ -1,7 +1,9 @@
 ---
 import { Picture } from 'astro:assets';
-import { AUTH_SIGNIN, livePath } from '../../../lib/site';
+import { livePath } from '../../../lib/site';
 import siteLogo from '../../../assets/images/logo/logo.png';
+import AccountControl from '../../nav/AccountControl.astro';
+import MobileNavToggle from '../../nav/MobileNavToggle.astro';
 
 const path = Astro.url.pathname;
 const links = [
@@ -50,23 +52,16 @@ const links = [
       >
         Book a Call
       </a>
-      <a href={AUTH_SIGNIN} class="text-sm font-medium text-brand-ink/80 hover:text-brand-ink">Sign In</a>
     </nav>
-    <button
-      type="button"
-      id="mobile-nav-toggle"
-      class="inline-flex items-center rounded-lg border border-border px-3 py-2 text-sm font-medium lg:hidden"
-      aria-expanded="false"
-      aria-controls="mobile-nav-panel"
-    >
-      Menu
-    </button>
+    <div class="flex items-center gap-2">
+      <MobileNavToggle tone="light" />
+      <AccountControl tone="light" />
+    </div>
   </div>
   <div id="mobile-nav-panel" class="hidden border-t border-border bg-white lg:hidden" aria-hidden="true">
     <div class="xl-container flex flex-col gap-1 py-3">
       {links.map((link) => <a href={link.href} class="py-2.5 text-sm font-medium text-brand-ink">{link.label}</a>)}
       <a href={livePath('/book')} class="py-2.5 text-sm font-semibold text-primary">Book a Call</a>
-      <a href={AUTH_SIGNIN} class="py-2.5 text-sm font-medium">Sign In</a>
       <a href="/services/" class="py-2.5 text-sm text-muted-foreground">Services</a>
       <a href="/partners/" class="py-2.5 text-sm text-muted-foreground">Partners</a>
     </div>
@@ -79,6 +74,7 @@ const links = [
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     panel?.classList.toggle('hidden', !open);
     panel?.setAttribute('aria-hidden', open ? 'false' : 'true');
   });

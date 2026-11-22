@@ -1,0 +1,33 @@
+---
+import { AUTH_SIGNIN, PRODUCT } from '../../lib/site';
+
+interface Props {
+  /** Dark Option B header, or the light header used by Option A and the legacy bar. */
+  tone?: 'dark' | 'light';
+}
+
+const { tone = 'dark' } = Astro.props;
+
+const signInClass =
+  tone === 'dark'
+    ? 'inline-flex items-center rounded-md border border-white/25 px-3.5 py-2 text-sm font-medium text-white transition hover:bg-white/10'
+    : 'inline-flex items-center rounded-md border border-brand-navy/25 px-3.5 py-2 text-sm font-medium text-brand-ink transition hover:bg-brand-navy/5';
+---
+
+<div class="flex items-center" data-atw-account>
+  <a href={AUTH_SIGNIN} data-atw-sign-in class={signInClass}>Sign in</a>
+  <a
+    href={`${PRODUCT.one}/`}
+    data-atw-account-app
+    hidden
+    class="inline-flex rounded-full p-0.5 ring-2 ring-transparent transition hover:ring-white/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5b9bff]"
+    aria-label="Open One"
+  >
+    <img data-atw-avatar alt="" width="36" height="36" hidden class="size-9 rounded-full object-cover" />
+    <span
+      data-atw-initials
+      hidden
+      class="flex size-9 items-center justify-center rounded-full bg-indigo-600 text-xs font-semibold tracking-wide text-white"
+    ></span>
+  </a>
+</div>
