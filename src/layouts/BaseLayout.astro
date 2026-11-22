@@ -188,6 +188,10 @@ const mainPad =
     </main>
     <slot name="footer" />
     <PreviewMotion />
+    <script>
+      import { bootMarketingSession } from '../scripts/marketingSession';
+      bootMarketingSession();
+    </script>
     {/* Load variant CSS after Astro/Tailwind so remaps win the cascade without racing utilities. */}
     {designVariant === 'a' ? <link rel="stylesheet" href="/design-preview/a.css" /> : null}
     {designVariant === 'b' ? <link rel="stylesheet" href="/design-preview/b.css" /> : null}

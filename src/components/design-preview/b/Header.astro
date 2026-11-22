@@ -5,10 +5,11 @@ import {
   B_NAV_RESOURCES,
   B_NAV_WHY,
   B_PRIMARY_CTA,
-  B_SECONDARY_AUTH,
 } from '../../../data/designPreviewB';
 import { livePath } from '../../../lib/site';
 import siteLogoLight from '../../../assets/images/logo/logo_light.png';
+import AccountControl from '../../nav/AccountControl.astro';
+import MobileNavToggle from '../../nav/MobileNavToggle.astro';
 
 const path = Astro.url.pathname;
 const isActive = (href: string) => {
@@ -186,27 +187,16 @@ const isActive = (href: string) => {
       </div>
     </nav>
 
-    <div class="hidden items-center gap-2 lg:flex">
-      <a href={B_SECONDARY_AUTH.href} class="rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:text-white">
-        {B_SECONDARY_AUTH.label}
-      </a>
+    <div class="flex items-center gap-2">
+      <MobileNavToggle tone="dark" />
+      <AccountControl tone="dark" />
       <a
         href={B_PRIMARY_CTA.href}
-        class="rounded-md bg-[#5b9bff] px-4 py-2 text-sm font-semibold text-[#06101c] transition hover:brightness-110"
+        class="hidden rounded-md bg-[#5b9bff] px-4 py-2 text-sm font-semibold text-[#06101c] transition hover:brightness-110 lg:inline-flex"
       >
         {B_PRIMARY_CTA.label}
       </a>
     </div>
-
-    <button
-      type="button"
-      id="mobile-nav-toggle"
-      class="inline-flex items-center rounded-md border border-white/20 px-3 py-2 text-sm font-medium text-white lg:hidden"
-      aria-expanded="false"
-      aria-controls="mobile-nav-panel"
-    >
-      Menu
-    </button>
   </div>
 
   <div id="mobile-nav-panel" class="hidden max-h-[min(80vh,40rem)] overflow-y-auto border-t border-white/10 bg-[#0b1729] lg:hidden" aria-hidden="true">
@@ -253,9 +243,6 @@ const isActive = (href: string) => {
       <div class="mt-4 flex flex-col gap-2 border-t border-white/10 pt-4">
         <a href={B_PRIMARY_CTA.href} class="rounded-md bg-[#5b9bff] px-4 py-3 text-center text-sm font-semibold text-[#06101c]">
           {B_PRIMARY_CTA.label}
-        </a>
-        <a href={B_SECONDARY_AUTH.href} class="rounded-md border border-white/20 px-4 py-3 text-center text-sm font-medium text-white">
-          {B_SECONDARY_AUTH.label}
         </a>
       </div>
     </div>
@@ -312,6 +299,7 @@ const isActive = (href: string) => {
       root?.querySelectorAll('[data-nav-dropdown]').forEach(closeDropdown);
       if (mobileToggle && mobilePanel && mobileToggle.getAttribute('aria-expanded') === 'true') {
         mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.setAttribute('aria-label', 'Open menu');
         mobilePanel.classList.add('hidden');
         mobilePanel.setAttribute('aria-hidden', 'true');
       }
@@ -321,6 +309,7 @@ const isActive = (href: string) => {
   mobileToggle?.addEventListener('click', () => {
     const open = mobileToggle.getAttribute('aria-expanded') !== 'true';
     mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     mobilePanel?.classList.toggle('hidden', !open);
     mobilePanel?.setAttribute('aria-hidden', open ? 'false' : 'true');
   });
